@@ -68,6 +68,8 @@ exports.propertDetails = async (req, res) => {
             location,
             disclaimer,
             category,
+            city,
+            rooms,
             scale_type,
         } = req.body
 
@@ -91,11 +93,13 @@ exports.propertDetails = async (req, res) => {
             category == null ||
             disclaimer == null ||
             scale_type == null ||
-            house_type == null
+            house_type == null ||
+            city == null ||
+            rooms==null 
         ) {
             res.status(404).json({
                 message:
-                    "address,projectName,price,propertyLife,size,facilities,carpet_area,super_built_up,project_area,booking_amount,furnishing,property_floor,landmark,builder_details,owner_info,location,category not found",
+                    "address,projectName,city,price,propertyLife,size,facilities,carpet_area,super_built_up,project_area,booking_amount,furnishing,property_floor,landmark,builder_details,owner_info,location,category not found",
             })
         } else {
             const files = req.files
@@ -141,6 +145,8 @@ exports.propertDetails = async (req, res) => {
                     scale_type,
                     house_type,
                     disclaimer,
+                    rooms,
+                    city,
                     category,
                 })
 

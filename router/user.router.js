@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const image_upload = require("../helper/multer.helper")
+const image_upload = require("../helper/multer.helper");
+const city= require("../model/city.model")
 // const manager_token = require("../middleware/manager.middleware");
 
 const {
@@ -30,7 +31,7 @@ const {
      sell_rowhouse,
      sell_industrial,
      sell_farm,
-     filter,
+     frontfilter,
      filterpost,
 
 
@@ -69,8 +70,13 @@ const {
   router.get('/sell_industrial',sell_industrial);
   router.get('/sell_farm',sell_farm);
 
-  router.get('/filter/:city/:category/:house_type',filter);
+  router.get('/filter/:city/:category/:house_type',frontfilter);
   router.post('/filters',filterpost);
+
+  router.get('/city',async(req,res)=>{
+    var data=await city.find({})
+    res.json(data);
+  });
 
 
 module.exports = router;
