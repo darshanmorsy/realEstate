@@ -33,12 +33,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(logger('dev'));
 
-// const sellerRouter = require("./routers/seller.routes");
-// const userRouter = require("./routers/user.routes");
+const userRouter = require("./router/user.router");
 const adminRouter = require("./router/admin.router");
 
-// app.use("/seller", ownerRouter);
-// app.use('/user',userRouter);
+
+app.use('/user',userRouter);
 app.use('/admin',adminRouter);
 
 app.listen(port, () => {

@@ -1,12 +1,20 @@
-const router = require("express").Router();
-// const manager_token = require("../middleware/manager.middleware");
-const image_upload = require("../helper/multer.helper");
-
-
+const router = require("express").Router()
+// const manager_token = require("../middleware/manager.middleware")
+const image_upload = require("../helper/multer.helper")
 const{
-    propertDetails,
- }= require("../controller/admin.controller");
+    request,
+    contacts,
+    requestAccept,
+    requestDecline,
+    allproperty,
 
-  router.post("/propertDetails",image_upload.single("property_image"),propertDetails);
+ }= require("../controller/admin.controller")
+
+ 
+  router.get('/request',request)
+  router.get('/contacts',contacts)
+  router.get('/requestAccept/:id',requestAccept)
+  router.delete('/requestDecline/:id',requestDecline)
+  router.get('/allproperty',allproperty)
 
 module.exports = router;

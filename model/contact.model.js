@@ -18,9 +18,8 @@ const contactSchema = new mongoose.Schema({
         type:String
     }
 },{
-    collection: "user",
+    collection: "contact",
     timestamps: true
 });
 
-const contact = mongoose.model("contact", adminSchema);
-module.exports = contact;
+module.exports =  mongoose.model("contact", contactSchema);

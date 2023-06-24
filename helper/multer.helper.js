@@ -3,19 +3,19 @@ const path = require('path');
 
 const storage = multer.diskStorage({});
 
-// const fileFilter = (req, file, cb) => {
-//     if (file) {
-//         cb(null, true);
-//     } else {  
-//         cb(null, false);
-//         return cb(new Error('Not all photo formats are allowed'));
-//     }
-// }
+const fileFilter = (req, file, cb) => {
+    if (file) {
+        cb(null, true);
+    } else {  
+        cb(null, false);
+        return cb(new Error('Not all photo formats are allowed'));
+    }
+}
 
 const  upload = multer({
     storage: storage,
     limits: { fileSize: 1024 * 1024 * 20 },
-    // fileFilter: fileFilter
+    fileFilter: fileFilter
 });
 
 module.exports = upload;

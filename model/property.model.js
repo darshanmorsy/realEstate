@@ -78,9 +78,16 @@ const propertySchema = mongoose.Schema({
     location:{
         type:String,
     },
+    type:{
+        type:String,
+    },
+    house_type:{
+        type:String,
+    }
 },{
-    collection: "user",
+    collection: "property",
     timestamps: true
 });
 
-module.exports = mongoose.model('property', propertySchema);
+var property= mongoose.model('property', propertySchema);
+module.exports =property;
