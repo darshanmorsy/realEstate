@@ -2,6 +2,7 @@ const express = require("express");
 const property = require("../model/property.model");
 const contacts = require("../model/contact.model");
 var cloudinary = require('../helper/cloudinary');
+var city=require('../model/city.model')
 
 // shows request, get method
 
@@ -39,14 +40,15 @@ exports.requestAccept = async (req, res) => {
 };
 
 
+
 exports.requestDecline = async (req, res) => {
   console.log(req.params);
-  var properties = await property.find({ _id: req.params.id });
+  var properties = await property.findOne({ _id: req.params.id });
 
-  console.log(properties[0]);
+  // console.log(properties);
 
-  var cloudinary_id = properties[0].property_image_id;
-  var property_images = properties[0].property_image;
+  var cloudinary_id = properties.property_image_id;
+  var property_images = properties.property_image; 
 
   console.log(property_images.length, "oooooooooooooooo", property);
 
@@ -67,6 +69,7 @@ exports.requestDecline = async (req, res) => {
 };
 
 
+
 exports.allproperty = async (req, res) => {
 
   var data = await property.find();
@@ -79,3 +82,25 @@ exports.allproperty = async (req, res) => {
 
 }
 
+exports.city=async(req, res) => {
+
+  var data = await city.create({ city:req.body.city});
+  if (data) {
+      res.status(200).json({message: "city added successfully",data});
+    }
+    else {
+          res.status(404).json({ message: "city not added" });
+        }
+}
+
+exports.deletecity=async(req,res)=>{
+
+  var data = await city.findByIdAndDelete(req.params.id);
+  if(data) {
+    res.status(200).json({message: "city deleted successfully"});
+  }
+  else {
+      res.status(404).json({ message: "city not deleted" });
+    }
+
+}

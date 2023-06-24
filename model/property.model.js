@@ -47,7 +47,7 @@ const propertySchema = mongoose.Schema({
     landmark: {
         type: String
     },
-    builder_details: {
+    builder_details:{
         type: String
     },
     owner_info:{
@@ -82,6 +82,12 @@ const propertySchema = mongoose.Schema({
         type:String,
     },
     house_type:{
+        type:String,
+    },
+    city:{
+        type:String,
+    },
+    rooms:{
         type:String,
     }
 },{
