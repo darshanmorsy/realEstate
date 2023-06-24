@@ -16,15 +16,26 @@ exports.home=async (req, res) =>{
 exports.property=async (req, res) =>{
 
     var data = await property.find({active:1})
-    res.render('buy',{data})
+    var cities=await city.find({})
+   
+    res.render('buy',{data,cities})
 
 }
 exports.buy=async (req, res) =>{
 
     var data = await property.find({category:'sell', active:1})
-    res.render('buy',{data})
+    var cities=await city.find({})
+   
+    res.render('buy',{data,cities})
 
 }
+
+exports.sell_page=async(req,res)=>{
+
+    res,res.render('sellform')
+
+}
+
 exports.rents=async (req, res) =>{
 
     var data = await property.find({category:'rent', active:1})

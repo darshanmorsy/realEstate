@@ -33,7 +33,7 @@ const {
      sell_farm,
      frontfilter,
      filterpost,
-
+    sell_page
 
 
   } = require("../controller/user.controller");
@@ -43,6 +43,7 @@ const {
   router.get('/property',property)
   router.get('/buy',buy)
   router.get('/rents',rents)
+  router.get('/sellpage',sell_page)
   router.get('/singleproperty/:id',singleproperty)
 
 

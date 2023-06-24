@@ -24,6 +24,39 @@
             </nav>
           </div>
         </div>
+        <div class="d-flex  mx-3 border border-success p-3 rounded-pill  my-5">
+          <form class="w-100" action="/user/filters" method="post">
+              <div class="d-flex w-100 justify-content-between">
+                  <select name="city" class="custom-select rounded-pill form-control mx-2">
+                      <option hidden >select city</option>
+                      <%var citi= cities%>
+                      <% citi.forEach((s , j )=>{ %>
+                          <option value="<%=s.city%>">
+                              <%= s.city %>
+                          </option>
+                          <% }) %>
+                      </select>
+                      
+              <select name="house_type" class="custom-select rounded-pill mx-3 form-control">
+                  <option hidden >select house</option>
+                  <option value="farm">farm</option>
+                  <option value="shop">shop</option>
+                  <option value="bungalow">bungalow</option>
+                  <option value="office">office</option>
+                  <option value="industrial">industrial</option>
+                  <option value="openplot">open plot</option>
+                  <option value="flat">flat</option>
+                  <option value="rowhouse">row house</option>
+              </select>
+              <select name="category" class="custom-select rounded-pill mx-3 form-control">
+                  <option value="rent">Rent</option>
+                  <option value="sell">Buy</option>
+              </select>
+              <button type="submit " class="btn btn-success rounded-pill">search</button>
+          </div>
+              
+          </form>
+      </div>
       </div>
     </section><!-- End Intro Single-->
 
@@ -31,22 +64,6 @@
     <section class="property-grid grid">
       <div class="container">
         <div class="row">
-          <div class="col-sm-12">
-            <div class="grid-option">
-              <form>
-                <select class="custom-select">
-                  <option hidden >select city</option>
-                 
-                    <%var citi= cities%>
-                  <% citi.forEach((s , j )=>{ %>
-                     <option value="<%=s%>">
-                         <%= s.city %>
-                      </option>
-                      <% }) %>
-                </select>
-              </form>
-            </div>
-          </div>
           <%for(var i of data){%>
           <div class="col-md-4">
             <div class="card-box-a card-shadow">
