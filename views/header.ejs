@@ -164,8 +164,10 @@
           </li>
         </ul>
       </div>
-
-      <a href="/j" class="btn btn-b-n">login</a>
-
+      <%if(profile){%>
+      <a href="/user/profile" class="btn btn-b-n">profile</a>
+      <%}else{%>
+      <a href="/user/login" class="btn btn-b-n">login</a>
+        <%}%>
     </div>
   </nav><!-- End Header/Navbar -->

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const propertySchema = mongoose.Schema({
    
-    owner_id: {
+    user_id: {
         type: String,
     },
     address: {

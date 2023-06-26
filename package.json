@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "cloudinary": "^1.37.2",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.3.1",
@@ -8,6 +9,7 @@
     "express-session": "^1.17.3",
     "flash": "^1.1.0",
     "init": "^0.1.2",
+    "jsonwebtoken": "^9.0.0",
     "mongodb": "^5.6.0",
     "mongoose": "^7.3.1",
     "morgan": "^1.10.0",
@@ -18,9 +20,9 @@
   "name": "realestate",
   "version": "1.0.0",
   "main": "index.js",
-   "engines": {
+  "engines": {
     "node": ">=14 <15"
-    },
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js",

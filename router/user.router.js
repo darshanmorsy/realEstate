@@ -1,10 +1,16 @@
 const router = require("express").Router();
 const image_upload = require("../helper/multer.helper");
 const city= require("../model/city.model")
-// const manager_token = require("../middleware/manager.middleware");
+const user_token = require("../middleware/user.middleware");
 
 const {
 
+    login,
+    register,
+    loginpost,
+    registerpost,
+    loginpostweb,
+    registerpostweb,
     home,
     property,
     buy,
@@ -33,21 +39,30 @@ const {
      sell_farm,
      frontfilter,
      filterpost,
-    sell_page
-
+    sell_page,
+    profile_get,
+    profile,
+    
 
   } = require("../controller/user.controller");
 
 
   router.get('/',home)
-  router.get('/property',property)
-  router.get('/buy',buy)
-  router.get('/rents',rents)
-  router.get('/sellpage',sell_page)
-  router.get('/singleproperty/:id',singleproperty)
-
-
-
+  router.post('/login',loginpost);
+  router.post('/register',registerpost)
+  router.post('/registerpostweb',registerpostweb);
+  router.post('/loginpostweb',loginpostweb);
+  router.get('/property',user_token,property)
+  router.get('/buy',user_token,buy)
+  router.get('/rents',user_token,rents)
+  router.get('/sellpage',user_token,sell_page)
+  router.get('/singleproperty/:id',user_token,singleproperty);
+  router.post('/filters',user_token,filterpost);
+  
+  
+  
+  router.get('/login',login)
+  router.get('/register',register)
   router.post("/propertyDetails",image_upload.array("property_image"),propertDetails);
   router.post("/contact/:id",contact);
   router.get("/allproperty",allproperty);
@@ -72,8 +87,8 @@ const {
   router.get('/sell_farm',sell_farm);
 
   router.get('/filter/:city/:category/:house_type',frontfilter);
-  router.post('/filters',filterpost);
-
+router.get('/profile_get',user_token,profile_get);
+router.get('/profile',user_token,profile);
   router.get('/city',async(req,res)=>{
     var data=await city.find({})
     res.json(data);

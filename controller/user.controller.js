@@ -1,55 +1,307 @@
 const express = require("express")
 const property = require("../model/property.model")
 const contact = require("../model/contact.model")
+const user = require("../model/user.model")
 const city = require("../model/city.model")
-
+const bcrypt= require('bcrypt')
+const jwt=require('jsonwebtoken');
 var cloudinary = require("../helper/cloudinary")
 const path = require("path")
+const userSchema = require("../middleware/user.middleware");
+
 
 exports.home=async (req, res) =>{
+    
+    var token=req.cookies.jwt
+    const secretKey = process.env.SECRET_KEY
+    var decodedToken =''
+    if(token){
+      decodedToken = jwt.verify(token, secretKey)
+    }
+    var profile=await user.findOne({_id:decodedToken._id});
 
     var data = await property.find({ active: 1 })
-    var cities=await city.find({})
-    res.render('home',{data,cities})
+    var cities=await city.find({});
+
+    res.render('home',{data,cities,profile})
 
 }
+exports.login=async (req, res) =>{
+
+    res.render('login');
+
+}
+exports.register=async (req, res) =>{
+
+    res.render('register');
+
+}
+
+
+exports.loginpost=async (req, res) =>{
+
+    try {
+        const {
+            body: { mobile, password },
+        } = req;
+
+        const userdata = await user.findOne({ mobile});
+        console.log("userdata:__", userdata);
+       
+        if (userdata == null) {
+
+            res.status(404).json({
+                message: "Sorry! email not found",
+                status: 404,
+            });
+        } else {
+
+            const isMatched = await bcrypt.compare(password, userdata.password);
+            // console.log("isMatched:__", isMatched);
+            if (isMatched) {
+                if (userdata.tokens[0] == undefined) {
+                    console.log("Hello::::");
+                    const token = await userdata.generateauthtoken();
+
+                    res.cookie("jwt", token, {
+                        expires: new Date(Date.now() + 30 * 24 * 3600 * 10000),
+                        httpOnly: true,
+                    });
+                    // console.log("Token:::-", token);
+
+                    console.log(`Success! Login Succesfully ${userdata.email}`);
+
+                    res.status(200).json({
+                        message: "Success! Login Succesfully",
+                        token: token,
+                        status: 200,
+                        // id: userData._id,
+                    });
+                } else {
+                    console.log(`Success! Login Succesfully ${userdata.email}`);
+                    res.status(200).json({
+                        message: "Success! Login Succesfully",
+                        token: userdata.tokens[0].token,
+                        status: 200,
+                        // id: userData._id,
+                    });
+                }
+            } else {
+                res.status(401).json({
+                    message: "Sorry! Password doesn't Match",
+                    status: 401,
+                });
+            }
+        }
+    } catch (error) {
+        console.log("userlogin:__", error);
+
+        res.status(500).json({
+            message: "Sorry! Something Went Wrong (user login)",
+            status: 500,
+        });
+    }
+}
+
+exports.registerpost=async (req, res) =>{
+
+    console.log(req.body);
+    const {mobile,name,password}=req.body
+    if(mobile==null || name==null || password==null){
+        console.log("Please enter a mobile or password or name");
+    }
+    else{
+        const checkOwnerDetails = await user.findOne({mobile:mobile});
+
+            if (checkOwnerDetails == null) {
+                const Hashedpassword = await bcrypt.hash(password, 10);
+
+                const userData = new user({
+                    name,
+                    password: Hashedpassword,
+                    mobile: req.body.mobile,
+                });
+
+                const saveData = await userData.save();
+
+                console.log("saveData (userRegis):__", saveData);
+
+                // we use below code for generate token(JWT)
+                // const token = await saveData.generateauthtoken();
+                // res.cookie("jwt", token, {
+                //     expires: new Date(Date.now() + 30 * 24 * 3600 * 10000),
+                //     httpOnly: true,
+                // });
+                // console.log("Token (userRegis):__", token);
+
+                res.status(200).json({
+                    message: "Success! user Registered Successfully",
+                    status: 200,
+                    data: saveData,
+                });
+            } else {
+                res.status(409).json({
+                    message: "Sorry! mobile Already Exist!",
+                    status: 409,
+                });
+            }
+    }
+}
+
+exports.loginpostweb=async (req, res) =>{
+
+    
+    try {
+        const {
+            body: { mobile, password },
+        } = req;
+
+        console.log(req.body);
+        const userdata = await user.findOne({mobile});
+        console.log("userdata:__", userdata);
+       
+        if (userdata == null) {
+
+            res.redirect('/user/login');
+        } else {
+
+            const isMatched = await bcrypt.compare(password, userdata.password);
+            // console.log("isMatched:__", isMatched);
+            if (isMatched) {
+               
+                    console.log("Hello::::");
+                    const token = await userdata.generateauthtoken();
+                    res.cookie("jwt", token, {
+                        expires: new Date(Date.now() + 30 * 24 * 3600 * 10000),
+                        httpOnly: true,
+                    });
+                    // console.log("Token:::-", token);
+
+                    console.log(`Success! Login Succesfully ${userdata.email}`);
+                    res.redirect('/user')
+
+            } else {
+                res.redirect('/user/login')
+                console.log("password not match");
+            }
+        }
+    
+    } catch (error) {
+        console.log("userlogin:__", error);
+
+            res.redirect('/user/login');
+            console.log("Sorry! Something Went Wrong (user login)")
+           
+    }
+}
+
+
+exports.registerpostweb=async (req, res) =>{
+
+    console.log(req.body.name);
+    const {mobile,name,password}=req.body
+   
+    if(mobile==null || name==null || password==null){
+        console.log("Please enter a mobile or password or name");
+    }
+    else{
+        const checkOwnerDetails = await user.findOne({mobile:mobile});
+
+            if (checkOwnerDetails == null) {
+                const Hashedpassword = await bcrypt.hash(password, 10);
+
+                const userData = new user({
+                    name,
+                    password: Hashedpassword,
+                    mobile: req.body.mobile,
+                });
+
+                const saveData = await userData.save();
+
+                console.log("saveData (userRegis):__", saveData);
+
+                // we use below code for generate token(JWT)
+                // const token = await saveData.generateauthtoken();
+                // res.cookie("jwt", token, {
+                //     expires: new Date(Date.now() + 30 * 24 * 3600 * 10000),
+                //     httpOnly: true,
+                // });
+                // console.log("Token (userRegis):__", token);
+
+                res.redirect('/user/login');
+            } else {
+                console.log("mobile already exists");
+                res.redirect('/user/register');
+            }
+    }
+}
+
 exports.property=async (req, res) =>{
 
     var data = await property.find({active:1})
     var cities=await city.find({})
-   
-    res.render('buy',{data,cities})
+   var token=req.cookies.jwt
+    const secretKey = process.env.SECRET_KEY
+    var decodedToken =''
+    if(token){
+      decodedToken = jwt.verify(token, secretKey)
+    }
+    var profile=await user.findOne({_id:decodedToken._id});
+    res.render('buy',{data,cities,profile})
 
 }
 exports.buy=async (req, res) =>{
-
+    var token=req.cookies.jwt
+    const secretKey = process.env.SECRET_KEY
+    var decodedToken =''
+    if(token){
+      decodedToken = jwt.verify(token, secretKey)
+    }
+    var profile=await user.findOne({_id:decodedToken._id});
     var data = await property.find({category:'sell', active:1})
     var cities=await city.find({})
    
-    res.render('buy',{data,cities})
+    res.render('buy',{data,cities,profile})
 
 }
 
 exports.sell_page=async(req,res)=>{
-
+    var token=req.cookies.jwt
+    const secretKey = process.env.SECRET_KEY
+    var decodedToken =''
+    if(token){
+      decodedToken = jwt.verify(token, secretKey)
+    }
+    var profile=await user.findOne({_id:decodedToken._id});
     res,res.render('sellform')
 
 }
 
 exports.rents=async (req, res) =>{
-
+    var token=req.cookies.jwt
+    const secretKey = process.env.SECRET_KEY
+    var decodedToken =''
+    if(token){
+      decodedToken = jwt.verify(token, secretKey)
+    }
+    var profile=await user.findOne({_id:decodedToken._id});
     var data = await property.find({category:'rent', active:1})
     var cities=await city.find({});
     console.log(data.length,"OOOOOOOOOOOOOOOO");
-    res.render('rent',{data,cities});
+    res.render('rent',{data,cities,profile});
 
 }
 
 exports.singleproperty=async (req, res) =>{
-
+    var token=req.cookies.jwt
+    const secretKey = process.env.SECRET_KEY
+    var decodedToken =''
+    if(token){
+      decodedToken = jwt.verify(token, secretKey)
+    }
+    var profile=await user.findOne({_id:decodedToken._id});
     var data = await property.findOne({ _id:req.params.id})
-
-    res.render('singleproperty',{data})
+    res.render('singleproperty',{data,profile});
 
 }
 
@@ -236,12 +488,13 @@ exports.sell = async (req, res) => {
 // rent property , get method
 
 exports.rent = async (req, res) => {
-    var data = await property.find({ category:"rent"})
+
+    var data = await property.find({ category:"rent"});
     if (data) {
         res.status(200).json(data);
     
     } else {
-        res.status(404).json({ message: "no data found" })
+        res.status(404).json({ message: "no data found" });
     }
 }
 
@@ -422,22 +675,32 @@ exports.sell_farm = async (req, res) => {
 
 }
 
-exports.filter = async (req, res) => {
+exports.frontfilter = async (req, res) => {
 
     var data = await property.find({city:req.params.city,category:req.params.category,house_type:req.params.house_type});
     if (data) {
             res.status(200).json(data);
+            console.log(data,req.params);
         } else {
             res.status(404).json({ message: "no data found" })
         }
 
 }
 
-exports.frontfilter = async (req, res) => {
+exports.filterpost = async (req, res) => {
 
-    var data = await property.find({city:req.params.city,category:req.params.category,house_type:req.params.house_type});
+    // console.log(req.body);
+    var token=req.cookies.jwt
+    const secretKey = process.env.SECRET_KEY
+    var decodedToken =''
+    if(token){
+      decodedToken = jwt.verify(token, secretKey)
+    }
+    var profile=await user.findOne({_id:decodedToken._id});
+    var data = await property.find({city:req.body.city,category:req.body.category,house_type:req.body.house_type});
     if (data) {
-           res.json(data);
+        console.log(req.body);
+           res.render('filter',{data,profile});
 
         } else {
 
@@ -446,18 +709,38 @@ exports.frontfilter = async (req, res) => {
         }
 
 }
-exports.filterpost = async (req, res) => {
 
-    // console.log(req.body);
-    var data = await property.find({city:req.body.city,category:req.body.category,house_type:req.body.house_type});
-    if (data) {
-        // console.log(data);
-           res.render('filter',{data});
 
-        } else {
+exports.profile_get=async(req, res)=>{
 
-            console.log("no data found");
-
+    var token=req.cookies.jwt
+    if(token){
+        const secretKey = process.env.SECRET_KEY
+        var decodedToken =''
+        if(token){
+          decodedToken = jwt.verify(token, secretKey)
         }
+        var profile=await user.findOne({_id:decodedToken._id});
+        var userproperties=await property.find({user_id:decodedToken._id});
+        console.log(profile);
+        res.json([profile,userproperties]);
+    }
+
+}
+
+exports.profile=async(req, res)=>{
+
+    var token=req.cookies.jwt
+    if(token){
+        const secretKey = process.env.SECRET_KEY
+        var decodedToken =''
+        if(token){
+          decodedToken = jwt.verify(token, secretKey)
+        }
+        var profile=await user.findOne({_id:decodedToken._id});
+        var userproperties=await property.find({user_id:decodedToken._id});
+        console.log(profile);
+        res.render('profile',{profile,userproperties})
+    }
 
 }
