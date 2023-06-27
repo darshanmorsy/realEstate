@@ -782,3 +782,20 @@ exports.profile_front=async(req, res)=>{
     }
 
 }
+
+exports.deleteproperty=async (req,res)=>{ 
+
+    var id=req.params.id
+    if(id){
+        var data=await property.findByIdAndDelete(req.params.id);
+        if(data){
+            res.json({message:"data deleted successfully"});
+            // console.log(data)
+        }
+        else{
+            res.json({message:"data deleted successfully"});
+            console.log(data,'not deleted')
+        }
+    }
+
+}
