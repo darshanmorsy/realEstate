@@ -3,8 +3,8 @@ const jwt = require("jsonwebtoken");
 
 const userSchema = async (req, res, next) => {
     try {
-        const Token = req.cookies.jwt;
-        console.log(Token);
+        // console.log(req.headers);
+        const Token = req.cookies.jwt || req.headers.authorization;
         if (Token) {
             const verifyUser = jwt.verify(Token, process.env.SECRET_KEY, (error, data) => {
                 // if (error == null) { return error; }

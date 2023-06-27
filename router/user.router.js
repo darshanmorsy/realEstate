@@ -40,22 +40,23 @@ const {
      frontfilter,
      filterpost,
     sell_page,
-    profile_get,
+    user_property,
     profile,
-    
+    profile_front,
+
 
   } = require("../controller/user.controller");
 
 
-  router.get('/',home)
+  router.get('/',home);
   router.post('/login',loginpost);
-  router.post('/register',registerpost)
+  router.post('/register',registerpost);
   router.post('/registerpostweb',registerpostweb);
   router.post('/loginpostweb',loginpostweb);
-  router.get('/property',user_token,property)
-  router.get('/buy',user_token,buy)
-  router.get('/rents',user_token,rents)
-  router.get('/sellpage',user_token,sell_page)
+  router.get('/property',user_token,property);
+  router.get('/buy',user_token,buy);
+  router.get('/rents',user_token,rents);
+  router.get('/sellpage',user_token,sell_page);
   router.get('/singleproperty/:id',user_token,singleproperty);
   router.post('/filters',user_token,filterpost);
   
@@ -77,6 +78,7 @@ const {
   router.get('/rent_industrial',rent_industrial);
   router.get('/rent_farm',rent_farm);
  
+
   router.get('/sell_flat',sell_flat);
   router.get('/sell_office',sell_office);
   router.get('/sell_shop',sell_shop);
@@ -86,9 +88,10 @@ const {
   router.get('/sell_industrial',sell_industrial);
   router.get('/sell_farm',sell_farm);
 
-  router.get('/filter/:city/:category/:house_type',frontfilter);
-router.get('/profile_get',user_token,profile_get);
+  router.get('/filter/:city/:category/:house_type/:lessrange/:greaterrange',frontfilter);
+router.get('/user_property',user_token,user_property);
 router.get('/profile',user_token,profile);
+router.get('/profile_front',user_token,profile_front);
   router.get('/city',async(req,res)=>{
     var data=await city.find({})
     res.json(data);

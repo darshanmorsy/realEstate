@@ -46,12 +46,12 @@ exports.loginpost=async (req, res) =>{
         } = req;
 
         const userdata = await user.findOne({ mobile});
+        // console.log(req.body);
         console.log("userdata:__", userdata);
        
         if (userdata == null) {
-
             res.status(404).json({
-                message: "Sorry! email not found",
+                message: "Sorry! mobile not found",
                 status: 404,
             });
         } else {
@@ -273,7 +273,7 @@ exports.sell_page=async(req,res)=>{
       decodedToken = jwt.verify(token, secretKey)
     }
     var profile=await user.findOne({_id:decodedToken._id});
-    res,res.render('sellform')
+    res,res.render('sellform',{profile})
 
 }
 
@@ -365,6 +365,12 @@ exports.propertDetails = async (req, res) => {
                     "address,projectName,city,price,propertyLife,size,facilities,carpet_area,super_built_up,project_area,booking_amount,furnishing,property_floor,landmark,builder_details,owner_info,location,category not found",
             })
         } else {
+            var token=req.headers.authorization || req.cookies.jwt
+            const secretKey = process.env.SECRET_KEY
+            var decodedToken =''
+            if(token){
+              decodedToken = jwt.verify(token, secretKey)
+            }
             const files = req.files
             // console.log(files, "JJJJJJJJjjjjjjjjjjjjjjjj")
             if (files) {
@@ -387,6 +393,7 @@ exports.propertDetails = async (req, res) => {
                 }
 
                 var data = await property.create({
+                    user_id:decodedToken._id,
                     address,
                     projectName,
                     price,
@@ -415,10 +422,10 @@ exports.propertDetails = async (req, res) => {
 
                 if (data) {
                     console.log("data added successfully", data);
-                    // res.status(200).json({ message: "data added successfully" })
+                    res.status(200).json({ message: "data added successfully" })
                 } else {
                     console.log("data not added")
-                    // res.status(200).json({ message: "data not added" })
+                    res.status(200).json({ message: "data not added" })
                 }
             }
         }
@@ -676,14 +683,22 @@ exports.sell_farm = async (req, res) => {
 }
 
 exports.frontfilter = async (req, res) => {
-
-    var data = await property.find({city:req.params.city,category:req.params.category,house_type:req.params.house_type});
-    if (data) {
-            res.status(200).json(data);
-            console.log(data,req.params);
-        } else {
-            res.status(404).json({ message: "no data found" })
-        }
+    console.log(req.params);
+   
+    // var data = await property.find({
+    //     city:req.params.city,
+    //     category:req.params.category,
+    //     house_type:req.params.house_type,
+    //      price: { $gt:req.params.lessrange, 
+    //         $lt:req.params.greaterrange
+    //     }
+    // })
+    // if (data) {
+    //         res.status(200).json(data);
+    //         console.log(data,req.params);
+    //     } else {
+    //         res.status(404).json({ message: "no data found" })
+    //     }
 
 }
 
@@ -697,23 +712,26 @@ exports.filterpost = async (req, res) => {
       decodedToken = jwt.verify(token, secretKey)
     }
     var profile=await user.findOne({_id:decodedToken._id});
-    var data = await property.find({city:req.body.city,category:req.body.category,house_type:req.body.house_type});
+    var data = await property.find({
+        city:req.body.city,
+        category:req.body.category,
+        house_type:req.body.house_type,
+        price: { $gt:req.body.min, $lt:req.body.max}})
     if (data) {
-        console.log(req.body);
+        console.log(req.body,data);
            res.render('filter',{data,profile});
-
+ 
         } else {
 
-            console.log("no data found");
+            console.log("no data found"); 
 
         }
 
 }
 
 
-exports.profile_get=async(req, res)=>{
-
-    var token=req.cookies.jwt
+exports.user_property=async(req, res)=>{
+    var token=req.cookies.jwt || req.headers.authorization
     if(token){
         const secretKey = process.env.SECRET_KEY
         var decodedToken =''
@@ -723,12 +741,32 @@ exports.profile_get=async(req, res)=>{
         var profile=await user.findOne({_id:decodedToken._id});
         var userproperties=await property.find({user_id:decodedToken._id});
         console.log(profile);
-        res.json([profile,userproperties]);
+        res.json(userproperties);
     }
-
+    else{
+        console.log("token is not found");
+    }
 }
 
 exports.profile=async(req, res)=>{
+
+    var token=req.cookies.jwt || req.headers.authorization
+    if(token){
+        const secretKey = process.env.SECRET_KEY
+        var decodedToken =''
+        if(token){
+          decodedToken = jwt.verify(token, secretKey)
+        }
+        var profile=await user.findOne({_id:decodedToken._id});
+
+        // var userproperties=await property.find({user_id:decodedToken._id});
+
+        console.log(profile);
+        res.json(profile)
+    }
+
+}
+exports.profile_front=async(req, res)=>{
 
     var token=req.cookies.jwt
     if(token){

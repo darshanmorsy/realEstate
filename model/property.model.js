@@ -12,7 +12,7 @@ const propertySchema = mongoose.Schema({
         type: String,
     },
     price: {
-        type: String,
+        type: Number,
     },
     property_image: {
         type: Array
@@ -21,7 +21,7 @@ const propertySchema = mongoose.Schema({
         type: String,
     },
     size: {
-        type: String,
+        type: String, 
     },
     facilities: {
         type: Array
@@ -42,7 +42,7 @@ const propertySchema = mongoose.Schema({
         type: String
     },
     property_floor: {
-        type: String
+        type: String 
     },
     landmark: {
         type: String
