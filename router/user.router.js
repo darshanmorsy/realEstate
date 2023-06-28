@@ -91,7 +91,7 @@ const {
 
   router.get('/filter/:city/:category/:house_type/:lessrange/:greaterrange',frontfilter);
 router.get('/user_property',user_token,user_property);
-router.delete('/deleteproperty/:id',user_token,deleteproperty)
+router.delete('/deleteproperty/:id',user_token,deleteproperty);
 router.get('/profile',user_token,profile);
 router.get('/profile_front',user_token,profile_front);
   router.get('/city',async(req,res)=>{

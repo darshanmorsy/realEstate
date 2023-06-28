@@ -2,7 +2,8 @@ const express = require("express");
 const property = require("../model/property.model");
 const contacts = require("../model/contact.model");
 var cloudinary = require('../helper/cloudinary');
-var city=require('../model/city.model')
+var city=require('../model/city.model');
+const user = require("../model/user.model");
 
 // shows request, get method
 
@@ -102,5 +103,12 @@ exports.deletecity=async(req,res)=>{
   else {
       res.status(404).json({ message: "city not deleted" });
     }
+
+}
+
+exports.user=async(req,res)=>{
+
+  var data = await user.find({});
+  res.json(data);
 
 }

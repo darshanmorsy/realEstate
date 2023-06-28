@@ -75,9 +75,6 @@ const propertySchema = mongoose.Schema({
     category:{
         type:String,
     },
-    location:{
-        type:String,
-    },
     type:{
         type:String,
     },
@@ -89,8 +86,9 @@ const propertySchema = mongoose.Schema({
     },
     rooms:{
         type:String,
-    }
-},{
+    },
+},
+{
     collection: "property",
     timestamps: true
 });

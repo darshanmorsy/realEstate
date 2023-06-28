@@ -8,9 +8,9 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 // app.use(flash());
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-require("dotenv").config();
-app.use(express.static(path.join(__dirname, 'assets')));
+app.set('view engine', 'ejs')
+require("dotenv").config()
+app.use(express.static(path.join(__dirname, 'assets')))
 const db = 'mongodb+srv://morsy:morsy@ds.6e7bjag.mongodb.net/realEstate'
 mongoose.connect(db, { 
             // useCreateIndex: true, 
@@ -19,7 +19,7 @@ mongoose.connect(db, {
             useUnifiedTopology: true 
       })
     .then(() => console.log('MongoDB connected...'))
-    .catch(err => console.log(err));
+    .catch(err => console.log(err))
 
 const port = process.env.PORT || 3000; 
 // require("./db/connection");
@@ -42,5 +42,5 @@ app.get('/',(req,res)=>{
 
 })
 app.listen(port, () => {
-    console.log(`listing to the port ${port}`)
+    console.log(`listing to the port ${port}`);
 })

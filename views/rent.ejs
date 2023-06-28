@@ -8,7 +8,7 @@
           <div class="col-md-12 col-lg-8">
             <div class="title-single-box">
               <h1 class="title-single">Our Amazing Properties</h1>
-              <span class="color-text-a">Grid Properties</span>
+              <span class="color-text-a">For Rent</span>
             </div>
           </div>
           <div class="col-md-12 col-lg-4">
@@ -24,10 +24,10 @@
             </nav>
           </div>
         </div>
-        <div class="d-flex  mx-3 border border-success p-3 rounded-pill  my-5">
+        <div class="d-flex border border-danger p-3 rounded-pill  my-5">
           <form class="w-100" action="/user/filters" method="post">
               <div class="d-flex w-100 justify-content-between">
-                  <select name="city" class="custom-select rounded-pill form-control mx-2">
+                  <select required name="city" class="custom-select rounded-pill form-control mx-2">
                       <option hidden >select city</option>
                       <%var citi= cities%>
                       <% citi.forEach((s , j )=>{ %>
@@ -37,7 +37,7 @@
                           <% }) %>
                       </select>
                       
-              <select name="house_type" class="custom-select rounded-pill mx-3 form-control">
+              <select required name="house_type" class="custom-select rounded-pill mx-3 form-control">
                   <option hidden >select house</option>
                   <option value="farm">farm</option>
                   <option value="shop">shop</option>
@@ -48,11 +48,20 @@
                   <option value="flat">flat</option>
                   <option value="rowhouse">row house</option>
               </select>
-              <select name="category" class="custom-select rounded-pill mx-3 form-control">
+              <select required name="category" class="custom-select rounded-pill mx-3 form-control">
                   <option value="rent">Rent</option>
                   <option value="sell">Buy</option>
               </select>
-              <button type="submit " class="btn btn-success rounded-pill">search</button>
+             <div class="border py-1 d-flex align-items-center mx-3 rounded-pill px-4">
+              <div class="min-max-slider" data-legendnum="">
+                <label for="min">Minimum price</label>
+                <input id="min" class="min" name="min" type="range" step="1" min="0" max="10000000" />
+                <label for="max">Maximum price</label>
+                <input id="max" class="max" name="max" type="range" step="1" min="0" max="10000000" />
+             </div>
+            
+             </div>
+              <button type="submit" class="btn btn-danger rounded-pill">search</button>
           </div>
               
           </form>
@@ -96,4 +105,152 @@
     </section><!-- End Property Grid Single-->
 
   </main><!-- End #main -->
+
+  <style>
+    * {padding: 0; margin: 0;}
+  body {padding: 40px;}
+  a { position: relative; display: inline-block;}
+  
+  .min-max-slider {position: relative; width: 200px; text-align: center;}
+  .min-max-slider > label {display: none;}
+  span.value {height: 1.7em; font-weight: bold; display: inline-block;}
+  span.value.lower::before {content: "₹"; display: inline-block;}
+  span.value.upper::before {content: "- ₹"; display: inline-block; margin-left: 0.4em;}
+  .min-max-slider > .legend {display: flex; justify-content: space-between;}
+  .min-max-slider > .legend > * {font-size: small; opacity: 0.25;}
+  .min-max-slider > input {cursor: pointer; position: absolute;}
+  
+  /* webkit specific styling */
+  .min-max-slider > input {
+    -webkit-appearance: none;
+    outline: none!important;
+    background: transparent;
+    background-image: linear-gradient(to bottom, transparent 0%, transparent 30%, silver 30%, silver 60%, transparent 60%, transparent 100%);
+  }
+  .min-max-slider > input::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 14px; /* Set a specific slider handle width */
+    height: 14px; /* Slider handle height */
+    background: #eee; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+    border: 1px solid gray;
+    border-radius: 100%;
+  }
+  .min-max-slider > input::-webkit-slider-runnable-track {cursor: pointer;}
+  </style>
+  <script>
+     var thumbsize = 14;
+  
+  function draw(slider,splitvalue) {
+  
+      /* set function vars */
+      var min = slider.querySelector('.min');
+      var max = slider.querySelector('.max');
+      var lower = slider.querySelector('.lower');
+      var upper = slider.querySelector('.upper');
+      var legend = slider.querySelector('.legend');
+      var thumbsize = parseInt(slider.getAttribute('data-thumbsize'));
+      var rangewidth = parseInt(slider.getAttribute('data-rangewidth'));
+      var rangemin = parseInt(slider.getAttribute('data-rangemin'));
+      var rangemax = parseInt(slider.getAttribute('data-rangemax'));
+  
+      /* set min and max attributes */
+      min.setAttribute('max',splitvalue);
+      max.setAttribute('min',splitvalue);
+  
+      /* set css */
+      min.style.width = parseInt(thumbsize + ((splitvalue - rangemin)/(rangemax - rangemin))*(rangewidth - (2*thumbsize)))+'px';
+      max.style.width = parseInt(thumbsize + ((rangemax - splitvalue)/(rangemax - rangemin))*(rangewidth - (2*thumbsize)))+'px';
+      min.style.left = '0px';
+      max.style.left = parseInt(min.style.width)+'px';
+      min.style.top = lower.offsetHeight+'px';
+      max.style.top = lower.offsetHeight+'px';
+      legend.style.marginTop = min.offsetHeight+'px';
+      slider.style.height = (lower.offsetHeight + min.offsetHeight + legend.offsetHeight)+'px';
+      
+      /* correct for 1 off at the end */
+      if(max.value>(rangemax - 1)) max.setAttribute('data-value',rangemax);
+  
+      /* write value and labels */
+      max.value = max.getAttribute('data-value'); 
+      min.value = min.getAttribute('data-value');
+      lower.innerHTML = min.getAttribute('data-value');
+      upper.innerHTML = max.getAttribute('data-value');
+  
+  }
+  
+  function init(slider) {
+      /* set function vars */
+      var min = slider.querySelector('.min');
+      var max = slider.querySelector('.max');
+      var rangemin = parseInt(min.getAttribute('min'));
+      var rangemax = parseInt(max.getAttribute('max'));
+      var avgvalue = (rangemin + rangemax)/2;
+      var legendnum = slider.getAttribute('data-legendnum');
+  
+      /* set data-values */
+      min.setAttribute('data-value',rangemin);
+      max.setAttribute('data-value',rangemax);
+      
+      /* set data vars */
+      slider.setAttribute('data-rangemin',rangemin); 
+      slider.setAttribute('data-rangemax',rangemax); 
+      slider.setAttribute('data-thumbsize',thumbsize); 
+      slider.setAttribute('data-rangewidth',slider.offsetWidth);
+  
+      /* write labels */
+      var lower = document.createElement('span');
+      var upper = document.createElement('span');
+      lower.classList.add('lower','value');
+      upper.classList.add('upper','value');
+      lower.appendChild(document.createTextNode(rangemin));
+      upper.appendChild(document.createTextNode(rangemax));
+      slider.insertBefore(lower,min.previousElementSibling);
+      slider.insertBefore(upper,min.previousElementSibling);
+      
+      /* write legend */
+      var legend = document.createElement('div');
+      legend.classList.add('legend');
+      var legendvalues = [];
+      for (var i = 0; i < legendnum; i++) {
+          legendvalues[i] = document.createElement('div');
+          var val = Math.round(rangemin+(i/(legendnum-1))*(rangemax - rangemin));
+          legendvalues[i].appendChild(document.createTextNode(val));
+          legend.appendChild(legendvalues[i]);
+  
+      } 
+      slider.appendChild(legend);
+  
+      /* draw */
+      draw(slider,avgvalue);
+  
+      /* events */
+      min.addEventListener("input", function() {update(min);});
+      max.addEventListener("input", function() {update(max);});
+  }
+  
+  function update(el){
+      /* set function vars */
+      var slider = el.parentElement;
+      var min = slider.querySelector('#min');
+      var max = slider.querySelector('#max');
+      var minvalue = Math.floor(min.value);
+      var maxvalue = Math.floor(max.value);
+      
+      /* set inactive values before draw */
+      min.setAttribute('data-value',minvalue);
+      max.setAttribute('data-value',maxvalue);
+  
+      var avgvalue = (minvalue + maxvalue)/2;
+  
+      /* draw */
+      draw(slider,avgvalue);
+  }
+  
+  var sliders = document.querySelectorAll('.min-max-slider');
+  sliders.forEach( function(slider) {
+      init(slider);
+  });
+  </script>
 <%-include('footer')%>

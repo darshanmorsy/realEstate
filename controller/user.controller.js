@@ -7,8 +7,6 @@ const bcrypt= require('bcrypt')
 const jwt=require('jsonwebtoken');
 var cloudinary = require("../helper/cloudinary")
 const path = require("path")
-const userSchema = require("../middleware/user.middleware");
-
 
 exports.home=async (req, res) =>{
     
@@ -26,17 +24,18 @@ exports.home=async (req, res) =>{
     res.render('home',{data,cities,profile})
 
 }
+
 exports.login=async (req, res) =>{
 
     res.render('login');
 
 }
+
 exports.register=async (req, res) =>{
 
     res.render('register');
 
 }
-
 
 exports.loginpost=async (req, res) =>{
 
@@ -195,7 +194,6 @@ exports.loginpostweb=async (req, res) =>{
     }
 }
 
-
 exports.registerpostweb=async (req, res) =>{
 
     console.log(req.body.name);
@@ -250,7 +248,9 @@ exports.property=async (req, res) =>{
     res.render('buy',{data,cities,profile})
 
 }
+
 exports.buy=async (req, res) =>{
+
     var token=req.cookies.jwt
     const secretKey = process.env.SECRET_KEY
     var decodedToken =''
@@ -309,6 +309,7 @@ exports.singleproperty=async (req, res) =>{
 // property details form, post method
 
 exports.propertDetails = async (req, res) => {
+    // console.log(req.body,req.files);
     try {
         console.log(req.body)
         const {
@@ -685,20 +686,20 @@ exports.sell_farm = async (req, res) => {
 exports.frontfilter = async (req, res) => {
     console.log(req.params);
    
-    // var data = await property.find({
-    //     city:req.params.city,
-    //     category:req.params.category,
-    //     house_type:req.params.house_type,
-    //      price: { $gt:req.params.lessrange, 
-    //         $lt:req.params.greaterrange
-    //     }
-    // })
-    // if (data) {
-    //         res.status(200).json(data);
-    //         console.log(data,req.params);
-    //     } else {
-    //         res.status(404).json({ message: "no data found" })
-    //     }
+    var data = await property.find({
+        city:req.params.city,
+        category:req.params.category,
+        house_type:req.params.house_type,
+         price: { $gt:req.params.lessrange, 
+            $lt:req.params.greaterrange
+        }
+    })
+    if (data) {
+            res.status(200).json(data);
+            console.log(data,req.params);
+        } else {
+            res.status(404).json({ message: "no data found" })
+        }
 
 }
 
@@ -776,9 +777,9 @@ exports.profile_front=async(req, res)=>{
           decodedToken = jwt.verify(token, secretKey)
         }
         var profile=await user.findOne({_id:decodedToken._id});
-        var userproperties=await property.find({user_id:decodedToken._id});
+        var propert=await property.find({user_id:decodedToken._id});
         console.log(profile);
-        res.render('profile',{profile,userproperties})
+        res.render('profile',{profile,property:propert});
     }
 
 }
@@ -786,7 +787,19 @@ exports.profile_front=async(req, res)=>{
 exports.deleteproperty=async (req,res)=>{ 
 
     var id=req.params.id
+    var data = await property.findOne({ _id:req.params.id});
     if(id){
+       var cloudinary_id=data.property_image_id
+        for (var i = 0;  i < data.property_image.length; i++) {
+
+            cloudinary.uploader.destroy(cloudinary_id[i],function (error, result) {
+                if (error) {
+                    console.log(error)
+                }
+                console.log(result)
+            });
+        }
+
         var data=await property.findByIdAndDelete(req.params.id);
         if(data){
             res.json({message:"data deleted successfully"});

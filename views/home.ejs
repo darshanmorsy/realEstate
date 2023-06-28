@@ -160,7 +160,7 @@
         <div class="d-flex border border-danger p-3 rounded-pill  my-5">
             <form class="w-100" action="/user/filters" method="post">
                 <div class="d-flex w-100 justify-content-between">
-                    <select name="city" class="custom-select rounded-pill form-control mx-2">
+                    <select required name="city" class="custom-select rounded-pill form-control mx-2">
                         <option hidden >select city</option>
                         <%var citi= cities%>
                         <% citi.forEach((s , j )=>{ %>
@@ -170,7 +170,7 @@
                             <% }) %>
                         </select>
                         
-                <select name="house_type" class="custom-select rounded-pill mx-3 form-control">
+                <select required name="house_type" class="custom-select rounded-pill mx-3 form-control">
                     <option hidden >select house</option>
                     <option value="farm">farm</option>
                     <option value="shop">shop</option>
@@ -181,7 +181,7 @@
                     <option value="flat">flat</option>
                     <option value="rowhouse">row house</option>
                 </select>
-                <select name="category" class="custom-select rounded-pill mx-3 form-control">
+                <select required name="category" class="custom-select rounded-pill mx-3 form-control">
                     <option value="rent">Rent</option>
                     <option value="sell">Buy</option>
                 </select>
@@ -194,7 +194,7 @@
                </div>
               
                </div>
-                <button type="submit " class="btn btn-danger rounded-pill">search</button>
+                <button type="submit" class="btn btn-danger rounded-pill">search</button>
             </div>
                 
             </form>
@@ -229,7 +229,7 @@
             <div class="carousel-item-b swiper-slide">
               <div class="card-box-a card-shadow">
                 <div class="img-box-a">
-                  <img src="<%=i.property_image[0]%>" alt="" style="height:500px !important" class="img-a img-fluid">
+                  <img src="<%=i.property_image[0]%>" alt="" style="height:300px !important" class="img-a img-fluid">
                 </div>
                 <div class="card-overlay">
                   <div class="card-overlay-a-content">

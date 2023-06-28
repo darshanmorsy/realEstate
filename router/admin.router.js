@@ -9,6 +9,7 @@ const{
     requestDecline,
     allproperty,
     city,
+    user,
     deletecity,
 
  }= require("../controller/admin.controller")
@@ -19,6 +20,7 @@ const{
   router.get('/requestAccept/:id',requestAccept)
   router.delete('/requestDecline/:id',requestDecline)
   router.get('/allproperty',allproperty)
+  router.get('/user',user)
   router.post('/city',city)
   router.delete('/deletecity/:id',deletecity);
 
