@@ -423,7 +423,7 @@ exports.propertDetails = async (req, res) => {
 
                 if (data) {
                     console.log("data added successfully", data);
-                    res.status(200).json({ message: "data added successfully" })
+        res.redirect('back')||          res.status(200).json({ message: "data added successfully" })
                 } else {
                     console.log("data not added")
                     res.status(200).json({ message: "data not added" })
@@ -469,7 +469,7 @@ exports.contact = async (req, res) => {
         }
     }
 }
-
+ 
 // property details , get method
 
 exports.allproperty = async (req, res) => {
