@@ -3,6 +3,7 @@
 
 <div class="container py-5">
 
+  <h1 class="my-5">Property Form</h1>
   <form action="/user/propertyDetails" method="post" class="needs-validation my-5 p-3 rounded-2 shadow-lg" enctype="multipart/form-data">
     <div class="form-row">
       <div class="col-md-4 mb-3">
@@ -12,8 +13,15 @@
       </div>
       <div class="col-md-4 mb-3">
         <label for="validationTooltip02">city</label>
-        <input type="text" name="city" class="form-control" id="validationTooltip02" required>
-       
+        <select required name="city" class="form-control">
+          <option hidden >select city</option>
+          <%var citi= cities%>
+          <% citi.forEach((s , j )=>{ %>
+              <option value="<%=s.city%>">
+                  <%= s.city %>
+              </option>
+              <% }) %>
+          </select>
       </div>
       <div class="col-md-4 mb-3">
         <label for="validationTooltipUsername">price</label>
@@ -93,19 +101,49 @@
       </div>
       <div class="col-md-3 mb-3">
         <label for="validationTooltip05">category</label>
-        <input type="text" name="category" class="form-control" id="validationTooltip05" required>
+      <select required class="form-control" name="category" id="">
+        <option value="" hidden>select category</option>
+        <option value="rent">For Rent</option>
+        <option value="sell">For Sell</option>
+      </select> 
       </div>
       <div class="col-md-3 mb-3">
         <label for="validationTooltip05">house type</label>
-        <input type="text" name="house_type" class="form-control" id="validationTooltip05" required>
+          
+  <select required name="house_type" class="form-control">
+      <option hidden >select house</option>
+      <option value="farm">farm</option>
+      <option value="shop">shop</option>
+      <option value="bungalow">bungalow</option>
+      <option value="office">office</option>
+      <option value="industrial">industrial</option>
+      <option value="openplot">open plot</option>
+      <option value="flat">flat</option>
+      <option value="rowhouse">row house</option>
+  </select>
       </div>
       <div class="col-md-3 mb-3">
         <label for="validationTooltip05">rooms</label>
-        <input type="text" name="rooms" class="form-control" id="validationTooltip05" required>
+      <select required name="rooms" class="form-control" required id="">
+        <option value="" hidden>select rooms</option>
+        <option value="1BHK">1 BHK</option>
+        <option value="2BHK">2 BHK</option>
+        <option value="3BHK">3 BHK</option>
+        <option value="4BHK">4 BHK</option>
+        <option value="5BHK">5 BHK</option>
+        <option value="6BHK">6 BHK</option>
+        <option value="7BHK">7 BHK and more</option>
+      </select>
       </div>
       <div class="col-md-3 mb-3">
         <label for="validationTooltip05">facilities</label>
-        <input type="text" name="facilities" class="form-control" id="validationTooltip05" required>
+       <div class="d-flex">
+        <input type="text" required disabled value="add facilities" class="form-control" id="validationTooltip05" required>
+        <button onclick='addInput()' class="ms-2 d-inline-block btn btn-primary">+</button>
+        
+       </div><div id='input-cont'>
+          <!--Input container-->
+      </div>
       </div>
     </div>
     <button class="btn btn-primary" type="submit">Submit form</button>
@@ -113,5 +151,32 @@
 
 </div>
 
+<script>
+  const container = document.getElementById('input-cont');
 
+  // Call addInput() function on button click
+  function addInput(){
+      let input = document.createElement('input');
+      input.placeholder = 'Type something';
+      input.className = 'form-control my-1';
+      input.name = 'facilities';
+      container.appendChild(input);
+  }
+
+  function validateNumberInput(input) {
+  // Remove any non-digit characters from the input value
+  var number = input.value.replace(/\D/g, '');
+
+  // Update the input value with the cleaned number
+  input.value = number;
+
+  // Display validation message
+  var validationMessage = document.getElementById('validationMessage');
+  if (number === '') {
+    validationMessage.textContent = '';
+  } else {
+    validationMessage.textContent = isNaN(number) ? 'Invalid input. Only numbers are allowed.' : '';
+  }
+}
+</script>
 <%-include('footer')%>

@@ -35,7 +35,7 @@
                 <!-- Password input -->
                 <div class="form-outline mb-4">
                     <label class="form-label w-100 text-start" for="form3Example4">Mobile</label>
-                  <input type="text" required name="mobile" maxlength="10" id="form3Example4" class="form-control" />
+                  <input type="text"  onkeyup="validateNumberInput(this)" required name="mobile" maxlength="10" id="form3Example4" class="form-control" />
                 </div>
                 <div class="form-outline mb-4">
                     <label class="form-label w-100 text-start" for="form3Example4">Password</label>
@@ -60,3 +60,19 @@
     <!-- Jumbotron -->
   </section>
   <!-- Section: Design Block -->
+
+  <script>
+    function validateNumberInput(input) {
+  // Remove any non-digit characters from the input value
+  var number = input.value.replace(/\D/g, '');
+  // Update the input value with the cleaned number
+  input.value = number;
+  // Display validation message
+  var validationMessage = document.getElementById('validationMessage');
+  if (number === '') {
+    validationMessage.textContent = '';
+  } else {
+    validationMessage.textContent = isNaN(number) ? 'Invalid input. Only numbers are allowed.' : '';
+  }
+}
+  </script>

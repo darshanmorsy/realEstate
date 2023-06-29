@@ -112,3 +112,36 @@ exports.user=async(req,res)=>{
   res.json(data);
 
 }
+
+exports.deactive=async(req,res)=>{
+
+  var data =await property.findByIdAndUpdate(req.params.id,{ active :2});
+  if(data) {
+      res.status(200).json({message:"property deactive successfully"});
+    }else{
+      res.status(404).json({ message: "property not deactive" });
+    }
+
+}
+
+exports.active=async(req,res)=>{
+
+  var data =await property.findByIdAndUpdate(req.params.id,{ active :0});
+  if(data) {
+      res.status(200).json({message:"property deactive successfully"});
+    }else{
+      res.status(404).json({ message: "property not deactive" });
+    }
+
+}
+
+exports.deactive_property=async(req,res)=>{
+
+  var data =await property.find({ active :2});
+  if(data) {
+      res.status(200).json(data);
+    }else{
+      res.status(404).json({message: "property not found"});
+    }
+
+}

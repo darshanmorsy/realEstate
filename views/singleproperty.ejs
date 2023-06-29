@@ -225,7 +225,7 @@
               </div>
               <div class="col-md-12 col-lg-4">
                 <div class="property-contact">
-                  <form class="form-a" action="/user/contact/7vn563rvbh347" method="post">
+                  <form class="form-a" action="/user/contact/<%=data.id%>" method="post">
                     <div class="row">
                       <div class="col-md-12 mb-1">
                         <div class="form-group">
@@ -244,10 +244,15 @@
                       </div>
                       <div class="col-md-12 mb-1">
                         <div class="form-group">
-                          <textarea id="textMessage" class="form-control" placeholder="Comment *" name="description" required></textarea>
+                          <input type="text" class="form-control form-control-lg form-control-a" name="address" id="inputEmail1" placeholder="address *" required>
+                        </div>
+                      </div>
+                      <div class="col-md-12 mb-1">
+                        <div class="form-group">
+                          <textarea id="textMessage"  class="form-control" placeholder="Comment *" name="description" required></textarea>
                         </div>
                         <div class="col-md-12 mt-3">
-                          <button type="submit" class="btn btn-a mb-5">Send Message</button>
+                          <button type="submit" class="btn btn-danger mb-5">Send Message</button>
                         </div>
                       </div>
                     </div>

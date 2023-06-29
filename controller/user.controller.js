@@ -273,7 +273,8 @@ exports.sell_page=async(req,res)=>{
       decodedToken = jwt.verify(token, secretKey)
     }
     var profile=await user.findOne({_id:decodedToken._id});
-    res,res.render('sellform',{profile})
+    var cities=await city.find({})
+    res,res.render('sellform',{profile,cities})
 
 }
 
@@ -301,10 +302,10 @@ exports.singleproperty=async (req, res) =>{
     }
     var profile=await user.findOne({_id:decodedToken._id});
     var data = await property.findOne({ _id:req.params.id})
-    res.render('singleproperty',{data,profile});
+    var contacts=await contact.find({})
+    res.render('singleproperty',{data,contacts,profile});
 
 }
-
 
 // property details form, post method
 
@@ -448,24 +449,25 @@ exports.contact = async (req, res) => {
         address == null ||
         description == null
     ) {
-        res.status(404).json({
-            message: "email,mobile,name,address,description not found",
-        })
+        res.redirect('back')
     } else {
+        console.log(req.params.id);
         var data = await contact.create({
             email,
             mobile,
             name,
             address,
             description,
+            property_id:req.params.id
         })
 
         if (data) {
             console.log("data added successfully")
-            res.status(200).json({ message: "data added successfully" })
+            res.redirect('back')
         } else {
             console.log("data not added")
-            res.status(200).json({ message: "data not added" })
+            res.redirect('back')
+            // res.status(200).json({ message: "data not added" })
         }
     }
 }
@@ -807,6 +809,34 @@ exports.deleteproperty=async (req,res)=>{
         }
         else{
             res.json({message:"data deleted successfully"});
+            console.log(data,'not deleted')
+        }
+    }
+
+}
+exports.delete_properties=async (req,res)=>{ 
+ 
+    var id=req.params.id
+    var data = await property.findOne({ _id:req.params.id});
+    if(id){
+       var cloudinary_id=data.property_image_id
+        for (var i = 0; i<data.property_image.length; i++) {
+
+            cloudinary.uploader.destroy(cloudinary_id[i],function (error, result) {
+                if (error) {
+                    console.log(error)
+                }
+                console.log(result)
+            });
+        }
+
+        var data=await property.findByIdAndDelete(req.params.id);
+        if(data){
+           res.redirect('back')
+            // console.log(data)
+        }
+        else{
+           res.redirect('back')
             console.log(data,'not deleted')
         }
     }

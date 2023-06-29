@@ -13,25 +13,28 @@
         <div class="about">Phone : <%=profile.mobile%></div>
       </div>
 </div>
-<div class="container mb-5 d-flex flex-wrap justify-content-center">
+<div class="container mb-5 d-flex flex-wrap flex-column justify-content-center">
 
     <div>
-        <h1 class="mb-3">your property</h1>
+        <h1 class="mb-5 text-center ">your property</h1>
     </div>
 
     <div class="d-flex  flex-wrap">
-
-
-        <%for(var i of property){%>
-            <a href="/user/singleProperty/<%=i.id%>">
-
-                <div class="wrapper mx-3 mt-3">
-                    <img src="<%=i.property_image[0]%>" height="300px " alt="">
-                </div>
-                <h2 class="text-center mt-2"><%=i.projectName%></h2>
-                <%}%>
+       
+      <%for(var i of property){%>
+        <div class="text-center">
+          <a href="/user/singleProperty/<%=i.id%>" class="flex-column d-flex">
+            <div class="wrapper mx-3 mt-3">
+                  <img src="<%=i.property_image[0]%>" height="300px " alt="">
             </div>
-        </a>
+            <div class="flex-column">
+              <h2 class="text-center mt-2"><%=i.projectName%></h2>
+              <a href="/user/deleteproperty/<%=i.id%>" class=" btn btn-danger ">delete</a>
+          </div>
+      </a>
+        </div>
+        <%}%>
+    </div>
 
 </div>
 

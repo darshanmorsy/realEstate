@@ -16,6 +16,9 @@ const contactSchema = new mongoose.Schema({
     },
     description:{
         type:String
+    },
+    property_id:{
+        type:String
     }
 },{
     collection: "contact",
