@@ -14,7 +14,7 @@ const{
     deactive,
     active,
     deactive_property,
-
+    contact_property,
  }= require("../controller/admin.controller")
 
  
@@ -29,6 +29,7 @@ const{
   router.get('/deactive/:id',deactive);
   router.get('/active/:id',active);
   router.get('/deactive',deactive_property);
+  router.get('/contactproperty/:property_id',contact_property)
 
   router.get('/city', async (req,res)=>{
     var city =await cities.find({});

@@ -1,0 +1,188 @@
+<%-include('header')%>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<div class="container py-5">
+
+  <h1 class="my-5">Property Update Form</h1>
+  <form action="/user/updateproperty" method="post" class="needs-validation my-5 p-3 rounded-2 shadow-lg" enctype="multipart/form-data">
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <label for="validationTooltip01">project name</label>
+        <input type="text" name="projectName" value="<%=data.projectName%>" class="form-control" id="validationTooltip01" >
+       
+      </div>
+      <input type="text" name="id" hidden value="<%=data.id%>">
+      <div class="col-md-4 mb-3">
+        <label for="validationTooltip02">city</label>
+        <select  name="city" class="form-control">
+          <option hidden >select city</option>
+          <%var citi= cities%>
+          <% citi.forEach((s , j )=>{ %>
+              <option value="<%=s.city%>"  <% if(data.city==s.city){%>                  
+                <%= "selected" %>
+                <%}%>>
+                <%= s.city %>
+              </option>
+              <% }) %>
+          </select>
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="validationTooltipUsername">price</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="validationTooltipUsernamePrepend">₹</span>
+          </div>
+          <input type="number"name='price' value="<%=data.price%>" maxlength="10000000" class="form-control" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend" >
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="validationTooltip03">Address</label>
+        <input type="text" name="address" value="<%=data.address%>" class="form-control" id="validationTooltip03">
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="validationTooltip04">property Life</label>
+        <input type="text" name="propertyLife" value="<%=data.propertyLife%>" class="form-control" id="validationTooltip04" >
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="validationTooltip05">property image</label>
+        <input type="file" name="property_image" class="form-control" id="validationTooltip05" >
+       
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="validationTooltip05">size</label>
+        <input type="text" name="size" value="<%=data.size%>" class="form-control" id="validationTooltip05" >
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="validationTooltip05">carpet area</label>
+        <input type="text" name="carpet_area" class="form-control" id="validationTooltip05" >
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="validationTooltip05">super built up</label>
+        <input type="text" name="super_built_up" value="<%=data.super_built_up%>" class="form-control" id="validationTooltip05" >
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="validationTooltip05">project area</label>
+        <input type="text" name="project_area" class="form-control" value="<%=data.project_area%>" id="validationTooltip05" >
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="validationTooltip05">booking amount</label>
+        <input type="number" name="booking_amount" value="<%=data.booking_amount%>" class="form-control" id="validationTooltip05" >
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="validationTooltip05">furnishing</label>
+        <input type="text" name="furnishing" class="form-control" value="<%=data.furnishing%>" id="validationTooltip05" >
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="validationTooltip05">property floor</label>
+        <input type="text" name="property_floor" class="form-control" value="<%=data.property_floor%>" id="validationTooltip05" >
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="validationTooltip05">landmark</label>
+        <input type="text" name="landmark" value="<%=data.landmark%>" class="form-control" id="validationTooltip05" >
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="validationTooltip03">builder details</label>
+        <input type="text" class="form-control" value="<%=data.builder_details%>" id="validationTooltip03" name="builder_details" >
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="validationTooltip03">owner info</label>
+        <input type="text" class="form-control" id="validationTooltip03" value="<%=data.owner_info%>" name="owner_info" >
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="validationTooltip05">location</label>
+        <input type="text" name="location" class="form-control" value="<%=data.location%>" id="validationTooltip05" >
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="validationTooltip05">scale type</label>
+        <input type="text" name="scale_type" class="form-control" value="<%=data.scale_type%>" id="validationTooltip05" >
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="validationTooltip05">disclaimer</label>
+        <input type="text" name="disclaimer" value="<%=data.disclaimer%>" class="form-control" id="validationTooltip05" >
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="validationTooltip05">category</label>
+      <select  class="form-control" name="category" id="">
+        <% if(data.category== 'rent') { %>
+            <option value="rent" <%= "selected" %> >For Rent</option>
+        <% } %>
+        <% if(data.category== 'sell') { %>
+            <option value="sell" <%= "selected" %>>For Sell</option>
+        <% } %>
+        <option value="" hidden>select category</option>
+      </select> 
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="validationTooltip05">house type</label>
+          
+  <select  name="house_type" class="form-control">
+    <%var housetype=['farm','shop','bungalow','office','industrial','open plot','flat','row house']%>
+      <% housetype.forEach((v , i )=>{ %>
+
+        <option value="<%= v %>" <% if(data.city==v.city) { %>
+            <%= "selected" %>
+                <% } %>><%= v %>
+        </option>
+        <% }); %>
+  </select>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="validationTooltip05">rooms</label>
+      <select  name="rooms" class="form-control"  id="">
+        <option value="" hidden>select rooms</option>
+        <option value="1BHK">1 BHK</option>
+        <option value="2BHK">2 BHK</option>
+        <option value="3BHK">3 BHK</option>
+        <option value="4BHK">4 BHK</option>
+        <option value="5BHK">5 BHK</option>
+        <option value="6BHK">6 BHK</option>
+        <option value="7BHK">7 BHK and more</option>
+      </select>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="validationTooltip05">facilities</label>
+       <div class="d-flex">
+        <input type="text"  disabled value="add facilities" class="form-control" id="validationTooltip05" >
+        <button onclick='addInput()' class="ms-2 d-inline-block btn btn-primary">+</button>
+        
+       </div><div id='input-cont'>
+          <!--Input container-->
+      </div>
+      </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit form</button>
+  </form>
+
+</div>
+
+<script>
+  const container = document.getElementById('input-cont');
+
+  // Call addInput() function on button click
+  function addInput(){
+      let input = document.createElement('input');
+      input.placeholder = 'Type something';
+      input.className = 'form-control my-1';
+      input.name = 'facilities';
+      container.appendChild(input);
+  }
+
+  function validateNumberInput(input) {
+  // Remove any non-digit characters from the input value
+  var number = input.value.replace(/\D/g, '');
+
+  // Update the input value with the cleaned number
+  input.value = number;
+
+  // Display validation message
+  var validationMessage = document.getElementById('validationMessage');
+  if (number === '') {
+    validationMessage.textContent = '';
+  } else {
+    validationMessage.textContent = isNaN(number) ? 'Invalid input. Only numbers are allowed.' : '';
+  }
+}
+</script>
+<%-include('footer')%>

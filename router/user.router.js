@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const image_upload = require("../helper/multer.helper");
 const city = require("../model/city.model");
+const profile_model = require("../model/user.model");
+const properties = require("../model/property.model");
 const user_token = require("../middleware/user.middleware");
 
 const {
@@ -43,6 +45,8 @@ const {
   user_property,
   delete_properties,
   profile,
+  update_property,
+  updateproperty,
   profile_front,
 } = require("../controller/user.controller");
 
@@ -61,11 +65,9 @@ router.post("/filters", user_token, filterpost);
 
 router.get("/login", login);
 router.get("/register", register);
-router.post(
-  "/propertyDetails",
-  image_upload.array("property_image"),
-  propertDetails
-);
+router.post("/propertyDetails",image_upload.array("property_image"),propertDetails);
+router.post("/updateproperty",image_upload.array("property_image"),update_property);
+router.get('/updateproperty/:id',updateproperty)
 router.post("/contact/:id", contact);
 router.get("/allproperty", allproperty);
 router.get("/rent", rent);
