@@ -13,15 +13,15 @@ const propertySchema = mongoose.Schema({
     },
     price: {
         type: Number,
-    },
+    }, 
     property_image: {
         type: Array
-    },
+    }, 
     propertyLife: {
         type: String,
     },
     size: {
-        type: String, 
+        type: String,   
     },
     facilities: {
         type: Array

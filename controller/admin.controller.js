@@ -151,8 +151,14 @@ exports.contact_property=async(req,res) => {
   console.log(req.params);
   var properties=await property.findById(req.params.property_id);
   console.log(properties);
-  var owner_info=await user.findById(properties.user_id); 
-  
-  res.status(200).json({owner_info,properties})
-
+  if(properties){
+    var owner_info=await user.findById(properties.user_id); 
+    if(owner_info){
+    res.status(200).json({owner_info,properties})
+      }else{
+        res.status(200).json({message:"no such property"})
+      }
+  }else{
+  res.status(200).json({message:"no such property"})
+  }
 }
