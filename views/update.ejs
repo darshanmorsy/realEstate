@@ -123,26 +123,28 @@
                 <% } %>><%= v %>
         </option>
         <% }); %>
-  </select>
-      </div>
-      <div class="col-md-3 mb-3">
-        <label for="validationTooltip05">rooms</label>
-      <select  name="rooms" class="form-control"  id="">
-        <option value="" hidden>select rooms</option>
-        <option value="1BHK">1 BHK</option>
-        <option value="2BHK">2 BHK</option>
-        <option value="3BHK">3 BHK</option>
-        <option value="4BHK">4 BHK</option>
-        <option value="5BHK">5 BHK</option>
-        <option value="6BHK">6 BHK</option>
-        <option value="7BHK">7 BHK and more</option>
       </select>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationTooltip05">rooms</label>
+      <select name="rooms" class="form-control" id="">
+        <option value="" hidden>select rooms</option>
+        <% var rooms = ['1 BHK', '2 BHK', '3 BHK', '4 BHK', '5 BHK', '6 BHK', '7 BHK and more']; %>
+        <% rooms.forEach((v, i) => { %>
+          <option value="<%= v %>" <% if (data.rooms == v) { %>
+            <%= "selected" %>
+          <% } %>>
+            <%= v %>
+          </option>
+        <% }); %>
+      </select>
+      
       </div>
       <div class="col-md-3 mb-3">
         <label for="validationTooltip05">facilities</label>
        <div class="d-flex">
         <input type="text"  disabled value="add facilities" class="form-control" id="validationTooltip05" >
-        <button onclick='addInput()' class="ms-2 d-inline-block btn btn-primary">+</button>
+        <button onclick='addInput()' type="button" class="ms-2 d-inline-block btn btn-primary">+</button>
         
        </div><div id='input-cont'>
           <!--Input container-->

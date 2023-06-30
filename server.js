@@ -12,6 +12,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 require("dotenv").config();
 app.use(express.static(path.join(__dirname, "assets")));
+
 const db = "mongodb+srv://morsy:morsy@ds.6e7bjag.mongodb.net/realEstate";
 mongoose
   .connect(db, {

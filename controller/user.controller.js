@@ -679,7 +679,9 @@ exports.filterpost = async (req, res) => {
 };
 
 exports.user_property = async (req, res) => {
+ 
     var token = req.cookies.jwt || req.headers.authorization;
+    console.log(token,"OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
     if (token) {
         const secretKey = process.env.SECRET_KEY;
         var decodedToken = "";
@@ -730,9 +732,11 @@ exports.profile_front = async (req, res) => {
 exports.deleteproperty = async (req, res) => {
     var id = req.params.id;
     var data = await property.findOne({ _id: req.params.id });
-    if (id) {
+    console.log(data,"Oops!");
+    if (id) { 
         var cloudinary_id = data.property_image_id;
         for (var i = 0; i < data.property_image.length; i++) {
+
             cloudinary.uploader.destroy(cloudinary_id[i], function (error, result) {
                 if (error) {
                     console.log(error);
@@ -741,13 +745,13 @@ exports.deleteproperty = async (req, res) => {
             });
         }
 
-        var data = await property.findByIdAndDelete(req.params.id);
-        if (data) {
+        var datas = await property.findByIdAndDelete(req.params.id);
+        if (datas) {
             res.json({ message: "data deleted successfully" });
             // console.log(data)
         } else {
             res.json({ message: "data deleted successfully" });
-            console.log(data, "not deleted");
+            console.log(datas, "not deleted");
         }
     }
 };
@@ -779,13 +783,16 @@ exports.delete_properties = async (req, res) => {
 
 exports.update_property=async(req,res)=>{
 
+    console.log(req.body,"LLL");
     try {
         
         var data = await property.findOne({ _id: req.body.id });
         console.log(data,":::::::");
 
         var cloudinary_id = data.property_image_id
-
+        
+        const files = req.files;
+        if (files) {
         for (var i = 0;  i < data.property_image.length; i++) {
 
             cloudinary.uploader.destroy(cloudinary_id[i],function (error, result) {
@@ -795,8 +802,6 @@ exports.update_property=async(req,res)=>{
                 console.log(result)
             });
         }
-        const files = req.files;
-        if (files) {
             var property_image = [];
             var property_image_id = [];
             // var i = 0;
