@@ -5,6 +5,7 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const session = require("express-session");
+const cors = require("cors");
 const mongoose = require("mongoose");
 // app.use(flash());
 app.set("views", path.join(__dirname, "views"));
@@ -23,9 +24,9 @@ mongoose
   .catch((err) => console.log(err));
 
 const port = process.env.PORT || 3000;
-// require("./db/connection");
-
-// app.use(cors());
+// require("./db/connection"); 
+ 
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

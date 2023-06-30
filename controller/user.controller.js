@@ -780,10 +780,21 @@ exports.delete_properties = async (req, res) => {
 exports.update_property=async(req,res)=>{
 
     try {
-     
+        
         var data = await property.findOne({ _id: req.body.id });
         console.log(data,":::::::");
 
+        var cloudinary_id = data.property_image_id
+
+        for (var i = 0;  i < data.property_image.length; i++) {
+
+            cloudinary.uploader.destroy(cloudinary_id[i],function (error, result) {
+                if (error) {
+                    console.log(error)
+                }
+                console.log(result)
+            });
+        }
         const files = req.files;
         if (files) {
             var property_image = [];
@@ -799,19 +810,10 @@ exports.update_property=async(req,res)=>{
                 property_image.push(farmImages);
                 property_image_id.push(farmImages_id);
             }
-            var cloudinary_id = data.property_image_id
-            console.log(data,'LLll',cloudinary_id,"::");
+            // console.log(data,'LLll',cloudinary_id,"::");
             
-            for (var i = 0;  i < data.property_image.length; i++) {
-
-                cloudinary.uploader.destroy(cloudinary_id[i],function (error, result) {
-                    if (error) {
-                        console.log(error)
-                    }
-                    console.log(result)
-                });
-            }
-            req.body.property_image_image = property_image
+           
+            req.body.property_image = property_image
             req.body.propert_image_id = property_image_id
 
             var data = await property.findByIdAndUpdate(req.body.id, req.body);
@@ -855,4 +857,4 @@ exports.updateproperty=async(req,res)=>{
     console.log(data);
     res.render('update',{data,cities,profile});
   
-  }
+}
