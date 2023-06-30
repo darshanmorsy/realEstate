@@ -62,12 +62,19 @@ router.get("/sellpage", user_token, sell_page);
 router.get("/singleproperty/:id", user_token, singleproperty);
 router.post("/filters", user_token, filterpost);
 
-
 router.get("/login", login);
 router.get("/register", register);
-router.post("/propertyDetails",image_upload.array("property_image"),propertDetails);
-router.post("/updateproperty",image_upload.array("property_image"),update_property);
-router.get('/updateproperty/:id',updateproperty)
+router.post(
+  "/propertyDetails",
+  image_upload.array("property_image"),
+  propertDetails
+);
+router.post(
+  "/updateproperty",
+  image_upload.array("property_image"),
+  update_property
+);
+router.get("/updateproperty/:id", updateproperty);
 router.post("/contact/:id", contact);
 router.get("/allproperty", allproperty);
 router.get("/rent", rent);
@@ -104,29 +111,26 @@ router.get("/city", async (req, res) => {
   res.json(data);
 });
 
-router.post('/logout',async(req,res) => { 
+router.post("/logout", async (req, res) => {
   try {
-   console.log(req.cookies);
-   res.cookie('jwt','', { maxAge: 1 });
-   // const token = req.headers.authorization;
-   res.status(200).json({message:"logout successfully"})
-     
+    console.log(req.cookies);
+    res.cookie("jwt", "", { maxAge: 1 });
+    // const token = req.headers.authorization;
+    res.status(200).json({ message: "logout successfully" });
   } catch (error) {
-   console.log(error)
+    console.log(error);
   }
- });
-router.get('/logout',async(req,res) => { 
+});
+
+router.get("/logout", async (req, res) => {
   try {
-   console.log(req.cookies);
-   res.cookie('jwt','', { maxAge: 1 });
-   // const token = req.headers.authorization;
-   res.redirect('/user')
-     
+    console.log(req.cookies);
+    res.cookie("jwt", "", { maxAge: 1 });
+    // const token = req.headers.authorization;
+    res.redirect("/user");
   } catch (error) {
-   console.log(error)
+    console.log(error);
   }
- });
-
-
+});
 
 module.exports = router;

@@ -1,15 +1,12 @@
 <%-include('header')%>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
 <div class="container py-5">
-
   <h1 class="my-5">Property Update Form</h1>
   <form action="/user/updateproperty" method="post" class="needs-validation my-5 p-3 rounded-2 shadow-lg" enctype="multipart/form-data">
     <div class="form-row">
       <div class="col-md-4 mb-3">
         <label for="validationTooltip01">project name</label>
         <input type="text" name="projectName" value="<%=data.projectName%>" class="form-control" id="validationTooltip01" >
-       
       </div>
       <input type="text" name="id" hidden value="<%=data.id%>">
       <div class="col-md-4 mb-3">

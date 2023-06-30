@@ -1,76 +1,100 @@
-<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
 <!-- Section: Design Block -->
 <section class="text-center text-lg-start align-items-center d-flex h-100">
-    <style>
+  <style>
+    .cascading-right {
+      margin-right: -50px;
+    }
+
+    @media (max-width: 991.98px) {
       .cascading-right {
-        margin-right: -50px;
+        margin-right: 0;
       }
-  
-      @media (max-width: 991.98px) {
-        .cascading-right {
-          margin-right: 0;
-        }
-      }
-    </style>
-  
-    <!-- Jumbotron -->
-    <div class="container py-4">
-      <div class="row  align-items-center justify-content-center">
-        <div class="col-lg-4 mb-5 mb-lg-0">
-          <div class="card cascading-right" style="
-              background: hsla(0, 0%, 100%, 0.55);
-              backdrop-filter: blur(30px);
-              ">
-            <div class="card-body p-5 shadow-5 text-center">
-              <h2 class="fw-bold mb-5">Login now</h2>
-              <form action="/user/loginpostweb" method="post">
-                <!-- 2 column grid layout with text inputs for the first and last names -->
-                <!-- Email input -->
-                <div class="form-outline mb-4">
-                    <label class="form-label w-100 text-start" for="form3Example3">mobile</label>
-                  <input type="text" onkeyup="validateNumberInput(this)" maxlength="10" name="mobile" id="form3Example3" class="form-control" />
-                </div>
-  
-                <!-- Password input -->
-                <div class="form-outline mb-4">
-                    <label class="form-label w-100 text-start" for="form3Example4">Password</label>
-                  <input type="password" name="password" id="form3Example4" class="form-control" />
-                </div>
-  
-                <!-- Checkbox -->
-             
-  
-                <!-- Submit button -->
-                <button type="submit" class="btn btn-primary d-block w-100 btn-block mb-4">
-                  log in
-                </button>
-                <a href="/user/register" class="btn btn-primary d-block">sign up </a>
-  
-                <!-- Register buttons -->
-             
-              </form>
-            </div>
+    }
+  </style>
+
+  <!-- Jumbotron -->
+  <div class="container py-4">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div
+          class="card cascading-right"
+          style="
+            background: hsla(0, 0%, 100%, 0.55);
+            backdrop-filter: blur(30px);
+          "
+        >
+          <div class="card-body p-5 shadow-5 text-center">
+            <h2 class="fw-bold mb-5">Login now</h2>
+            <form action="/user/loginpostweb" method="post">
+              <!-- 2 column grid layout with text inputs for the first and last names -->
+              <!-- Email input -->
+              <div class="form-outline mb-4">
+                <label class="form-label w-100 text-start" for="form3Example3"
+                  >mobile</label
+                >
+                <input
+                  type="text"
+                  onkeyup="validateNumberInput(this)"
+                  maxlength="10"
+                  name="mobile"
+                  id="form3Example3"
+                  class="form-control"
+                />
+              </div>
+
+              <!-- Password input -->
+              <div class="form-outline mb-4">
+                <label class="form-label w-100 text-start" for="form3Example4"
+                  >Password</label
+                >
+                <input
+                  type="password"
+                  name="password"
+                  id="form3Example4"
+                  class="form-control"
+                />
+              </div>
+
+              <!-- Checkbox -->
+
+              <!-- Submit button -->
+              <button
+                type="submit"
+                class="btn btn-primary d-block w-100 btn-block mb-4"
+              >
+                log in
+              </button>
+              <a href="/user/register" class="btn btn-primary d-block"
+                >sign up
+              </a>
+
+              <!-- Register buttons -->
+            </form>
           </div>
         </div>
       </div>
     </div>
-    <!-- Jumbotron -->
-  </section>
-  <!-- Section: Design Block -->
+  </div>
+  <!-- Jumbotron -->
+</section>
+<!-- Section: Design Block -->
 
-  <script>
-    function validateNumberInput(input) {
-  // Remove any non-digit characters from the input value
-  var number = input.value.replace(/\D/g, '');
-  // Update the input value with the cleaned number
-  input.value = number;
-  // Display validation message
-  var validationMessage = document.getElementById('validationMessage');
-  if (number === '') {
-    validationMessage.textContent = '';
-  } else {
-    validationMessage.textContent = isNaN(number) ? 'Invalid input. Only numbers are allowed.' : '';
+<script>
+  function validateNumberInput(input) {
+    // Remove any non-digit characters from the input value
+    var number = input.value.replace(/\D/g, "");
+    // Update the input value with the cleaned number
+    input.value = number;
+    // Display validation message
+    var validationMessage = document.getElementById("validationMessage");
+    if (number === "") {
+      validationMessage.textContent = "";
+    } else {
+      validationMessage.textContent = isNaN(number)
+        ? "Invalid input. Only numbers are allowed."
+        : "";
+    }
   }
-}
-  </script>
+</script>

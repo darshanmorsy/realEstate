@@ -1,72 +1,76 @@
 <%-include('header')%>
-<style>
-
-</style>
+<style></style>
 <main id="main">
-    <!-- ======= Intro Single ======= -->
-    <section class="intro-single">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 col-lg-8">
-            <div class="title-single-box">
-              <h1 class="title-single">Our Amazing Properties</h1>
-              <span class="color-text-a">Grid Properties</span>
-            </div>
-          </div>
-          <div class="col-md-12 col-lg-4">
-            <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                  <a href="/user">Home</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">
-                  Properties Grid
-                </li>
-              </ol>
-            </nav>
+  <!-- ======= Intro Single ======= -->
+  <section class="intro-single">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-8">
+          <div class="title-single-box">
+            <h1 class="title-single">Our Amazing Properties</h1>
+            <span class="color-text-a">Grid Properties</span>
           </div>
         </div>
+        <div class="col-md-12 col-lg-4">
+          <nav
+            aria-label="breadcrumb"
+            class="breadcrumb-box d-flex justify-content-lg-end"
+          >
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="/user">Home</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Properties Grid
+              </li>
+            </ol>
+          </nav>
+        </div>
       </div>
-    </section><!-- End Intro Single-->
+    </div>
+  </section>
+  <!-- End Intro Single-->
 
+  <!-- ======= Property Grid ======= -->
+  <section class="property-grid grid">
+    <div class="container">
+      <div class="row">
+        <%for(var i of data){%>
 
-    
-
-    <!-- ======= Property Grid ======= -->
-    <section class="property-grid grid">
-      <div class="container">
-        <div class="row">
-        
-          <%for(var i of data){%>
-
-          <div class="col-md-4">
-            <div class="card-box-a card-shadow">
-              <div class="img-box-a">
-                <img src="<%=i.property_image[0]%>" style="height:500px !important" class="img-a img-fluid">
-              </div>
-              <div class="card-overlay">
-                <div class="card-overlay-a-content">
-                  <div class="card-header-a">
-                    <h2 class="card-title-a">
-                      <a href="#"><%=i.projectName%></a>
-                    </h2>
+        <div class="col-md-4">
+          <div class="card-box-a card-shadow">
+            <div class="img-box-a">
+              <img
+                src="<%=i.property_image[0]%>"
+                style="height: 500px !important"
+                class="img-a img-fluid"
+              />
+            </div>
+            <div class="card-overlay">
+              <div class="card-overlay-a-content">
+                <div class="card-header-a">
+                  <h2 class="card-title-a">
+                    <a href="#"><%=i.projectName%></a>
+                  </h2>
+                </div>
+                <div class="card-body-a">
+                  <div class="price-box d-flex">
+                    <span class="price-a py-3"> ₹ <%=i.price%> </span>
                   </div>
-                  <div class="card-body-a">
-                    <div class="price-box d-flex">
-                      <span class="price-a py-3"> ₹ <%=i.price%> </span>
-                    </div>
-                    <a href="/user/singleProperty/<%=i.id%>" class="link-a">Click here 
-                      <span class="bi bi-chevron-right"></span>
-                    </a>
-                  </div>
+                  <a href="/user/singleProperty/<%=i.id%>" class="link-a"
+                    >Click here
+                    <span class="bi bi-chevron-right"></span>
+                  </a>
                 </div>
               </div>
             </div>
           </div>
-          <%}%>
         </div>
-       
+        <%}%>
       </div>
-    </section><!-- End Property Grid Single-->
-  </main><!-- End #main -->
+    </div>
+  </section>
+  <!-- End Property Grid Single-->
+</main>
+<!-- End #main -->
 <%-include('footer')%>
