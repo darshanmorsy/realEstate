@@ -265,12 +265,12 @@
             id="validationTooltip05"
             required
           />
-          <button
+          <a href="#"
             onclick="addInput()"
             class="ms-2 d-inline-block btn btn-primary"
           >
             +
-          </button>
+        </a>
         </div>
         <div id="input-cont">
           <!--Input container-->
@@ -286,10 +286,10 @@
 
   // Call addInput() function on button click
   function addInput() {
-    let input = document.createElement("input");
-    input.placeholder = "Type something";
-    input.className = "form-control my-1";
-    input.name = "facilities";
+    let inputs = document.createElement("input");
+    inputs.placeholder = "Type something";
+    inputs.className = "form-control my-1";
+    inputs.name = "facilities";
     container.appendChild(input);
   }
 
