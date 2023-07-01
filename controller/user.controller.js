@@ -261,7 +261,7 @@ exports.sell_page = async (req, res) => {
     var cities = await city.find({});
     res, res.render("sellform", { profile, cities });
 }
-
+ 
 exports.rents = async (req, res) => {
     var token = req.cookies.jwt;
     const secretKey = process.env.SECRET_KEY;
