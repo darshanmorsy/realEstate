@@ -16,8 +16,6 @@ exports.request = async (req, res) => {
   }
 }
 
-
-
 exports.contacts = async (req, res) => {
   var data = await contacts.find({});
   if (data) {
@@ -25,9 +23,7 @@ exports.contacts = async (req, res) => {
   } else {
     res.status(200).json({ message: "no contacts found" });
   }
-};
-
-
+}
 
 exports.requestAccept = async (req, res) => {
 
@@ -38,9 +34,7 @@ exports.requestAccept = async (req, res) => {
   } else {
     res.status(200).json({ message: "request not accepted" });
   }
-};
-
-
+}
 
 exports.requestDecline = async (req, res) => {
   console.log(req.params);
@@ -67,9 +61,7 @@ exports.requestDecline = async (req, res) => {
   } else {
     res.status(200).json({ message: "request not accepted" });
   }
-};
-
-
+}
 
 exports.allproperty = async (req, res) => {
 
@@ -149,16 +141,21 @@ exports.deactive_property=async(req,res)=>{
 exports.contact_property=async(req,res) => {
 
   console.log(req.params);
-  var properties=await property.findById(req.params.property_id);
-  console.log(properties);
-  if(properties){
-    var owner_info=await user.findById(properties.user_id); 
-    if(owner_info){
-    res.status(200).json({owner_info,properties})
+  if(req.params.property_id){
+    var properties=await property.findById(req.params.property_id);
+    console.log(properties);
+    if(properties){
+      var owner_info=await user.findById(properties.user_id); 
+      if(owner_info){
+        res.status(200).json({owner_info,properties})
+        console.log(owner_info,properties);
       }else{
         res.status(200).json({message:"no such property"})
       }
+    }else{
+      res.status(200).json({message:"no such property"})
+    }
   }else{
-  res.status(200).json({message:"no such property"})
+   console.log(req.params)
   }
 }

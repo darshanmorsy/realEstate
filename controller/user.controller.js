@@ -413,7 +413,7 @@ exports.propertDetails = async (req, res) => {
                     res.status(200).json({ message: "data not added" });
                 }
             }
-        }
+        } 
     } catch (error) {
         console.log(error);
     }
@@ -682,17 +682,25 @@ exports.user_property = async (req, res) => {
  
     var token = req.cookies.jwt || req.headers.authorization;
     console.log(token,"OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+  
     if (token) {
         const secretKey = process.env.SECRET_KEY;
         var decodedToken = "";
         if (token) {
             decodedToken = jwt.verify(token, secretKey);
         }
-        var profile = await user.findOne({ _id: decodedToken._id });
+        // var profile = await user.findOne({ _id: decodedToken._id });
         var userproperties = await property.find({ user_id: decodedToken._id });
-        console.log(profile);
-        res.json(userproperties);
-    } else {
+      
+        if(userproperties){
+
+            res.json(userproperties);
+            // console.log(profile);
+        }else{
+            res.json({});
+
+        }
+        } else {
         console.log("token is not found");
     }
 };
@@ -758,9 +766,13 @@ exports.deleteproperty = async (req, res) => {
 
 exports.delete_properties = async (req, res) => {
     var id = req.params.id;
-    var data = await property.findOne({ _id: req.params.id });
     if (id) {
+        var data = await property.findOne({ _id: req.params.id });
+        
+        console.log(data);
+        
         var cloudinary_id = data.property_image_id;
+        
         for (var i = 0; i < data.property_image.length; i++) {
             cloudinary.uploader.destroy(cloudinary_id[i], function (error, result) {
                 if (error) {
@@ -779,7 +791,7 @@ exports.delete_properties = async (req, res) => {
             console.log(data, "not deleted");
         }
     }
-};
+}
 
 exports.update_property=async(req,res)=>{
 
