@@ -13,19 +13,19 @@ app.set("view engine", "ejs");
 require("dotenv").config();
 app.use(express.static(path.join(__dirname, "assets")));
 
-const db = "mongodb+srv://morsy:morsy@ds.6e7bjag.mongodb.net/realEstate";
-mongoose
-  .connect(db, {
-    // useCreateIndex: true,
-    // useFindAndModify: false,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then(() => console.log("MongoDB connected..."))
-  .catch((err) => console.log(err));
+// const db = "mongodb+srv://morsy:morsy@ds.6e7bjag.mongodb.net/realEstate";
+// mongoose
+//   .connect(db, {
+//     // useCreateIndex: true,
+//     // useFindAndModify: false,
+//     useNewUrlParser: true, 
+//     useUnifiedTopology: true,
+//   })
+//   .then(() => console.log("MongoDB connected...")) 
+//   .catch((err) => console.log(err));
 
 const port = process.env.PORT || 3000;
-// require("./db/connection"); 
+require("./db/connection"); 
  
 app.use(cors());
 

@@ -24,10 +24,10 @@ router.delete("/requestDecline/:id", requestDecline);
 router.get("/allproperty", allproperty);
 router.get("/user", user);
 router.post("/city", city);
-router.delete("/deletecity/:id", deletecity);
+router.delete("/deletecity/:id", deletecity); 
 router.get("/deactive/:id", deactive);
 router.get("/active/:id", active);
-router.get("/deactive", deactive_property);
+router.get("/deactive", deactive_property); 
 router.get("/contactproperty/:property_id", contact_property);
 
 router.get("/city", async (req, res) => {

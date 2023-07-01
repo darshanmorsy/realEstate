@@ -21,15 +21,15 @@ exports.home = async (req, res) => {
     var cities = await city.find({});
 
     res.render("home", { data, cities, profile });
-};
+}
 
 exports.login = async (req, res) => {
     res.render("login");
-};
+}
 
 exports.register = async (req, res) => {
     res.render("register");
-};
+}
 
 exports.loginpost = async (req, res) => {
     try {
@@ -96,7 +96,7 @@ exports.loginpost = async (req, res) => {
             status: 500,
         });
     }
-};
+}
 
 exports.registerpost = async (req, res) => {
     console.log(req.body);
@@ -139,7 +139,7 @@ exports.registerpost = async (req, res) => {
             });
         }
     }
-};
+}
 
 exports.loginpostweb = async (req, res) => {
     try {
@@ -183,7 +183,7 @@ exports.loginpostweb = async (req, res) => {
         res.redirect("/user/login");
         console.log("Sorry! Something Went Wrong (user login)");
     }
-};
+}
 
 exports.registerpostweb = async (req, res) => {
     console.log(req.body.name);
@@ -221,7 +221,7 @@ exports.registerpostweb = async (req, res) => {
             res.redirect("/user/register");
         }
     }
-};
+}
 
 exports.property = async (req, res) => {
     var data = await property.find({ active: 1 });
@@ -234,7 +234,7 @@ exports.property = async (req, res) => {
     }
     var profile = await user.findOne({ _id: decodedToken._id });
     res.render("buy", { data, cities, profile });
-};
+}
 
 exports.buy = async (req, res) => {
     var token = req.cookies.jwt;
@@ -248,7 +248,7 @@ exports.buy = async (req, res) => {
     var cities = await city.find({});
 
     res.render("buy", { data, cities, profile });
-};
+}
 
 exports.sell_page = async (req, res) => {
     var token = req.cookies.jwt;
@@ -260,7 +260,7 @@ exports.sell_page = async (req, res) => {
     var profile = await user.findOne({ _id: decodedToken._id });
     var cities = await city.find({});
     res, res.render("sellform", { profile, cities });
-};
+}
 
 exports.rents = async (req, res) => {
     var token = req.cookies.jwt;
@@ -274,7 +274,7 @@ exports.rents = async (req, res) => {
     var cities = await city.find({});
     console.log(data.length, "OOOOOOOOOOOOOOOO");
     res.render("rent", { data, cities, profile });
-};
+}
 
 exports.singleproperty = async (req, res) => {
     var token = req.cookies.jwt;
@@ -287,7 +287,7 @@ exports.singleproperty = async (req, res) => {
     var data = await property.findOne({ _id: req.params.id });
     var contacts = await contact.find({});
     res.render("singleproperty", { data, contacts, profile });
-};
+}
 
 // property details form, post method
 
@@ -417,7 +417,7 @@ exports.propertDetails = async (req, res) => {
     } catch (error) {
         console.log(error);
     }
-};
+}
 
 // contact form post method
 
@@ -453,7 +453,7 @@ exports.contact = async (req, res) => {
             // res.status(200).json({ message: "data not added" })
         }
     }
-};
+}
 
 // property details , get method
 
@@ -464,7 +464,7 @@ exports.allproperty = async (req, res) => {
     } else {
         res.status(404).json({ message: "no data found" });
     }
-};
+}
 
 // rent sell , get method
 
@@ -475,7 +475,7 @@ exports.sell = async (req, res) => {
     } else {
         res.status(404).json({ message: "no data found" });
     }
-};
+}
 
 // rent property , get method
 
@@ -486,7 +486,7 @@ exports.rent = async (req, res) => {
     } else {
         res.status(404).json({ message: "no data found" });
     }
-};
+}
 
 exports.rent_flat = async (req, res) => {
     var data = await property.find({ category: "rent", house_type: "bunglow" });
@@ -495,7 +495,7 @@ exports.rent_flat = async (req, res) => {
     } else {
         res.status(404).json({ message: "no data found" });
     }
-};
+}
 
 exports.rent_shop = async (req, res) => {
     var data = await property.find({ category: "rent", house_type: "shop" });
@@ -504,7 +504,7 @@ exports.rent_shop = async (req, res) => {
     } else {
         res.status(404).json({ message: "no data found" });
     }
-};
+}
 
 exports.rent_office = async (req, res) => {
     var data = await property.find({ category: "rent", house_type: "office" });
@@ -513,7 +513,7 @@ exports.rent_office = async (req, res) => {
     } else {
         res.status(404).json({ message: "no data found" });
     }
-};
+}
 
 exports.rent_bungalow = async (req, res) => {
     var data = await property.find({ category: "rent", house_type: "bungalow" });
@@ -522,7 +522,7 @@ exports.rent_bungalow = async (req, res) => {
     } else {
         res.status(404).json({ message: "no data found" });
     }
-};
+}
 
 exports.rent_openplot = async (req, res) => {
     var data = await property.find({ category: "rent", house_type: "openplot" });
@@ -531,7 +531,7 @@ exports.rent_openplot = async (req, res) => {
     } else {
         res.status(404).json({ message: "no data found" });
     }
-};
+}
 
 exports.rent_rowhouse = async (req, res) => {
     var data = await property.find({ category: "rent", house_type: "rowhouse" });
@@ -588,7 +588,7 @@ exports.sell_office = async (req, res) => {
     } else {
         res.status(404).json({ message: "no data found" });
     }
-};
+}
 
 exports.sell_bungalow = async (req, res) => {
     var data = await property.find({ category: "sell", house_type: "bungalow" });
@@ -597,7 +597,7 @@ exports.sell_bungalow = async (req, res) => {
     } else {
         res.status(404).json({ message: "no data found" });
     }
-};
+}
 
 exports.sell_openplot = async (req, res) => {
     var data = await property.find({ category: "sell", house_type: "openplot" });
@@ -606,7 +606,7 @@ exports.sell_openplot = async (req, res) => {
     } else {
         res.status(404).json({ message: "no data found" });
     }
-};
+}
 
 exports.sell_rowhouse = async (req, res) => {
     var data = await property.find({ category: "sell", house_type: "rowhouse" });
@@ -615,7 +615,7 @@ exports.sell_rowhouse = async (req, res) => {
     } else {
         res.status(404).json({ message: "no data found" });
     }
-};
+}
 
 exports.sell_industrial = async (req, res) => {
     var data = await property.find({
@@ -627,7 +627,7 @@ exports.sell_industrial = async (req, res) => {
     } else {
         res.status(404).json({ message: "no data found" });
     }
-};
+}
 
 exports.sell_farm = async (req, res) => {
     var data = await property.find({ category: "sell", house_type: "farm" });
@@ -636,10 +636,10 @@ exports.sell_farm = async (req, res) => {
     } else {
         res.status(404).json({ message: "no data found" });
     }
-};
+}
 
 exports.frontfilter = async (req, res) => {
-    console.log(req.params);
+    // console.log(req.params);
 
     var data = await property.find({
         city: req.params.city,
@@ -651,10 +651,10 @@ exports.frontfilter = async (req, res) => {
         res.status(200).json(data);
         console.log(data, req.params);
     } else {
-        res.status(404).json({ message: "no data found" });
+        res.status(404).json({ message: "no data found" }); 
     }
-};
-
+}
+ 
 exports.filterpost = async (req, res) => {
     // console.log(req.body);
     var token = req.cookies.jwt;
@@ -671,12 +671,12 @@ exports.filterpost = async (req, res) => {
         price: { $gt: req.body.min, $lt: req.body.max },
     });
     if (data) {
-        console.log(req.body, data);
+        // console.log(req.body, data);
         res.render("filter", { data, profile });
     } else {
         console.log("no data found");
     }
-};
+}
 
 exports.user_property = async (req, res) => {
  
@@ -703,7 +703,7 @@ exports.user_property = async (req, res) => {
         } else {
         console.log("token is not found");
     }
-};
+}
 
 exports.profile = async (req, res) => {
     var token = req.cookies.jwt || req.headers.authorization;
@@ -720,7 +720,7 @@ exports.profile = async (req, res) => {
         console.log(profile);
         res.json(profile);
     }
-};
+}
 
 exports.profile_front = async (req, res) => {
     var token = req.cookies.jwt;
@@ -735,7 +735,7 @@ exports.profile_front = async (req, res) => {
         console.log(profile);
         res.render("profile", { profile, property: propert });
     }
-};
+}
 
 exports.deleteproperty = async (req, res) => {
     var id = req.params.id;
@@ -755,21 +755,21 @@ exports.deleteproperty = async (req, res) => {
 
         var datas = await property.findByIdAndDelete(req.params.id);
         if (datas) {
-            res.json({ message: "data deleted successfully" });
+            res.json({ message: "data deleted successfully" }); 
             // console.log(data)
         } else {
             res.json({ message: "data deleted successfully" });
             console.log(datas, "not deleted");
         }
     }
-};
+}; 
 
 exports.delete_properties = async (req, res) => {
     var id = req.params.id;
     if (id) {
         var data = await property.findOne({ _id: req.params.id });
         
-        console.log(data);
+        // console.log(data);
         
         var cloudinary_id = data.property_image_id;
         
