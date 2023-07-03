@@ -1,7 +1,7 @@
 <%-include('header')%>
 
 <div class="d-flex justify-content-center py-5 mt-5">
-  <div class="wrapper mt-5">
+  <div class="wrapper col-lg-3 col-10 mt-5">
     <div class="img-area">
       <div class="inner-area">
         <img
@@ -20,12 +20,20 @@
   <div>
     <h1 class="mb-5 text-center">your property</h1>
   </div>
+  <% if (messages.success) { %>
+       <center>
 
+         <div class="alert text-center my-4 alert-success" style="width: fit-content;">
+          <%= messages.success %>
+        </div>
+        
+      </center>                    
+    <% } %>
   <div class="d-flex flex-wrap">
     <%for(var i of property){%>
-    <div class="text-center pb-3 rounded-3">
+    <div class="text-center pb-3 col-lg-4 px- m-0 rounded-3">
       <a href="/user/singleProperty/<%=i.id%>" class="flex-column d-flex">
-        <div class="wrapper mx-3 p-0 mt-3">
+        <div class="wrapper p-0 mt-3">
           <img
             src="<%=i.property_image[0]%>"
             class="rounded-3"
@@ -59,7 +67,7 @@
   }
   .wrapper {
     position: relative;
-    width: 400px;
+    /* width: 400px; */
     padding: 30px;
     border-radius: 10px;
     display: flex;

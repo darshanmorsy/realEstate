@@ -8,10 +8,17 @@
 
 <div class="container py-5">
   <h1 class="my-5">Property Form</h1>
+
+    <% if (messages.success) { %>               
+      <div class="alert my-2 alert-success">
+          <%= messages.success %>
+      </div>     
+      <% } %>
+
   <form
     action="/user/propertyDetails"
     method="post"
-    class="needs-validation my-5 p-3 rounded-2 shadow-lg"
+    class="needs-validation my-2 p-3 rounded-2 shadow-lg"
     enctype="multipart/form-data"
   >
     <div class="form-row">
@@ -215,8 +222,8 @@
           class="form-control"
           id="validationTooltip05"
           required
-        />
-      </div>
+          />
+        </div>
       <div class="col-md-3 mb-3">
         <label for="validationTooltip05">category</label>
         <select required class="form-control" name="category" id="">
@@ -264,18 +271,28 @@
             class="form-control"
             id="validationTooltip05"
             required
-          />
-          <button
-          type="button"
+            />
+            <button
+            type="button"
             onclick="addInput()"
             class="ms-2 d-inline-block btn btn-primary"
-          >
+            >
             +
-        </button>
+          </button>
         </div>
         <div id="input-cont">
           <!--Input container-->
         </div>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="validationTooltip05">built up area</label>
+        <input
+          type="text"
+          name="built_up_area"
+          class="form-control"
+          id="validationTooltip05"
+          required
+        />
       </div>
     </div>
     <button class="btn btn-primary" type="submit">Submit form</button>

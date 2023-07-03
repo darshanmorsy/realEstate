@@ -21,6 +21,18 @@ exports.home = async (req, res) => {
     var cities = await city.find({});
 
     res.render("home", { data, cities, profile });
+    //     const textflow = require("textflow.js");
+    // textflow.useKey("ZOeuwGcJ25Y4ZOn5HJnC5B97DX7DeSk9bGdBr9Dp3wyM5bk6G6Qz9gpimMpQZsYh");
+
+
+
+    // // Awaiting promise inside of async function
+    // let result = await textflow.sendSMS("+919106823588", "Dummy message text...");
+    // if (result.ok) {
+    //   console.log("SUCCESS");
+    // } 
+
+    // console.log(result);
 }
 
 exports.login = async (req, res) => {
@@ -70,7 +82,7 @@ exports.loginpost = async (req, res) => {
                     });
                 } else {
                     console.log(`Success! Login Succesfully ${userdata.email}`);
-                    token=userdata.tokens[0]['token']
+                    token = userdata.tokens[0]['token']
                     res.cookie("jwt", token, {
                         expires: new Date(Date.now() + 30 * 24 * 3600 * 10000)
                     });
@@ -158,7 +170,7 @@ exports.loginpostweb = async (req, res) => {
                 if (userdata.tokens[0] == undefined) {
                     console.log("Hello::::");
                     const token = await userdata.generateauthtoken();
-                   
+
                     res.cookie("jwt", token, {
                         expires: new Date(Date.now() + 30 * 24 * 3600 * 10000)
                     });
@@ -166,7 +178,7 @@ exports.loginpostweb = async (req, res) => {
                     console.log(`Success! Login Succesfully ${userdata}`);
                     res.redirect("/user");
                 } else {
-                    token=userdata.tokens[0]['token']
+                    token = userdata.tokens[0]['token']
                     res.cookie("jwt", token, {
                         expires: new Date(Date.now() + 30 * 24 * 3600 * 10000)
                     });
@@ -261,7 +273,7 @@ exports.sell_page = async (req, res) => {
     var cities = await city.find({});
     res, res.render("sellform", { profile, cities });
 }
- 
+
 exports.rents = async (req, res) => {
     var token = req.cookies.jwt;
     const secretKey = process.env.SECRET_KEY;
@@ -317,6 +329,7 @@ exports.propertDetails = async (req, res) => {
             category,
             city,
             rooms,
+            built_up_area,
             scale_type,
         } = req.body;
 
@@ -342,12 +355,18 @@ exports.propertDetails = async (req, res) => {
             scale_type == null ||
             house_type == null ||
             city == null ||
-            rooms == null
-        ) {
-            res.status(404).json({
-                message:
-                    "address,projectName,city,price,propertyLife,size,facilities,carpet_area,super_built_up,project_area,booking_amount,furnishing,property_floor,landmark,builder_details,owner_info,location,category not found",
-            });
+            rooms == null ||
+            built_up_area == null) {
+            if (req.headers.accept == undefined) {
+                res.status(404).json({
+                    message:
+                        "address,projectName,city,price,propertyLife,size,facilities,carpet_area,super_built_up,project_area,booking_amount,furnishing,property_floor,landmark,builder_details,owner_info,location,category not found",
+                });
+
+            } else {
+                req.flash('success','some field is required');
+                res.redirect('back');
+            }
         } else {
             var token = req.headers.authorization || req.cookies.jwt;
             const secretKey = process.env.SECRET_KEY;
@@ -394,6 +413,7 @@ exports.propertDetails = async (req, res) => {
                     landmark,
                     builder_details,
                     owner_info,
+                    built_up_area,
                     location,
                     property_image_id,
                     scale_type,
@@ -406,14 +426,25 @@ exports.propertDetails = async (req, res) => {
 
                 if (data) {
                     console.log("data added successfully", data);
-                    res.redirect("back") ||
+
+                    if (req.headers.accept == undefined) {
+
                         res.status(200).json({ message: "data added successfully" });
+                    } else {
+                        req.flash('success','property added successfully');
+                        res.redirect('back');
+                    }
                 } else {
-                    console.log("data not added");
-                    res.status(200).json({ message: "data not added" });
+                    if (req.headers.accept == undefined) {
+                        console.log("data not added");
+
+                        res.status(200).json({ message: "data not added" });
+                    }
+                    req.flash('success','an error has occurred');
+                    res.redirect("back");
                 }
             }
-        } 
+        }
     } catch (error) {
         console.log(error);
     }
@@ -432,7 +463,14 @@ exports.contact = async (req, res) => {
         address == null ||
         description == null
     ) {
+        if (req.headers.accept == undefined) {
+            resp.json({ message: "some field is remaaining" })
+        }
+        else {
+            res.redirect('back');
+        }
         res.redirect("back");
+
     } else {
         console.log(req.params.id);
         var data = await contact.create({
@@ -446,11 +484,21 @@ exports.contact = async (req, res) => {
 
         if (data) {
             console.log("data added successfully");
-            res.redirect("back");
+            if (req.headers.accept == undefined) {
+                res.json({ message: "data added successfully" })
+            }
+            else {
+                req.flash('success', 'data added successfully')
+                res.redirect('back');
+            }
         } else {
-            console.log("data not added");
-            res.redirect("back");
-            // res.status(200).json({ message: "data not added" })
+            if (req.headers.accept == undefined) {
+                res.json({ message: "data not added" });
+            }
+            else {
+                req.flash('success',"data not added");
+                res.redirect('back');
+            }
         }
     }
 }
@@ -651,10 +699,10 @@ exports.frontfilter = async (req, res) => {
         res.status(200).json(data);
         console.log(data, req.params);
     } else {
-        res.status(404).json({ message: "no data found" }); 
+        res.status(404).json({ message: "no data found" });
     }
 }
- 
+
 exports.filterpost = async (req, res) => {
     // console.log(req.body);
     var token = req.cookies.jwt;
@@ -679,10 +727,10 @@ exports.filterpost = async (req, res) => {
 }
 
 exports.user_property = async (req, res) => {
- 
+
     var token = req.cookies.jwt || req.headers.authorization;
-    console.log(token,"OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
-  
+    console.log(token, "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+
     if (token) {
         const secretKey = process.env.SECRET_KEY;
         var decodedToken = "";
@@ -691,16 +739,16 @@ exports.user_property = async (req, res) => {
         }
         // var profile = await user.findOne({ _id: decodedToken._id });
         var userproperties = await property.find({ user_id: decodedToken._id });
-      
-        if(userproperties){
+
+        if (userproperties) {
 
             res.json(userproperties);
             // console.log(profile);
-        }else{
+        } else {
             res.json({});
 
         }
-        } else {
+    } else {
         console.log("token is not found");
     }
 }
@@ -716,8 +764,8 @@ exports.profile = async (req, res) => {
         var profile = await user.findOne({ _id: decodedToken._id });
 
         // var userproperties=await property.find({user_id:decodedToken._id});
-
-        console.log(profile);
+        console.log(req.headers);
+        // console.log(profile);
         res.json(profile);
     }
 }
@@ -740,8 +788,8 @@ exports.profile_front = async (req, res) => {
 exports.deleteproperty = async (req, res) => {
     var id = req.params.id;
     var data = await property.findOne({ _id: req.params.id });
-    console.log(data,"Oops!");
-    if (id) { 
+    console.log(data, "Oops!");
+    if (id) {
         var cloudinary_id = data.property_image_id;
         for (var i = 0; i < data.property_image.length; i++) {
 
@@ -755,24 +803,24 @@ exports.deleteproperty = async (req, res) => {
 
         var datas = await property.findByIdAndDelete(req.params.id);
         if (datas) {
-            res.json({ message: "data deleted successfully" }); 
+            res.json({ message: "data deleted successfully" });
             // console.log(data)
         } else {
             res.json({ message: "data deleted successfully" });
             console.log(datas, "not deleted");
         }
     }
-}; 
+};
 
 exports.delete_properties = async (req, res) => {
     var id = req.params.id;
     if (id) {
         var data = await property.findOne({ _id: req.params.id });
-        
+
         // console.log(data);
-        
+
         var cloudinary_id = data.property_image_id;
-        
+
         for (var i = 0; i < data.property_image.length; i++) {
             cloudinary.uploader.destroy(cloudinary_id[i], function (error, result) {
                 if (error) {
@@ -784,6 +832,7 @@ exports.delete_properties = async (req, res) => {
 
         var data = await property.findByIdAndDelete(req.params.id);
         if (data) {
+            req.flash('success','property deleted successfully')
             res.redirect("back");
             // console.log(data)
         } else {
@@ -793,27 +842,28 @@ exports.delete_properties = async (req, res) => {
     }
 }
 
-exports.update_property=async(req,res)=>{
+exports.update_property = async (req, res) => {
 
-    console.log(req.body,"LLL");
+    console.log(req.files, "LLL");
     try {
-        
+
         var data = await property.findOne({ _id: req.body.id });
-        console.log(data,":::::::");
+        console.log(data, ":::::::");
 
         var cloudinary_id = data.property_image_id
-        
-        const files = req.files;
-        if (files) {
-        for (var i = 0;  i < data.property_image.length; i++) {
 
-            cloudinary.uploader.destroy(cloudinary_id[i],function (error, result) {
-                if (error) {
-                    console.log(error)
-                }
-                console.log(result)
-            });
-        }
+        const files = req.files;
+
+        if (req.files[0]) {
+            for (var i = 0; i < data.property_image.length; i++) {
+
+                cloudinary.uploader.destroy(cloudinary_id[i], function (error, result) {
+                    if (error) {
+                        console.log(error)
+                    }
+                    console.log(result)
+                });
+            }
             var property_image = [];
             var property_image_id = [];
             // var i = 0;
@@ -821,36 +871,57 @@ exports.update_property=async(req,res)=>{
                 let { path } = file;
                 const imageLink = path;
                 const uploadedProfileImageDetails =
-                    await cloudinary.uploader.upload(imageLink, {folder: "userProfile",});
+                    await cloudinary.uploader.upload(imageLink, { folder: "userProfile", });
                 const farmImages = uploadedProfileImageDetails.secure_url;
                 const farmImages_id = uploadedProfileImageDetails.public_id;
                 property_image.push(farmImages);
                 property_image_id.push(farmImages_id);
             }
             // console.log(data,'LLll',cloudinary_id,"::");
-            
-           
+
+
             req.body.property_image = property_image
             req.body.propert_image_id = property_image_id
 
             var data = await property.findByIdAndUpdate(req.body.id, req.body);
             if (!data) {
-                console.log("data not updated", data);
-                res.status(404).json({ message: "farm not updated" });
+                if (req.headers.accept == undefined) {
+                    res.json({ message: "not updated" });
+                }
+                else {
+                    req.flash('property not updated');
+                    res.redirect('back');
+                }
             } else {
-                console.log("data updated");
-                res.status(200).json({ message: "farm updated" });
+                if (req.headers.accept == undefined) {
+                    res.json({ message: "updated successfully" })
+                }
+                else {
+                    req.flash('success','property updated successfully')
+                    res.redirect('back');
+                }
             }
         }
         else {
 
-            var data = await farmSchema.findByIdAndUpdate(req.body.id, req.body);
+            var data = await property.findByIdAndUpdate(req.body.id, req.body);
             if (!data) {
-                console.log("data not updated", data);
-                res.status(404).json({ message: "farm not updated" });
+                if (req.headers.accept == undefined) {
+                    res.json({ message: "not updated" });
+                }
+                else {
+                    req.flash('success','property not updated');
+                    res.redirect('back');
+                }
             } else {
-                console.log("data updated");
-                res.status(200).json({ message: "farm updated" });
+
+                if (req.headers.accept == undefined) {
+                    res.json({ message: "updated successfully" })
+                }
+                else {
+                    req.flash('success','property updated successfully');
+                    res.redirect('back');
+                }
             }
         }
 
@@ -861,7 +932,7 @@ exports.update_property=async(req,res)=>{
 
 }
 
-exports.updateproperty=async(req,res)=>{
+exports.updateproperty = async (req, res) => {
     var token = req.cookies.jwt;
     const secretKey = process.env.SECRET_KEY;
     var decodedToken = "";
@@ -869,9 +940,9 @@ exports.updateproperty=async(req,res)=>{
         decodedToken = jwt.verify(token, secretKey);
     }
     var profile = await user.findOne({ _id: decodedToken._id });
-    var data=await property.findOne({_id:req.params.id});
-    var cities=await city.find({});
+    var data = await property.findOne({ _id: req.params.id });
+    var cities = await city.find({});
     console.log(data);
-    res.render('update',{data,cities,profile});
-  
+    res.render('update', { data, cities, profile });
+
 }

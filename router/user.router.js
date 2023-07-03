@@ -64,37 +64,37 @@ router.post("/filters", user_token, filterpost);
 
 router.get("/login", login);
 router.get("/register", register);
-router.post("/propertyDetails",user_token,image_upload.array("property_image"),propertDetails);
-router.post("/updateproperty",user_token,image_upload.array("property_image"),update_property);
-router.get("/updateproperty/:id", updateproperty);
-router.post("/contact/:id", contact);
-router.get("/allproperty", allproperty);
-router.get("/rent", rent);
-router.get("/sell", sell);
-router.get("/rent_flat", rent_flat);
-router.get("/rent_office", rent_office);
-router.get("/rent_shop", rent_shop);
-router.get("/rent_banglow", rent_bungalow);
-router.get("/rent_openplot", rent_openplot);
-router.get("/rent_rowhouse", rent_rowhouse);
-router.get("/rent_industrial", rent_industrial);
-router.get("/rent_farm", rent_farm);
+router.post("/propertyDetails",user_token,image_upload.array("property_image"),propertDetails)
+router.post("/updateproperty",user_token,image_upload.array("property_image"),update_property)
+router.get("/updateproperty/:id", updateproperty)
+router.post("/contact/:id", contact)
+router.get("/allproperty", allproperty)
+router.get("/rent", rent)
+router.get("/sell", sell)
+router.get("/rent_flat", rent_flat)
+router.get("/rent_office", rent_office)
+router.get("/rent_shop", rent_shop)
+router.get("/rent_banglow", rent_bungalow) 
+router.get("/rent_openplot", rent_openplot)
+router.get("/rent_rowhouse", rent_rowhouse)
+router.get("/rent_industrial", rent_industrial)
+router.get("/rent_farm", rent_farm)
 
-router.get("/sell_flat", sell_flat);
-router.get("/sell_office", sell_office);
-router.get("/sell_shop", sell_shop);
-router.get("/sell_banglow", sell_bungalow);
-router.get("/sell_openplot", sell_openplot);
-router.get("/sell_rowhouse", sell_rowhouse);
-router.get("/sell_industrial", sell_industrial); 
-router.get("/sell_farm", sell_farm);
+router.get("/sell_flat", sell_flat)
+router.get("/sell_office", sell_office)
+router.get("/sell_shop", sell_shop)
+router.get("/sell_banglow", sell_bungalow)
+router.get("/sell_openplot", sell_openplot)
+router.get("/sell_rowhouse", sell_rowhouse)
+router.get("/sell_industrial", sell_industrial)
+router.get("/sell_farm", sell_farm)
 
-router.get("/filter/:city/:category/:house_type/:lessrange/:greaterrange",frontfilter);
-router.get("/user_property", user_token, user_property);
-router.delete("/deleteproperty/:id", user_token, deleteproperty);
-router.get("/deleteproperty/:id", user_token, delete_properties);
-router.get("/profile", user_token, profile);
-router.get("/profile_front", user_token, profile_front);
+router.get("/filter/:city/:category/:house_type/:lessrange/:greaterrange",frontfilter)
+router.get("/user_property", user_token, user_property)
+router.delete("/deleteproperty/:id", user_token, deleteproperty)
+router.get("/deleteproperty/:id", user_token, delete_properties)
+router.get("/profile", user_token, profile)
+router.get("/profile_front", user_token, profile_front)
 router.get("/city", async (req, res) => {
   var data = await city.find({});
   res.json(data);

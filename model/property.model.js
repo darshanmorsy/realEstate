@@ -32,6 +32,9 @@ const propertySchema = mongoose.Schema({
     super_built_up:{
         type: String
     },
+    built_up_area: {
+        type: String
+    },
     project_area:{
         type: String,
     },

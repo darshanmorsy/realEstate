@@ -7,11 +7,24 @@ var logger = require("morgan");
 const session = require("express-session");
 const cors = require("cors");
 const mongoose = require("mongoose");
-// app.use(flash());
-app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "views")); 
 app.set("view engine", "ejs");
 require("dotenv").config();
 app.use(express.static(path.join(__dirname, "assets")));
+
+
+const flash = require("express-flash");
+
+app.use(flash())
+
+app.use(session({
+    secret: 'mysecret', // Replace with your own secret key
+    // resave: false,
+    // saveUninitialized: false
+  }));
+  
+
+
 
 const db = "mongodb+srv://morsy:morsy@ds.6e7bjag.mongodb.net/realEstate";
 mongoose
@@ -40,8 +53,10 @@ const adminRouter = require("./router/admin.router");
 app.use("/user", userRouter);
 app.use("/admin", adminRouter);
 app.get("/", (req, res) => {
-  res.redirect("/user");
-});
+  res.redirect("/user")
+})
+
 app.listen(port, () => {
   console.log(`listing to the port ${port}`);
 });
+ 
