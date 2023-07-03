@@ -1,26 +1,26 @@
-const express = require("express");
-const app = express();
-ejs = require("ejs");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
-const session = require("express-session");
-const cors = require("cors");
-const mongoose = require("mongoose");
-app.set("views", path.join(__dirname, "views")); 
-app.set("view engine", "ejs");
-require("dotenv").config();
-app.use(express.static(path.join(__dirname, "assets")));
+const express = require("express")
+const app = express()
+var path = require("path")
+var cookieParser = require("cookie-parser")
+var logger = require("morgan")
+const session = require("express-session")
+const cors = require("cors")
+const mongoose = require("mongoose")
+
+app.set("view engine", "ejs")
+app.set("views", path.join(__dirname, "views"))
+require("dotenv").config()
+app.use(express.static(path.join(__dirname, "assets")))
 
 
 const flash = require("express-flash");
 
-app.use(flash())
+app.use(flash());
 
 app.use(session({
     secret: 'mysecret', // Replace with your own secret key
-    // resave: false,
-    // saveUninitialized: false
+    resave: false,
+    saveUninitialized:false            
   }));
   
 
