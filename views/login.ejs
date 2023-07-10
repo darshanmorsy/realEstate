@@ -1,110 +1,88 @@
-<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-<link href="/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
-<!-- Section: Design Block -->
-<section class="text-center text-lg-start align-items-center d-flex h-100">
-  <style>
-    .cascading-right {
-      margin-right: -50px;
-    }
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Morsy Multimedia & education</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Varela+Round&family=Work+Sans&display=swap"
+    />
+    <link
+      href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAElUlEQVR4AWIgBoyCUTAKRsGULWeZolq3ODiUrZztVrmmN7V/pxa6mmtlZRIA1qox3K0mCMe1bce109RGUF1btW3bCK9t19bRdT7Wtu08292TRrV+HM7svO+42HX05EJXl/DioIAh5zdsZP0R8NVJeOnWwVGpPIUGMOHFGqYBFVT6N71mJMzMwM7QOvmKoQNwqejRqRZNAMZvAk42bwLIrp0O/jt/bvnfJtBxQpyGhcCH6wFTpUNP+iqr0rxTL83q8c+SRfVPCfnPcIkQ4GK+5ZIIIJGmgOwlD7199Pivg3tu2NehvFr/DgGyIXhj38h/K482vkLfLJUeNPOJpPZHZ/DIzu0xXNgc4O1a3SK7djyDoXdEQsx/V+zv0+GXwMMPmFh8v6jjTKUOoKuFf9T+rZkFHOWSTHVplc7MgiS4Ci3oOzfVzRTkJ8ekgmclgf780ytXliU6tM1HkcCELQDRrdPBa6mJP09g4PxUFx4EoMOt1gPfzQfbof+RB/5miAIjs5kqKIP/63uGX9qQeLLsv/Nm2Tw1+fn2wATNzLhUCE7xm5sL3FyUPwW+OaOgdAOPsHMIABHgwvD3nZPiZZUHbt7HrzRST6eCDUnKpyYtdDx/IyuTQcplqTiMAC6CUejU7u+LG7dwfphAt+mJs5Fha8HRnnqE31ifQtJVnUmcgcUZv4WptBRnjdHGJ5P0R2s72vh76qTmmETwAhUnxm8GipSKiT8EPiPsaM0aLsYHVnBUbBZPNUA2LXG+VW9u5ImqtVyN92g9SLbN2BhDLnXGyVb+gL7rMEFTQIghiTYtb/29YF7l7xJoOy52B1Np8b6qq/FJp6kJ0Swlaj8dqOFieDAj9FhNq26f2SmTrZGqOEL3xn1Nbiun4bRoYUWsjfQGgTqiRVOQ17/vmm+CB207IK040tJ2LMVO0GlSwprlCVh5GP4rKA0sSKztuLhtVv21KXm8Rl4RfyMZ6hRhQNTuLPx/J5uFI9QhWIsmqC3hJXpmGj+u6RfBU0/8zxAHRmVava/lFvpofuSJ6kg2ZEGWC+/jf1h8bwK3HrSNYtXy7GGlaJkBlFFqzYrFWQMc7Z7fupVDdGhTSA8oQTNA9ZDHX9uz73MC6uXZPcrA/kaG0OTrOsWe74iDJpYgIGo/moTIU3FQdHrqqf9omX53EUPoH51Ly2C9NPEJNxn3lThVfImvdx8EjtoSDiyzyddL5gRu3FvEaeYbTiEjKJx13YxXViVSTnM8YMseaaXhhjeWuaAzj1yRI7PJNu+XVlDr3jBHGAAHEuw9KyXIqS3T0lmUrGsmPSFFLdCeOH4lIca+rPrMSArgDNoBGHDRVFRrXwycm9brS2mST4mfX0ahNTOG7ADNPMIITRZFe5p4/D+GbGLC7Aoq7TvmUA2oPcpwY4b2UFXHs6YJ4xtirSUXTsEd8WGHFaT/nwnwiUIkvo5NUS7lq6tcy1dVhTRt0MOVSBfuPscQ3r7ZyrV6TYl35aqq6RuPs8Hktp++yZDSt8vApXptinvp8qqiaTtUMKrsjla+87FRXmcjwsvO5+REgMRGwSgYBaMAAJ0OPmCSdyn8AAAAAElFTkSuQmCC"
+      rel="icon"
+    />
+  </head>
 
-    @media (max-width: 991.98px) {
-      .cascading-right {
-        margin-right: 0;
-      }
-      body{
-        font-size: 40px !important;
-      }
-      input{
-        padding: 30px !important;
-      }
-      .btn{
-        padding: 20px !important;
-        font-size: 20px !important;
-      }
-    }
-  </style>
-
-  <!-- Jumbotron -->
-  <div class="d-flex col-12 justify-content-center py-4">
-    <div class="row col-12 align-items-center justify-content-center">
-      <div class="col-lg-4 col-10 col-xl-3 mb-5 mb-lg-0">
-        <div
-          class="card cascading-right"
-          style="
-            background: hsla(0, 0%, 100%, 0.55);
-            backdrop-filter: blur(30px);
-          "
-        >
-          <div class="card-body p-5 shadow-5 text-center">
-            <h2 class="fw-bold mb-5">Login now</h2>
-            <form action="/user/loginpostweb" method="post">
-              <!-- 2 column grid layout with text inputs for the first and last names -->
-              <!-- Email input -->
-              <div class="form-outline mb-4">
-                <label class="form-label w-100 text-start" for="form3Example3"
-                  >mobile</label
-                >
-                <input
-                  type="text"
-                  onkeyup="validateNumberInput(this)"
-                  maxlength="10"
-                  name="mobile"
-                  id="form3Example3"
-                  class="form-control"
-                />
-              </div>
-
-              <!-- Password input -->
-              <div class="form-outline mb-4">
-                <label class="form-label w-100 text-start" for="form3Example4"
-                  >Password</label
-                >
-                <input
-                  type="password"
-                  name="password"
-                  id="form3Example4"
-                  class="form-control"
-                />
-              </div>
-
-              <!-- Checkbox -->
-
-              <!-- Submit button -->
-              <button
-                type="submit"
-                class="btn btn-primary d-block w-100 btn-block mb-4"
+  <body class="login_datas vh-100">
+    <div class="container h-100">
+      <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-12 col-lg-10 col-xl-4">
+          <div class="AppForm shadow-lg rounded-3">
+            <div class="row">
+              <div
+                class="col-md-6 col-12 col-xxl-12 p-3 d-flex justify-content-center align-items-center"
               >
-                log in
-              </button>
-              <a href="/user/register" class="btn btn-primary d-block"
-                >sign up
-              </a>
-
-              <!-- Register buttons -->
-            </form>
+                <div class="AppFormLeft col-10">
+                  <h1 class="text-center">Login</h1>
+                  <br />
+                  <form role="form" action="/user/loginpostweb" method="POST">
+                    <div class="form-group position-relative mb-4">
+                      <label class="mb-2" for="">mobile</label>
+                      <input
+                        name="mobile"
+                        required
+                        type="number"
+                        maxlength="10"
+                        class="form-control border-0 border-bottom rounded-0 shadow-none"
+                        placeholder="mobile"
+                      />
+                    </div>
+                    <div class="form-group position-relative mb-4">
+                      <label class="mb-2" for="">password</label>
+                      <br />
+                      <input
+                        name="password"
+                        required
+                        type="password"
+                        class="form-control border-bottom border-0 rounded-0 shadow-none"
+                        id="password"
+                        placeholder="Password"
+                      />
+                    </div>
+                    <button
+                      name="submit"
+                      type="submit"
+                      class="btn w-100 btn-danger btn-block shadow border-0 py-2 text-uppercase"
+                    >
+                      Login
+                    </button>
+                    <br />
+                    <a
+                      href="/user/register"
+                      class="w-100 btn mt-3 mb-3 btn-danger btn-block shadow border-0 py-2 text-uppercase"
+                    >
+                      signup
+                    </a>
+                  </form>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- Jumbotron -->
-</section>
-<!-- Section: Design Block -->
-
-<script>
-  function validateNumberInput(input) {
-    // Remove any non-digit characters from the input value
-    var number = input.value.replace(/\D/g, "");
-    // Update the input value with the cleaned number
-    input.value = number;
-    // Display validation message
-    var validationMessage = document.getElementById("validationMessage");
-    if (number === "") {
-      validationMessage.textContent = "";
-    } else {
-      validationMessage.textContent = isNaN(number)
-        ? "Invalid input. Only numbers are allowed."
-        : "";
-    }
-  }
-</script>
+  </body>
+  <!-- Required Js -->
+  <script src="/js/vendor-all.min.js"></script>
+  <script src="/js/plugins/bootstrap.min.js"></script>
+  <script src="/js/ripple.js"></script>
+  <script src="/js/pcoded.min.js"></script>
+</html>

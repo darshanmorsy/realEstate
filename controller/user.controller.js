@@ -51,7 +51,7 @@ exports.loginpost = async (req, res) => {
 
         const userdata = await user.findOne({ mobile });
         // console.log(req.body);
-        console.log("userdata:__", userdata);
+        // console.log("userdata:__", userdata);
 
         if (userdata == null) {
             res.status(404).json({
