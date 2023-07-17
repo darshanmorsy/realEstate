@@ -43,7 +43,6 @@
     <!-- ======= Property Search Section ======= -->
     <div class="click-closed"></div>
     <!--/ Form Search Star /-->
-
     <!-- ======= Header/Navbar ======= -->
     <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
       <div class="container">
@@ -54,20 +53,14 @@
           data-bs-target="#navbarDefault"
           aria-controls="navbarDefault"
           aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+          aria-label="Toggle navigation">
           <span></span>
           <span></span>
           <span></span>
         </button>
-        <a class="navbar-brand text-brand" href="/"
-          >Estate<span class="color-b"> Morsy</span></a
-        >
+        <a class="navbar-brand text-brand" href="/">Estate<span class="color-b"> Morsy</span></a>
 
-        <div
-          class="navbar-collapse collapse justify-content-center"
-          id="navbarDefault"
-        >
+        <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
           <ul class="navbar-nav">
             <li class="nav-item">
               <a class="nav-link homea" href="/">Home</a>
@@ -90,16 +83,15 @@
             </li>
           </ul>
         </div>
-        <%if(profile){%>
+        <% if(profile){ %>
         <a href="/user/profile_front" class="btn btn-b-n">profile</a>
-        <a href="/user/logout" title="logout"
-          ><i class="bi fs-2 ms-3 bi-box-arrow-right"></i
+        <a href="/user/logout" title="logout" ><i class="bi fs-2 ms-3 bi-box-arrow-right"></i
         ></a>
-        <%}else{%>
+        <% }else{ %>
         <a href="/user/login" class="btn btn-b-n">login</a>
-        <%}%>
+        <% } %>
       </div>
     </nav>
     <!-- End Header/Navbar -->
-  </body>
-</html>
+ 
+

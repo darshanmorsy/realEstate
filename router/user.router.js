@@ -33,6 +33,8 @@ const {
   update_property,
   updateproperty,
   profile_front,
+  housetype,
+
 } = require("../controller/user.controller");
 
 router.get("/", home);
@@ -46,6 +48,7 @@ router.get("/rents", user_token, rents);
 router.get("/sellpage", user_token, sell_page);
 router.get("/singleproperty/:id", user_token, singleproperty);
 router.post("/filters", user_token, filterpost);
+router.get('/housetype/:housetype',user_token,housetype)
 
 router.get("/login", login);
 router.get("/register", register);
@@ -68,8 +71,8 @@ router.get("/deleteproperty/:id", user_token, delete_properties)
 router.get("/profile", user_token, profile)
 router.get("/profile_front", user_token, profile_front)
 router.get("/city", async (req, res) => {
-  var data = await city.find({});
-  res.json(data);
+  var data = await city.find({})
+  res.json(data)
 });
 
 router.post("/logout", async (req, res) => {
@@ -85,6 +88,7 @@ router.post("/logout", async (req, res) => {
 
 router.get("/logout", async (req, res) => {
   try {
+    console.log(res);
     console.log(req.cookies);
     res.cookie("jwt", "", { maxAge: 1 });
     // const token = req.headers.authorization;

@@ -7,6 +7,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 var cloudinary = require("../helper/cloudinary");
 const path = require("path");
+const { status } = require("init");
 
 exports.home = async (req, res) => {
     var token = req.cookies.jwt;
@@ -119,7 +120,7 @@ exports.registerpost = async (req, res) => {
         const checkOwnerDetails = await user.findOne({ mobile: mobile });
 
         if (checkOwnerDetails == null) {
-            const Hashedpassword = await bcrypt.hash(password, 10);
+            const Hashedpassword = await bcrypt.hash(password,10);
 
             const userData = new user({
                 name,
@@ -319,6 +320,7 @@ exports.propertDetails = async (req, res) => {
             super_built_up,
             project_area,
             booking_amount,
+            residentType,
             furnishing,
             property_floor,
             landmark,
@@ -356,11 +358,12 @@ exports.propertDetails = async (req, res) => {
             house_type == null ||
             city == null ||
             rooms == null ||
+            residentType==null ||
             built_up_area == null) {
             if (req.headers.accept == undefined) {
                 res.status(404).json({
                     message:
-                        "address,projectName,city,price,propertyLife,size,facilities,carpet_area,super_built_up,project_area,booking_amount,furnishing,property_floor,landmark,builder_details,owner_info,location,category not found",
+                        "address,projectName,residentType,city,price,propertyLife,size,facilities,carpet_area,super_built_up,project_area,booking_amount,furnishing,property_floor,landmark,builder_details,owner_info,location,category not found",
                 });
 
             } else {
@@ -408,6 +411,7 @@ exports.propertDetails = async (req, res) => {
                     super_built_up,
                     project_area,
                     booking_amount,
+                    residentType,
                     furnishing,
                     property_floor,
                     landmark,
@@ -804,4 +808,12 @@ exports.updateproperty = async (req, res) => {
     console.log(data);
     res.render('update', { data, cities, profile });
 
+}
+
+exports.housetype=async(req,res)=>{
+
+    var data = await property.find({house_type:req.params.housetype});
+    if(data){
+        res,status(200).json(data);
+    }
 }

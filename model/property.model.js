@@ -90,11 +90,23 @@ const propertySchema = mongoose.Schema({
     rooms:{
         type:String,
     },
+    residentType:{
+        type:String,
+    },
+    saletype:{
+        type:String,
+    },
+    Possession:{
+        type:String,
+    },
+    facing:{
+        type:String,
+    }
 },
 {
     collection: "property",
     timestamps: true
-});
+});  
 
 var property= mongoose.model('property', propertySchema);
 module.exports =property;

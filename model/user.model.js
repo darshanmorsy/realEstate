@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     name:{
           type:String
         },
-    password: {
+    password: {  
         type:String
     },
     tokens: [
@@ -18,16 +18,16 @@ const userSchema = new mongoose.Schema({
             }
         }
     ]
-},{
+},{   
     collection: "user",
     timestamps: true
-});
+})
 
 userSchema.methods.generateauthtoken = async function () {
     try {
         const token = jwt.sign({ _id: this._id.toString() }, process.env.SECRET_KEY);
         this.tokens = this.tokens.concat({ token: token })
-        await this.save();
+        await this.save()
         return token;
     } catch (error) {
         console.log("Error(Token Generation:__)", error);
