@@ -1,13 +1,13 @@
-const express = require("express");
-const property = require("../model/property.model");
-const contact = require("../model/contact.model");
-const user = require("../model/user.model");
-const city = require("../model/city.model");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-var cloudinary = require("../helper/cloudinary");
-const path = require("path");
-const { status } = require("init");
+const express = require("express")
+const property = require("../model/property.model")
+const contact = require("../model/contact.model")
+const user = require("../model/user.model")
+const city = require("../model/city.model")
+const bcrypt = require("bcrypt")
+const jwt = require("jsonwebtoken")
+var cloudinary = require("../helper/cloudinary")
+const path = require("path")
+const { status } = require("init")
 
 exports.home = async (req, res) => {
     var token = req.cookies.jwt;
@@ -436,7 +436,7 @@ exports.propertDetails = async (req, res) => {
                         res.status(200).json({ message: "data added successfully" });
                     } else {
                         req.flash('success','property added successfully');
-                        res.redirect('back');
+                        res.redirect('back')
                     }
                 } else {
                     if (req.headers.accept == undefined) {
@@ -673,7 +673,7 @@ exports.deleteproperty = async (req, res) => {
             console.log(datas, "not deleted");
         }
     }
-};
+}
 
 exports.delete_properties = async (req, res) => {
     var id = req.params.id;
