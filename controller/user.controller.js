@@ -814,6 +814,6 @@ exports.housetype=async(req,res)=>{
 
     var data = await property.find({house_type:req.params.housetype});
     if(data){
-        res,status(200).json(data);
+        res.status(200).json(data);
     }
 }
