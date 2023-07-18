@@ -305,7 +305,7 @@ exports.singleproperty = async (req, res) => {
 // property details form, post method
 
 exports.propertDetails = async (req, res) => {
-    // console.log(req.body,req.files);
+    console.log(req.body,"gggggg");
     try {
         console.log(req.body);
         const {

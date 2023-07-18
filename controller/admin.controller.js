@@ -33,7 +33,7 @@ exports.requestAccept = async (req, res) => {
   } else {
     res.status(200).json({ message: "request not accepted" });
   }
-};
+};     
 
 exports.requestDecline = async (req, res) => {
   console.log(req.params);
@@ -110,7 +110,7 @@ exports.active = async (req, res) => {
   } else {
     res.status(404).json({ message: "property not deactive" });
   }
-};
+}
 
 exports.deactive_property = async (req, res) => {
   var data = await property.find({ active: 2 });
@@ -119,7 +119,7 @@ exports.deactive_property = async (req, res) => {
   } else {
     res.status(404).json({ message: "property not found" });
   }
-};
+}
 
 exports.contact_property = async (req, res) => {
   console.log(req.params);
@@ -145,4 +145,4 @@ exports.contact_property = async (req, res) => {
   } else {
     console.log(req.params);
   }
-};
+}
