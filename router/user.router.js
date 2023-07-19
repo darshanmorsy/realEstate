@@ -34,6 +34,7 @@ const {
   updateproperty,
   profile_front,
   housetype,
+  mainfilter,
 
 } = require("../controller/user.controller");
 
@@ -70,6 +71,7 @@ router.delete("/deleteproperty/:id", user_token, deleteproperty)
 router.get("/deleteproperty/:id", user_token, delete_properties)
 router.get("/profile", user_token, profile)
 router.get("/profile_front", user_token, profile_front)
+router.get('/mainfilter',mainfilter )
 router.get("/city", async (req, res) => {
   var data = await city.find({})
   res.json(data)

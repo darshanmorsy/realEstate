@@ -320,6 +320,7 @@ exports.propertDetails = async (req, res) => {
             super_built_up,
             project_area,
             booking_amount,
+            bathroom,
             residentType,
             furnishing,
             property_floor,
@@ -359,6 +360,7 @@ exports.propertDetails = async (req, res) => {
             city == null ||
             rooms == null ||
             residentType==null ||
+            bathroom == null ||
             built_up_area == null) {
             if (req.headers.accept == undefined) {
                 res.status(404).json({
@@ -406,6 +408,7 @@ exports.propertDetails = async (req, res) => {
                     property_image,
                     propertyLife,
                     size,
+                    bathroom,
                     facilities,
                     carpet_area,
                     super_built_up,
@@ -579,7 +582,7 @@ exports.filterpost = async (req, res) => {
         city: req.body.city,
         category: req.body.category,
         house_type: req.body.house_type,
-        price: { $gt: req.body.min, $lt: req.body.max },
+        price: { $gt: req.body.min, $lt: req.body.max }, 
     });
     if (data) {
         // console.log(req.body, data);
@@ -816,4 +819,11 @@ exports.housetype=async(req,res)=>{
     if(data){
         res.status(200).json(data);
     }
+}
+
+exports.mainfilter=async(req, res)=>{
+
+    console.log(req.body);
+    var data=await property.find({})
+
 }
