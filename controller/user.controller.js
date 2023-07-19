@@ -13,7 +13,7 @@ exports.home = async (req, res) => {
     var token = req.cookies.jwt;
     const secretKey = process.env.SECRET_KEY;
     var decodedToken = "";
-    if (token) {
+    if (token) { 
         decodedToken = jwt.verify(token, secretKey);
     }
     var profile = await user.findOne({ _id: decodedToken._id });
