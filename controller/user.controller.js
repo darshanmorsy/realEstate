@@ -824,6 +824,8 @@ exports.housetype=async(req,res)=>{
 exports.mainfilter=async(req, res)=>{
 
     console.log(req.body);
-    var data=await property.find({})
+    var data=await property.find({});
+    res.json(req.body)
 
 }
+     

@@ -102,7 +102,7 @@ const propertySchema = mongoose.Schema({
     facing:{
         type:String,
     },
-    bathroom:{
+     bathroom:{
         type:Number,
     }
 },
