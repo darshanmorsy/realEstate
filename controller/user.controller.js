@@ -825,10 +825,31 @@ exports.mainfilter=async(req, res)=>{
 
     console.log(req.body);
     
-    var data=await property.find(req.body);
+    var data=await property.find({
+        city:req.body.city,
+        category:req.body.category,
+        bathroom:req.body.bathroom,
+        propertyLife:req.body.propertyLife,     
+    });
     res.json(data)
 
 }
      
-
+// {
+//    category: 'Buy',
+//    city: 'surat',
+//    lessrange: '2100000.0',
+//    greaterrange: '5600000.000000001',
+//    builtlessrange: '1300.0',
+//    builtgreaterrange: '2750.0',
+//    rooms: [ '1 BHK' ],
+//    listingName: [ 'Owner' ],
+//    house_type: [ 'House', 'Commercial', 'FarmHouse' ],
+//    saletype: null,
+//    possession: 'Rent',
+//    bathroom: 'Rent',
+//    propertyLife: 'Rent',
+//    facilities: [ '1 BHK' ],
+//    facing: [ 'East' ],
+//  }
     
