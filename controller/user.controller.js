@@ -813,6 +813,9 @@ exports.housetype = async (req, res) => {
 };
 
 exports.mainfilter = async (req, res) => {
+
+    console.log(req.body);
+
   const mongoose = require("mongoose");
 
   // Assuming you have a mongoose model for your collection

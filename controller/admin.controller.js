@@ -14,7 +14,7 @@ exports.request = async (req, res) => {
   } else {
     res.status(200).json({ message: "no request found" });
   }
-};
+}
 
 exports.contacts = async (req, res) => {
   var data = await contacts.find({});
@@ -23,7 +23,7 @@ exports.contacts = async (req, res) => {
   } else {
     res.status(200).json({ message: "no contacts found" });
   }
-};
+}
 
 exports.requestAccept = async (req, res) => {
   // console.log(req.params);
@@ -33,7 +33,7 @@ exports.requestAccept = async (req, res) => {
   } else {
     res.status(200).json({ message: "request not accepted" });
   }
-};     
+}  
 
 exports.requestDecline = async (req, res) => {
   console.log(req.params);
@@ -60,7 +60,7 @@ exports.requestDecline = async (req, res) => {
   } else {
     res.status(200).json({ message: "request not accepted" });
   }
-};
+}
 
 exports.allproperty = async (req, res) => {
   var data = await property.find();
@@ -69,7 +69,7 @@ exports.allproperty = async (req, res) => {
   } else {
     res.status(404).json({ message: "no data found" });
   }
-};
+}
 
 exports.city = async (req, res) => {
   var data = await city.create({ city: req.body.city });
@@ -78,7 +78,7 @@ exports.city = async (req, res) => {
   } else {
     res.status(404).json({ message: "city not added" });
   }
-};
+}
 
 exports.deletecity = async (req, res) => {
   var data = await city.findByIdAndDelete(req.params.id);
@@ -87,12 +87,12 @@ exports.deletecity = async (req, res) => {
   } else {
     res.status(404).json({ message: "city not deleted" });
   }
-};
+}
 
 exports.user = async (req, res) => {
   var data = await user.find({});
   res.json(data);
-};
+}
 
 exports.deactive = async (req, res) => {
   var data = await property.findByIdAndUpdate(req.params.id, { active: 2 });
@@ -101,7 +101,7 @@ exports.deactive = async (req, res) => {
   } else {
     res.status(404).json({ message: "property not deactive" });
   }
-};
+}
 
 exports.active = async (req, res) => {
   var data = await property.findByIdAndUpdate(req.params.id, { active: 0 });
