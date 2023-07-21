@@ -104,7 +104,11 @@ const propertySchema = mongoose.Schema({
     },
      bathroom:{
         type:Number,
-    }
+    },
+    listedby:{
+        type:String,
+    },
+    
 },
 {
     collection: "property",

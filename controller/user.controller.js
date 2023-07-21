@@ -819,26 +819,47 @@ exports.housetype=async(req,res)=>{
     if(data){
         res.status(200).json(data);
     }
-}
+} 
 
 exports.mainfilter=async(req, res)=>{
 
-    console.log(req.body);
+    const mongoose = require('mongoose');
+
+    // Assuming you have a mongoose model for your collection
+    const Property = mongoose.model('property');
     
-    var d=await property.find({
-        city:req.body.city,
+    // Get the values from req.body
+    const filterFields = req.body;
+    
+    // Convert string fields to float if they represent numeric values
+    const numericFields = ['lessrange', 'greaterrange', 'builtlessrange', 'builtgreaterrange'];
+    numericFields.forEach((field) => {
+      if (filterFields[field]) {
+        filterFields[field] = parseFloat(filterFields[field]);
+      }
+    })
+    
+    // Construct the query object based on non-empty fields in filterFields
+    const query = {};
+    Object.entries(filterFields).forEach(([key, value]) => {
+      if (value !== null && value !== undefined && value !== '') {
+        query[key] = Array.isArray(value) ? { $in: value } : value;
+      }
     });
-    var da=await property.find({
-        category:req.body.category,
-    });
-    var dat=await property.find({
-        propertyLife:req.body.propertyLife,     
-    });
-    var data=await property.find({
-        bathroom:req.body.bathroom,
-    });
-   
-    res.json(data,dat,da,d);
+    
+    // Execute the query and get the filtered results
+    Property.find(query)
+      .exec()
+      .then((filteredProperties) => {
+        // Do something with the filteredProperties
+        console.log(filteredProperties);
+    res.json(filteredProperties);  
+    })
+      .catch((error) => {
+        // Handle the error
+        console.error(error);
+      });
+    
 
 }
      
@@ -851,7 +872,7 @@ exports.mainfilter=async(req, res)=>{
 //    builtgreaterrange: '2750.0',
 //    rooms: [ '1 BHK' ],
 //    listingName: [ 'Owner' ],
-//    house_type: [ 'House', 'Commercial', 'FarmHouse' ],
+//    house_type: [ 'House','Commercial','FarmHouse' ],
 //    saletype: null,
 //    possession: 'Rent',
 //    bathroom: 'Rent',
