@@ -825,13 +825,20 @@ exports.mainfilter=async(req, res)=>{
 
     console.log(req.body);
     
-    var data=await property.find({
+    var d=await property.find({
         city:req.body.city,
+    });
+    var da=await property.find({
         category:req.body.category,
-        bathroom:req.body.bathroom,
+    });
+    var dat=await property.find({
         propertyLife:req.body.propertyLife,     
     });
-    res.json(data)
+    var data=await property.find({
+        bathroom:req.body.bathroom,
+    });
+   
+    res.json(data,dat,da,d);
 
 }
      
