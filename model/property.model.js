@@ -108,7 +108,17 @@ const propertySchema = mongoose.Schema({
     listedby:{
         type:String,
     },
-    
+    leasttype:{
+        type:String,
+    },
+    available:{
+        type:String,
+    },
+    powerbackup:{
+        type:String,
+    }
+
+
 },
 {
     collection: "property",
