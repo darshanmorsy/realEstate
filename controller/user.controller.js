@@ -845,7 +845,7 @@ exports.mainfilter = async (req, res) => {
     .exec()
     .then((filteredProperties) => {
       // Do something with the filteredProperties
-      console.log(filteredProperties);
+    //   console.log(filteredProperties);
       console.log(req.body);
       res.json(filteredProperties);
     })
