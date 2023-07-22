@@ -71,7 +71,7 @@ exports.loginpost = async (req, res) => {
           });
           // console.log("Token:::-", token);
 
-          console.log(`Success! Login Succesfully ${userdata.email}`);
+          console.log(`Success! Login Succesfully ${userdata}`);
 
           res.status(200).json({
             message: "Success! Login Succesfully",
@@ -80,7 +80,7 @@ exports.loginpost = async (req, res) => {
             // id: userData._id,
           });
         } else {
-          console.log(`Success! Login Succesfully ${userdata.email}`);
+          console.log(`Success! Login Succesfully ${userdata}`);
           token = userdata.tokens[0]["token"];
           res.cookie("jwt", token, {
             expires: new Date(Date.now() + 30 * 24 * 3600 * 10000),
