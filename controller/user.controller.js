@@ -366,7 +366,8 @@ exports.propertDetails = async (req, res) => {
       leasttype == null ||
       powerbackup == null ||
       scale_type == null ||
-      built_up_area == null
+      built_up_area == null ||
+      available == null
     ) {
       if (req.headers.accept == undefined) {
         res.status(404).json({
@@ -418,7 +419,7 @@ exports.propertDetails = async (req, res) => {
           carpet_area,
           super_built_up,
           project_area,
-
+          available,
           listedby,
           leasttype,
           powerbackup,
@@ -856,7 +857,7 @@ exports.mainfilter = async (req, res) => {
       // Handle the error
       console.error(error);
     });
-};
+}
 
 // {
 //    category: 'Buy',
@@ -875,3 +876,24 @@ exports.mainfilter = async (req, res) => {
 //    facilities: [ '1 BHK' ],
 //    facing: [ 'East' ],
 //  }
+
+
+
+// const path = require('path');
+// const multer = require('multer');
+
+// var storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//         cb(null, path.join(__dirname, '..', AVATAR_PATH));
+//     },
+//     filename: function (req, file, cb) {
+//         // Extract the file extension from the original filename
+//         const fileExtension = path.extname(file.originalname);
+        
+//         // Generate the filename using the fieldname and the current timestamp
+//         // Append the extracted file extension to the generated filename
+//         cb(null, file.fieldname + '-' + Date.now() + fileExtension);
+//     }
+// });
+
+

@@ -76,7 +76,7 @@ router.get("/city", async (req, res) => {
   var data = await city.find({})
   res.json(data)
 });
-
+ 
 router.post("/logout", async (req, res) => {
   try {
     console.log(req.cookies);
