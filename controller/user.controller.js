@@ -330,6 +330,7 @@ exports.propertDetails = async (req, res) => {
       category,
       city,
       rooms,
+      available,
       built_up_area,
       listedby,
       leasttype,
