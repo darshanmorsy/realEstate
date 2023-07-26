@@ -38,7 +38,7 @@ exports.login = async (req, res) => {
   res.render("login");
 };
 
-exports.register = async (req, res) => {
+exports.register = async (req, res) =>     {
   res.render("register");
 };
 
@@ -328,6 +328,9 @@ exports.propertDetails = async (req, res) => {
       location,
       disclaimer,
       category,
+      facing,
+      Possession,
+      saletype,
       city,
       rooms,
       available,
@@ -368,7 +371,10 @@ exports.propertDetails = async (req, res) => {
       powerbackup == null ||
       scale_type == null ||
       built_up_area == null ||
-      available == null
+      available == null ||
+      facing== null ||
+      Possession == null ||
+      saletype == null 
     ) {
       if (req.headers.accept == undefined) {
         res.status(404).json({
@@ -436,6 +442,9 @@ exports.propertDetails = async (req, res) => {
           location,
           property_image_id,
           scale_type,
+          facing,
+          Possession,
+          saletype,
           house_type,
           disclaimer,
           rooms,

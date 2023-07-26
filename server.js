@@ -56,6 +56,7 @@ app.get("/", (req, res) => {
   res.redirect("/user")
 })
 
+
 app.listen(port, () => {
   console.log(`listing to the port ${port}`);
 });
