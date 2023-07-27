@@ -57,7 +57,7 @@ router.post("/propertyDetails",user_token,image_upload.array("property_image"),p
 router.post("/updateproperty",user_token,image_upload.array("property_image"),update_property)
 router.get("/updateproperty/:id", updateproperty)
 router.post("/contact/:id", contact)
-router.get("/allproperty", allproperty)
+router.get("/allproperty",allproperty)
 router.get("/rent", rent)
 router.get("/sell", sell)
 router.get("/rent_buy_property/:category/:house_etype",rent_buy_property )

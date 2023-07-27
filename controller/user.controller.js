@@ -406,7 +406,7 @@ exports.propertDetails = async (req, res) => {
         let property_image= [];
         for (let file of files) {
 
-          property_image.push(imgpath+file.filename);
+          property_image.push("/"+file.filename);
 
         }
 

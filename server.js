@@ -11,6 +11,7 @@ app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
 require("dotenv").config()
 app.use(express.static(path.join(__dirname, "assets")))
+app.use(express.static(path.join(__dirname, 'upload')));
 
 
 const flash = require("express-flash");
@@ -46,7 +47,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(logger("dev"));
-app.use(express.static(path.join(__dirname,'upload')))
 
 const userRouter = require("./router/user.router");
 const adminRouter = require("./router/admin.router");
