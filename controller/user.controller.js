@@ -5,10 +5,10 @@ const user = require("../model/user.model");
 const city = require("../model/city.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-var cloudinary = require("../helper/cloudinary");
 const path = require("path");
 var imgpath = '/upload/'
-const { status } = require("init");
+var fs= require("fs");
+const { proppatch } = require("../router/user.router");
 
 exports.home = async (req, res) => {
   var token = req.cookies.jwt;
@@ -39,7 +39,7 @@ exports.login = async (req, res) => {
   res.render("login");
 };
 
-exports.register = async (req, res) =>     {
+exports.register = async (req, res) =>{
   res.render("register");
 };
 
@@ -72,7 +72,7 @@ exports.loginpost = async (req, res) => {
           });
           // console.log("Token:::-", token);
 
-          console.log(`Success! Login Succesfully ${userdata}`);
+          console.log(`Success! Login Succesfully ${userdata.name}`);
 
           res.status(200).json({
             message: "Success! Login Succesfully",
@@ -111,7 +111,7 @@ exports.loginpost = async (req, res) => {
 };
 
 exports.registerpost = async (req, res) => {
-  console.log(req.body);
+  console.log(req.body.name);
   const { mobile, name, password } = req.body;
   if (mobile == null || name == null || password == null) {
     console.log("Please enter a mobile or password or name");
@@ -129,7 +129,7 @@ exports.registerpost = async (req, res) => {
 
       const saveData = await userData.save();
 
-      console.log("saveData (userRegis):__", saveData);
+      // console.log("saveData (userRegis):__", saveData);
 
       // we use below code for generate token(JWT)
       // const token = await saveData.generateauthtoken();
@@ -158,9 +158,9 @@ exports.loginpostweb = async (req, res) => {
     const {
       body: { mobile, password },
     } = req;
-    console.log(req.body);
+    // console.log(req.body);
     const userdata = await user.findOne({ mobile });
-    console.log("userdata:__", userdata);
+    // console.log("userdata:__", userdata.mobile);
     if (userdata == null) {
       res.redirect("/user/login");
     } else {
@@ -168,7 +168,7 @@ exports.loginpostweb = async (req, res) => {
       // console.log("isMatched:__", isMatched);
       if (isMatched) {
         if (userdata.tokens[0] == undefined) {
-          console.log("Hello::::");
+          // console.log("Hello::::");
           const token = await userdata.generateauthtoken();
 
           res.cookie("jwt", token, {
@@ -664,47 +664,40 @@ exports.profile_front = async (req, res) => {
 };
 
 exports.deleteproperty = async (req, res) => {
-  var id = req.params.id;
+
   var data = await property.findOne({ _id: req.params.id });
-  console.log(data, "Oops!");
-  if (id) {
-    var cloudinary_id = data.property_image_id;
+ 
+  if (data) {
+
+    console.log(data);
     for (var i = 0; i < data.property_image.length; i++) {
-      cloudinary.uploader.destroy(cloudinary_id[i], function (error, result) {
-        if (error) {
-          console.log(error);
-        }
-        console.log(result);
-      });
+
+      fs.unlinkSync(path.join(__dirname,'../','upload/',data.property_image[i]),()=> {   
+          console.log("property delete success"); 
+      })
     }
 
     var datas = await property.findByIdAndDelete(req.params.id);
     if (datas) {
-      res.json({ message: "data deleted successfully" });
+      res.json({ message: "data deleted successfully" })
       // console.log(data)
     } else {
-      res.json({ message: "data deleted successfully" });
+      res.json({ message: "data deleted successfully" }) 
       console.log(datas, "not deleted");
-    }
+    } 
   }
-};
+}
 
 exports.delete_properties = async (req, res) => {
-  var id = req.params.id;
-  if (id) {
-    var data = await property.findOne({ _id: req.params.id });
 
-    // console.log(data);
+  var data = await property.findOne({ _id: req.params.id });
+  if (data) {
 
-    var cloudinary_id = data.property_image_id;
-
-    for (var i = 0; i < data.property_image.length; i++) {
-      cloudinary.uploader.destroy(cloudinary_id[i], function (error, result) {
-        if (error) {
-          console.log(error);
-        }
-        console.log(result);
-      });
+     for (var i = 0; i < data.property_image.length; i++) {
+      
+      fs.unlinkSync(path.join(__dirname,'../','upload/',data.property_image[i]),()=>{
+        console.log("deleted successfully");
+      })
     }
 
     var data = await property.findByIdAndDelete(req.params.id);
@@ -717,9 +710,10 @@ exports.delete_properties = async (req, res) => {
       console.log(data, "not deleted");
     }
   }
-};
+}
 
 exports.update_property = async (req, res) => {
+
   console.log(req.files, "LLL");
   try {
     var data = await property.findOne({ _id: req.body.id });
@@ -731,32 +725,23 @@ exports.update_property = async (req, res) => {
 
     if (req.files[0]) {
       for (var i = 0; i < data.property_image.length; i++) {
-        cloudinary.uploader.destroy(cloudinary_id[i], function (error, result) {
-          if (error) {
-            console.log(error);
-          }
-          console.log(result);
-        });
-      }
-      var property_image = [];
-      var property_image_id = [];
-      // var i = 0;
-      for (let file of files) {
-        let { path } = file;
-        const imageLink = path;
-        const uploadedProfileImageDetails = await cloudinary.uploader.upload(
-          imageLink,
-          { folder: "userProfile" }
-        );
-        const farmImages = uploadedProfileImageDetails.secure_url;
-        const farmImages_id = uploadedProfileImageDetails.public_id;
-        property_image.push(farmImages);
-        property_image_id.push(farmImages_id);
-      }
-      // console.log(data,'LLll',cloudinary_id,"::");
 
+       fs.unlinkSync(path.join(__dirname,'..',imgpath,data.property_image[i]),()=>{
+
+        console.log("deleted successfully");
+
+       })
+      }
+
+      var property_image = [];
+
+      for (let file of files) {
+    
+        property_image.push("/"+file.filename)
+
+      }
+    
       req.body.property_image = property_image;
-      req.body.propert_image_id = property_image_id;
 
       var data = await property.findByIdAndUpdate(req.body.id, req.body);
       if (!data) {

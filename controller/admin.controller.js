@@ -1,7 +1,7 @@
 const express = require("express");
 const property = require("../model/property.model");
 const contacts = require("../model/contact.model");
-var cloudinary = require("../helper/cloudinary");
+// var cloudinary = require("../helper/cloudinary");
 var city = require("../model/city.model");
 const user = require("../model/user.model");
 
