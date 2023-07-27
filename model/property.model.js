@@ -72,9 +72,6 @@ const propertySchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    property_image_id: {
-        type: Array,
-    },
     category:{
         type:String,
     },

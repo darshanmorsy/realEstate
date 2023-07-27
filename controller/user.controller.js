@@ -7,6 +7,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 var cloudinary = require("../helper/cloudinary");
 const path = require("path");
+var imgpath = '/upload'
 const { status } = require("init");
 
 exports.home = async (req, res) => {
@@ -303,9 +304,11 @@ exports.singleproperty = async (req, res) => {
 // property details form, post method
 
 exports.propertDetails = async (req, res) => {
-  console.log(req.body, "gggggg");
+
+  // console.log(req.body, "gggggg");
+
   try {
-    console.log(req.body);
+
     const {
       address,
       projectName,
@@ -381,36 +384,30 @@ exports.propertDetails = async (req, res) => {
           message:
             "address,projectName,residentType,city,price,propertyLife,size,facilities,carpet_area,super_built_up,project_area,booking_amount,furnishing,property_floor,landmark,builder_details,owner_info,location,category not found",
         });
+
       } else {
         req.flash("success", "some field is required");
         res.redirect("back");
       }
+
     } else {
+
       var token = req.headers.authorization || req.cookies.jwt;
       const secretKey = process.env.SECRET_KEY;
       var decodedToken = "";
       if (token) {
+
         decodedToken = jwt.verify(token, secretKey);
+
       }
       const files = req.files;
-      // console.log(files, "JJJJJJJJjjjjjjjjjjjjjjjj")
       if (files) {
-        let property_image = [];
-        let property_image_id = [];
-        var i = 0;
+
+        let property_image= [];
         for (let file of files) {
-          let { path } = file;
-          const imageLink = path;
-          const uploadedProfileImageDetails = await cloudinary.uploader.upload(
-            imageLink,
-            {
-              folder: "userProfile",
-            }
-          );
-          const farmImages = uploadedProfileImageDetails.secure_url;
-          const farmImages_id = uploadedProfileImageDetails.public_id;
-          property_image.push(farmImages);
-          property_image_id.push(farmImages_id);
+
+          property_image.push(imgpath+file.filename);
+
         }
 
         var data = await property.create({
@@ -440,7 +437,6 @@ exports.propertDetails = async (req, res) => {
           owner_info,
           built_up_area,
           location,
-          property_image_id,
           scale_type,
           facing,
           Possession,
@@ -889,21 +885,5 @@ exports.mainfilter = async (req, res) => {
 
 
 
-// const           = require('path');
-// const multer = require('multer');
-
-// var storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//         cb(null, path.join(__dirname, '..', AVATAR_PATH));
-//     },
-//     filename: function (req, file, cb) {
-//         // Extract the file extension from the original filename
-//         const fileExtension = path.extname(file.originalname);
-        
-//         // Generate the filename using the fieldname and the current timestamp
-//         // Append the extracted file extension to the generated filename
-//         cb(null, file.fieldname + '-' + Date.now() + fileExtension);
-//     }
-// });
 
 

@@ -46,6 +46,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(logger("dev"));
+app.use(express.static(path.join(__dirname,'upload')))
 
 const userRouter = require("./router/user.router");
 const adminRouter = require("./router/admin.router");

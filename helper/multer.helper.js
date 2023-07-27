@@ -1,7 +1,24 @@
 const multer = require('multer');
 const path = require('path');
+const imgpath='/upload/'
 
-const storage = multer.diskStorage({});
+
+var storage = multer.diskStorage({
+    
+    destination: function (req, file, cb) {
+
+        cb(null, path.join(__dirname, '..', imgpath));
+
+    },
+    filename: function (req, file, cb) {
+
+        const fileExtension = path.extname(file.originalname);
+        cb(null, file.fieldname + '-' + Date.now() + fileExtension);
+
+    }
+
+})
+
 
 const fileFilter = (req, file, cb) => {
     if (file) {
@@ -12,29 +29,11 @@ const fileFilter = (req, file, cb) => {
     }
 }
 
+
 const  upload = multer({
     storage: storage,
-    limits: { fileSize: 1024 * 1024 * 20 },
+    limits: { fileSize:1024*1024*20},
     fileFilter: fileFilter
 });
 
 module.exports = upload;
-
-// module.exports = multer({
-//     storage: multer.diskStorage({}),
-
-//     fileFilter: (req, file, cb) => {
-
-//         console.log("file:::---", file);
-
-//         let ext = path.extname(file.originalname);
-
-//         if (ext) {
-
-//             // req.fileValidationError = "Forbidden extension";
-//             req.fileValidationError = multer.MulterError 
-//             return cb(null, false, req.fileValidationError);
-//         }
-//         cb(null, true);
-//     },
-// });
