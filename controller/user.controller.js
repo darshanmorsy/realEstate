@@ -670,6 +670,7 @@ exports.deleteproperty = async (req, res) => {
   if (data) {
 
     console.log(data);
+
     for (var i = 0; i < data.property_image.length; i++) {
 
       fs.unlinkSync(path.join(__dirname,'../','upload/',data.property_image[i]),()=> {   
@@ -738,10 +739,10 @@ exports.update_property = async (req, res) => {
         property_image.push("/"+file.filename)
 
       }
-    
+    console.log(property_image) 
       req.body.property_image = property_image;
 
-      var data = await property.findByIdAndUpdate(req.body.id, req.body);
+      var data = await property.findByIdAndUpdate(req.body.id,req.body);
       if (!data) {
         if (req.headers.accept == undefined) {
           res.json({ message: "not updated" });
