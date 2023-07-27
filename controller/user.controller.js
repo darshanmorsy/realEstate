@@ -7,7 +7,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 var cloudinary = require("../helper/cloudinary");
 const path = require("path");
-var imgpath = '/upload'
+var imgpath = '/upload/'
 const { status } = require("init");
 
 exports.home = async (req, res) => {
