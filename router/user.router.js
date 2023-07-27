@@ -54,7 +54,7 @@ router.get('/housetype/:housetype',user_token,housetype)
 router.get("/login", login);
 router.get("/register", register);
 router.post("/propertyDetails",user_token,image_upload.array("property_image"),propertDetails)
-router.put("/updateproperty",user_token,image_upload.array("property_image"),update_property)
+router.post("/updateproperty",user_token,image_upload.array("property_image"),update_property)
 router.get("/updateproperty/:id", updateproperty)
 router.post("/contact/:id", contact)
 router.get("/allproperty",allproperty)

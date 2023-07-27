@@ -716,26 +716,24 @@ exports.update_property = async (req, res) => {
 
   console.log(req.files, "LLL");
   try {
-    var data = await property.findOne({ _id: req.body.id });
+    console.log(req.body.id,"oooooo");
+    var data = await property.findOne({ _id:req.body.id });
     console.log(data, ":::::::");
-
-    var cloudinary_id = data.property_image_id;
 
     const files = req.files;
 
-    if (req.files[0]) {
+    if (files) {
+
       for (var i = 0; i < data.property_image.length; i++) {
 
        fs.unlinkSync(path.join(__dirname,'..',imgpath,data.property_image[i]),()=>{
-
         console.log("deleted successfully");
-
-       })
+        })
       }
 
       var property_image = [];
-
-      for (let file of files) {
+     
+        for (let file of files) {
     
         property_image.push("/"+file.filename)
 
@@ -762,12 +760,14 @@ exports.update_property = async (req, res) => {
     } else {
       var data = await property.findByIdAndUpdate(req.body.id, req.body);
       if (!data) {
+
         if (req.headers.accept == undefined) {
           res.json({ message: "not updated" });
         } else {
           req.flash("success", "property not updated");
           res.redirect("back");
         }
+      
       } else {
         if (req.headers.accept == undefined) {
           res.json({ message: "updated successfully" });
