@@ -7,8 +7,8 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const path = require("path");
 var imgpath = '/upload/'
-var fs= require("fs");
-const { proppatch } = require("../router/user.router")
+var fs = require("fs");
+// const { proppatch } = require("../router/user.router");
 
 exports.home = async (req, res) => {
   var token = req.cookies.jwt;
@@ -33,15 +33,15 @@ exports.home = async (req, res) => {
   // }
 
   // console.log(result);
-};
+}
 
 exports.login = async (req, res) => {
   res.render("login");
-};
+}
 
-exports.register = async (req, res) =>{
+exports.register = async (req, res) => {
   res.render("register");
-};
+}
 
 exports.loginpost = async (req, res) => {
   try {
@@ -108,7 +108,7 @@ exports.loginpost = async (req, res) => {
       status: 500,
     });
   }
-};
+}
 
 exports.registerpost = async (req, res) => {
   console.log(req.body.name);
@@ -151,7 +151,7 @@ exports.registerpost = async (req, res) => {
       });
     }
   }
-};
+}
 
 exports.loginpostweb = async (req, res) => {
   try {
@@ -195,7 +195,7 @@ exports.loginpostweb = async (req, res) => {
     res.redirect("/user/login");
     console.log("Sorry! Something Went Wrong (user login)");
   }
-};
+}
 
 exports.registerpostweb = async (req, res) => {
   console.log(req.body.name);
@@ -233,7 +233,7 @@ exports.registerpostweb = async (req, res) => {
       res.redirect("/user/register");
     }
   }
-};
+}
 
 exports.property = async (req, res) => {
   var data = await property.find({ active: 1 });
@@ -246,7 +246,7 @@ exports.property = async (req, res) => {
   }
   var profile = await user.findOne({ _id: decodedToken._id });
   res.render("buy", { data, cities, profile });
-};
+}
 
 exports.buy = async (req, res) => {
   var token = req.cookies.jwt;
@@ -260,7 +260,7 @@ exports.buy = async (req, res) => {
   var cities = await city.find({});
 
   res.render("buy", { data, cities, profile });
-};
+}
 
 exports.sell_page = async (req, res) => {
   var token = req.cookies.jwt;
@@ -272,7 +272,7 @@ exports.sell_page = async (req, res) => {
   var profile = await user.findOne({ _id: decodedToken._id });
   var cities = await city.find({});
   res, res.render("sellform", { profile, cities });
-};
+}
 
 exports.rents = async (req, res) => {
   var token = req.cookies.jwt;
@@ -286,7 +286,7 @@ exports.rents = async (req, res) => {
   var cities = await city.find({});
   console.log(data.length, "OOOOOOOOOOOOOOOO");
   res.render("rent", { data, cities, profile });
-};
+}
 
 exports.singleproperty = async (req, res) => {
   var token = req.cookies.jwt;
@@ -299,7 +299,7 @@ exports.singleproperty = async (req, res) => {
   var data = await property.findOne({ _id: req.params.id });
   var contacts = await contact.find({});
   res.render("singleproperty", { data, contacts, profile });
-};
+}
 
 // property details form, post method
 
@@ -332,7 +332,7 @@ exports.propertDetails = async (req, res) => {
       disclaimer,
       category,
       facing,
-      Possession,
+      possession,
       saletype,
       city,
       rooms,
@@ -375,9 +375,9 @@ exports.propertDetails = async (req, res) => {
       scale_type == null ||
       built_up_area == null ||
       available == null ||
-      facing== null ||
-      Possession == null ||
-      saletype == null 
+      facing == null ||
+      possession == null ||
+      saletype == null
     ) {
       if (req.headers.accept == undefined) {
         res.status(404).json({
@@ -403,10 +403,10 @@ exports.propertDetails = async (req, res) => {
       const files = req.files;
       if (files) {
 
-        let property_image= [];
+        let property_image = [];
         for (let file of files) {
 
-          property_image.push("/"+file.filename);
+          property_image.push("/" + file.filename);
 
         }
 
@@ -439,7 +439,7 @@ exports.propertDetails = async (req, res) => {
           location,
           scale_type,
           facing,
-          Possession,
+          possession,
           saletype,
           house_type,
           disclaimer,
@@ -471,7 +471,7 @@ exports.propertDetails = async (req, res) => {
   } catch (error) {
     console.log(error);
   }
-};
+}
 
 // contact form post method
 
@@ -520,18 +520,19 @@ exports.contact = async (req, res) => {
       }
     }
   }
-};
+}
 
 // property details , get method
 
 exports.allproperty = async (req, res) => {
+
   var data = await property.find({ active: 1 });
   if (data) {
     res.status(200).json(data);
   } else {
     res.status(404).json({ message: "no data found" });
   }
-};
+}
 
 // rent sell , get method
 
@@ -542,7 +543,7 @@ exports.sell = async (req, res) => {
   } else {
     res.status(404).json({ message: "no data found" });
   }
-};
+}
 
 // rent property , get method
 
@@ -553,7 +554,7 @@ exports.rent = async (req, res) => {
   } else {
     res.status(404).json({ message: "no data found" });
   }
-};
+}
 
 exports.rent_buy_property = async (req, res) => {
   var data = await property.find({
@@ -565,7 +566,7 @@ exports.rent_buy_property = async (req, res) => {
   } else {
     res.status(404).json({ message: "no data found" });
   }
-};
+}
 
 exports.frontfilter = async (req, res) => {
   // console.log(req.params);
@@ -582,7 +583,7 @@ exports.frontfilter = async (req, res) => {
   } else {
     res.status(404).json({ message: "no data found" });
   }
-};
+}
 
 exports.filterpost = async (req, res) => {
   // console.log(req.body);
@@ -605,12 +606,11 @@ exports.filterpost = async (req, res) => {
   } else {
     console.log("no data found");
   }
-};
+}
 
 exports.user_property = async (req, res) => {
+  
   var token = req.cookies.jwt || req.headers.authorization;
-  console.log(token, "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
-
   if (token) {
     const secretKey = process.env.SECRET_KEY;
     var decodedToken = "";
@@ -629,7 +629,7 @@ exports.user_property = async (req, res) => {
   } else {
     console.log("token is not found");
   }
-};
+}
 
 exports.profile = async (req, res) => {
   var token = req.cookies.jwt || req.headers.authorization;
@@ -646,7 +646,7 @@ exports.profile = async (req, res) => {
     // console.log(profile);
     res.json(profile);
   }
-};
+}
 
 exports.profile_front = async (req, res) => {
   var token = req.cookies.jwt;
@@ -656,36 +656,57 @@ exports.profile_front = async (req, res) => {
     if (token) {
       decodedToken = jwt.verify(token, secretKey);
     }
+
     var profile = await user.findOne({ _id: decodedToken._id });
     var propert = await property.find({ user_id: decodedToken._id });
-    console.log(profile);
     res.render("profile", { profile, property: propert });
+
   }
-};
+}
 
 exports.deleteproperty = async (req, res) => {
 
   var data = await property.findOne({ _id: req.params.id });
- 
-  if (data) {
 
-    console.log(data);
+  if (data) {
 
     for (var i = 0; i < data.property_image.length; i++) {
 
-      fs.unlinkSync(path.join(__dirname,'../','upload/',data.property_image[i]),()=> {   
-          console.log("property delete success"); 
+      fs.unlinkSync(path.join(__dirname, '../', 'upload/', data.property_image[i]), () => {
+        console.log("property delete success");
       })
     }
 
     var datas = await property.findByIdAndDelete(req.params.id);
+   
     if (datas) {
-      res.json({ message: "data deleted successfully" })
-      // console.log(data)
+  
+      if(req.headers.authorization){
+
+        res.json({ message: "data deleted successfully" })
+        
+      }else{
+
+        req.flash('success',"data deleted successfully")
+        res.redirect('back')
+        
+      }
+      
     } else {
-      res.json({ message: "data deleted successfully" }) 
-      console.log(datas, "not deleted");
-    } 
+      
+      if(req.headers.authorization){
+        
+        res.json({ message: "data deleted successfully" })
+        console.log(datas, "not deleted");
+      }
+      else{
+        
+        req.flash('success',"data deleted")
+        res.redirect('back')
+     
+      }
+  
+    }
   }
 }
 
@@ -694,9 +715,9 @@ exports.delete_properties = async (req, res) => {
   var data = await property.findOne({ _id: req.params.id });
   if (data) {
 
-     for (var i = 0; i < data.property_image.length; i++) {
-      
-      fs.unlinkSync(path.join(__dirname,'../','upload/',data.property_image[i]),()=>{
+    for (var i = 0; i < data.property_image.length; i++) {
+
+      fs.unlinkSync(path.join(__dirname, '../', 'upload/', data.property_image[i]), () => {
         console.log("deleted successfully");
       })
     }
@@ -715,74 +736,111 @@ exports.delete_properties = async (req, res) => {
 
 exports.update_property = async (req, res) => {
 
-  console.log(req.files, "LLL");
+  // console.log(req.files, "LLL");
   try {
-    console.log(req.body.id,"oooooo");
-    var data = await property.findOne({ _id:req.body.id });
-    console.log(data, ":::::::");
-
+    
+    console.log(req.body);
+    // console.log(req.body.id,"oooooo");
+    var data = await property.findOne({ _id: req.body.id });
+    // console.log(data, ":::::::");
     const files = req.files;
 
-    if (files) {
+    if(data){
+      if (files) {
 
-      for (var i = 0; i < data.property_image.length; i++) {
-
-       fs.unlinkSync(path.join(__dirname,'..',imgpath,data.property_image[i]),()=>{
-        console.log("deleted successfully");
-        })
-      }
-
-      var property_image = [];
-     
+        for (var i = 0; i < data.property_image.length; i++) {
+  
+          fs.unlinkSync(path.join(__dirname, '..', imgpath, data.property_image[i]), () => {
+            console.log("deleted successfully");
+          })
+        }
+  
+        var property_image = []
+  
         for (let file of files) {
-    
-        property_image.push("/"+file.filename)
-
-      }
-    console.log(property_image) 
-      req.body.property_image = property_image;
-
-      var data = await property.findByIdAndUpdate(req.body.id,req.body);
-      if (!data) {
-        if (req.headers.accept == undefined) {
-          res.json({ message: "not updated" });
-        } else {
-          req.flash("property not updated");
-          res.redirect("back");
+  
+          property_image.push("/" + file.filename)
+  
         }
+  
+        console.log(property_image)
+  
+        req.body.property_image = property_image;
+  
+        var data = await property.findByIdAndUpdate(req.body.id, req.body);
+        if (!data) {
+  
+          if (req.headers.accept == undefined) {
+  
+            res.json({ message: "not updated" });
+  
+          } else {
+  
+            req.flash("property not updated");
+            res.redirect("back");
+  
+          }
+        } else {
+  
+          if (req.headers.accept == undefined) {
+  
+            res.json({ message: "updated successfully" });
+  
+          } else {
+  
+            req.flash("success", "property updated successfully");
+            res.redirect("back");
+  
+          }
+        }
+  
       } else {
-        if (req.headers.accept == undefined) {
-          res.json({ message: "updated successfully" });
+  
+        var data = await property.findByIdAndUpdate(req.body.id, req.body);
+        if (!data) {
+  
+          if (req.headers.accept == undefined) {
+  
+            res.json({ message: "not updated" });
+  
+          } else {
+  
+            req.flash("success", "property not updated");
+            res.redirect("back");
+  
+          }
+  
         } else {
-          req.flash("success", "property updated successfully");
-          res.redirect("back");
-        }
-      }
-    } else {
-      var data = await property.findByIdAndUpdate(req.body.id, req.body);
-      if (!data) {
+  
+          if (req.headers.authorization) {
+  
+            res.json({ message: "updated successfully" });
+  
+          } else {
+  
+            req.flash("success", "property updated successfully");
+            res.redirect("back");   
 
-        if (req.headers.accept == undefined) {
-          res.json({ message: "not updated" });
-        } else {
-          req.flash("success", "property not updated");
-          res.redirect("back");
-        }
-      
-      } else {
-        if (req.headers.accept == undefined) {
-          res.json({ message: "updated successfully" });
-        } else {
-          req.flash("success", "property updated successfully");
-          res.redirect("back");
+
+
+            
+  
+          }
         }
       }
+    }else{
+
+
+
     }
+
   } catch (error) {
+
     console.log(error);
     res.status(500).json({ message: "An error occurred" });
+
   }
-};
+}
 
 exports.updateproperty = async (req, res) => {
   var token = req.cookies.jwt;
@@ -796,25 +854,25 @@ exports.updateproperty = async (req, res) => {
   var cities = await city.find({});
   console.log(data);
   res.render("update", { data, cities, profile });
-};
+}
 
 exports.housetype = async (req, res) => {
   var data = await property.find({ house_type: req.params.housetype });
   if (data) {
     res.status(200).json(data);
   }
-};
+}
 
 exports.mainfilter = async (req, res) => {
 
-    console.log(req.body);
+  console.log(req.body);
 
   const mongoose = require("mongoose");
 
   // Assuming you have a mongoose model for your collection
   const Property = mongoose.model("property");
 
-  // Get the values from req.body
+  req.body.active=1;
   const filterFields = req.body;
 
   // Convert string fields to float if they represent numeric values
@@ -841,7 +899,7 @@ exports.mainfilter = async (req, res) => {
     .exec()
     .then((filteredProperties) => {
       // Do something with the filteredProperties
-    //   console.log(filteredProperties);
+      //   console.log(filteredProperties);
       console.log(req.body);
       res.json(filteredProperties);
     })
@@ -850,26 +908,3 @@ exports.mainfilter = async (req, res) => {
       console.error(error);
     });
 }
-
-// {
-//    category: 'Buy',
-//    city: 'surat',
-//    lessrange: '2100000.0',
-//    greaterrange: '5600000.000000001',
-//    builtlessrange: '1300.0',
-//    builtgreaterrange: '2750.0',
-//    rooms: [ '1 BHK' ],
-//    listingName: [ 'Owner' ],
-//    house_type: [ 'House','Commercial','FarmHouse' ],
-//    saletype: null,
-//    possession: 'Rent',
-//    bathroom: 'Rent',
-//    propertyLife: 'Rent',
-//    facilities: [ '1 BHK' ],
-//    facing: [ 'East' ],
-//  }
-
-
-
-
-

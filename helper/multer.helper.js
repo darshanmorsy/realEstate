@@ -1,9 +1,9 @@
 const multer = require('multer');
 const path = require('path');
-const imgpath='/upload/'
+const imgpath = '/upload/'
 
 var storage = multer.diskStorage({
-    
+
     destination: function (req, file, cb) {
 
         cb(null, path.join(__dirname, '..', imgpath));
@@ -11,33 +11,34 @@ var storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
 
-        console.log(file);
-        console.log(new Date(Date.now()));
-        const fileExtension =path.extname(file.originalname)
-        cb(null, file.fieldname + '-'+(Date.now()*Math.random())+ fileExtension)
+        const fileExtension = path.extname(file.originalname)
+        cb(null, file.fieldname + '-' + (Date.now()*Math.random())+Math.random()*Math.random()+fileExtension)
 
     }
 
 })
 
 const fileFilter = (req, file, cb) => {
+
     if (file) {
 
-        cb(null, true);
+        cb(null, true)
 
-    } else {  
+    } else {
 
-        cb(null, false); 
-        return cb(new Error('Not all photo formats are allowed'));
+        cb(null, false)
+        return cb(new Error('Not all photo formats are allowed'))
 
     }
 }
 
 
-const  upload = multer({
+const upload = multer({
+
     storage: storage,
-    limits: { fileSize:1024*1024*20},
+    limits: { fileSize: 1024 * 1024 * 20 },
     fileFilter: fileFilter
-});
+
+})
 
 module.exports = upload;

@@ -93,7 +93,7 @@ const propertySchema = mongoose.Schema({
     saletype:{
         type:String,
     },
-    Possession:{
+    possession:{
         type:String,
     },
     facing:{
