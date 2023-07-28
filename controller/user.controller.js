@@ -8,7 +8,7 @@ const jwt = require("jsonwebtoken");
 const path = require("path");
 var imgpath = '/upload/'
 var fs= require("fs");
-const { proppatch } = require("../router/user.router");
+const { proppatch } = require("../router/user.router")
 
 exports.home = async (req, res) => {
   var token = req.cookies.jwt;
