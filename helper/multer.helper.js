@@ -1,19 +1,19 @@
-const multer = require('multer');
-const path = require('path');
+const multer = require('multer')
+const path = require('path')
 const imgpath = '/upload/'
 
 var storage = multer.diskStorage({
 
     destination: function (req, file, cb) {
 
-        cb(null, path.join(__dirname, '..', imgpath));
+        cb(null, path.join(__dirname, '..', imgpath))
 
     },
     filename: function (req, file, cb) {
 
         const fileExtension = path.extname(file.originalname)
         cb(null, file.fieldname + '-' + (Date.now()*Math.random())+Math.random()*Math.random()+fileExtension)
-
+        
     }
 
 })
@@ -41,4 +41,4 @@ const upload = multer({
 
 })
 
-module.exports = upload;
+module.exports = upload
