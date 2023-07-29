@@ -746,6 +746,7 @@ exports.update_property = async (req, res) => {
     const files = req.files;
 
     if(data){
+
       if (files) {
 
         for (var i = 0; i < data.property_image.length; i++) {
@@ -820,17 +821,22 @@ exports.update_property = async (req, res) => {
   
             req.flash("success", "property updated successfully");
             res.redirect("back");   
-
-
-
-            
   
           }
         }
       }
-    }else{
+    } else {
 
+      if (req.headers.authorization) {
+  
+        res.json({ message: "not updated" });
 
+      } else {
+
+        req.flash("success", "property not updated");
+        res.redirect("back")   
+
+      }
 
     }
 
