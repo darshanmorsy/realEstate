@@ -4,6 +4,77 @@ const contacts = require("../model/contact.model");
 // var cloudinary = require("../helper/cloudinary");
 var city = require("../model/city.model");
 const user = require("../model/user.model");
+var bcrypt = require("bcrypt");
+const admin = require("../model/admin.model");
+
+exports.login=async(req, res)=>{
+
+  try {
+    const {
+      body: { mobile, password },
+    } = req;
+ 
+    const admindata = await admin.findOne({ mobile });
+    // console.log(req.body);
+    // console.log("admindata:__", admindata);
+
+    if (admindata == null) {
+      res.status(404).json({
+        message: "Sorry! mobile not found",
+        status: 404,
+      });
+    } else {
+      const isMatched = await bcrypt.compare(password, admindata.password);
+      // console.log("isMatched:__", isMatched);
+      if (isMatched) {
+        if (admindata.tokens[0] == undefined) {
+          console.log("Hello::::");
+          const token = await admindata.generateauthtoken();
+
+          res.cookie("jwt", token, {
+            expires: new Date(Date.now() + 30 * 24 * 3600 * 10000),
+            httpOnly: true,
+          });
+          // console.log("Token:::-", token);
+
+          console.log(`Success! Login Succesfully ${admindata.mobile}`);
+
+          res.status(200).json({
+            message: "Success! Login Succesfully",
+            token: token,
+            status: 200,
+            // id: adminData._id,
+          });
+        } else {
+          console.log(`Success! Login Succesfully ${admindata}`);
+          token = admindata.tokens[0]["token"];
+          res.cookie("jwt", token, {
+            expires: new Date(Date.now() + 30 * 24 * 3600 * 10000),
+          });
+          res.status(200).json({
+            message: "Success! Login Succesfully",
+            token: admindata.tokens[0].token,
+            status: 200,
+            // id: adminData._id,
+          });
+        }
+      } else {
+        res.status(401).json({
+          message: "Sorry! Password doesn't Match",
+          status: 401,
+        });
+      }
+    }
+  } catch (error) {
+    console.log("userlogin:__", error);
+
+    res.status(500).json({
+      message: "Sorry! Something Went Wrong (user login)",
+      status: 500,
+    });
+  }
+
+}
 
 // shows request, get method
 
@@ -120,7 +191,7 @@ exports.deactive_property = async (req, res) => {
     res.status(404).json({ message: "property not found" });
   }
 }
-
+ 
 exports.contact_property = async (req, res) => {
   console.log(req.params);
 
@@ -128,7 +199,7 @@ exports.contact_property = async (req, res) => {
     var properties = await property.findById(req.params.property_id);
     console.log(properties, "oo");
 
-    if (properties.price) {
+    if (properties.price) { 
       var owner_info = await user.findById(properties.user_id);
       console.log(owner_info, "oo");
 

@@ -305,7 +305,7 @@ exports.singleproperty = async (req, res) => {
 
 exports.propertDetails = async (req, res) => {
 
-  // console.log(req.body, "gggggg");
+  console.log(req.body, "gggggg");
 
   try {
 
@@ -333,6 +333,7 @@ exports.propertDetails = async (req, res) => {
       category,
       facing,
       possession,
+      pincode,
       saletype,
       city,
       rooms,
@@ -377,7 +378,8 @@ exports.propertDetails = async (req, res) => {
       available == null ||
       facing == null ||
       possession == null ||
-      saletype == null
+      saletype == null ||
+      pincode == null 
     ) {
       if (req.headers.accept == undefined) {
         res.status(404).json({
@@ -419,6 +421,7 @@ exports.propertDetails = async (req, res) => {
           propertyLife,
           size,
           bathroom,
+          pincode,
           facilities,
           carpet_area,
           super_built_up,
@@ -449,7 +452,7 @@ exports.propertDetails = async (req, res) => {
         });
 
         if (data) {
-          console.log("data added successfully", data);
+          // console.log("data added successfully", data);
 
           if (req.headers.accept == undefined) {
             res.status(200).json({ message: "data added successfully" });
@@ -459,7 +462,7 @@ exports.propertDetails = async (req, res) => {
           }
         } else {
           if (req.headers.accept == undefined) {
-            console.log("data not added");
+            // console.log("data not added");
 
             res.status(200).json({ message: "data not added" });
           }
@@ -475,7 +478,8 @@ exports.propertDetails = async (req, res) => {
 
 // contact form post method
 
-exports.contact = async (req, res) => {
+exports.contact = async (req, res) =>{
+
   console.log(req.body);
   const { email, mobile, name, address, description } = req.body;
 
@@ -487,7 +491,7 @@ exports.contact = async (req, res) => {
     description == null
   ) {
     if (req.headers.accept == undefined) {
-      resp.json({ message: "some field is remaaining" });
+      res.json({ message: "some field is remaaining" });
     } else {
       res.redirect("back");
     }
@@ -662,7 +666,7 @@ exports.profile_front = async (req, res) => {
     res.render("profile", { profile, property: propert });
 
   }
-}
+} 
 
 exports.deleteproperty = async (req, res) => {
 
@@ -671,7 +675,7 @@ exports.deleteproperty = async (req, res) => {
   if (data) {
 
     for (var i = 0; i < data.property_image.length; i++) {
-
+ 
       fs.unlinkSync(path.join(__dirname, '../', 'upload/', data.property_image[i]), () => {
         console.log("property delete success");
       })

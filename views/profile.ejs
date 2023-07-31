@@ -21,14 +21,15 @@
     <h1 class="mb-5 text-center">your property</h1>
   </div>
   <% if (messages.success) { %>
-       <center>
-
-         <div class="alert text-center my-4 alert-success" style="width: fit-content;">
-          <%= messages.success %>
-        </div>
-        
-      </center>                    
-    <% } %>
+  <center>
+    <div
+      class="alert text-center my-4 alert-success"
+      style="width: fit-content"
+    >
+      <%= messages.success %>
+    </div>
+  </center>
+  <% } %>
   <div class="d-flex flex-wrap">
     <%for(var i of property){%>
     <div class="text-center pb-3 col-lg-4 px-1 m-0 rounded-3">

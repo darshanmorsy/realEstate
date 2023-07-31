@@ -65,9 +65,6 @@ const propertySchema = mongoose.Schema({
     disclaimer:{
         type: String
     },
-    cloudinary_id: {
-        type: String,
-    },
     active: {
         type: Number,
         default: 0
@@ -95,7 +92,7 @@ const propertySchema = mongoose.Schema({
     },
     possession:{
         type:String,
-    },
+    }, 
     facing:{
         type:String,
     },
@@ -112,6 +109,9 @@ const propertySchema = mongoose.Schema({
         type:String,
     },
     powerbackup:{
+        type:String,
+    },
+    pincode:{
         type:String,
     }
 
