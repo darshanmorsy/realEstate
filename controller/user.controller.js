@@ -8,6 +8,7 @@ const jwt = require("jsonwebtoken");
 const path = require("path");
 var imgpath = '/upload/'
 var fs = require("fs");
+const { request } = require("http");
 // const { proppatch } = require("../router/user.router");
 
 exports.home = async (req, res) => {
@@ -681,6 +682,8 @@ exports.deleteproperty = async (req, res) => {
       })
     }
 
+ 
+    var contactdelete =await contact.deleteMany({property_id:req.params.id});
     var datas = await property.findByIdAndDelete(req.params.id);
    
     if (datas) {
@@ -748,63 +751,16 @@ exports.update_property = async (req, res) => {
     var data = await property.findOne({ _id: req.body.id });
     // console.log(data, ":::::::");
     const files = req.files;
-
+    console.log(files,"ooooooooooooooooooooooooooooooooooooo");
     if(data){
 
-      if (files) {
+      if (files.length == 0) {
 
-        for (var i = 0; i < data.property_image.length; i++) {
-  
-          fs.unlinkSync(path.join(__dirname, '..', imgpath, data.property_image[i]), () => {
-            console.log("deleted successfully");
-          })
-        }
-  
-        var property_image = []
-  
-        for (let file of files) {
-  
-          property_image.push("/" + file.filename)
-  
-        }
-  
-        console.log(property_image)
-  
-        req.body.property_image = property_image;
-  
         var data = await property.findByIdAndUpdate(req.body.id, req.body);
-        if (!data) {
+       
+        if (!data) { 
   
-          if (req.headers.accept == undefined) {
-  
-            res.json({ message: "not updated" });
-  
-          } else {
-  
-            req.flash("property not updated");
-            res.redirect("back");
-  
-          }
-        } else {
-  
-          if (req.headers.accept == undefined) {
-  
-            res.json({ message: "updated successfully" });
-  
-          } else {
-  
-            req.flash("success", "property updated successfully");
-            res.redirect("back");
-  
-          }
-        }
-  
-      } else {
-  
-        var data = await property.findByIdAndUpdate(req.body.id, req.body);
-        if (!data) {
-  
-          if (req.headers.accept == undefined) {
+          if (req.headers.authorization) {
   
             res.json({ message: "not updated" });
   
@@ -828,6 +784,59 @@ exports.update_property = async (req, res) => {
   
           }
         }
+        
+        console.log("****************");
+      } else {
+
+
+        for (var i = 0; i < data.property_image.length; i++) {
+  
+          fs.unlinkSync(path.join(__dirname, '..', imgpath, data.property_image[i]), () => {
+            console.log("deleted successfully");
+          })
+        }
+  
+        var property_image = []
+  
+        for (let file of files) {
+  
+          property_image.push("/" + file.filename)
+  
+        }
+  
+        console.log(property_image)
+  
+        req.body.property_image = property_image;
+  
+        var data = await property.findByIdAndUpdate(req.body.id, req.body);
+        if (!data) {
+  
+          if (req.headers.authorization) {
+  
+            res.json({ message: "not updated" });
+  
+          } else {
+  
+            req.flash("property not updated");
+            res.redirect("back");
+  
+          }
+        } else {
+  
+          if (req.headers.authorization) {
+  
+            res.json({ message: "updated successfully" });
+  
+          } else {
+  
+            req.flash("success", "property updated successfully");
+            res.redirect("back");
+  
+          }
+        }
+
+
+
       }
     } else {
 
@@ -875,12 +884,12 @@ exports.housetype = async (req, res) => {
 
 exports.mainfilter = async (req, res) => {
 
-  console.log(req.body);
+  console.log(req.body)
 
-  const mongoose = require("mongoose");
+  const mongoose = require("mongoose")
 
   // Assuming you have a mongoose model for your collection
-  const Property = mongoose.model("property");
+  const Property = mongoose.model("property")
 
   req.body.active=1;
   const filterFields = req.body;
@@ -891,7 +900,7 @@ exports.mainfilter = async (req, res) => {
     "greaterrange",
     "builtlessrange",
     "builtgreaterrange",
-  ];
+  ]
   numericFields.forEach((field) => {
     if (filterFields[field]) {
       filterFields[field] = parseFloat(filterFields[field]);
@@ -903,7 +912,7 @@ exports.mainfilter = async (req, res) => {
     if (value !== null && value !== undefined && value !== "") {
       query[key] = Array.isArray(value) ? { $in: value } : value;
     }
-  });
+  })
   // Execute the query and get the filtered results
   Property.find(query)
     .exec()
@@ -918,3 +927,4 @@ exports.mainfilter = async (req, res) => {
       console.error(error);
     });
 }
+

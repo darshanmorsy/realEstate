@@ -163,7 +163,7 @@ exports.deletecity = async (req, res) => {
 exports.user = async (req, res) => {
   var data = await user.find({});
   res.json(data);
-}
+} 
 
 exports.deactive = async (req, res) => {
   var data = await property.findByIdAndUpdate(req.params.id, { active: 2 });

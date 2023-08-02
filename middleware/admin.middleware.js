@@ -5,20 +5,20 @@ const ownerSchema = async (req, res, next) => {
         const Token = req.headers.authorization;
         console.log(Token);
         if (Token) {
-            const admin = jwt.verify(Token, process.env.SECRET_KEY, (error, data) => {
+            const admins = jwt.verify(Token, process.env.SECRET_KEY, (error, data) => {
                 // if (error == null) { return error; }
                 // else return data;
                 return data;
             }
             );
-            console.log(admin);   
-            if (admin == undefined) {
+            console.log(admins);   
+            if (admins == undefined) {
                 res.status(404).json({
                     message: "TOKEN CANNOT MATCH!",
                     status: 404,
                 });
             } else {
-                const adminData = await admin.findById({ _id: admin._id });
+                const adminData = await admin.findById(admins._id)
                 if (adminData == null) {
                     res.status(401).json({
                         message: "UNAUTHORIZED",
@@ -44,6 +44,6 @@ const ownerSchema = async (req, res, next) => {
             status: 500,
         })
     }
-};
+}
 
 module.exports = ownerSchema;
