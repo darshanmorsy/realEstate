@@ -217,3 +217,21 @@ exports.contact_property = async (req, res) => {
     console.log(req.params);
   }
 }
+
+exports.contactdelete = async(req, res) => {
+
+  try {
+    
+    if(req.params.id){
+
+      var deletes=await contacts.findByIdAndDelete(req.params.id);
+      if(deletes){
+        res.status(200).json({ message:"contact deleted"});
+      }
+    }
+
+  } catch (error) {
+    console.log(error);
+  }
+
+}

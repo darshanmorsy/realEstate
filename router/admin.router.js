@@ -1,6 +1,5 @@
 const router = require("express").Router()
 const admin_token = require("../middleware/admin.middleware")
-const image_upload = require("../helper/multer.helper")
 var cities = require("../model/city.model")
 const {
   login,
@@ -16,6 +15,7 @@ const {
   active,
   deactive_property,
   contact_property,
+  contactdelete
 } = require("../controller/admin.controller")
 
 router.post("/login",login)
@@ -31,6 +31,7 @@ router.get("/deactive/:id",admin_token,deactive)
 router.get("/active/:id",admin_token,active)  
 router.get("/deactive",admin_token,deactive_property) 
 router.get("/contactproperty/:property_id",admin_token,contact_property)
+router.delete("/contactdelete/:id",admin_token,contactdelete)
 
 router.get("/city", async (req, res) => {
   var city = await cities.find({})

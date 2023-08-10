@@ -884,47 +884,54 @@ exports.housetype = async (req, res) => {
 
 exports.mainfilter = async (req, res) => {
 
-  console.log(req.body)
+  // console.log(req.body);
 
-  const mongoose = require("mongoose")
-
+  const mongoose = require("mongoose");
+  
   // Assuming you have a mongoose model for your collection
-  const Property = mongoose.model("property")
-
-  req.body.active=1;
+  const Property = mongoose.model("property");
+  
+  req.body.active = 1;
   const filterFields = req.body;
-
+  
   // Convert string fields to float if they represent numeric values
   const numericFields = [
     "lessrange",
     "greaterrange",
-    "builtlessrange",
-    "builtgreaterrange",
-  ]
+  ];
   numericFields.forEach((field) => {
     if (filterFields[field]) {
       filterFields[field] = parseFloat(filterFields[field]);
     }
   });
+  
   // Construct the query object based on non-empty fields in filterFields
   const query = {};
   Object.entries(filterFields).forEach(([key, value]) => {
     if (value !== null && value !== undefined && value !== "") {
-      query[key] = Array.isArray(value) ? { $in: value } : value;
+      if (key === "lessrange") {
+        query["price"] = { ...query["price"], $lte: value };
+      } else if (key === "greaterrange") {
+        query["price"] = { ...query["price"], $gte: value };
+      } else {
+        query[key] = Array.isArray(value) ? { $in: value } : value;
+      }
     }
-  })
+  });
+  
   // Execute the query and get the filtered results
   Property.find(query)
     .exec()
     .then((filteredProperties) => {
       // Do something with the filteredProperties
-      //   console.log(filteredProperties);
-      console.log(req.body);
+      // console.log(filteredProperties);
+      // console.log(req.body);
       res.json(filteredProperties);
     })
     .catch((error) => {
       // Handle the error
       console.error(error);
     });
+  
 }
 
