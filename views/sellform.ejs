@@ -538,18 +538,18 @@ options.forEach(option => {
     <div class="shadow-lg">
         <form class="form d-flex">
             <div class="left-side">
-                <div class="left-heading">
+                <!-- <div class="left-heading">
                     <h3>indeed</h3>
-                </div>
-                <div class="steps-content">
+                </div> -->
+                <!-- <div class="steps-content">
                     <h3>Step <span class="step-number">1</span></h3>
                     <p class="step-number-content active">Enter your personal information to get closer to companies.</p>
                     <p class="step-number-content d-none">Get to know better by adding your diploma,certificate and education life.</p>
                     <p class="step-number-content d-none">Help companies get to know you better by telling then about your past experiences.</p>
                     <p class="step-number-content d-none">Add your profile piccture and let companies find youy fast.</p>
-                </div>
-                <ul class="progress-bar">
-                    <li class="active">Personal Information</li>
+                </div> -->
+                <ul class="progress-bar text-start py-5 my-3 bg-white">
+                    <li class="active mt-0">Personal Information</li>
                     <li>Education</li>
                     <li>Work Experience</li>
                     <li>User Photo</li>
@@ -560,12 +560,7 @@ options.forEach(option => {
             </div>
             <div class="right-side">
                 <div class="main active">
-                    <small><i class="fa fa-smile-o"></i></small>
-                    <div class="text">
-                        <h2>Your Personal Information</h2>
-                        <p>Enter your personal information to get closer to copanies.</p>
-                    </div>
-                    <div class="input-text">
+                     <div class="input-text">
                         <div class="input-div">
                             <input type="text" required require id="user_name">
                             <span>First Name</span>
@@ -754,8 +749,8 @@ options.forEach(option => {
     </div>
 </div>
 </section>
-<script>
 
+<script>
 var next_click=document.querySelectorAll(".next_button");
 var main_form=document.querySelectorAll(".main");
 var step_list = document.querySelectorAll(".progress-bar li");

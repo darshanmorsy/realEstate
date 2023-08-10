@@ -41,7 +41,7 @@ router.post("/loginpostweb", loginpostweb)
 router.get("/property", user_token, property)
 router.get("/buy", user_token, buy)
 router.get("/rents", user_token, rents)
-router.get("/sellpage", user_token, sell_page)
+router.get("/sellpage", sell_page)
 router.get("/singleproperty/:id", user_token, singleproperty)
 router.post("/filters", user_token, filterpost)
 router.get("/housetype/:housetype", user_token, housetype)
@@ -49,7 +49,7 @@ router.get("/housetype/:housetype", user_token, housetype)
 router.get("/login", login)
 router.get("/register", register)
 
-router.post(
+router.post( 
   "/propertyDetails",
   user_token,
   image_upload.array("property_image"),
