@@ -1,5 +1,6 @@
 <%-include('header')%>
   <main>
+    
     <section>
       <div style="" class="container my-5 py-5 align-items-center d-flex flex-wrap">
         <div class="text-center col-12 d-flex flex-column align-items-center justify-content-center">
@@ -121,11 +122,11 @@
           </div>
           <div id="content" style="width: 70%;">
             <div id="content1">
-              <div class="tab-content">
+              <form method="post" action="/user/mainfilter" class="tab-content">
                 <div id="tab1" class="content rounded-3" style="border: 1px solid #dee2e6;">
                   <div class="d-flex col-12 col-xl-12 flex-wrap">
                     <div class="col-xl-2 col-12">
-                      <select name="" class="form-select col-xl-2 py-3 border-0 border-end text-theme-blue rounded-0" id="">
+                      <select name="" class="form-select col-xl-2 h-100 border-0 border-end text-theme-blue rounded-0" id="">
                         <option value="" hidden>select city</option>
                         <option value="df">surat</option>
                         <option value="dffvgg">vadodara</option>
@@ -173,7 +174,7 @@
                       <input type="radio" name="housetype" class="ms-3 me-2" value="house">flat
                     </div>
                     <div class="d-flex align-items-center col-12 col-xl-2">
-                      <input type="radio" name="housetype" class="ms-3 me-2" value="house">bungalow
+                      <input type="radio" name="house_type" class="ms-3 me-2" value="House">bungalow
                     </div>
                     <div class="d-flex align-items-center justify-content-start  col-12 col-xl-2">
                       <input type="radio" name="housetype" class="ms-3 me-2" value="house">industrial
@@ -239,14 +240,14 @@
                 <div id="tab3" class="content hidden">
                   gfd
                 </div>
-              </div>
+              </form>
             </div>
             <div id="content2">
               <div class="tab-content">
                 <div id="tab1" class="content rounded-3" style="border: 1px solid #dee2e6;">
                   <div class="d-flex col-12 col-xl-12 flex-wrap">
                     <div class="col-xl-2 col-12">
-                      <select name="" class="form-select col-xl-2 py-3 text-theme-blue rounded-0" id="">
+                      <select name="" class="form-select col-xl-2 h-100 text-theme-blue rounded-0" id="">
                         <option value="" hidden>select city</option>
                       </select>
                     </div>
@@ -315,7 +316,7 @@
                   <div class="d-flex">
                     <select name="" class="form-select px-5 text-theme-blue rounded-0" style="width: fit-content;"
                       id="">
-                      <option value="" hidden>select location</option>
+                      <option value="">select location</option>
                     </select>
                     <input type="text" class="form-control my-2 mx-5 px-5">
                     <button type="submit" class="theme-blue text-white px-5">search</button>
@@ -363,7 +364,7 @@
                 <div id="tab1" class="content rounded-3" style="border: 1px solid #dee2e6;">
                   <div class="d-flex col-12 col-xl-12 flex-wrap">
                     <div class="col-xl-2 col-12">
-                      <select name="" class="form-select col-xl-2 py-3 text-theme-blue rounded-0" id="">
+                      <select name="" class="form-select col-xl-2 h-100 text-theme-blue rounded-0" id="">
                         <option value="" hidden>select city</option>
                       </select>
                     </div>
@@ -483,7 +484,7 @@
     <section>
       <div class="container my-5 d-flex flex-wrap">
         <div class="col-xl-6 col-12 d-flex flex-wrap">
-          <img src="img/Group 28.png" width="100%" alt="">
+          <img src="/img/Group 28.png" width="100%" alt="">
         </div>
         <div class="col-xl-6 ps-lg-5 py-5 d-flex flex-column align-items-center justify-content-center">
           <div>
@@ -524,7 +525,7 @@
       <div class="my-5 px-xl-5 container d-flex flex-wrap justify-content-between">
         <div class="px-3 d-flex mt-2 justify-content-center col-xl-4">
           <div class="card">
-            <img src="img/299e5d2ee3e877e93fc03c651ad7c107.png" class="card-img-top">
+            <img src="/img/299e5d2ee3e877e93fc03c651ad7c107.png" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title text-theme-blue fw-bold">Card title</h5>
               <h4 class="text-theme-red fw-bold">15,13,000</h4>
@@ -561,7 +562,7 @@
         </div>
         <div class="px-3 d-flex mt-2 justify-content-center col-xl-4">
           <div class="card">
-            <img src="img/5e86b64fa8a81916ada5538903cc05d6.png" class="card-img-top">
+            <img src="/img/5e86b64fa8a81916ada5538903cc05d6.png" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title text-theme-blue fw-bold">Card title</h5>
               <h4 class="text-theme-red fw-bold">15,13,000</h4>
@@ -598,7 +599,7 @@
         </div>
         <div class="px-3 d-flex mt-2 justify-content-center col-xl-4">
           <div class="card">
-            <img src="img/299e5d2ee3e877e93fc03c651ad7c107.png" class="card-img-top">
+            <img src="/img/299e5d2ee3e877e93fc03c651ad7c107.png" class="card-img-top">
             <div class="card-body">
               <h5 class="card-title text-theme-blue fw-bold">Card title</h5>
               <h4 class="text-theme-red fw-bold">15,13,000</h4>
@@ -638,7 +639,7 @@
     <section>
       <div class="container d-flex flex-wrap py-5 my-5">
         <div class="col-xl-6 px-3">
-          <img src="img/Group 1192.png" width="100%" alt="">
+          <img src="/img/Group 1192.png" width="100%" alt="">
         </div>
         <div class="col-xl-6 my-4 px-3 d-flex flex-column justify-content-center">
           <h2 class="text-theme-blue fs-1 fw-bold">We Specialize In Quality<br> Home Revovations</h2>
@@ -699,7 +700,7 @@
       <div class="container">
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
           viewBox="0 0 1320 700">
-          <image width="1320" height="700" xlink:href="img/Group 1206.png"></image> <a xlink:href="#">
+          <image width="1320" height="700" xlink:href="/img/Group 1206.png"></image> <a xlink:href="#">
             <rect x="24" y="267" fill="#fff" opacity="0" width="119" height="50"></rect>
           </a><a xlink:href="#">
             <rect x="665" y="265" fill="#fff" opacity="0" width="121" height="50"></rect>
@@ -748,7 +749,7 @@
           <a href="#" class="theme-blue mt-5 rounded-pill ps-4 text-white d-lock" style="width: fit-content;">contact with us<i class="fa-solid bg-white text-theme-blue rounded-pill m-2 p-2 fa-angles-right"></i></a>
         </div>
         <div class="col-xl-6 my-3">
-          <img src="img/Group 1204.png" width="100%">
+          <img src="/img/Group 1204.png" width="100%">
         </div>
       </div>
     </section>
@@ -811,5 +812,6 @@
         </div>
     </div>
     </section>
+
   </main>
 <%-include('footer')%>

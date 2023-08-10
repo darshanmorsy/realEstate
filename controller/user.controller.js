@@ -539,28 +539,6 @@ exports.allproperty = async (req, res) => {
   }
 }
 
-// rent sell , get method
-
-exports.sell = async (req, res) => {
-  var data = await property.find({ category: "sell" });
-  if (data) {
-    res.status(200).json(data);
-  } else {
-    res.status(404).json({ message: "no data found" });
-  }
-}
-
-// rent property , get method
-
-exports.rent = async (req, res) => {
-  var data = await property.find({ category: "rent" });
-  if (data) {
-    res.status(200).json(data);
-  } else {
-    res.status(404).json({ message: "no data found" });
-  }
-}
-
 exports.rent_buy_property = async (req, res) => {
   var data = await property.find({
     category: req.params.category,
@@ -644,12 +622,21 @@ exports.profile = async (req, res) => {
     if (token) {
       decodedToken = jwt.verify(token, secretKey);
     }
-    var profile = await user.findOne({ _id: decodedToken._id });
-
-    // var userproperties=await property.find({user_id:decodedToken._id});
+    
     console.log(req.headers);
     // console.log(profile);
-    res.json(profile);
+    if(req.headers.authorization){
+      
+      var profile = await user.findOne({ _id: decodedToken._id });
+      res.json(profile);
+    }else{
+      
+      // var userproperties=await property.find({ user_id:decodedToken._id});
+      var profile = await user.findOne({ _id: decodedToken._id });
+    var propert = await property.find({ user_id: decodedToken._id });
+      res.render("profile", { profile, property: propert });
+
+    }
   }
 }
 
@@ -884,10 +871,9 @@ exports.housetype = async (req, res) => {
 
 exports.mainfilter = async (req, res) => {
 
-  // console.log(req.body);
-
+  console.log(req.body);
   const mongoose = require("mongoose");
-  
+
   // Assuming you have a mongoose model for your collection
   const Property = mongoose.model("property");
   
@@ -914,7 +900,14 @@ exports.mainfilter = async (req, res) => {
       } else if (key === "greaterrange") {
         query["price"] = { ...query["price"], $gte: value };
       } else {
-        query[key] = Array.isArray(value) ? { $in: value } : value;
+        // Check if the value is an array
+        if (Array.isArray(value)) {
+          // If the value is an array, create a $in query
+          query[key] = { $in: value };
+        } else {
+          // If the value is not an array, use a simple equality query
+          query[key] = value;
+        }
       }
     }
   });
@@ -933,5 +926,5 @@ exports.mainfilter = async (req, res) => {
       console.error(error);
     });
   
+  
 }
-

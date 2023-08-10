@@ -10,8 +10,7 @@ const mongoose = require("mongoose")
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
 require("dotenv").config()
-app.use(express.static(path.join(__dirname, "assets")))
-app.use(express.static(path.join(__dirname, 'upload')))
+app.use(express.static(path.join(__dirname,"assets")))
 
 
 const flash = require("express-flash")
