@@ -397,7 +397,7 @@ footer input::placeholder {
     position: absolute;
     height: 90px;
     width: 3px;
-    background-color: #006cb5;
+    background-color: #cbcbcb;
     z-index: 1;
     left: -28px;
     top: -70px;
@@ -405,7 +405,7 @@ footer input::placeholder {
 
 
 .sellform .progress-bar li.active::after{
-    background-color: #fff;
+    background-color: #006cb5;
 
 }
 
