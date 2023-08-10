@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+html::-webkit-scrollbar{
+  width: 0px;
+}
+
+
 .theme-blue {
   background-color: #006cb5 !important;
 }
