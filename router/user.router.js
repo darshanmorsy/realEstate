@@ -89,17 +89,34 @@ router.post("/logout", async (req, res) => {
   }
 })
 
+
 router.get("/logout", async (req, res) => {
   try {
-    console.log(res)
-    console.log(req.cookies)
-    res.cookie("jwt", "", { maxAge: 1 })
-    // const token = req.headers.authorization
-    res.redirect("/user")
+    // Clear the JWT cookie on the client side
+    res.cookie("jwt", "", { maxAge: 1 });
+
+    // Client-side redirect using JavaScript
+    res.send(`
+      <html>
+      <head>
+        <script>
+          setTimeout(() => {
+            window.location.href = '/user/login';
+          }, 0);
+        </script>
+      </head>
+      <body>
+        Logging out...
+      </body>
+      </html>
+    `);
   } catch (error) {
-    console.log(error)
+    console.error(error);
+    res.status(500).send("An error occurred during logout");
   }
-})
+});
+
+module.exports = router;
 
 
-module.exports = router
+module.exports = router;
