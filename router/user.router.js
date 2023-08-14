@@ -112,11 +112,9 @@ router.get("/logout", async (req, res) => {
     `);
   } catch (error) {
     console.error(error);
-    res.status(500).send("An error occurred during logout");
+    res.status(500).send("An error occurred during logout")
   }
-});
+})
 
 module.exports = router;
 
-
-module.exports = router;
