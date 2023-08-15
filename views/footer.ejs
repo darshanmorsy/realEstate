@@ -96,12 +96,12 @@
 
     if (scrollY > headerHeight) {
       topbar.classList.add("d-none");
-      header.classList.add("position-fixed", "shadow-lg");
+      header.classList.add("position-fixed","shadow-lg",'top-0');
       // container.classList.add("position-fixed","shadow-lg")
     } else {
       // header.classList.remove("sticky");
       topbar.classList.remove("d-none");
-      header.classList.remove("position-fixed","shadow-lg");
+      header.classList.remove("position-fixed","shadow-lg",'top-0');
     }
   });
 

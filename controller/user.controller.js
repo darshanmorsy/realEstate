@@ -23,7 +23,7 @@ exports.home = async (req, res,next) => {
   var data = await property.find({ active: 1 });
   var cities = await city.find({});
   res.render("home", { data, cities, profile });
-  
+
   next();
 }
 
@@ -912,7 +912,14 @@ exports.mainfilter = async (req, res) => {
       // Do something with the filteredProperties
       // console.log(filteredProperties);
       // console.log(req.body);
-      res.json(filteredProperties);
+      if(req.headers.authorization){
+        res.json(filteredProperties);
+      }
+      else{
+        var data=filteredProperties
+        console.log(data,filteredProperties);
+        res.render('allproperty',{data});
+      }
     })
     .catch((error) => {
       // Handle the error
