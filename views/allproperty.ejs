@@ -1,23 +1,26 @@
 <%-include('header')%>
 
 <section class="d-flex container">
-    <div class="col-xl-3 pe-3">
-        <div class="shadow-lg">
-
+    <div class="col-xl-3">
+        <div style="top:25%;" class="shadow-lg position-fixed position-fixed">
             vgdbgd
         </div>
     </div>
-    <div class="col-xl-8 d-flex flex-column">
+    <div class="col-xl-8 d-flex flex-column m-lg-0">
         <div>
             <%for(var i of data){%>
-            <div class="d-flex p-1 mt-5 bg-transparent">
-                <div class="d-flex shadow-lg col-5 rounded-3">
-                    <img src="<%=i.property_image[0]%>" class="rounded-3" width="100%" height="100%">
+                <div class="mt-5 p-2 rounded-3 me-5" style="background-color: #e2e2e2;">
+                    <h2 class="fs-5 fw-normal" style="text-transform: capitalize;"><%=i.projectName%> nagar</h2>
+                    <p>uma nilkanth vyayamshala thane west Explore Nearby</p>
+                </div>  
+            <div class="d-flex p-1 mt-1 bg-transparent">
+                <div class="d-flex shadow-lg justify-content-center col-5 rounded-3 overflow-hidden" style="height:400px;">
+                    <img src="<%=i.property_image[0]%>" class="rounded-3" >
                 </div>
                 <div class="py-3 col-lg-7 d-flex align-items-center">
-                    <div class="shadow-lg bg-white rounded-3" style="transform: translateX(-40px); z-index: 59;">
+                    <div class="shadow-lg col-12 bg-white rounded-3" style="transform: translateX(-40px); z-index: 59;">
                     
-                        <div class="d-flex">
+                        <div class="d-flex justify-content-between">
                             <div class="text-center bg-grey p-3">
                                 <h3 class="fw-bold">$82 lacs</h3>
                                 <p>€13,667 per sq.ft.</p>
@@ -38,14 +41,14 @@
                             <div style="background-color: #dbdbdb; border: 1.9px solid rgb(184, 184, 184);" class="d-flex p-2 w-100 mx-2 rounded-3">
                                 <i class="fa-regular fs-1 fa-compass"></i>
                                 <div class="ps-3">
-                                    <h2 style="font-weight: 500;">East</h2>
+                                    <h2 style="font-weight: 500;"><%=i.facing%></h2>
                                     <p>Facing</p>
                                 </div>
                             </div>
                             <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="d-flex p-2 w-100 mx-2 rounded-3">
                                 <i class="fa-solid fs-1 fa-door-open"></i>
                                 <div class="ps-3">
-                                    <h2 style="font-weight: 500;">1 BHK</h2>
+                                    <h2 style="font-weight: 500;"><%=i.rooms%></h2>
                                     <p>Rooms</p>
                                 </div>
                             </div>
@@ -54,7 +57,7 @@
                             <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="d-flex p-2 w-100 mx-2 rounded-3">
                                 <i class="fa-solid fs-1 fa-person-booth"></i>
                                 <div class="ps-3">
-                                    <h2 style="font-weight: 500;">2</h2>
+                                    <h2 style="font-weight: 500;"><%=i.bathroom%></h2>
                                     <p>Bathroom</p>
                                 </div>
                             </div>
@@ -67,7 +70,7 @@
                             </div>
                         </div>
                         <div class="p-3 pt-0">
-                            <a href="" style="width: fit-content;" class="theme-blue d-block rounded-pill ps-3 pe-1 text-white py-1">explore more <i class="fa-solid fa-angles-right text-theme-blue bg-white p-2 rounded-pill"></i></a>
+                            <a href="/user/property/<%=i.id%>" style="width: fit-content;" class="theme-blue d-block rounded-pill ps-3 pe-1 text-white py-1">explore more <i class="fa-solid fa-angles-right text-theme-blue bg-white p-2 rounded-pill"></i></a>
                         </div>
                     </div>
                 </div>

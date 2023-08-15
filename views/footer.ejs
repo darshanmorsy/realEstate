@@ -87,6 +87,25 @@
 <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">  -->
 
 <script>
+  window.addEventListener("scroll", function () {
+    const header = document.querySelector("header");
+    const container = header.querySelector(".container"); // Select the specific container div
+    const topbar = header.querySelector(".topbar");
+    const headerHeight = header.offsetHeight;
+    const scrollY = window.scrollY || window.pageYOffset;
+
+    if (scrollY > headerHeight) {
+      topbar.classList.add("d-none");
+      header.classList.add("position-fixed", "shadow-lg");
+      // container.classList.add("position-fixed","shadow-lg")
+    } else {
+      // header.classList.remove("sticky");
+      topbar.classList.remove("d-none");
+      header.classList.remove("position-fixed","shadow-lg");
+    }
+  });
+
+
   $("#user-nav-tabs li").on('click', function (e) {
     var targetLink = $(e.currentTarget.children[0]).attr("href").slice(1);
 

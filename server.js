@@ -11,6 +11,7 @@ app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
 require("dotenv").config()
 app.use(express.static(path.join(__dirname,"assets")))
+app.use(express.static(path.join(__dirname,"upload")))
 const flash = require("express-flash")
 app.use(flash())
 app.use(session({
