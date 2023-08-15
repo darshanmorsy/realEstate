@@ -4,21 +4,19 @@ var path = require("path")
 var cookieParser = require("cookie-parser")
 var logger = require("morgan")
 const session = require("express-session")
-const cors = require("cors")
+// const cors = require("cors")
 const mongoose = require("mongoose")
 
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
 require("dotenv").config()
 app.use(express.static(path.join(__dirname,"assets")))
-
 const flash = require("express-flash")
-
 app.use(flash())
 app.use(session({
-    secret: 'mysecret', // Replace with your own secret key
+    secret: 'mysecret',  
     resave: false,
-    saveUninitialized:false            
+    saveUninitialized:false             
   }))
   
 
@@ -38,7 +36,7 @@ mongoose
 const port = process.env.PORT || 3000
 // require("./db/connection") 
  
-app.use(cors())
+// app.use(cors())
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -55,6 +53,6 @@ app.get("/", (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`listing to the port ${port}`)
+  console.log(`listing to the port ${port}`);
 })
  

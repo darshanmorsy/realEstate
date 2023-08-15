@@ -15,16 +15,16 @@ exports.home = async (req, res,next) => {
   var token = req.cookies.jwt;
   const secretKey = process.env.SECRET_KEY;
   var decodedToken = "";
+
   if (token) {
     decodedToken = jwt.verify(token, secretKey);
   }
   var profile = await user.findOne({ _id: decodedToken._id });
-
   var data = await property.find({ active: 1 });
   var cities = await city.find({});
   res.render("home", { data, cities, profile });
-  next();
   
+  next();
 }
 
 exports.login = async (req, res) => {
