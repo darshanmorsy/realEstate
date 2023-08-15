@@ -38,7 +38,7 @@ router.post("/login", loginpost)
 router.post("/register", registerpost)
 router.post("/registerpostweb", registerpostweb)
 router.post("/loginpostweb", loginpostweb)
-router.get("/property", user_token, property)
+router.get("/property", property)
 router.get("/buy", user_token, buy)
 router.get("/rents", user_token, rents)
 router.get("/sellpage", sell_page)
@@ -96,27 +96,11 @@ router.get("/logout", async (req, res) => {
     res.cookie("jwt", "", { maxAge: 1 });
 
     // Client-side redirect using JavaScript
-    res.send(`
-      <html>
-      <head>
-        <script>
-          setTimeout(() => {
-            window.location.href = '/user/login';
-          }, 0);
-        </script>
-      </head>
-      <body>
-        Logging out...
-      </body>
-      </html>
-    `);
+   res.redirect('/user');
   } catch (error) {
     console.error(error);
-    res.status(500).send("An error occurred during logout");
+    res.status(500).send("An error occurred during logout")
   }
-});
+})
 
-module.exports = router;
-
-
-module.exports = router;
+module.exports = router; 

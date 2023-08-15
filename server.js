@@ -12,18 +12,9 @@ app.set("views", path.join(__dirname, "views"))
 require("dotenv").config()
 app.use(express.static(path.join(__dirname,"assets")))
 
-
 const flash = require("express-flash")
 
 app.use(flash())
-app.use((req, res, next) => {
-  // Disable caching
-  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-  res.setHeader("Pragma", "no-cache");
-  res.setHeader("Expires", "0");
-  next();
-});
-
 app.use(session({
     secret: 'mysecret', // Replace with your own secret key
     resave: false,

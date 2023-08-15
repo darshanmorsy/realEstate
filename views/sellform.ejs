@@ -535,10 +535,10 @@ options.forEach(option => {
 
   <section class="sellform container">
     <div class="col-xl-10">
-      <div class="shadow-lg">
-        <form class="form p-3 d-flex">
+      <div class="">
+        <form class="form d-flex">
 
-          <div class="left-side">
+          <div class="left-side px-5 rounded-3 shadow-lg">
             <div class="steps-content d-none">
               <h3>Step <span class="step-number">1</span></h3>
               <p class="step-number-content active">
@@ -561,6 +561,7 @@ options.forEach(option => {
               <li>Education</li>
               <li>Work Experience</li>
               <li>User Photo</li>
+              <!-- <li>User Photo</li> -->
             </ul>
           </div>
 
@@ -639,14 +640,14 @@ options.forEach(option => {
                     <option>Moscow</option>
                     <option>Bejing</option>
                     <option>Tokyo</option>
-                    <option>Islamabad</option>
+                    <option>Islamaba</option>
                   </select>
                 </div>
               </div>
               <div class="buttons">
-                <button class="next_button rounded-pill ps-2 p-1 theme-blue" type="button">
+                <button class="next_button rounded-pill ps-3 fs-6 p-1 theme-blue" type="button">
                   next step
-                  <i class="fa-solid fa-angles-right p-2 bg-white text-theme-blue rounded-pill"></i>
+                  <i class="fa-solid ms-2 fa-angles-right p-2 bg-white text-theme-blue rounded-pill"></i>
                 </button>
               </div>
             </div>
@@ -723,11 +724,11 @@ options.forEach(option => {
                 </div>
               </div>
               <div class="buttons button_space">
-                <button class="back_button p-1 theme-blue text-white rounded-pill pe-3 border-0" type="button">
-                  <i class="fa-solid rounded-circle fa-angles-left bg-white text-theme-blue p-2"></i>
+                <button class="back_button fs-6 p-1 theme-blue text-white rounded-pill pe-3 border-0" type="button">
+                  <i class="fa-solid rounded-circle me-2 fa-angles-left bg-white text-theme-blue p-2"></i>
                   Back Step
                 </button>
-                <button class="next_button p-1 theme-blue text-white rounded-pill ps-3" type="button">
+                <button class="next_button p-1 fs-6 theme-blue text-white rounded-pill ps-3" type="button">
                   Next Step
                   <i class="fa-solid rounded-circle fa-angles-right bg-white text-theme-blue p-2"></i>
                 </button>
@@ -790,9 +791,9 @@ options.forEach(option => {
                 </div>
               </div>
               <div class="buttons button_space">
-                <button class="back_button p-1 theme-blue text-white rounded-pill pe-3 border-0 p-1" type="button"><i
-                    class="fa-solid fa-angles-left bg-white p-2 text-theme-blue rounded-pill"></i> Back Step</button>
-                <button class="next_button p-1 theme-blue text-white rounded-pill ps-3 border-0 p-1" type="button">Next
+                <button class="back_button fs-6 p-1 theme-blue text-white rounded-pill pe-3 border-0 p-1" type="button"><i
+                    class="fa-solid fa-angles-left bg-white me-2 p-2 text-theme-blue rounded-pill"></i> Back Step</button>
+                <button class="next_button fs-6 p-1 theme-blue text-white rounded-pill ps-3 border-0 p-1" type="button">Next
                   Step <i class="fa-solid fa-angles-right bg-white p-2 text-theme-blue rounded-pill"></i> </button>
               </div>
             </div>
@@ -810,13 +811,19 @@ options.forEach(option => {
                 <input type="file" id="fileInput" style="display: none" />
               </div>
               <div class="buttons button_space">
-                <button class="back_button theme-blue text-white border-0 rounded-pill">
-                  <i class="fa-solid p-2 rounded-circle bg-white text-theme-blue fa-angles-left"></i>
+                <button class="back_button fs-6  theme-blue p-1 pe-3 text-white border-0 rounded-pill" type="button">
+                  <i class="fa-solid p-2 me-2 rounded-circle bg-white text-theme-blue fa-angles-left"></i>
                   Back
                 </button>
-                <button class="submit_button" type="submit">Submit</button>
+                <button class="next_button">nbvn</button>
+                <button class="submit_button theme-blue fs-6 p-1 ps-3 text-white border-0 rounded-pill" type="submit">Submit <i class="ms-2 fa-solid p-2 rounded-circle bg-white text-theme-blue fa-check"></i></button>
               </div>
             </div>
+            <!-- <div class="main">
+              <h1 class="fs-1 fw-bold text-theme-blue">Step 5</h1>
+              Add your content for the fifth step here
+          </div> -->
+          
             <!-- <div class="main">
                      <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
                          <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>

@@ -11,7 +11,7 @@ var fs = require("fs");
 const { request } = require("http");
 // const { proppatch } = require("../router/user.router");
 
-exports.home = async (req, res) => {
+exports.home = async (req, res,next) => {
   var token = req.cookies.jwt;
   const secretKey = process.env.SECRET_KEY;
   var decodedToken = "";
@@ -22,18 +22,9 @@ exports.home = async (req, res) => {
 
   var data = await property.find({ active: 1 });
   var cities = await city.find({});
-
   res.render("home", { data, cities, profile });
-  //     const textflow = require("textflow.js");
-  // textflow.useKey("ZOeuwGcJ25Y4ZOn5HJnC5B97DX7DeSk9bGdBr9Dp3wyM5bk6G6Qz9gpimMpQZsYh");
-
-  // // Awaiting promise inside of async function
-  // let result = await textflow.sendSMS("+919106823588", "Dummy message text...");
-  // if (result.ok) {
-  //   console.log("SUCCESS");
-  // }
-
-  // console.log(result);
+  next();
+  
 }
 
 exports.login = async (req, res) => {
@@ -237,16 +228,18 @@ exports.registerpostweb = async (req, res) => {
 }
 
 exports.property = async (req, res) => {
+
   var data = await property.find({ active: 1 });
-  var cities = await city.find({});
-  var token = req.cookies.jwt;
-  const secretKey = process.env.SECRET_KEY;
-  var decodedToken = "";
-  if (token) {
-    decodedToken = jwt.verify(token, secretKey);
-  }
-  var profile = await user.findOne({ _id: decodedToken._id });
-  res.render("buy", { data, cities, profile });
+  // var cities = await city.find({});
+  // var token = req.cookies.jwt;
+  // const secretKey = process.env.SECRET_KEY;
+  // var decodedToken = "";
+  // if (token) {
+  //   decodedToken = jwt.verify(token, secretKey);
+  // }
+  // var profile = await user.findOne({ _id: decodedToken._id });
+  // res.render("buy", { data, cities, profile });
+  res.render("allproperty",{data})
 }
 
 exports.buy = async (req, res) => {
