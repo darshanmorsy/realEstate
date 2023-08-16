@@ -39,24 +39,24 @@
   </section>
 
   <section>
-  <div class="d-flex mt-3">
+  <div class="d-flex mt-3 flex-wrap">
     <div class="col-lg-8 pe-3">
-      <div class="shadow-lg">
-        hello
+      <div class="shadow-lg rounded-3" style="height: 360px;">
+        <img src="<%=data.property_image[0]%>" height="100%" alt="fs">
       </div>
     </div>
     <div class="col-lg-4">
       <div class="bg-white shadow-lg rounded-3">
         <div class="p-3 d-flex justify-content-between">
           <div style="background-color: #dbdbdb; border: 1.9px solid rgb(184, 184, 184);" class="d-flex align-items-center p-2 w-100 mx-2 rounded-3">
-              <i class="fa-regular fs-3 fa-compass"></i>
+              <i class="fa-regular fs-3 px-2 fa-compass"></i>
               <div class="ps-3">
                   <h2 style="font-weight: 500;"><%=data.facing%></h2>
                   <p>Facing</p>
               </div>
           </div>
           <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="d-flex align-items-center p-2 w-100 mx-2 rounded-3">
-              <i class="fa-solid fs-3 fa-door-open"></i>
+              <i class="fa-solid fs-3 px-2 fa-door-open"></i>
               <div class="ps-3">
                   <h2 style="font-weight: 500;"><%=data.rooms%></h2>
                   <p>Rooms</p>
@@ -65,14 +65,14 @@
       </div>
       <div class="p-3 d-flex justify-content-between">
         <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="d-flex align-items-center p-2 w-100 mx-2 rounded-3">
-            <i class="fa-solid fs-3 fa-person-booth"></i>
+            <i class="fa-solid fs-3 px-2 fa-person-booth"></i>
             <div class="ps-3">
                 <h2 style="font-weight: 500;"><%=data.bathroom%></h2>
                 <p>Bathroom</p>
             </div>
         </div>
         <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="d-flex align-items-center p-2 w-100 mx-2 rounded-3">
-            <i class="fa-solid fs-3 fa-car"></i>
+            <i class="fa-solid fs-3 px-2 fa-car"></i>
             <div class="ps-3">
                 <h2 style="font-weight: 500;">Bike and Car</h2>
                 <p>Parking</p>
@@ -81,14 +81,14 @@
     </div>
         <div class="p-3 d-flex justify-content-between">
           <div style="background-color: #dbdbdb; border: 1.9px solid rgb(184, 184, 184);" class="d-flex align-items-center p-2 w-100 mx-2 rounded-3">
-              <i class="fa-solid fs-3 fa-person-running"></i>
+              <i class="fa-solid fs-3 px-2 fa-person-running"></i>
               <div class="ps-3">
                   <h2 style="font-weight: 500;"><%=data.possession%></h2>
                   <p>Possession</p>
               </div>
           </div>
           <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="d-flex align-items-center p-2 w-100 mx-2 rounded-3">
-              <i class="fa-solid fs-3 fa-user"></i>
+              <i class="fa-solid fs-3 px-2 fa-user"></i>
               <div class="ps-3">
                   <h2 style="font-weight: 500;"><%=data.listedby%></h2>
                   <p>Listed By</p>
@@ -112,16 +112,16 @@
       <div class="col-lg-7 pe-3">
         <div class="shadow-lg">
           <div class="p-3 d-flex justify-content-between">
-            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 w-100 mx-2 rounded-3">
+            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 py-3 w-100 mx-2 rounded-3">
               <div class="d-flex align-items-center">
-                <i class="fa-solid fs-3 fa-person-booth"></i>
+                <i class="fa-solid fs-3 fa-couch"></i>
                 <p class="m-0 ms-3">Furnishing Status</p>
               </div>
                 <div class="ps-3 d-flex">
                     <h2 style="font-weight: 500;"><%=data.furnishing%></h2>
                 </div>
             </div>
-            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 w-100 mx-2 rounded-3">
+            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 py-3 w-100 mx-2 rounded-3">
               <div class="d-flex align-items-center">
                 <i class="fa-solid fs-3 fa-person-booth"></i>
                 <p class="m-0 ms-3">Bathroom</p>
@@ -132,7 +132,7 @@
             </div>
         </div>
           <div class="p-3 d-flex justify-content-between">
-            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 w-100 mx-2 rounded-3">
+            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 py-3 w-100 mx-2 rounded-3">
               <div class="d-flex align-items-center">
                 <i class="fa-solid fs-3 fa-hand-holding-heart"></i>
                 <p class="m-0 ms-3">Property Life</p>
@@ -141,7 +141,7 @@
                     <h2 style="font-weight: 500;"><%=data.propertyLife%></h2>
                 </div>
             </div>
-            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 w-100 mx-2 rounded-3">
+            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 py-3 w-100 mx-2 rounded-3">
               <div class="d-flex align-items-center">
                 <i class="fa-solid fs-3 fa-ruler"></i>
                 <p class="m-0 ms-3">size</p>
@@ -152,7 +152,7 @@
             </div>
         </div>
           <div class="p-3 d-flex justify-content-between">
-            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 w-100 mx-2 rounded-3">
+            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 py-3 w-100 mx-2 rounded-3">
               <div class="d-flex align-items-center">
                 <i class="fa-solid fs-3 fa-indian-rupee-sign"></i>
                 <p class="m-0 ms-3">Booking Amount</p>
@@ -161,7 +161,7 @@
                     <h2 style="font-weight: 500;"><%=data.booking_amount%></h2>
                 </div>
             </div>
-            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 w-100 mx-2 rounded-3">
+            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 py-3 w-100 mx-2 rounded-3">
               <div class="d-flex align-items-center">
                 <i class="fa-regular fs-3 fa-building"></i>
                 <p class="m-0 ms-3">Property Floors</p>
@@ -172,7 +172,7 @@
             </div>
         </div>
           <div class="p-3 d-flex justify-content-between">
-            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 w-100 mx-2 rounded-3">
+            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 py-3 w-100 mx-2 rounded-3">
               <div class="d-flex align-items-center">
                 <i class="fa-solid fs-3 fa-landmark"></i>
                 <p class="m-0 ms-3">Landmark</p>
@@ -181,7 +181,7 @@
                     <h2 style="font-weight: 500;"><%=data.landmark%></h2>
                 </div>
             </div>
-            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 w-100 mx-2 rounded-3">
+            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 py-3 w-100 mx-2 rounded-3">
               <div class="d-flex align-items-center">
                 <i class="fa-solid fa-scale-unbalanced-flip fs-3"></i>
                 <p class="m-0 ms-3">Scale Type</p>
@@ -192,7 +192,7 @@
             </div>
         </div>
           <div class="p-3 d-flex justify-content-between">
-            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 w-100 mx-2 rounded-3">
+            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 py-3 w-100 mx-2 rounded-3">
               <div class="d-flex align-items-center">
                 <i class="fa-solid fs-3 fa-hotel"></i>
                 <p class="m-0 ms-3">Resident Type</p>
@@ -201,7 +201,7 @@
                     <h2 style="font-weight: 500;"><%=data.residentType%></h2>
                 </div>
             </div>
-            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 w-100 mx-2 rounded-3">
+            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 py-3 w-100 mx-2 rounded-3">
               <div class="d-flex align-items-center">
                 <i class="fa-solid fs-3 fa-bolt"></i>
                 <p class="m-0 ms-3">powerbackup</p>
@@ -221,8 +221,8 @@
     </div>
   </section>
 
-  
-  <section>
+
+<section>
     <h2 class="text-theme-blue my-5 fs-2 fw-bold">Facilities</h2>
     <div class="col-lg-7 d-flex flex-wrap">
    <%for(var i of data.facilities){%>  
@@ -231,6 +231,8 @@
       </span>
    <%}%>
     </div>
+    </section>
+
   <section>
     <h2 class="text-theme-blue my-5 fs-2 fw-bold">Disclaimer</h2>
     <div class="col-lg-7">
@@ -240,8 +242,5 @@
     </div>
     </section>
 </main>
-
-
-  <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7439.373573533575!2d72.92922025!3d21.2045979!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be045094db79967%3A0xd946d584a0fa0a21!2sKosmada%2C%20Gujarat%20395006!5e0!3m2!1sen!2sin!4v1692176065119!5m2!1sen!2sin" width="100%" height="450" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
 
 <%-include('footer')%>
