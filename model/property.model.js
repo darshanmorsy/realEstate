@@ -23,7 +23,7 @@ const propertySchema = mongoose.Schema({
     size: {
         type: String,   
     },
-    facilities: {
+    facilities:{
         type: Array
     },
     carpet_area: {

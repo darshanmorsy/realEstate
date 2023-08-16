@@ -283,6 +283,7 @@ exports.rents = async (req, res) => {
 }
 
 exports.singleproperty = async (req, res) => {
+
   var token = req.cookies.jwt;
   const secretKey = process.env.SECRET_KEY;
   var decodedToken = "";
@@ -291,8 +292,8 @@ exports.singleproperty = async (req, res) => {
   }
   var profile = await user.findOne({ _id: decodedToken._id });
   var data = await property.findOne({ _id: req.params.id });
-  var contacts = await contact.find({});
-  res.render("singleproperty", { data, contacts, profile });
+  // var contacts = await contact.find({});
+  res.render("singleproperty", { data});
 }
 
 // property details form, post method

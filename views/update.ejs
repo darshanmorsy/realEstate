@@ -196,3 +196,300 @@
 }
 </script>
 <%-include('footer')%>
+
+
+
+<main id="main">
+  <!-- ======= Intro Single ======= -->
+  <section class="intro-single">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-8">
+          <div class="title-single-box">
+            <h1 class="title-single">properties</h1>
+            <span class="color-text-a"></span>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-4">
+          <nav
+            aria-label="breadcrumb"
+            class="breadcrumb-box d-flex justify-content-lg-end"
+          >
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="/user">Home</a>
+              </li>
+              <li class="breadcrumb-item">
+                <a href="/user/property">Properties</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">single</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End Intro Single-->
+  <!-- ======= Property Single ======= -->
+  <section class="property-single nav-arrow-b">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div id="property-single-carousel" class="swiper">
+            <div class="swiper-wrapper">
+              <%var facilities= data.property_image %> <% facilities.forEach((s
+              , j )=>{ %>
+              <div class="carousel-item-b swiper-slide">
+                <img src="<%=s%>" width="100%" height="550px" alt="" />
+              </div>
+              <% }) %>
+            </div>
+          </div>
+          <div
+            class="property-single-carousel-pagination carousel-pagination"
+          ></div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="row justify-content-between">
+            <div class="col-md-5 col-lg-4">
+              <div class="property-price d-flex justify-content-center foo">
+                <div class="card-header-c d-flex">
+                  <div class="card-box-ico">
+                    <span class="bi bi-cash">₹</span>
+                  </div>
+                  <div class="card-title-c align-self-center">
+                    <h5 class="title-c"><%=data.price%></h5>
+                  </div>
+                </div>
+              </div>
+              <div class="property-summary">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="title-box-d section-t4">
+                      <h3 class="title-d">Quick Summary</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="summary-list">
+                  <ul class="list">
+                    <li class="d-flex justify-content-between">
+                      <strong>Property Name:</strong>
+                      <span><%=data.projectName%></span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                      <strong>city:</strong>
+                      <span><%=data.city%></span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                      <strong>Location:</strong>
+                      <span><%=data.address%></span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                      <strong>Property Type:</strong>
+                      <span><%=data.house_type%></span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                      <strong>Status:</strong>
+                      <span>for <%=data.category%></span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                      <strong>size:</strong>
+                      <span><%=data.size%></span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                      <strong>carpet area:</strong>
+                      <span><%=data.carpet_area%></span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                      <strong>super built up:</strong>
+                      <span><%=data.super_built_up%></span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                      <strong>project area:</strong>
+                      <span><%=data.project_area%></span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                      <strong>booking amount:</strong>
+                      <span><%=data.booking_amount%></span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                      <strong>scale type:</strong>
+                      <span><%=data.scale_type%></span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                      <strong>property floor:</strong>
+                      <span><%=data.property_floor%></span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                      <strong>furnishing:</strong>
+                      <span><%=data.furnishing%></span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                      <strong>owner info:</strong>
+                      <span><%=data.owner_info%></span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                      <strong>builder info:</strong>
+                      <span><%=data.builder_details%></span>
+                    </li>
+                    <li class="d-flex justify-content-between">
+                      <strong>Rooms:</strong>
+                      <span><%=data.rooms%></span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-7 col-lg-7 section-md-t3">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="title-box-d">
+                    <h3 class="title-d">Property Description</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="property-description">
+                <p class="description color-text-a"><%=data.disclaimer%></p>
+              </div>
+              <div class="row section-t3">
+                <div class="col-sm-12">
+                  <div class="title-box-d">
+                    <h3 class="title-d">Amenities</h3>
+                  </div>
+                </div>
+              </div>
+              <div class="amenities-list color-text-a">
+                <ul class="list-a no-margin">
+                  <%var facilities= data.facilities %> <% facilities.forEach((s
+                  , j )=>{ %>
+                  <li><%= s %></li>
+                  <% }) %>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="row section-t3">
+            <div class="col-sm-12">
+              <div class="title-box-d">
+                <h3 class="title-d">Contact Agent</h3>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 col-lg-4">
+              <img src="/img/contactus.jpg" alt="" class="img-fluid" />
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <div class="property-agent">
+                <h4 class="title-agent">contact us</h4>
+                <p class="color-text-a">
+                  Nulla porttitor accumsan tincidunt. Vestibulum ac diam sit
+                  amet quam vehicula elementum sed sit amet dui. Quisque velit
+                  nisi, pretium ut lacinia in, elementum id enim.
+                </p>
+                <ul class="list-unstyled">
+                  <li class="d-flex justify-content-between">
+                    <strong>Phone:</strong>
+                    <span class="color-text-a">(222) 4568932</span>
+                  </li>
+                  <li class="d-flex justify-content-between">
+                    <strong>Mobile:</strong>
+                    <span class="color-text-a">777 287 378 737</span>
+                  </li>
+                  <li class="d-flex justify-content-between">
+                    <strong>Email:</strong>
+                    <span class="color-text-a">annabella@example.com</span>
+                  </li>
+                  <li class="d-flex justify-content-between">
+                    <strong>Skype:</strong>
+                    <span class="color-text-a">Annabela.ge</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-12 col-lg-4">
+              <div class="property-contact">
+                <form
+                  class="form-a"
+                  action="/user/contact/<%=data.id%>"
+                  method="post"
+                >
+                  <div class="row">
+                    <div class="col-md-12 mb-1">
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control form-control-lg form-control-a"
+                          name="name"
+                          id="inputName"
+                          placeholder="Name *"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-12 mb-1">
+                      <div class="form-group">
+                        <input
+                          type="number"
+                          class="form-control form-control-lg form-control-a"
+                          name="mobile"
+                          id="inputEmail1"
+                          placeholder="mobile *"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-12 mb-1">
+                      <div class="form-group">
+                        <input
+                          type="email"
+                          class="form-control form-control-lg form-control-a"
+                          name="email"
+                          id="inputEmail1"
+                          placeholder="email address*"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-12 mb-1">
+                      <div class="form-group">
+                        <input
+                          type="text"
+                          class="form-control form-control-lg form-control-a"
+                          name="address"
+                          id="inputEmail1"
+                          placeholder="address *"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-12 mb-1">
+                      <div class="form-group">
+                        <textarea
+                          id="textMessage"
+                          class="form-control"
+                          placeholder="Comment *"
+                          name="description"
+                          required
+                        ></textarea>
+                      </div>
+                      <div class="col-md-12 mt-3">
+                        <button type="submit" class="btn btn-danger mb-5">
+                          Send Message
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
