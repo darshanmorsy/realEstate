@@ -917,7 +917,7 @@ exports.mainfilter = async (req, res) => {
       }
       else{
         var data=filteredProperties
-        console.log(data,filteredProperties);
+        // console.log(data,filteredProperties);
         res.render('allproperty',{data});
       }
     })
