@@ -536,7 +536,7 @@ options.forEach(option => {
   <section class="sellform container">
     <div class="col-xl-10">
       <div class="">
-        <form class="form d-flex">
+        <form class="form d-flex" method="post" enctype="multipart/form-data" action="/user/propertyDetails">
           <div class="left-side px-5 rounded-3 shadow-lg">
             <div class="steps-content d-none">
               <h3>Step <span class="step-number">1</span></h3>
@@ -600,29 +600,29 @@ options.forEach(option => {
               <div class="input-text">
                 <div class="input-div">
                   <p>Address</p>
-                  <input type="text" required require />
+                  <input type="text" name="address" required require />
                 </div>
                 <div class="input-div">
                   <p>Size</p>
-                  <input type="text" required require />
+                  <input type="text" name="size" required require />
                 </div>
                 <div class="input-div">
                   <p>Booking Amount</p>
-                  <input type="text" required require />
+                  <input type="text" name="booking_amount" required require />
                 </div>
               </div>
               <div class="input-text">
                 <div class="input-div">
                   <p>Carpet Area</p>
-                  <input type="text" required require />
+                  <input type="text" name="carpet_area" required require />
                 </div>
                 <div class="input-div">
                   <p>Super Built Up</p>
-                  <input type="text" required require />
+                  <input type="text" name="super_built_up"  required require />
                 </div>
                 <div class="input-div">
                   <p>Project Area</p>
-                  <input type="text" required require />
+                  <input type="text" name="project_area" required require />
                 </div>
               </div>
               <div class="input-text">
@@ -978,6 +978,115 @@ options.forEach(option => {
         reader.readAsDataURL(selectedFile);
       }
     });
+
+    function updateResidentOptions() {
+  console.log(document.getElementById('housetype').value)
+  if (document.getElementById('housetype').value === "Flat") {
+
+    const residentSelect = document.getElementById('resident')
+    residentSelect.innerHTML = '';
+    const options = ["LowRise", "HighRise", "pentHouse"]
+    options.forEach(option => {
+      const optionElement = document.createElement('option')
+      optionElement.value = option.toLowerCase().replace(/\s/g, '_')
+      optionElement.textContent = option;
+      residentSelect.appendChild(optionElement);
+    });
+
+  } else if (document.getElementById('housetype').value === "House") {
+
+const residentSelect = document.getElementById('resident')
+residentSelect.innerHTML = '';
+const options = ["Gala Type", "Raw House", "Bungalow"]
+options.forEach(option => {
+  const optionElement = document.createElement('option');
+  optionElement.value = option.toLowerCase().replace(/\s/g, '_');
+  optionElement.textContent = option;
+  residentSelect.appendChild(optionElement);
+});
+
+} else if (document.getElementById('housetype').value === "Commercial") {
+
+const residentSelect = document.getElementById('resident');
+residentSelect.innerHTML = '';
+const options = ["Office", "Shop"];
+options.forEach(option => {
+  const optionElement = document.createElement('option');
+  optionElement.value = option.toLowerCase().replace(/\s/g, '_');
+  optionElement.textContent = option;
+  residentSelect.appendChild(optionElement);
+});
+
+}
+else if (document.getElementById('housetype').value === "Industrial") {
+
+const residentSelect = document.getElementById('resident');
+residentSelect.innerHTML = '';
+const options = ["Godown/Warehouse","Building"];
+options.forEach(option => {
+  const optionElement = document.createElement('option');
+  optionElement.value = option.toLowerCase().replace(/\s/g, '_');
+  optionElement.textContent = option;
+  residentSelect.appendChild(optionElement);
+});
+
+}
+else if (document.getElementById('housetype').value === "FarmHouse") {
+
+const residentSelect = document.getElementById('resident');
+residentSelect.innerHTML = '';
+const options = ["Farm","Villa"];
+options.forEach(option => {
+  const optionElement = document.createElement('option');
+  optionElement.value = option.toLowerCase().replace(/\s/g, '_');
+  optionElement.textContent = option;
+  residentSelect.appendChild(optionElement);
+});
+
+}
+else if (document.getElementById('housetype').value === "Land/Plot") {
+
+const residentSelect = document.getElementById('resident');
+residentSelect.innerHTML = '';
+const options = [
+      'Residential Plot',
+      'Industrial Plot',
+      'Farm House Plot',
+      'Agriculture Land',
+      'Residential Land',
+      'Industrial Land',
+      'Commercial Land',
+    ];
+    
+options.forEach(option => {
+  const optionElement = document.createElement('option');
+  optionElement.value = option.toLowerCase().replace(/\s/g, '_');
+  optionElement.textContent = option;
+  residentSelect.appendChild(optionElement);
+});
+
+}
+else if (document.getElementById('housetype').value === "Hotel/Resorts") {
+
+const residentSelect = document.getElementById('resident');
+residentSelect.innerHTML = '';
+const options = [
+    "1 Star",
+    "2 Star",
+    "3 Star",
+    "4 Star",
+    "5 Star",
+    ];
+
+options.forEach(option => {
+  const optionElement = document.createElement('option');
+  optionElement.value = option.toLowerCase().replace(/\s/g, '_');
+  optionElement.textContent = option;
+  residentSelect.appendChild(optionElement);
+});
+
+}
+}
   </script>
 
   <%-include('footer')%>
