@@ -571,19 +571,32 @@ options.forEach(option => {
               <div class="input-text">
                 <div class="input-div">
                   <p>Project Name</p>
-                  <input type="text" required require id="user_name" placeholder="project" />
+                  <input type="text" name="projectName" required require placeholder="project name" />
                 </div>
                 <div class="input-div">
                   <p>City</p>
-                  <input type="text" required require />
+                  <select name="city">
+                    <option hidden>Select City</option>
+                    <%for(var i of cities){%>
+                      <option value="<%=i.city%>"><%=i.city%></option>
+                      <%}%>
+                  </select>
                 </div>
                 <div class="input-div">
                   <p>Price</p>
-                  <input type="text" required require />
+                  <input type="text" name="price" required require />
                 </div>
                 <div class="input-div">
                   <p>Property Life</p>
-                  <input type="text" required require />
+                  <select name="propertyLife" required require class="px-2">
+                    <option>Select property Life</option>
+                    <option>1 year</option>
+                    <option>2 year</option>  
+                    <option>3 year</option>  
+                    <option>4 year</option>  
+                    <option>5 year</option>  
+                    <option>More Than 5 year</option>  
+                  </select>
                 </div>
               </div>
               <div class="input-text">

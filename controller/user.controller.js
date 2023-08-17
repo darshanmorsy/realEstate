@@ -253,7 +253,7 @@ exports.buy = async (req, res) => {
   var data = await property.find({ category: "sell", active: 1 });
   var cities = await city.find({});
 
-  res.render("buy", { data, cities, profile });
+  res.render("buy", { data, cities, profile }); 
 }
 
 exports.sell_page = async (req, res) => {
@@ -262,10 +262,10 @@ exports.sell_page = async (req, res) => {
   var decodedToken = "";
   if (token) {
     decodedToken = jwt.verify(token, secretKey);
-  }
+  } 
   var profile = await user.findOne({ _id: decodedToken._id });
   var cities = await city.find({});
-  res, res.render("sellform", { profile, cities });
+  res.render("sellform", {cities});
 }
 
 exports.rents = async (req, res) => {
@@ -290,10 +290,10 @@ exports.singleproperty = async (req, res) => {
   if (token) {
     decodedToken = jwt.verify(token, secretKey);
   }
-  var profile = await user.findOne({ _id: decodedToken._id });
-  var data = await property.findOne({ _id: req.params.id });
+  // var profile = await user.findOne({ _id: decodedToken._id });
+  var data = await property.findOne({ _id:req.params.id});
   // var contacts = await contact.find({});
-  res.render("singleproperty", { data});
+  res.render("singleproperty",{ data});
 }
 
 // property details form, post method

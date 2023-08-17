@@ -18,7 +18,7 @@ const {
   rents,
   singleproperty,
   contact,
-  propertDetails,
+  propertDetails, 
   allproperty,
   rent_buy_property,
   filterpost,
@@ -42,7 +42,7 @@ router.get("/property", property)
 router.get("/buy", user_token, buy)
 router.get("/rents", user_token, rents)
 router.get("/sellpage", sell_page)
-router.get("/property/:id", singleproperty)
+router.get("/property/:id/:sp", singleproperty)
 router.post("/filters", user_token, filterpost)
 router.get("/housetype/:housetype", user_token, housetype)
 
