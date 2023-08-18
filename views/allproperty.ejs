@@ -1,89 +1,353 @@
 <%-include('header')%>
+    <style>
+        /* Import Google Font - Poppins */
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
-<section class="d-flex container">
-    <div class="col-xl-3">
-        <div style="top:25%;" class="shadow-lg position-fixed position-fixed">
-            
-            
+        .wrapper {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px 25px 40px;
+        }
 
-        </div>
-    </div>
-    <div class="col-xl-8 d-flex flex-column m-lg-0">
-        <div>
-            <%for(var i of data){%>
-                <div class="mt-5 p-2 rounded-3 me-5" style="background-color: #e2e2e2;">
-                    <h2 class="fs-5 fw-normal" style="text-transform: capitalize;"><%=i.projectName%>,<%=i.city%></h2>
-                    <p>uma nilkanth vyayamshala thane west Explore Nearby</p>
-                </div>  
-            <div class="d-flex p-1 mt-1 bg-transparent">
-                <div class="d-flex shadow-lg justify-content-center col-5 rounded-3 overflow-hidden" style="height:400px;">
-                    <img src="<%=i.property_image[0]%>" class="rounded-3" >
+        .price-input {
+            width: 100%;
+            display: flex;
+            margin: 10px 0;
+        }
+
+        .price-input .field {
+            display: flex;
+            width: 100%;
+            height: 45px;
+            margin: 0 10px;
+            align-items: center;
+        }
+
+        .field input {
+            width: 100%;
+            height: 100%;
+            outline: none;
+            font-size: 19px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            border: 1px solid #999;
+            -moz-appearance: textfield;
+        }
+
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+
+        .price-input .separator {
+            width: 130px;
+            display: flex;
+            font-size: 19px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slider {
+            height: 5px;
+            position: relative;
+            background: #ddd;
+            border-radius: 5px;
+        }
+
+        .slider .progress {
+            height: 100%;
+            left: 0%;
+            right: 0%;
+            position: absolute;
+            border-radius: 5px;
+            background: #006CB5;
+        }
+
+        .range-input {
+            position: relative;
+        }
+
+        .range-input input {
+            position: absolute;
+            width: 100%;
+            height: 5px;
+            top: -5px;
+            background: none;
+            pointer-events: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            height: 17px;
+            width: 17px;
+            border-radius: 50%;
+            background: #006CB5;
+            pointer-events: auto;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            height: 17px;
+            width: 17px;
+            border: none;
+            border-radius: 50%;
+            background: #17a2b8;
+            pointer-events: auto;
+            -moz-appearance: none;
+        }
+
+        /* Support */
+    </style>
+
+    <section class="d-flex filters container">
+        <div class="col-xl-3">
+            <div style="top:18%;" class="shadow-lg col-lg-2 position-fixed position-fixed">
+
+                <div id="tabs">
+                    <ul class="nav d-flex nav-tabs" id="user-nav-tabs">
+                        <li role="presentation" class="active col-6 text-center"><a href="#c1"
+                                class="p-3 px-4 d-block tab-bt" style="border-top-left-radius: 5px;">Buy</a>
+                        </li>
+                        <li role="presentation" class="col-6 text-center"><a href="#c2"
+                                class="p-3 px-4 d-block tab-bt">Rent</a>
+                        </li>
+                    </ul>
                 </div>
-                <div class="py-3 col-lg-7 d-flex align-items-center">
-                    <div class="shadow-lg col-12 bg-white rounded-3" style="transform: translateX(-40px); z-index: 59;">
-                    
-                        <div class="d-flex justify-content-between">
-                            <div class="text-center bg-grey p-3">
-                                <h3 class="fw-bold">$82 lacs</h3>
-                                <p>€13,667 per sq.ft.</p>
+                <div id="content">
+                    <div id="content1">
+                        <form action="/user/mainfilter" method="post">
+                            <div class="d-flex flex-wrap px-4 justify-content-between">
+
+                                <input type="checkbox" name="rooms" value="1 RK" class="btn-check"
+                                    id="btn-check-1-outlined" autocomplete="off">
+                                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-1-outlined">1 RK
+                                    &nbsp;</label>
+
+                                <input type="checkbox" name="rooms" value="1 BHK" class="btn-check"
+                                    id="btn-check-2-outlined" autocomplete="off">
+                                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-2-outlined">1
+                                    BHK</label>
+
+                                <input type="checkbox" name="rooms" value="2 BHK" class="btn-check"
+                                    id="btn-check-3-outlined" autocomplete="off">
+                                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-3-outlined">2
+                                    BHK</label>
+
+                                <input type="checkbox" name="rooms" value="3 BHK" class="btn-check"
+                                    id="btn-check-4-outlined" autocomplete="off">
+                                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-4-outlined">3
+                                    BHK</label>
+
+                                <input type="checkbox" name="rooms" value="4 BHK" class="btn-check"
+                                    id="btn-check-5-outlined" autocomplete="off">
+                                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-5-outlined">4
+                                    BHK</label>
+
+                                <input type="checkbox" name="rooms" value="5 BHK" class="btn-check"
+                                    id="btn-check-6-outlined" autocomplete="off">
+                                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-6-outlined">5
+                                    BHK</label>
+
                             </div>
-                            <div class="bg-dark my-3" style="width: 1px;"></div>
-                            <div class="text-center p-3">
-                                <h3 class="fw-bold">$82 lacs</h3>
-                                <p>€13,667 per sq.ft.</p>
-                            </div>
-                            <div class="bg-dark my-3" style="width: 1px;"></div>
-                            <div class="text-center p-3">
-                                <h3 class="fw-bold">$82 lacs</h3>
-                                <p>€13,667 per sq.ft.</p>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="p-3 d-flex justify-content-between">
-                            <div style="background-color: #dbdbdb; border: 1.9px solid rgb(184, 184, 184);" class="d-flex p-2 w-100 mx-2 rounded-3">
-                                <i class="fa-regular fs-1 fa-compass"></i>
-                                <div class="ps-3">
-                                    <h2 style="font-weight: 500;"><%=i.facing%></h2>
-                                    <p>Facing</p>
+                            <div class="d-flex mt-3">
+                                <div class="wrapper">
+                                    <div class="slider">
+                                        <div class="progress"></div>
+                                    </div>
+                                    <div class="range-input">
+                                        <input type="range" class="range-min" min="1000" max="10000000" value="1000" step="1000">
+                                        <input type="range" class="range-max" min="1000" max="10000000" value="10000000" step="1000">
+                                        
+                                    </div>
+                                    <div class="price-input">
+                                        <div class="field flex-column">
+                                            <span>Min</span>
+                                            <input type="number" name="greaterrange" class="input-min" value="1000">
+                                        </div>
+                                        <div class="field flex-column">
+                                            <span>Max</span>
+                                            <input type="number" name="lessrange" class="input-max" value="10000000">
+                                            <!-- <input type="number" class="input-max" value="7500"> -->
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="d-flex p-2 w-100 mx-2 rounded-3">
-                                <i class="fa-solid fs-1 fa-door-open"></i>
-                                <div class="ps-3">
-                                    <h2 style="font-weight: 500;"><%=i.rooms%></h2>
-                                    <p>Rooms</p>
-                                </div>
+                            <h3 class="text-theme-blue fs-5 fw-bold ps-4">Furnishing</h3>
+                            <div class="d-flex justify-content-between px-4 mt-4">
+                           <input type="radio" name="furnishing" value="fully" class="btn-check"
+                                id="btn-check-8-outlined" autocomplete="off">
+                            <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-8-outlined">◉ Fully</label>
+
+                            <input type="radio" name="furnishing" value="Semi Furnished" class="btn-check"
+                                id="btn-check-7-outlined" autocomplete="off">
+                            <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-7-outlined">◉ Semi</label>
+                            <input type="radio" name="furnishing" value="none" class="btn-check"
+                                id="btn-check-9-outlined" autocomplete="off">
+                            <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-9-outlined">◉ none</label>
                             </div>
-                        </div>
-                        <div class="p-3 d-flex justify-content-between">
-                            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="d-flex p-2 w-100 mx-2 rounded-3">
-                                <i class="fa-solid fs-1 fa-person-booth"></i>
-                                <div class="ps-3">
-                                    <h2 style="font-weight: 500;"><%=i.bathroom%></h2>
-                                    <p>Bathroom</p>
-                                </div>
+                          
+                          
+                          
+                          
+                            <div class="text-center">
+                                <button class="theme-blue p-1 text-white rounded-pill ps-3 my-3">search<i
+                                        class="fa-solid ms-2 rounded-circle fa-magnifying-glass p-2 bg-white text-theme-blue"></i></button>
                             </div>
-                            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="d-flex p-2 w-100 mx-2 rounded-3">
-                                <i class="fa-solid fs-1 fa-car"></i>
-                                <div class="ps-3">
-                                    <h2 style="font-weight: 500;">Bike and Car</h2>
-                                    <p>Parking</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-3 pt-0">
-                            <a href="/user/property/<%=i.id%>/sp" style="width: fit-content;" class="theme-blue d-block rounded-pill ps-3 pe-1 text-white py-1">explore more <i class="fa-solid fa-angles-right text-theme-blue bg-white p-2 rounded-pill"></i></a>
-                        </div>
+                        </form>
+                    </div>
+
+
+
+                    <div id="content2">
+                        dfdf
                     </div>
                 </div>
             </div>
-            <%}%>
         </div>
-    </div>
-    <!-- <%=data%> -->
-    <!-- <div class="col-xl-2"> -->
+        </div>
+        </div>
+        <div class="col-xl-8 d-flex flex-column m-lg-0">
+            <div>
+                <%for(var i of data){%>
+                    <div class="mt-5 p-2 rounded-3 me-5" style="background-color: #e2e2e2;">
+                        <h2 class="fs-5 fw-normal" style="text-transform: capitalize;">
+                            <%=i.projectName%>,<%=i.city%>
+                        </h2>
+                        <p>uma nilkanth vyayamshala thane west Explore Nearby</p>
+                    </div>
+                    <div class="d-flex p-1 mt-1 bg-transparent">
+                        <div class="d-flex shadow-lg justify-content-center col-5 rounded-3 overflow-hidden"
+                            style="height:400px;">
+                            <img src="<%=i.property_image[0]%>" class="rounded-3">
+                        </div>
+                        <div class="py-3 col-lg-7 d-flex align-items-center">
+                            <div class="shadow-lg col-12 bg-white rounded-3"
+                                style="transform: translateX(-40px); z-index: 59;">
 
-    <!-- </div> -->
-</section>
+                                <div class="d-flex justify-content-between">
+                                    <div class="text-center bg-grey p-3">
+                                        <h3 class="fw-bold">$82 lacs</h3>
+                                        <p>€13,667 per sq.ft.</p>
+                                    </div>
+                                    <div class="bg-dark my-3" style="width: 1px;"></div>
+                                    <div class="text-center p-3">
+                                        <h3 class="fw-bold">$82 lacs</h3>
+                                        <p>€13,667 per sq.ft.</p>
+                                    </div>
+                                    <div class="bg-dark my-3" style="width: 1px;"></div>
+                                    <div class="text-center p-3">
+                                        <h3 class="fw-bold">$82 lacs</h3>
+                                        <p>€13,667 per sq.ft.</p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="p-3 d-flex justify-content-between">
+                                    <div style="background-color: #dbdbdb; border: 1.9px solid rgb(184, 184, 184);"
+                                        class="d-flex p-2 w-100 mx-2 rounded-3">
+                                        <i class="fa-regular fs-1 fa-compass"></i>
+                                        <div class="ps-3">
+                                            <h2 style="font-weight: 500;">
+                                                <%=i.facing%>
+                                            </h2>
+                                            <p>Facing</p>
+                                        </div>
+                                    </div>
+                                    <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);"
+                                        class="d-flex p-2 w-100 mx-2 rounded-3">
+                                        <i class="fa-solid fs-1 fa-door-open"></i>
+                                        <div class="ps-3">
+                                            <h2 style="font-weight: 500;">
+                                                <%=i.rooms%>
+                                            </h2>
+                                            <p>Rooms</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-3 d-flex justify-content-between">
+                                    <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);"
+                                        class="d-flex p-2 w-100 mx-2 rounded-3">
+                                        <i class="fa-solid fs-1 fa-person-booth"></i>
+                                        <div class="ps-3">
+                                            <h2 style="font-weight: 500;">
+                                                <%=i.bathroom%>
+                                            </h2>
+                                            <p>Bathroom</p>
+                                        </div>
+                                    </div>
+                                    <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);"
+                                        class="d-flex p-2 w-100 mx-2 rounded-3">
+                                        <i class="fa-solid fs-1 fa-car"></i>
+                                        <div class="ps-3">
+                                            <h2 style="font-weight: 500;">Bike and Car</h2>
+                                            <p>Parking</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="p-3 pt-0">
+                                    <a href="/user/property/<%=i.id%>/sp" style="width: fit-content;"
+                                        class="theme-blue d-block rounded-pill ps-3 pe-1 text-white py-1">explore more
+                                        <i
+                                            class="fa-solid fa-angles-right text-theme-blue bg-white p-2 rounded-pill"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <%}%>
+            </div>
+        </div>
+        <!-- <%=data%> -->
+        <!-- <div class="col-xl-2"> -->
 
-<%-include('footer')%>
+        <!-- </div> -->
+    </section>
+    <script>
+const rangeInput = document.querySelectorAll(".range-input input"),
+    priceInput = document.querySelectorAll(".price-input input"),
+    range = document.querySelector(".slider .progress");
+let priceGap = 1000;
+
+priceInput.forEach((input) => {
+    input.addEventListener("input", (e) => {
+        let minPrice = parseInt(priceInput[0].value),
+            maxPrice = parseInt(priceInput[1].value);
+
+        if (maxPrice - minPrice >= priceGap && maxPrice <= rangeInput[1].max) {
+            if (e.target.className === "input-min") {
+                rangeInput[0].value = minPrice;
+                range.style.left = ((minPrice - rangeInput[0].min) / (rangeInput[0].max - rangeInput[0].min)) * 100 + "%";
+            } else {
+                rangeInput[1].value = maxPrice;
+                range.style.right = 100 - ((maxPrice - rangeInput[1].min) / (rangeInput[1].max - rangeInput[1].min)) * 100 + "%";
+            }
+        }
+    });
+});
+
+rangeInput.forEach((input) => {
+    input.addEventListener("input", (e) => {
+        let minVal = parseInt(rangeInput[0].value),
+            maxVal = parseInt(rangeInput[1].value);
+
+        if (maxVal - minVal < priceGap) {
+            if (e.target.className === "range-min") {
+                rangeInput[0].value = maxVal - priceGap;
+            } else {
+                rangeInput[1].value = minVal + priceGap;
+            }
+        } else {
+            priceInput[0].value = minVal;
+            priceInput[1].value = maxVal;
+            range.style.left = ((minVal - rangeInput[0].min) / (rangeInput[0].max - rangeInput[0].min)) * 100 + "%";
+            range.style.right = 100 - ((maxVal - rangeInput[1].min) / (rangeInput[1].max - rangeInput[1].min)) * 100 + "%";
+
+            // Adjust the width of the progress bar
+            range.style.width = ((maxVal - minVal) / (rangeInput[1].max - rangeInput[0].min)) * 100 + "%";
+        }
+    });
+});
+
+
+    </script>
+    <%-include('footer')%>

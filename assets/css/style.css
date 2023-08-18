@@ -124,11 +124,6 @@ a {
 #content3 {
   display: none;
 }
-.tab-bt:focus {
-  background-color: #006cb5;
-  color: #ffffff;
-  font-weight: 600;
-}
 
 body .testimonial .row .tabs {
   all: unset;
@@ -727,4 +722,13 @@ select{
            
      display: none;
     }
+}
+
+.filters .active {
+  background-color: white !important;
+  color: #006cb5 !important;
+  border-bottom:2px solid #006cb5 !important;
+  font-weight: 700;
+  box-shadow: 3px 2px 4px 0px rgba(0, 0, 0, 0.10);
+
 }

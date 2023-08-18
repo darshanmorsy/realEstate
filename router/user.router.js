@@ -49,9 +49,9 @@ router.get("/housetype/:housetype", user_token, housetype)
 router.get("/login", login)
 router.get("/register", register)
 
-router.post( 
-  "/propertyDetails",
-  user_token,
+router.post(  
+  "/propertyDetails", 
+  
   image_upload.array("property_image"),
   propertDetails
 )
