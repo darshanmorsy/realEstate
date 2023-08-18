@@ -50,8 +50,7 @@ router.get("/login", login)
 router.get("/register", register)
 
 router.post(  
-  "/propertyDetails", 
-  
+  "/propertyDetails",user_token,
   image_upload.array("property_image"),
   propertDetails
 )

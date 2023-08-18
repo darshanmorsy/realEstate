@@ -101,8 +101,101 @@
         /* Support */
     </style>
 
+
+<button class="theme-blue text-white p-3 d-block d-xl-none position-fixed" style="top: 30%; border-top-right-radius: 50px;border-bottom-right-radius: 50px;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+    <i class="fa-solid fa-filter fa-flip"></i>
+</button>
+  
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <form action="/user/mainfilter" method="post">
+            <div class="d-flex flex-wrap px-4 justify-content-between">
+                <input type="checkbox" name="rooms" value="1 RK" class="btn-check"
+                    id="btn-check-1-outlined" autocomplete="off">
+                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-1-outlined">1 RK
+                    &nbsp;</label>
+
+                <input type="checkbox" name="rooms" value="1 BHK" class="btn-check"
+                    id="btn-check-2-outlined" autocomplete="off">
+                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-2-outlined">1
+                    BHK</label>
+
+                <input type="checkbox" name="rooms" value="2 BHK" class="btn-check"
+                    id="btn-check-3-outlined" autocomplete="off">
+                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-3-outlined">2
+                    BHK</label>
+
+                <input type="checkbox" name="rooms" value="3 BHK" class="btn-check"
+                    id="btn-check-4-outlined" autocomplete="off">
+                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-4-outlined">3
+                    BHK</label>
+
+                <input type="checkbox" name="rooms" value="4 BHK" class="btn-check"
+                    id="btn-check-5-outlined" autocomplete="off">
+                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-5-outlined">4
+                    BHK</label>
+
+                <input type="checkbox" name="rooms" value="5 BHK" class="btn-check"
+                    id="btn-check-6-outlined" autocomplete="off">
+                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-6-outlined">5
+                    BHK</label>
+
+            </div>
+            <div class="d-flex mt-3">
+                <div class="wrapper">
+                    <div class="slider">
+                        <div class="progress"></div>
+                    </div>
+                    <div class="range-input">
+                        <input type="range" class="range-min" min="1000" max="10000000" value="1000" step="1000">
+                        <input type="range" class="range-max" min="1000" max="10000000" value="10000000" step="1000">
+                        
+                    </div>
+                    <div class="price-input">
+                        <div class="field flex-column">
+                            <span>Min</span>
+                            <input type="number" name="greaterrange" class="input-min" value="1000">
+                        </div>
+                        <div class="field flex-column">
+                            <span>Max</span>
+                            <input type="number" name="lessrange" class="input-max" value="10000000">
+                            <!-- <input type="number" class="input-max" value="7500"> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3 class="text-theme-blue fs-5 fw-bold ps-4">Furnishing</h3>
+            <div class="d-flex justify-content-between px-4 mt-4">
+           <input type="radio" name="furnishing" value="fully" class="btn-check"
+                id="btn-check-8-outlined" autocomplete="off">
+            <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-8-outlined">◉ Fully</label>
+
+            <input type="radio" name="furnishing" value="Semi Furnished" class="btn-check"
+                id="btn-check-7-outlined" autocomplete="off">
+            <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-7-outlined">◉ Semi</label>
+            <input type="radio" name="furnishing" value="none" class="btn-check"
+                id="btn-check-9-outlined" autocomplete="off">
+            <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-9-outlined">◉ none</label>
+            </div>
+          
+          
+          
+          
+            <div class="text-center">
+                <button class="theme-blue p-1 text-white rounded-pill ps-3 my-3">search<i
+                        class="fa-solid ms-2 rounded-circle fa-magnifying-glass p-2 bg-white text-theme-blue"></i></button>
+            </div>
+        </form>
+    </div>
+  </div>
+
+
     <section class="d-flex filters container">
-        <div class="col-xl-3">
+        <div class="col-xl-3 d-xl-block d-none">
             <div style="top:18%;" class="shadow-lg col-lg-2 position-fixed position-fixed">
 
                 <div id="tabs">
@@ -208,7 +301,7 @@
         </div>
         </div>
         </div>
-        <div class="col-xl-8 d-flex flex-column m-lg-0">
+        <div class="col-xl-8 col-12 d-flex flex-column m-lg-0">
             <div>
                 <%for(var i of data){%>
                     <div class="mt-5 p-2 rounded-3 me-5" style="background-color: #e2e2e2;">
@@ -217,8 +310,8 @@
                         </h2>
                         <p>uma nilkanth vyayamshala thane west Explore Nearby</p>
                     </div>
-                    <div class="d-flex p-1 mt-1 bg-transparent">
-                        <div class="d-flex shadow-lg justify-content-center col-5 rounded-3 overflow-hidden"
+                    <div class="d-flex flex-wrap p-1 mt-1 bg-transparent">
+                        <div class="d-flex shadow-lg justify-content-center col-12 col-lg-5 rounded-3 overflow-hidden"
                             style="height:400px;">
                             <img src="<%=i.property_image[0]%>" class="rounded-3">
                         </div>
