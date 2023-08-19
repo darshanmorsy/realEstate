@@ -1,4 +1,4 @@
-<%-include('header')%>
+    <%-include('header')%>
     <style>
         /* Import Google Font - Poppins */
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
@@ -111,7 +111,7 @@
     <i class="fa-solid fa-filter fa-flip"></i>
 </button>
   
-  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div style="z-index: 34677563452353;" class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -174,7 +174,7 @@
                 </div>
             </div>
             <h3 class="text-theme-blue fs-5 fw-bold ps-4">Furnishing</h3>
-            <div class="d-flex justify-content-between px-4 mt-4">
+            <div class="d-flex justify-content-between px-4">
            <input type="radio" name="furnishing" value="fully" class="btn-check"
                 id="btn-check-8-outlined" autocomplete="off">
             <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-8-outlined">◉ Fully</label>
@@ -187,7 +187,38 @@
             <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-9-outlined">◉ none</label>
             </div>
           
-          
+            <h3 class="text-theme-blue fs-5 fw-bold ps-4 mt-3">House Type</h3>
+                          
+            <div class="d-flex flex-wrap px-4 justify-content-between">
+
+                <input type="checkbox" name="house_type" value="FarmHouse" class="btn-check"
+                id="btn-check-667-outlined" autocomplete="off">
+            <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-667-outlined">FarmHouse</label>
+
+                <input type="checkbox" name="house_type" value="Flat" class="btn-check"
+                id="btn-check-455-outlined" autocomplete="off">
+            <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-455-outlined">flat</label>
+
+
+                <input type="checkbox" name="house_type" value="Industrial" class="btn-check"
+                    id="btn-check-383-outlined" autocomplete="off">
+                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-383-outlined">Industrial</label>
+
+               
+
+                <input type="checkbox" name="house_type" value="Commercial" class="btn-check"
+                    id="btn-check-58-outlined" autocomplete="off">
+                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-58-outlined">Commercial</label>
+
+                <input type="checkbox" name="house_type" value="Shop" class="btn-check"
+                id="btn-check-227-outlined" autocomplete="off">
+            <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-227-outlined">shop </label>
+
+            <input type="checkbox" name="house_type" value="House" class="btn-check"
+            id="btn-check-115-outlined" autocomplete="off">
+        <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-115-outlined">House&nbsp;</label>
+
+            </div>
           
           
             <div class="text-center">
@@ -200,23 +231,22 @@
 
 
     <section class="d-flex filters container">
-        <div class="col-xl-3 d-xl-block d-none">
-            <div style="top:18%;" class="shadow-lg col-lg-2 position-fixed position-fixed">
-
+        <div class="col-xl-3 mt-2 d-xl-block d-none">
+            <div class="shadow-lg col-11">
                 <div id="tabs">
                     <ul class="nav d-flex nav-tabs" id="user-nav-tabs">
                         <li role="presentation" class="active col-6 text-center"><a href="#c1"
-                                class="p-3 px-4 d-block tab-bt" style="border-top-left-radius: 5px;">Buy</a>
+                                class="p-3 px-4 d-block tab-bt" style="border-top-left-radius: 5px;">Filter</a>
                         </li>
                         <li role="presentation" class="col-6 text-center"><a href="#c2"
-                                class="p-3 px-4 d-block tab-bt">Rent</a>
+                                class="p-3 px-4 d-block tab-bt">Premium</a>
                         </li>
                     </ul>
                 </div>
                 <div id="content">
                     <div id="content1">
                         <form action="/user/mainfilter" method="post">
-                            <input type="text" name="category" value="sell" hidden>
+                            <!-- <input type="text" name="category" value="sell" hidden> -->
 
                             <div class="d-flex flex-wrap px-4 justify-content-between">
 
@@ -275,7 +305,7 @@
                                 </div>
                             </div>
                             <h3 class="text-theme-blue fs-5 fw-bold ps-4">Furnishing</h3>
-                            <div class="d-flex justify-content-between px-4 mt-4">
+                            <div class="d-flex justify-content-between px-4 mt-1">
                            <input type="radio" name="furnishing" value="fully" class="btn-check"
                                 id="btn-check-8-outlined" autocomplete="off">
                             <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-8-outlined">◉ Fully</label>
@@ -288,8 +318,38 @@
                             <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-9-outlined">◉ none</label>
                             </div>
                           
+                            <h3 class="text-theme-blue fs-5 fw-bold ps-4 mt-3">House Type</h3>
                           
-                          
+                            <div class="d-flex flex-wrap px-4 justify-content-between">
+
+                                <input type="checkbox" name="house_type" value="FarmHouse" class="btn-check"
+                                id="btn-check-667-outlined" autocomplete="off">
+                            <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-667-outlined">FarmHouse</label>
+
+                                <input type="checkbox" name="house_type" value="Flat" class="btn-check"
+                                id="btn-check-455-outlined" autocomplete="off">
+                            <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-455-outlined">flat</label>
+
+
+                                <input type="checkbox" name="house_type" value="Industrial" class="btn-check"
+                                    id="btn-check-383-outlined" autocomplete="off">
+                                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-383-outlined">Industrial</label>
+
+                               
+
+                                <input type="checkbox" name="house_type" value="Commercial" class="btn-check"
+                                    id="btn-check-58-outlined" autocomplete="off">
+                                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-58-outlined">Commercial</label>
+
+                                <input type="checkbox" name="house_type" value="Shop" class="btn-check"
+                                id="btn-check-227-outlined" autocomplete="off">
+                            <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-227-outlined">shop </label>
+
+                            <input type="checkbox" name="house_type" value="House" class="btn-check"
+                            id="btn-check-115-outlined" autocomplete="off">
+                        <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-115-outlined">House&nbsp;</label>
+
+                            </div>
                           
                             <div class="text-center">
                                 <button class="theme-blue p-1 text-white rounded-pill ps-3 my-3">search<i
@@ -301,86 +361,9 @@
 
 
                     <div id="content2">
-                        <form action="/user/mainfilter" method="post">
-                            <input type="text" name="category" value="rent" hidden>
-                            <div class="d-flex flex-wrap px-4 justify-content-between">
-                                
-                                <input type="checkbox" name="rooms" value="1 RK" class="btn-check"
-                                id="btn-check-1-outlined" autocomplete="off">
-                                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-1-outlined">1 RK
-                                    &nbsp;</label>
-
-                                <input type="checkbox" name="rooms" value="1 BHK" class="btn-check"
-                                    id="btn-check-2-outlined" autocomplete="off">
-                                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-2-outlined">1
-                                    BHK</label>
-
-                                <input type="checkbox" name="rooms" value="2 BHK" class="btn-check"
-                                    id="btn-check-3-outlined" autocomplete="off">
-                                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-3-outlined">2
-                                    BHK</label>
-
-                                <input type="checkbox" name="rooms" value="3 BHK" class="btn-check"
-                                    id="btn-check-4-outlined" autocomplete="off">
-                                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-4-outlined">3
-                                    BHK</label>
-
-                                <input type="checkbox" name="rooms" value="4 BHK" class="btn-check"
-                                    id="btn-check-5-outlined" autocomplete="off">
-                                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-5-outlined">4
-                                    BHK</label>
-
-                                <input type="checkbox" name="rooms" value="5 BHK" class="btn-check"
-                                    id="btn-check-6-outlined" autocomplete="off">
-                                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-6-outlined">5
-                                    BHK</label>
-
-                            </div>
-                            <div class="d-flex mt-3">
-                                <div class="wrapper">
-                                    <div class="slider">
-                                        <div class="progress"></div>
-                                    </div>
-                                    <div class="range-input">
-                                        <input type="range" class="range-min" min="1000" max="10000000" value="1000" step="1000">
-                                        <input type="range" class="range-max" min="1000" max="10000000" value="10000000" step="1000">
-                                        
-                                    </div>
-                                    <div class="price-input">
-                                        <div class="field flex-column">
-                                            <span>Min</span>
-                                            <input type="number" name="greaterrange" class="input-min" value="1000">
-                                        </div>
-                                        <div class="field flex-column">
-                                            <span>Max</span>
-                                            <input type="number" name="lessrange" class="input-max" value="10000000">
-                                            <!-- <input type="number" class="input-max" value="7500"> -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <h3 class="text-theme-blue fs-5 fw-bold ps-4">Furnishing</h3>
-                            <div class="d-flex justify-content-between px-4 mt-4">
-                           <input type="radio" name="furnishing" value="fully" class="btn-check"
-                                id="btn-check-8-outlined" autocomplete="off">
-                            <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-8-outlined">◉ Fully</label>
-
-                            <input type="radio" name="furnishing" value="Semi Furnished" class="btn-check"
-                                id="btn-check-7-outlined" autocomplete="off">
-                            <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-7-outlined">◉ Semi</label>
-                            <input type="radio" name="furnishing" value="none" class="btn-check"
-                                id="btn-check-9-outlined" autocomplete="off">
-                            <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-9-outlined">◉ none</label>
-                            </div>
-                          
-                          
-                          
-                          
-                            <div class="text-center">
-                                <button class="theme-blue p-1 text-white rounded-pill ps-3 my-3">search<i
-                                        class="fa-solid ms-2 rounded-circle fa-magnifying-glass p-2 bg-white text-theme-blue"></i></button>
-                            </div>
-                        </form>
+                       <div class="d-flex p-5 m-5 justify-content-center align-items-center">
+                        <h4 class="my-5 fs-5 py-5 text-theme-blue fw-bold"> comming soon</h4>
+                       </div>
                     </div>
                 </div>
             </div>
@@ -390,7 +373,7 @@
         <div class="col-xl-8 col-12 d-flex flex-column m-lg-0">
             <div>
                 <%for(var i of data){%>
-                    <div class="mt-5 p-2 rounded-3 me-lg-5" style="background-color: #e2e2e2;">
+                    <div class="mt-2 p-2 rounded-3 me-lg-5" style="background-color: #e2e2e2;">
                         <h2 class="fs-5 fw-normal" style="text-transform: capitalize;">
                             <%=i.projectName%>,<%=i.city%>
                         </h2>
@@ -480,52 +463,52 @@
         <!-- <div class="col-xl-2"> -->
 
         <!-- </div> -->
-    </section>
+    </section>   
     <script>
-const rangeInput = document.querySelectorAll(".range-input input"),
-    priceInput = document.querySelectorAll(".price-input input"),
-    range = document.querySelector(".slider .progress");
-let priceGap = 1000;
+        const rangeInput = document.querySelectorAll(".range-input input"),
+            priceInput = document.querySelectorAll(".price-input input"),
+            range = document.querySelector(".slider .progress");
+        let priceGap = 1000;
 
-priceInput.forEach((input) => {
-    input.addEventListener("input", (e) => {
-        let minPrice = parseInt(priceInput[0].value),
-            maxPrice = parseInt(priceInput[1].value);
+        priceInput.forEach((input) => {
+            input.addEventListener("input", (e) => {
+                let minPrice = parseInt(priceInput[0].value),
+                    maxPrice = parseInt(priceInput[1].value);
 
-        if (maxPrice - minPrice >= priceGap && maxPrice <= rangeInput[1].max) {
-            if (e.target.className === "input-min") {
-                rangeInput[0].value = minPrice;
-                range.style.left = ((minPrice - rangeInput[0].min) / (rangeInput[0].max - rangeInput[0].min)) * 100 + "%";
-            } else {
-                rangeInput[1].value = maxPrice;
-                range.style.right = 100 - ((maxPrice - rangeInput[1].min) / (rangeInput[1].max - rangeInput[1].min)) * 100 + "%";
-            }
-        }
-    });
-});
+                if (maxPrice - minPrice >= priceGap && maxPrice <= rangeInput[1].max) {
+                    if (e.target.className === "input-min") {
+                        rangeInput[0].value = minPrice;
+                        range.style.left = ((minPrice - rangeInput[0].min) / (rangeInput[0].max - rangeInput[0].min)) * 100 + "%";
+                    } else {
+                        rangeInput[1].value = maxPrice;
+                        range.style.right = 100 - ((maxPrice - rangeInput[1].min) / (rangeInput[1].max - rangeInput[1].min)) * 100 + "%";
+                    }
+                }
+            });
+        });
 
-rangeInput.forEach((input) => {
-    input.addEventListener("input", (e) => {
-        let minVal = parseInt(rangeInput[0].value),
-            maxVal = parseInt(rangeInput[1].value);
+        rangeInput.forEach((input) => {
+            input.addEventListener("input", (e) => {
+                let minVal = parseInt(rangeInput[0].value),
+                    maxVal = parseInt(rangeInput[1].value);
 
-        if (maxVal - minVal < priceGap) {
-            if (e.target.className === "range-min") {
-                rangeInput[0].value = maxVal - priceGap;
-            } else {
-                rangeInput[1].value = minVal + priceGap;
-            }
-        } else {
-            priceInput[0].value = minVal;
-            priceInput[1].value = maxVal;
-            range.style.left = ((minVal - rangeInput[0].min) / (rangeInput[0].max - rangeInput[0].min)) * 100 + "%";
-            range.style.right = 100 - ((maxVal - rangeInput[1].min) / (rangeInput[1].max - rangeInput[1].min)) * 100 + "%";
+                if (maxVal - minVal < priceGap) {
+                    if (e.target.className === "range-min") {
+                        rangeInput[0].value = maxVal - priceGap;
+                    } else {
+                        rangeInput[1].value = minVal + priceGap;
+                    }
+                } else {
+                    priceInput[0].value = minVal;
+                    priceInput[1].value = maxVal;
+                    range.style.left = ((minVal - rangeInput[0].min) / (rangeInput[0].max - rangeInput[0].min)) * 100 + "%";
+                    range.style.right = 100 - ((maxVal - rangeInput[1].min) / (rangeInput[1].max - rangeInput[1].min)) * 100 + "%";
 
-            // Adjust the width of the progress bar
-            range.style.width = ((maxVal - minVal) / (rangeInput[1].max - rangeInput[0].min)) * 100 + "%";
-        }
-    });
-});
+                    // Adjust the width of the progress bar
+                    range.style.width = ((maxVal - minVal) / (rangeInput[1].max - rangeInput[0].min)) * 100 + "%";
+                }
+            });
+        });
 
 
     </script>

@@ -56,7 +56,7 @@ router.post(
 )
 
 router.post(
-  "/updateproperty",
+  "/updateproperty", 
   user_token,
   image_upload.array("property_image"),
   update_property
