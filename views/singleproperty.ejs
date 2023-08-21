@@ -253,19 +253,28 @@
       <section>
         <h2 class="text-theme-blue my-5 fs-2 fw-bold">Disclaimer</h2>
         <div class="col-lg-7">
-       <div class="shadow-lg p-4 ">
-        <%=data.disclaimer%>
+          <div class="shadow-lg p-4 ">
+            <%=data.disclaimer%>
        </div>
-        </div>
-        </section>
-
-
-        <section>
-          <form action="/user/contact/<%=data.id%>" method="post">
-            <input type="text" name="name">
-            <input type="text" name="mobile">
-            <input type="text" name="address">
-            <input type="submit" value="SUBMIT">
+      </div>
+    </section>
+    
+    
+    <section>
+          <h2 class="text-theme-blue my-5 fs-2 fw-bold">Contact Property</h2>
+          <form action="/user/contact/<%=data.id%>" class="col-12" method="post">
+            <div class="col-lg-5 my-3">
+              <input type="text" name="name" required placeholder="name">
+            </div>
+            <div class="col-lg-5 my-3">
+              <input type="text" name="mobile" required placeholder="mobile">
+            </div>
+            <div class="col-lg-5 my-3">
+              <input type="text" name="address" required placeholder="address">
+            </div>
+            <div class="col-lg-5 my-3">
+              <button class="text-white theme-blue p-1 rounded-pill ps-3">submit <i class="rounded-circle p-2 fa-solid fa-check bg-white text-theme-blue"></i></button>
+            </div>
           </form>
         </section>
     </main>

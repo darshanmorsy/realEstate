@@ -520,6 +520,14 @@
                         </button>
                         </div>
                 </form>
+
+                <div class="col-12 d-flex flex-wrap">
+                <%for(var i of cities){%>  
+                    <div style="background-color: #f0f0f0;  border: 1.9px solid rgb(184, 184, 184);" class="py-1 px-2 mt-3 mx-2 rounded-3">
+                        <p class=""><%=i.city%></p>
+                    </div>
+                    <%}%>
+                </div>
             </section>
 
             <section class="container">

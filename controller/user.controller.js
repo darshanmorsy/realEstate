@@ -477,7 +477,6 @@ exports.contact = async (req, res) =>{
 
   console.log(req.body);
   const {mobile, name, address} = req.body;
-
   if (
     mobile == null ||
     name == null ||
