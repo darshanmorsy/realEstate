@@ -7,6 +7,12 @@ const user = require("../model/user.model");
 var bcrypt = require("bcrypt");
 const admin = require("../model/admin.model");
 
+exports.loginpage=async(req,res)=>{
+
+  res.render('loginpage')
+
+}
+
 exports.login=async(req, res)=>{
 
   try {
@@ -19,10 +25,7 @@ exports.login=async(req, res)=>{
     // console.log("admindata:__", admindata);
 
     if (admindata == null) {
-      res.status(404).json({
-        message: "Sorry! mobile not found",
-        status: 404,
-      });
+      res.redirect('/admin/login')
     } else {
       const isMatched = await bcrypt.compare(password, admindata.password);
       // console.log("isMatched:__", isMatched);
@@ -39,40 +42,42 @@ exports.login=async(req, res)=>{
 
           console.log(`Success! Login Succesfully ${admindata.mobile}`);
 
-          res.status(200).json({
-            message: "Success! Login Succesfully",
-            token: token,
-            status: 200,
-            // id: adminData._id,
-          });
+          res.redirect('/admin');
         } else {
+          
           console.log(`Success! Login Succesfully ${admindata}`);
-          token = admindata.tokens[0]["token"];
+          token = admindata.tokens[0]["token"]
           res.cookie("jwt", token, {
             expires: new Date(Date.now() + 30 * 24 * 3600 * 10000),
-          });
-          res.status(200).json({
-            message: "Success! Login Succesfully",
-            token: admindata.tokens[0].token,
-            status: 200,
-            // id: adminData._id,
-          });
+          })
+          
+          res.redirect('/admin');
+        
         }
       } else {
-        res.status(401).json({
-          message: "Sorry! Password doesn't Match",
-          status: 401,
-        });
+
+       res.redirect('/admin/login')
+        
       }
     }
   } catch (error) {
-    console.log("userlogin:__", error);
+    console.log("userlogin:__", error)
 
     res.status(500).json({
       message: "Sorry! Something Went Wrong (user login)",
       status: 500,
     });
   }
+
+}
+
+
+exports.admin=async(req,res)=>{
+
+  var cities =await city.find({})
+  var contact = await contacts.find({}).sort({ _id: -1 });
+  // console.log(contact);
+  res.render("admin",{cities,contact})
 
 }
 
@@ -106,32 +111,7 @@ exports.requestAccept = async (req, res) => {
   }
 }  
 
-exports.requestDecline = async (req, res) => {
-  console.log(req.params);
-  var properties = await property.findOne({ _id: req.params.id });
 
-  // console.log(properties);
-
-  var cloudinary_id = properties.property_image_id;
-  var property_images = properties.property_image;
-
-  console.log(property_images.length, "oooooooooooooooo", property);
-
-  for (var i = 0; i < property_images.length; i++) {
-    cloudinary.uploader.destroy(cloudinary_id[i], function (error, result) {
-      if (error) {
-        console.log(error);
-      }
-      console.log(result);
-    });
-  }
-  var accept = await property.findByIdAndDelete(req.params.id);
-  if (accept) {
-    res.status(200).json(accept);
-  } else {
-    res.status(200).json({ message: "request not accepted" });
-  }
-}
 
 exports.allproperty = async (req, res) => {
   var data = await property.find();
@@ -143,6 +123,7 @@ exports.allproperty = async (req, res) => {
 }
 
 exports.city = async (req, res) => {
+
   var data = await city.create({ city: req.body.city });
   if (data) {
     res.status(200).json({ message: "city added successfully", data });
@@ -226,7 +207,7 @@ exports.contactdelete = async(req, res) => {
 
       var deletes=await contacts.findByIdAndDelete(req.params.id);
       if(deletes){
-        res.status(200).json({ message:"contact deleted"});
+        res.redirect('back')
       }
     }
 
@@ -234,4 +215,177 @@ exports.contactdelete = async(req, res) => {
     console.log(error);
   }
 
+}
+
+exports.propertDetails = async (req, res) => {
+
+  console.log(req.body, "gggggg");
+
+  try {
+
+    const {
+      address,
+      projectName,
+      price,
+      propertyLife,
+      house_type,
+      size,
+      facilities,
+      carpet_area,
+      super_built_up,
+      project_area,
+      booking_amount,
+      bathroom,
+      residentType,
+      furnishing,
+      property_floor,
+      landmark,
+      builder_details,
+      owner_info,
+      location,
+      disclaimer,
+      category,
+      facing,
+      possession,
+      pincode,
+      saletype,
+      city,
+      rooms,
+      available,
+      built_up_area,
+      listedby,
+      leasttype,
+      powerbackup,
+      scale_type,
+    } = req.body;
+
+    if (
+      address == null ||
+      projectName == null ||
+      price == null ||
+      propertyLife == null ||
+      size == null ||
+      facilities == null ||
+      carpet_area == null ||
+      super_built_up == null ||
+      project_area == null ||
+      booking_amount == null ||
+      furnishing == null ||
+      property_floor == null ||
+      landmark == null ||
+      builder_details == null ||
+      owner_info == null ||
+      location == null ||
+      category == null ||
+      disclaimer == null ||
+      scale_type == null ||
+      house_type == null ||
+      city == null ||
+      rooms == null ||
+      residentType == null ||
+      bathroom == null ||
+      listedby == null ||
+      leasttype == null ||
+      powerbackup == null ||
+      scale_type == null ||
+      built_up_area == null ||
+      available == null ||
+      facing == null ||
+      possession == null ||
+      saletype == null ||
+      pincode == null 
+    ) {
+      if (req.headers.accept == undefined) {
+        res.status(404).json({
+          message:
+            "address,projectName,residentType,city,price,propertyLife,size,facilities,carpet_area,super_built_up,project_area,booking_amount,furnishing,property_floor,landmark,builder_details,owner_info,location,category not found",
+        });
+
+      } else {
+        req.flash("success", "some field is required");
+        res.redirect("back");
+      }
+
+    } else {
+
+      var token = req.headers.authorization || req.cookies.jwt;
+      const secretKey = process.env.SECRET_KEY;
+      var decodedToken = "";
+      if (token) {
+
+        decodedToken = jwt.verify(token, secretKey);
+
+      }
+      const files = req.files;
+      if (files) {
+
+        let property_image = [];
+        for (let file of files) {
+
+          property_image.push("/" + file.filename);
+
+        }
+
+        var data = await property.create({
+          user_id: decodedToken._id,
+          address,
+          projectName,
+          price,
+          property_image,
+          propertyLife,
+          size,
+          bathroom,
+          pincode,
+          facilities,
+          carpet_area,
+          super_built_up,
+          project_area,
+          available,
+          listedby,
+          leasttype,
+          powerbackup,
+          scale_type,
+          booking_amount,
+          residentType,
+          furnishing,
+          property_floor,
+          landmark,
+          builder_details,
+          owner_info,
+          built_up_area,
+          location,
+          scale_type,
+          facing,
+          possession,
+          saletype,
+          house_type,
+          disclaimer,
+          rooms,
+          city,
+          category,
+        });
+
+        if (data) {
+          // console.log("data added successfully", data);
+
+          if (req.headers.accept == undefined) {
+            res.status(200).json({ message: "data added successfully" });
+          } else {
+            req.flash("success", "property added successfully");
+            res.redirect("back");
+          }
+        } else {
+          if (req.headers.accept == undefined) {
+            // console.log("data not added");
+
+            res.status(200).json({ message: "data not added" });
+          }
+          req.flash("success", "an error has occurred");
+          res.redirect("back");
+        }
+      }
+    }
+  } catch (error) {
+    console.log(error);
+  }
 }

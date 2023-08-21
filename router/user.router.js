@@ -31,6 +31,7 @@ const {
   profile_front,
   housetype,
   mainfilter,
+  basicdetails,
 } = require("../controller/user.controller")
 
 router.get("/", home)
@@ -44,6 +45,7 @@ router.get("/rents", user_token, rents)
 router.get("/sellpage", sell_page)
 router.get("/property/:id/:sp", singleproperty)
 router.post("/filters", user_token, filterpost)
+router.post('/basicdetails', user_token,basicdetails);
 router.get("/housetype/:housetype", user_token, housetype)
 
 router.get("/login", login)

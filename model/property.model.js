@@ -67,7 +67,7 @@ const propertySchema = mongoose.Schema({
     },
     active: {
         type: Number,
-        default: 0
+        default: 1
     },
     category:{
         type:String,

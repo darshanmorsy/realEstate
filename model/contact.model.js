@@ -2,9 +2,6 @@ const mongoose = require('mongoose');
 
 const contactSchema = new mongoose.Schema({
     
-    email: {
-        type:String
-    },
     mobile:{
         type:String
     },
@@ -14,12 +11,10 @@ const contactSchema = new mongoose.Schema({
     address:{
         type:String
     },
-    description:{
-        type:String
-    },
     property_id:{
         type:String
     }
+
 },{
     collection: "contact",
     timestamps: true

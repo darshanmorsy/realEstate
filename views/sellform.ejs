@@ -541,292 +541,55 @@ options.forEach(option => {
  </div>
   <% } %>
   <section class="sellform container">
-    <div class="col-xl-10">
+    <div class="">
       <div class="">
-        <form class="form d-flex" method="post" enctype="multipart/form-data" action="/user/propertyDetails">
-          <div class="left-side px-5 rounded-3 shadow-lg">
-            <div class="steps-content d-none">
-              <h3>Step <span class="step-number">1</span></h3>
-              <p class="step-number-content active">
-                Enter your personal information to get closer to companies.
-              </p>
-              <p class="step-number-content d-none">
-                Get to know better by adding your diploma,certificate and
-                education life.
-              </p>
-              <p class="step-number-content d-none">
-                Help companies get to know you better by telling then about your
-                past experiences.
-              </p>
-              <p class="step-number-content d-none">
-                Add your profile piccture and let companies find youy fast.
-              </p>
-            </div>
-            <ul class="progress-bar py-2 bg-white">
-              <li class="active">Personal Information</li>
-              <li>Education</li>
-              <li>Work Experience</li>
-              <li>User Photo</li>
-              <!-- <li>User Photo</li> -->
-            </ul>
+        <form class="form d-flex flex-column align-items-center" method="post" enctype="multipart/form-data" action="/user/basicdetails">
+          <div class="text-center w-100">
+            <h1 class="fs-1 fw-bold text-theme-blue mt-5">Property Details</h1>
           </div>
-          <div class="right-side">
-            <div class="main ms-lg-5 active">
-              <h1 class="fs-1 text-theme-blue fw-bold">Property Details</h1>
-              <div class="input-text">
-                <div class="input-div">
-                  <p>Project Name</p>
-                  <input type="text" name="projectName" required require placeholder="project name" />
-                </div>
-                <div class="input-div">
-                  <p>City</p>
-                  <select name="city">
-                    <option hidden>Select City</option>
-                    <%for(var i of cities){%>
-                      <option value="<%=i.city%>"><%=i.city%></option>
-                      <%}%>
-                  </select>
-                </div>
-                <div class="input-div">
-                  <p>Price</p>
-                  <input type="text" name="price" required require />
-                </div>
-                <div class="input-div">
-                  <p>Property Life</p>
-                  <select name="propertyLife" required require class="px-2">
-                    <option>Select property Life</option>
-                    <option>1 year</option>
-                    <option>2 year</option>  
-                    <option>3 year</option>  
-                    <option>4 year</option>  
-                    <option>5 year</option>  
-                    <option>More Than 5 year</option>  
-                  </select>
-                </div>
-              </div>
-              <div class="input-text">
-                <div class="input-div">
-                  <p>Address</p>
-                  <input type="text" name="address" required require />
-                </div>
-                <div class="input-div">
-                  <p>Size</p>
-                  <input type="text" name="size" required require />
-                </div>
-                <div class="input-div">
-                  <p>Booking Amount</p>
-                  <input type="text" name="booking_amount" required require />
-                </div>
-              </div>
-              <div class="input-text">
-                <div class="input-div">
-                  <p>Carpet Area</p>
-                  <input type="text" name="carpet_area" required require />
-                </div>
-                <div class="input-div">
-                  <p>Super Built Up</p>
-                  <input type="text" name="super_built_up"  required require />
-                </div>
-                <div class="input-div">
-                  <p>Project Area</p>
-                  <input type="text" name="project_area" required require />
-                </div>
-              </div>
-              <div class="buttons">
-                <button class="next_button rounded-pill ps-3 fs-6 p-1 theme-blue" type="button">
-                  next step
-                  <i class="fa-solid ms-2 fa-angles-right p-2 bg-white text-theme-blue rounded-pill"></i>
-                </button>
-              </div>
-            </div>
-            <div class="main ms-lg-5">
-              <h1 class="fs-1 fw-bold text-theme-blue">Property Details</h1>
-              <div class="input-text">
-                <div class="input-div">
-                  <p>Furnishing</p>
-                  <input type="text" name="furnishing" required require />
-                </div>
-                <div class="input-div">
-                  <p>Property Floor</p>
-                  <input type="text" name="property_floor" required />
-                </div>
-                <div class="input-div">
-                  <p>Builder Details</p>
-                  <input type="text" name="builder_details" required />
-                </div>
-                <div class="input-div">
-                  <p>Owner Info</p>
-                  <input type="text" required />
-                </div>
-              </div>
-              <div class="input-text">
-                <div class="input-div">
-                  <p>Location Link</p>
-                  <input type="text" name="location" required require />
-                </div>
-                <div class="input-div">
-                  <p>Scale Type</p>
-                  <input type="text" name="scale_type" required require />
-                </div>
-                <div class="input-div">
-                  <p>Disclaimer</p>
-                  <input type="text" name="disclaimer" required require/>
-                </div>
-                <div class="input-div">
-                  <p>Category</p>
-                  <input type="text" required require />
-                  <select name="category" id="">
-                    <option value="rent">For Rent</option>
-                    <option value="sell">For Sell</option>
-                  </select>
-                </div>
-              </div>
-              <div class="input-n ">
-                <div class="input-div">
-                  <p>House Type</p>
-                  <input type="text" name="house_type" required require />
-                </div>
-                <div class="input-div">
-                  <p>Resident Type</p>
-                  <input type="text" name="residentType" required require />
-                </div>
-                <div class="input-div">
-                  <p>Rooms</p>
-                  <input type="text" name="rooms"  required require />
-                </div>
-                <div class="input-div">
-                  <p>Sale Type</p>
-                  <input type="text" name="saletype" required require />
-                </div>
-              </div>
-            <div class="input-text">
-                <div class="input-div">
-                  <select>
-                    <option>Select Course</option>
-                    <option>BCA</option>
-                    <option>B-TECH</option>
-                    <option>BA</option>
-                    <option>B-COM</option>
-                    <option>B-SC</option>
-                    <option>MBA</option>
-                    <option>MCA</option>
-                    <option>M-COM</option>
-                    <option>M-TECH</option>
-                  </select>
-                </div>
-              </div>
-              <div class="buttons button_space">
-                <button class="back_button fs-6 p-1 theme-blue text-white rounded-pill pe-3 border-0" type="button">
-                  <i class="fa-solid rounded-circle me-2 fa-angles-left bg-white text-theme-blue p-2"></i>
-                  Back Step
-                </button>
-                <button class="next_button p-1 fs-6 theme-blue text-white rounded-pill ps-3" type="button">
-                  Next Step
-                  <i class="fa-solid rounded-circle fa-angles-right bg-white text-theme-blue p-2"></i>
-                </button>
-              </div>
-            </div>
-            <div class="main ms-lg-5">
-              <h1 class="fs-1 fw-bold text-theme-blue">Property Details</h1>
-              <div class="input-text">
-                <div class="input-div">
-                  <p>Possesion</p>
-                  <input type="text" name="possession" required require />
-                </div>
-                <div class="input-div">
-                  <p>Facing</p>
-                  <input type="text" name="facing" required require />
-                </div>
-                <div class="input-div">
-                  <p>Bathroom</p>
-                  <input type="text" name="bathroom" required require />
-                </div>
-                <div class="input-div">
-                  <p>listed By</p>
-                  <input type="text" name="listedby" required require />
-                </div>
-              </div>
-              <div class="input-text">
-                <div class="input-div">
-                  <p>Least Type</p>
-                  <input type="text" name="leasttype" required />
-                </div>
-                <div class="input-div">
-                  <p>Available</p>
-                  <input type="text" name="available" required />
-                </div>
-                <div class="input-div">
-                  <p>Power Backup</p>
-                  <input type="text" name="powerbackup" required />
-                </div>
-                <div class="input-div">
-                  <p>Pin Code</p>
-                  <input type="text" name="pincode" required />
-                </div>
-              </div>
-              <div class="input-text">
-                <div class="input-div">
-                  <p>Facilities</p>
-                  <input type="text" name="facilities" required />
-                </div>
-                <div class="input-div">
-                  <p>built up area</p>
-                  <input type="text" name="built_up_area" required />
-                </div>
-              </div>
-              <div class="input-text">
-                <div class="input-div">
-
-                  <input type="text" name="landmark" required />
-                </div>
-                <div class="input-div">
-                  <input type="text" name="owner_info" required />
-                </div>
-              </div>
-              <div class="buttons button_space">
-                <button class="back_button fs-6 p-1 theme-blue text-white rounded-pill pe-3 border-0 p-1" type="button"><i
-                    class="fa-solid fa-angles-left bg-white me-2 p-2 text-theme-blue rounded-pill"></i> Back Step</button>
-                <button class="next_button fs-6 p-1 theme-blue text-white rounded-pill ps-3 border-0 p-1" type="button">Next
-                  Step <i class="fa-solid fa-angles-right bg-white p-2 text-theme-blue rounded-pill"></i> </button>
-              </div>
-            </div>
-            <div class="main">
-              <div class="input-text" onclick="image()">
-                <div id="uploadBox" class="p-5" style="
-                  border: 2px dashed #006bc5;
-                  text-align: center;
-                  line-height: 200px;
-                  cursor: pointer;
-                ">
-                  Click to Upload Image
-                </div>
-
-                <input type="file" name="property_image" id="fileInput" multiple accept="image/*" style="display: none" />
-              </div>
-              <div class="buttons button_space">
-                <button class="back_button fs-6  theme-blue p-1 pe-3 text-white border-0 rounded-pill" type="button">
-                  <i class="fa-solid p-2 me-2 rounded-circle bg-white text-theme-blue fa-angles-left"></i>
-                  Back
-                </button>
-                <button class="submit_button theme-blue fs-6 p-1 ps-3 text-white border-0 rounded-pill" type="submit">Submit <i class="ms-2 fa-solid p-2 rounded-circle bg-white text-theme-blue fa-check"></i></button>
-              </div>
-            </div>
-            <!-- <div class="main">
-              <h1 class="fs-1 fw-bold text-theme-blue">Step 5</h1>
-              Add your content for the fifth step here
-          </div> -->
-          
-            <!-- <div class="main">
-                     <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                         <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
-                        <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
-                    </svg>
-                     
-                    <div class="text congrats">
-                        <h2>Congratulations!</h2>
-                        <p>Thanks Mr./Mrs. <span class="shown_name"></span> your information have been submitted successfully for the future reference we will contact you soon.</p>
-                    </div>
-                </div> -->
+          <div class="col-lg- mt-4 d-flex flex-wrap">
+            <div class="col-lg-6 p-2">
+              <p class="mx-2">projectName</p>
+              <input type="text" class=" m-2" name="projectName">
+            </div> 
+            <div class="col-lg-6 p-2">
+              <p class="mx-2">Mobile</p>
+              <input type="text" class="m-2" name="mobile">
+            </div> 
+            <div class="col-lg-6 p-2">
+              <p class="mx-2">Address</p>
+              <input type="text" class="m-2" name="location">
+            </div> 
+            <div class="col-lg-6 p-2">
+              <p class="mx-2">Select House Type</p>
+            <select class="m-2 w-100 border-1" name="house_type">
+              <option hidden>House Type</option>
+          <option value="FarmHouse">FarmHouse</option>
+          <option value="Commercial">Commercial</option>
+          <option value="Industrial">Industrial</option>
+          <option value="Flat">Flat</option>
+          <option value="Land/Plot">Land/Plot</option>
+          <option value="House">House</option>
+          <option value="Hotel/Resorts">Hotel/Resorts</option>
+            </select>
+          </div> 
+          <div class="col-lg-6 p-2">
+            <select name="city" class="m-2" id="">
+              <option value="" hidden>city</option>
+              <%for(var i of cities){%>
+                <option value="<%=i.city%>"><%=i.city%></option>
+                <%}%>
+              </select>
+            </div> 
+          <div class="col-lg-6 p-2">
+            <select required name="rooms" class="m-2" id="">
+              <option value="" hidden>select rooms</option>
+              <option value="1BHK">1 RK</option>
+              <option value="1BHK">1 BHK</option>
+              <option value="2BHK">2 BHK</option>
+              <option value="3BHK">3+ BHK</option>
+          </select>
+            </div> 
           </div>
         </form>
       </div>

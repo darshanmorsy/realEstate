@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+
+    <title>Morsy Property Dealer</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/bootstrap.css" />
+    <link rel="stylesheet" href="/css/all.min.css" />
+    <link rel="stylesheet" href="/css/tailwind.min.css" />
+</head>
+
+<body>
+    <header class="d-flex flex-column w-100 bg-white" style="z-index: 999">
+        <div class="topbar d-flex theme-blue">
+            <div class="container d-flex py-2">
+                <div class="d-flex align-items-center">
+                    <i class="fa-solid text-theme-blue me-2 bg-white fa-phone p-2 rounded-circle"></i>
+                    <p class="m-0 text-white">90992 24244</p>
+                </div>
+                <div class="d-flex ms-3 align-items-center">
+                    <i class="fa-regular me-2 fa-envelope rounded-circle bg-white text-theme-blue p-2"></i>
+                    <p class="m-0 text-white">morsyproperty@info</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container-fluid">
+                    <a href="/user" class="navbar-brand"><img src="/img/logo.png" style="height: 50px !important"
+                            alt="" /></a>
+                    <button type="button" class="navbar-toggler" data-bs-toggle="collapse"
+                        data-bs-target="#navbarCollapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" style="flex-grow: 0" id="navbarCollapse">
+                        <div class="navbar-nav">
+                            <div class="d-flex align-items-center flex-wrap mt-col-xl-0 justify-content-center">
+                                <a href="#" class="text-theme-red fw-normal fs-5">Download App</a>
+                                <a href="/user/sellpage" style="padding: 6px 6px"
+                                    class="mx-lg-3 mx-5 ps-3 my-col-xl-0 my-3 rounded-pill theme-blue text-white rounded-3">POST
+                                    PROPERTY FREE &nbsp;&nbsp;&nbsp;<i
+                                        class="fa-solid bg-white p-2 rounded-circle fa-cloud-arrow-up text-theme-blue"></i></a>
+                                <a href="#" class="border-1 border-dark rounded-circle p-1"><i style="font-size: 36px"
+                                        class="fa-solid d-block fa-circle-user text-dark"></i></a>
+                                <div class="bg-dark py-3 mx-3" style="width: 1.5px"></div>
+                                <a href="" class="fs-2 text-theme-blue d-flex align-items-center"
+                                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                                    aria-controls="offcanvasRight"><i
+                                        class="fa-solid fa-bars d-none d-md-block d-sm-block me-3"></i>
+                                    Menu</a>
+                                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+                                    aria-labelledby="offcanvasRightLabel">
+                                    <div class="offcanvas-header">
+                                        <h5 id="offcanvasRightLabel">menu</h5>
+                                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="offcanvas-body d-flex justify-content-center">
+                                        <ul class="d-flex flex-column justify-content-center h-100 w-100">
+                                            <li>
+                                                <a href="/user" class="fs-5"><i
+                                                        class="fa-solid fa-home me-3"></i>Home</a>
+                                            </li>
+                                            <hr class="my-4" />
+                                            <li>
+                                                <a href="#" class="fs-5"><i class="fa-solid fa-address-card me-3"></i>
+                                                    About</a>
+                                            </li>
+                                            <hr class="my-4" />
+                                            <li>
+                                                <a href="#" class="fs-5"><i class="fa-solid fa-blog me-3"></i> Blogs</a>
+                                            </li>
+                                            <hr class="my-4" />
+                                            <li>
+                                                <a href="/user/property" class="fs-5"><i
+                                                        class="fa-solid fa-mountain-city me-3"></i>
+                                                    Properties</a>
+                                            </li>
+                                            <hr class="my-4" />
+                                            <li>
+                                                <a href="#" class="fs-5"><i class="fa-solid fa-envelope me-3"></i>
+                                                    Contact
+                                                    Us</a>
+                                            </li>
+                                            <hr class="my-4" />
+                                            <li>
+                                                <a href="/user/profile" class="fs-5"><i
+                                                        class="fa-solid fa-circle-user me-3"></i>
+                                                    Profile</a>
+                                            </li>
+                                            <hr class="my-4" />
+                                            <li>
+                                                <a href="/user/logout" class="fs-5"><i
+                                                        class="fa-solid fa-right-from-bracket"></i>
+                                                    Logout</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <% if (messages.success) { %>
+        <div class="container">
+            <div class="alert my-2 alert-success">
+                <%= messages.success %>
+            </div>
+        </div>
+        <% } %>
+            <section class="sellform container">
+                <div class="col-xl-10">
+                    <div class="">
+                        <h1 class="text-theme-blue fw-bold fs-1 my-5">Property Details</h1>
+                        <form class="form d-flex" method="post" enctype="multipart/form-data"
+                            action="/user/propertyDetails">
+                            <div class="left-side px-5 rounded-3 shadow-lg">
+                                <div class="steps-content d-none">
+                                    <h3>Step <span class="step-number">1</span></h3>
+                                    <p class="step-number-content active">
+                                        Enter your personal information to get closer to companies.
+                                    </p>
+                                    <p class="step-number-content d-none">
+                                        Get to know better by adding your diploma,certificate and
+                                        education life.
+                                    </p>
+                                    <p class="step-number-content d-none">
+                                        Help companies get to know you better by telling then about
+                                        your past experiences.
+                                    </p>
+                                    <p class="step-number-content d-none">
+                                        Add your profile piccture and let companies find youy fast.
+                                    </p>
+                                </div>
+                                <ul class="progress-bar py-2 bg-white">
+                                    <li class="active">Basic Info</li>
+                                    <li>Property</li>
+                                    <li>facilities Info</li>
+                                    <li>Property Photo</li>
+                                </ul>
+                            </div>
+                            <div class="right-side w-100">
+                                <div class="main ms-lg-5 active">
+                                    <!-- <h1 class="fs-1 text-theme-blue fw-bold">Property Details</h1> -->
+                                    <div class="input-text">
+                                        <div class="input-div">
+                                            <p>Project Name</p>
+                                            <input type="text" name="projectName" d placeholder="project name" />
+                                        </div>
+                                        <div class="input-div">
+                                            <p>City</p>
+                                            <select name="city" d id="">
+                                                <option hidden>Select City</option>
+                                                <%for(var i of cities){%>
+                                                    <option value="<%=i.city%>">
+                                                        <%=i.city%>
+                                                    </option>
+                                                    <%}%>
+                                            </select>
+                                        </div>
+                                        <div class="input-div">
+                                            <p>Price</p>
+                                            <input type="text" name="price" d />
+                                        </div>
+                                        <div class="input-div">
+                                            <p>Property Life</p>
+                                            <select name="propertyLife" d class="px-2">
+                                                <option value="" hidden>select propertyLife</option>
+                                                <option value="Less than 1 year">Less than 1 year</option>
+                                                <option value="Less than 3 year">Less than 3 year</option>
+                                                <option value="Less than 5 year">Less than 5 year</option>
+                                                <option value="Less than 10 year">
+                                                    Less than 10 year
+                                                </option>
+                                                <option value="More than 10 year">
+                                                    More than 10 year
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="input-text">
+                                        <div class="input-div">
+                                            <p>Address</p>
+                                            <input type="text" name="address" d />
+                                        </div>
+                                        <div class="input-div">
+                                            <p>Size</p>
+                                            <input type="text" name="size" d />
+                                        </div>
+                                        <div class="input-div">
+                                            <p>Booking Amount</p>
+                                            <input type="text" name="booking_amount" d />
+                                        </div>
+                                    </div>
+                                    <div class="input-text">
+                                        <div class="input-div">
+                                            <p>Carpet Area</p>
+                                            <input type="text" name="carpet_area" d />
+                                        </div>
+                                        <div class="input-div">
+                                            <p>Super Built Up</p>
+                                            <input type="text" name="super_built_up" d />
+                                        </div>
+                                        <div class="input-div">
+                                            <p>Project Area</p>
+                                            <input type="text" name="project_area" d />
+                                        </div>
+                                    </div>
+                                    <div class="buttons">
+                                        <button class="next_button rounded-pill ps-3 fs-6 p-1 theme-blue" type="button">
+                                            next step
+                                            <i
+                                                class="fa-solid ms-2 fa-angles-right p-2 bg-white text-theme-blue rounded-pill"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="main ms-lg-5">
+                                    <!-- <h1 class="fs-1 fw-bold text-theme-blue">Property Details</h1> -->
+                                    <div class="input-text">
+                                        <div class="input-div">
+                                            <p>Furnishing</p>
+                                            <select name="furnishing" id="">
+                                                <option value="" hidden>select furnishing</option>
+                                                <option value="fully">fully</option>
+                                                <option value="semi">semi</option>
+                                                <option value="none">none</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-div">
+                                            <p>Property Floor</p>
+                                            <input type="text" name="property_floor" d />
+                                        </div>
+                                        <div class="input-div">
+                                            <p>Builder Details</p>
+                                            <input type="text" name="builder_details" d />
+                                        </div>
+                                        <div class="input-div">
+                                            <p>Owner Info</p>
+                                            <input type="text" name="owner_info" d />
+                                        </div>
+                                    </div>
+                                    <div class="input-text">
+                                        <div class="input-div">
+                                            <p>Location Link</p>
+                                            <input type="text" name="location" d />
+                                        </div>
+                                        <div class="input-div">
+                                            <p>Scale Type</p>
+                                            <input type="text" name="scale_type" d />
+                                        </div>
+                                        <div class="input-div">
+                                            <p>Disclaimer</p>
+                                            <input type="text" name="disclaimer" d />
+                                        </div>
+                                        <div class="input-div">
+                                            <p>Category</p>
+                                            <select name="category" id="">
+                                                <option value="rent">For Rent</option>
+                                                <option value="sell">For Sell</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="input-text">
+                                        <div class="input-div">
+                                            <p>House Type</p>
+                                            <select d onchange="updateResidentOptions()" id="housetype"
+                                                name="house_type">
+                                                <option value="" hidden>select house type</option>
+                                                <option value="FarmHouse">FarmHouse</option>
+                                                <option value="Commercial">Commercial</option>
+                                                <option value="Industrial">Industrial</option>
+                                                <option value="Flat">Flat</option>
+                                                <option value="Land/Plot">Land/Plot</option>
+                                                <option value="House">House</option>
+                                                <option value="Hotel/Resorts">Hotel/Resorts</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-div">
+                                            <p>Resident Type</p>
+                                            <select name="residentType" id="resident"></select>
+                                        </div>
+                                        <div class="input-div">
+                                            <p>Rooms</p>
+                                            <select required name="rooms" required id="">
+                                                <option value="" hidden>select rooms</option>
+                                                <option value="1BHK">1 RK</option>
+                                                <option value="1BHK">1 BHK</option>
+                                                <option value="2BHK">2 BHK</option>
+                                                <option value="3BHK">3+ BHK</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-div">
+                                            <p>Sale Type</p>
+                                            <select d name="saletype" id="">
+                                                <option value="" hidden>select sale type</option>
+                                                <option value="New Properties">New Properties</option>
+                                                <option value="Resale Properties">
+                                                    Resale Properties
+                                                </option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="buttons button_space">
+                                        <button
+                                            class="back_button fs-6 p-1 theme-blue text-white rounded-pill pe-3 border-0"
+                                            type="button">
+                                            <i
+                                                class="fa-solid rounded-circle me-2 fa-angles-left bg-white text-theme-blue p-2"></i>
+                                            Back Step
+                                        </button>
+                                        <button class="next_button p-1 fs-6 theme-blue text-white rounded-pill ps-3"
+                                            type="button">
+                                            Next Step
+                                            <i
+                                                class="fa-solid rounded-circle fa-angles-right bg-white text-theme-blue p-2"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="main w-100 ms-lg-5">
+                                    <!-- <h1 class="fs-1 fw-bold text-theme-blue">Property Details</h1> -->
+                                    <div class="input-text">
+                                        <div class="input-div">
+                                            <p>Possesion</p>
+                                            <select required name="possession" required id="">
+                                                <option value="" hidden>select possession</option>
+                                                <option value="Ready to Move">Ready to Move</option>
+                                                <option value="In 1 Year">In 1 Year</option>
+                                                <option value="In 3 Years">In 3 Years</option>
+                                                <option value="Beyond 3 Years">Beyond 3 Years</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-div">
+                                            <p>Facing</p>
+                                            <select required name="facing" required id="">
+                                                <option value="" hidden>select facing</option>
+                                                <option value="North">North</option>
+                                                <option value="East">East</option>
+                                                <option value="West">West</option>
+                                                <option value="South">South</option>
+                                                <option value="North-East">North-East</option>
+                                                <option value="North-West">North-West</option>
+                                                <option value="South-East">South-East</option>
+                                                <option value="South-West">South-West</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-div">
+                                            <p>Bathroom</p>
+                                            <select required name="bathroom" required id="">
+                                                <option value="" hidden>select bathroom</option>
+                                                <option value="1">1 bathroom</option>
+                                                <option value="2">2 bathroom</option>
+                                                <option value="3">3 bathroom</option>
+                                                <option value="4">4 bathroom</option>
+                                                <option value="5">5 bathroom</option>
+                                                <option value="6">6 bathroom</option>
+                                                <option value="7">7 bathroom</option>
+                                                <option value="8">8 bathroom</option>
+                                                <option value="9">9 bathroom</option>
+                                                <option value="10">10 bathroom</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-div">
+                                            <p>listed By</p>
+                                            <select required name="listedby" required id="">
+                                                <option value="" hidden>select listed by</option>
+                                                <option value="Agent">Agent</option>
+                                                <option value="Owner">Owner</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="input-text">
+                                        <div class="input-div">
+                                            <p>Least Type</p>
+                                            <select required name="leasttype" required id="">
+                                                <option value="" hidden>select least type</option>
+                                                <option value="Family">Family</option>
+                                                <option value="Company">Company</option>
+                                                <option value="Bachelor">Bachelor</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-div">
+                                            <p>Available</p>
+                                            <select required name="available" required id="">
+                                                <option value="" hidden>select available</option>
+                                                <option value="Within a week">Within a week</option>
+                                                <option value="Within 15 days">Within 15 days</option>
+                                                <option value="Within a month">Within a month</option>
+                                                <option value="After a month">After a month</option>
+                                            </select>
+                                        </div>
+                                        <div class="input-div">
+                                            <p>Power Backup</p>
+                                            <select required name="powerbackup" required id="">
+                                                <option value="" hidden>select powerbackup</option>
+                                                <option value="Full">Full</option>
+                                                <option value="Partial">Partial</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="input-text">
+                                        <div class="input-div">
+                                            <p>landmark</p>
+                                            <input type="text" name="landmark" d />
+                                        </div>
+                                        <div class="input-div">
+                                            <p>Pin Code</p>
+                                            <input type="text" name="pincode" d />
+                                        </div>
+                                    </div>
+                                    <div class="input-text">
+                                        <div class="input-div">
+                                            <p>Facilities</p>
+                                           <div class="d-flex">
+                                            <input type="text" required disabled value="add facilities"
+                                            class="form-control" id="validationTooltip05" required />
+
+                                        <button type="button" onclick="addInput()"
+                                            class="ms-2 d-inline-block btn btn-primary">
+                                            +
+                                        </button>
+                                           </div>
+                                            <div id="input-cont">
+                                                <!--Input container-->
+                                              </div>
+                                        </div>
+                                        <div class="input-div">
+                                            <p>built up area</p>
+                                            <input type="text" name="built_up_area" d />
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="buttons button_space">
+                                        <button
+                                            class="back_button fs-6 p-1 theme-blue text-white rounded-pill pe-3 border-0 p-1"
+                                            type="button">
+                                            <i
+                                                class="fa-solid fa-angles-left bg-white me-2 p-2 text-theme-blue rounded-pill"></i>
+                                            Back Step
+                                        </button>
+                                        <button
+                                            class="next_button fs-6 p-1 theme-blue text-white rounded-pill ps-3 border-0 p-1"
+                                            type="button">
+                                            Next Step
+                                            <i class="fa-solid fa-angles-right bg-white p-2 text-theme-blue rounded-pill"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="main">
+                                    <div class="input-text w-100" onclick="image()">
+                                        <div id="uploadBox" class="p-5 w-100" style="
+                      border: 2px dashed #006bc5;
+                      text-align: center;
+                      line-height: 200px;
+                      cursor: pointer;
+                    ">
+                                            Click to Upload Image
+                                        </div>
+
+                                        <input type="file" name="property_image" id="fileInput" multiple
+                                            accept="image/*" style="display: none" />
+                                    </div>
+                                    <div class="buttons button_space">
+                                        <button
+                                            class="back_button fs-6 theme-blue p-1 pe-3 text-white border-0 rounded-pill"
+                                            type="button">
+                                            <i
+                                                class="fa-solid p-2 me-2 rounded-circle bg-white text-theme-blue fa-angles-left"></i>
+                                            Back
+                                        </button>
+                                        <button
+                                            class="submit_button theme-blue fs-6 p-1 ps-3 text-white border-0 rounded-pill"
+                                            type="button">
+                                            Submit
+                                            <i
+                                                class="ms-2 fa-solid p-2 rounded-circle bg-white text-theme-blue fa-check"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- <div class="main">
+              <h1 class="fs-1 fw-bold text-theme-blue">Step 5</h1>
+              Add your content for the fifth step here
+          </div> -->
+
+                                <!-- <div class="main">
+                     <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                         <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                        <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                    </svg>
+                     
+                    <div class="text congrats">
+                        <h2>Congratulations!</h2>
+                        <p>Thanks Mr./Mrs. <span class="shown_name"></span> your information have been submitted successfully for the future reference we will contact you soon.</p>
+                    </div>
+                </div> -->
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="container mt-5 pt-5">
+                <h1 class="fs-1 text-theme-blue fw-bold mb-5">City Details</h1>
+                <form action="/admin/city" method="post">
+                    <div class="d-flex col-12 col-lg-3">
+                        <input type="text" placeholder="enter city" required class="p-1" name="city">
+                        <button type="submit" class="theme-blue d-flex align-items-center ms-3 p-1 text-white ps-3 rounded-pill">
+                        submit <i class="fa-solid fa-angles-right bg-white p-2 rounded-circle text-theme-blue ms-2"></i>
+                        </button>
+                        </div>
+                </form>
+            </section>
+
+            <section class="container">
+                <h1 class="fw-bold my-5 text-theme-blue fs-1">Recents Contact</h1>
+                <div class="d-flex flex-wrap justify-content-center">
+                    <%for(var i of contact){%>
+                    <div style="box-shadow: 0 0 3px #929292;" class="flex-column col-lg-3 mx-3 p-3 rounded-3">
+                        <h3>Name : <%=i.name%></h3>
+                        <h3 class="my-3">Mobile : <%=i.mobile%></h3>
+                        <h3 class="my-3">Address : <%=i.address%></h3>
+                        <h3 class="my-3">time  : <%= `${i.createdAt.getDate()}/${i.createdAt.getMonth() + 1}/${i.createdAt.getFullYear()}, ${i.createdAt.toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true })}` %></h3>
+                       <div class="d-flex justify-content-center">
+                        <a href="/user/property/<%=i.property_id%>/sp" target="_blank" style="width: fit-content;" class="theme-blue d-flex align-items-center p-1 text-white ps-3 rounded-pill">
+                            explore  <i class="fa-solid fa-angles-right bg-white p-2 rounded-circle text-theme-blue ms-2"></i>
+                            </a>
+                            <a href="/admin/contactdelete/<%=i.id%>" class="d-flex align-items-center ms-2 theme-blue rounded-circle text-white"><i style="padding: 10px 13px;" class="fa-solid fa-trash"></i></a>
+                       </div>
+                        </div>
+                        <%}%>
+                </div>
+            </section>
+
+          <script>
+                var next_click = document.querySelectorAll(".next_button");
+                var main_form = document.querySelectorAll(".main");
+                var step_list = document.querySelectorAll(".progress-bar li");
+                var num = document.querySelector(".step-number");
+                let formnumber = 0;
+
+                next_click.forEach(function (next_click_form) {
+                    next_click_form.addEventListener("click", function () {
+                        if (!validateform()) {
+                            return false;
+                        }
+                        formnumber++;
+                        updateform();
+                        progress_forward();
+                        contentchange();
+                    });
+                });
+
+                var back_click = document.querySelectorAll(".back_button");
+                back_click.forEach(function (back_click_form) {
+                    back_click_form.addEventListener("click", function () {
+                        formnumber--;
+                        updateform();
+                        progress_backward();
+                        contentchange();
+                    });
+                });
+
+                var username = document.querySelector("#user_name");
+                var shownname = document.querySelector(".shown_name");
+
+                var submit_click = document.querySelectorAll(".submit_button");
+                submit_click.forEach(function (submit_click_form) {
+                    submit_click_form.addEventListener("click", function () {
+                        shownname.innerHTML = username.value;
+                        formnumber++;
+                        updateform();
+                    });
+                });
+
+                var heart = document.querySelector(".fa-heart");
+                heart.addEventListener("click", function () {
+                    heart.classList.toggle("heart");
+                });
+
+                var share = document.querySelector(".fa-share-alt");
+                share.addEventListener("click", function () {
+                    share.classList.toggle("share");
+                });
+
+                function updateform() {
+                    main_form.forEach(function (mainform_number) {
+                        mainform_number.classList.remove("active");
+                    });
+                    main_form[formnumber].classList.add("active");
+                }
+
+                function progress_forward() {
+                    // step_list.forEach(list => {
+
+                    //     list.classList.remove('active');
+
+                    // });
+
+                    num.innerHTML = formnumber + 1;
+                    step_list[formnumber].classList.add("active");
+                }
+
+                function progress_backward() {
+                    var form_num = formnumber + 1;
+                    step_list[form_num].classList.remove("active");
+                    num.innerHTML = form_num;
+                }
+
+                var step_num_content = document.querySelectorAll(".step-number-content");
+
+                function contentchange() {
+                    step_num_content.forEach(function (content) {
+                        content.classList.remove("active");
+                        content.classList.add("d-none");
+                    });
+                    step_num_content[formnumber].classList.add("active");
+                }
+
+                function validateform() {
+                    validate = true;
+                    var validate_inputs = document.querySelectorAll(".main.active input");
+                    validate_inputs.forEach(function (vaildate_input) {
+                        vaildate_input.classList.remove("warning");
+                        if (vaildate_input.hasAttribute("")) {
+                            if (vaildate_input.value.length == 0) {
+                                validate = false;
+                                vaildate_input.classList.add("warning");
+                            }
+                        }
+                    });
+                    return validate;
+                }
+
+                const uploadBox = document.getElementById("uploadBox");
+
+                function image() {
+                    const fileInput = document.getElementById("fileInput");
+                    fileInput.click();
+                }
+
+                function updateResidentOptions() {
+                    console.log(document.getElementById("housetype").value);
+                    if (document.getElementById("housetype").value === "Flat") {
+                        const residentSelect = document.getElementById("resident");
+                        residentSelect.innerHTML = "";
+                        const options = ["LowRise", "HighRise", "pentHouse"];
+                        options.forEach((option) => {
+                            const optionElement = document.createElement("option");
+                            optionElement.value = option.toLowerCase().replace(/\s/g, "_");
+                            optionElement.textContent = option;
+                            residentSelect.appendChild(optionElement);
+                        });
+                    } else if (document.getElementById("housetype").value === "House") {
+                        const residentSelect = document.getElementById("resident");
+                        residentSelect.innerHTML = "";
+                        const options = ["Gala Type", "Raw House", "Bungalow"];
+                        options.forEach((option) => {
+                            const optionElement = document.createElement("option");
+                            optionElement.value = option.toLowerCase().replace(/\s/g, "_");
+                            optionElement.textContent = option;
+                            residentSelect.appendChild(optionElement);
+                        });
+                    } else if (
+                        document.getElementById("housetype").value === "Commercial"
+                    ) {
+                        const residentSelect = document.getElementById("resident");
+                        residentSelect.innerHTML = "";
+                        const options = ["Office", "Shop"];
+                        options.forEach((option) => {
+                            const optionElement = document.createElement("option");
+                            optionElement.value = option.toLowerCase().replace(/\s/g, "_");
+                            optionElement.textContent = option;
+                            residentSelect.appendChild(optionElement);
+                        });
+                    } else if (
+                        document.getElementById("housetype").value === "Industrial"
+                    ) {
+                        const residentSelect = document.getElementById("resident");
+                        residentSelect.innerHTML = "";
+                        const options = ["Godown/Warehouse", "Building"];
+                        options.forEach((option) => {
+                            const optionElement = document.createElement("option");
+                            optionElement.value = option.toLowerCase().replace(/\s/g, "_");
+                            optionElement.textContent = option;
+                            residentSelect.appendChild(optionElement);
+                        });
+                    } else if (document.getElementById("housetype").value === "FarmHouse") {
+                        const residentSelect = document.getElementById("resident");
+                        residentSelect.innerHTML = "";
+                        const options = ["Farm", "Villa"];
+                        options.forEach((option) => {
+                            const optionElement = document.createElement("option");
+                            optionElement.value = option.toLowerCase().replace(/\s/g, "_");
+                            optionElement.textContent = option;
+                            residentSelect.appendChild(optionElement);
+                        });
+                    } else if (document.getElementById("housetype").value === "Land/Plot") {
+                        const residentSelect = document.getElementById("resident");
+                        residentSelect.innerHTML = "";
+                        const options = [
+                            "Residential Plot",
+                            "Industrial Plot",
+                            "Farm House Plot",
+                            "Agriculture Land",
+                            "Residential Land",
+                            "Industrial Land",
+                            "Commercial Land",
+                        ];
+
+                        options.forEach((option) => {
+                            const optionElement = document.createElement("option");
+                            optionElement.value = option.toLowerCase().replace(/\s/g, "_");
+                            optionElement.textContent = option;
+                            residentSelect.appendChild(optionElement);
+                        });
+                    } else if (
+                        document.getElementById("housetype").value === "Hotel/Resorts"
+                    ) {
+                        const residentSelect = document.getElementById("resident");
+                        residentSelect.innerHTML = "";
+                        const options = ["1 Star", "2 Star", "3 Star", "4 Star", "5 Star"];
+
+                        options.forEach((option) => {
+                            const optionElement = document.createElement("option");
+                            optionElement.value = option.toLowerCase().replace(/\s/g, "_");
+                            optionElement.textContent = option;
+                            residentSelect.appendChild(optionElement);
+                        });
+                    }
+                }
+
+                
+                // Call addInput() function on button click
+                function addInput() {
+                    const container = document.getElementById("input-cont");
+                    let inputs = document.createElement("input");
+                    inputs.placeholder = "facilities";
+                    inputs.className = "form-control my-1";
+                    inputs.name = "facilities";
+                    container.appendChild(inputs);
+                }
+            </script>
+
+            <%-include('footer')%>
+</body>
+
+</html>

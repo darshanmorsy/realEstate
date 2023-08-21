@@ -476,29 +476,20 @@ exports.propertDetails = async (req, res) => {
 exports.contact = async (req, res) =>{
 
   console.log(req.body);
-  const { email, mobile, name, address, description } = req.body;
+  const {mobile, name, address} = req.body;
 
   if (
-    email == null ||
     mobile == null ||
     name == null ||
-    address == null ||
-    description == null
+    address == null
   ) {
-    if (req.headers.accept == undefined) {
-      res.json({ message: "some field is remaaining" });
-    } else {
-      res.redirect("back");
-    }
     res.redirect("back");
   } else {
     console.log(req.params.id);
     var data = await contact.create({
-      email,
       mobile,
       name,
       address,
-      description,
       property_id: req.params.id,
     });
 
@@ -924,8 +915,15 @@ exports.mainfilter = async (req, res) => {
     })
     .catch((error) => {
       // Handle the error
-      console.error(error);
+      console.error(error);  
     });
   
   
+}
+
+
+exports.basicdetails=async(req,res)=>{
+
+  console.log(req.body);
+
 }
