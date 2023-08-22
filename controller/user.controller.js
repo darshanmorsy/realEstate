@@ -3,6 +3,7 @@ const property = require("../model/property.model");
 const contact = require("../model/contact.model");
 const user = require("../model/user.model");
 const city = require("../model/city.model");
+const basicproperty=require('../model/basicproperty.model');
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const path = require("path");
@@ -263,7 +264,8 @@ exports.sell_page = async (req, res) => {
   if (token) {
     decodedToken = jwt.verify(token, secretKey);
   } 
-  var profile = await user.findOne({ _id: decodedToken._id });
+  var profile = req.user
+ 
   var cities = await city.find({});
   res.render("sellform", {cities});
 }
@@ -599,30 +601,23 @@ exports.user_property = async (req, res) => {
 }
 
 exports.profile = async (req, res) => {
-  var token = req.cookies.jwt || req.headers.authorization;
-  if (token) {
-    const secretKey = process.env.SECRET_KEY;
-    var decodedToken = "";
-    if (token) {
-      decodedToken = jwt.verify(token, secretKey);
-    }
+
+  var token = req.user
     
-    console.log(req.headers);
+    console.log(req.user,"p");
     // console.log(profile);
-    if(req.headers.authorization){
-      
-      var profile = await user.findOne({ _id: decodedToken._id });
+    if(req.headers.authorization){ 
+      var profile =req.user
       res.json(profile);
-    }else{
       
-      // var userproperties=await property.find({ user_id:decodedToken._id});
-      var profile = await user.findOne({ _id: decodedToken._id });
-    var propert = await property.find({ user_id: decodedToken._id });
-      res.render("profile", { profile, property: propert });
+    }else{
+      var profile =req.user
+    var propert = await property.find({ user_id: req.user.id});
+      res.render("profile", { profile, property:propert});
 
     }
   }
-}
+
 
 exports.profile_front = async (req, res) => {
   var token = req.cookies.jwt;
@@ -923,6 +918,26 @@ exports.mainfilter = async (req, res) => {
 
 exports.basicdetails=async(req,res)=>{
 
-  console.log(req.body);
+  const{
+    mobile,
+    projectName,
+    location,
+    house_type,
+    city,
+    rooms,
+    category
+  }=req.body
+  console.log(req.body)
+
+  var basicdetails=await basicproperty.create(req.body);
+    if (basicdetails){
+      if(req.headers.authorization){
+        res.status(200).json({message:"property details added"});
+      }
+      else{
+        req.flash('success',"property details added")
+        res.redirect('back')
+      }
+    }
 
 }

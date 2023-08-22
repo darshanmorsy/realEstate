@@ -40,12 +40,12 @@ router.post("/register", registerpost)
 router.post("/registerpostweb", registerpostweb)
 router.post("/loginpostweb", loginpostweb)
 router.get("/property", property)
-router.get("/buy", user_token, buy)
+router.get("/buy", user_token, buy)  
 router.get("/rents", user_token, rents)
-router.get("/sellpage", sell_page)
+router.get("/sellpage",user_token,sell_page)
 router.get("/property/:id/:sp", singleproperty)
 router.post("/filters", user_token, filterpost)
-router.post('/basicdetails', user_token,basicdetails);
+router.post('/basicdetails',user_token,basicdetails)
 router.get("/housetype/:housetype", user_token, housetype)
 
 router.get("/login", login)
@@ -67,17 +67,19 @@ router.post(
 router.get("/updateproperty/:id", user_token, updateproperty)
 router.post("/contact/:id", user_token, contact)
 router.get("/allproperty", user_token, allproperty)
-router.get("/rent_buy_property/:category/:house_etype",user_token,rent_buy_property)
+router.get("/rent_buy_property/:category/:house_type",user_token,rent_buy_property)
 router.get("/user_property", user_token, user_property)
 router.delete("/deleteproperty/:id", user_token, deleteproperty)
 router.get("/deleteproperty/:id", user_token, deleteproperty)
 router.get("/profile",user_token,profile)
 router.get("/profile_front", user_token, profile_front)
 router.post("/mainfilter", mainfilter)
+
 router.get("/city", async (req, res) => {
   var data = await city.find({})
   res.json(data)
 })
+
 
 router.post("/logout", async (req, res) => {
   try {
@@ -89,7 +91,6 @@ router.post("/logout", async (req, res) => {
     console.log(error)
   }
 })
-
 
 router.get("/logout", async (req, res) => {
   try {

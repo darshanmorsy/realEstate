@@ -83,14 +83,6 @@ exports.admin=async(req,res)=>{
 
 // shows request, get method
 
-exports.request = async (req, res) => {
-  var data = await property.find({ active: 0 });
-  if (data) {
-    res.status(200).json(data);
-  } else {
-    res.status(200).json({ message: "no request found" });
-  }
-}
 
 exports.contacts = async (req, res) => {
   var data = await contacts.find({});
@@ -142,8 +134,8 @@ exports.deletecity = async (req, res) => {
 }
 
 exports.user = async (req, res) => {
-  var data = await user.find({});
-  res.json(data);
+  var users = await user.find({});
+  res.render('user',{users});
 } 
 
 exports.deactive = async (req, res) => {

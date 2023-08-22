@@ -1,0 +1,18 @@
+<%-include('adminheader')%>
+<section class="mt-5">
+    <div class="text-center">
+        <h1 class="fw-bold fs-1 my-5 text-theme-blue">Our Users</h1>
+    </div>
+    <div class="d-flex flex-wrap justify-content-center">
+        <%for(var i of users){%>
+        <div style="box-shadow: 0 0 3px #929292;" class="flex-column col-lg-3 mx-3 p-3 rounded-3">
+            <h3>Name : <%=i.name%></h3>
+            <h3 class="my-3">Mobile : <%=i.mobile%></h3>
+            <h3 class="my-3">time  : <%= `${i.createdAt.getDate()}/${i.createdAt.getMonth() + 1}/${i.createdAt.getFullYear()}, ${i.createdAt.toLocaleTimeString('en-US', { timeZone: 'Asia/Kolkata', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true })}` %></h3>
+           
+            </div>
+            <%}%>
+    </div>
+</section>
+
+<%-include('footer')%>

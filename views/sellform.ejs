@@ -534,7 +534,7 @@ options.forEach(option => {
 </script> -->
 
 <% if (messages.success) { %>                 
- <div class="container">
+ <div class="container d-flex justify-content-center">
   <div class="alert my-2 alert-success">
     <%= messages.success %>
 </div>
@@ -543,26 +543,30 @@ options.forEach(option => {
   <section class="sellform container">
     <div class="">
       <div class="">
-        <form class="form d-flex flex-column align-items-center" method="post" enctype="multipart/form-data" action="/user/basicdetails">
+        <form class="form d-flex flex-column align-items-center" method="post" action="/user/basicdetails">
           <div class="text-center w-100">
             <h1 class="fs-1 fw-bold text-theme-blue mt-5">Property Details</h1>
           </div>
-          <div class="col-lg- mt-4 d-flex flex-wrap">
-            <div class="col-lg-6 p-2">
+          <div class="col-lg-8 mt-4 d-flex justify-content-center flex-wrap">
+            <div class="col-lg-5 p-2">
               <p class="mx-2">projectName</p>
-              <input type="text" class=" m-2" name="projectName">
+              <input type="text" class=" m-2" required placeholder="projectName or soc name" name="projectName">
             </div> 
-            <div class="col-lg-6 p-2">
+            <div class="col-lg-5 p-2">
               <p class="mx-2">Mobile</p>
-              <input type="text" class="m-2" name="mobile">
+              <input type="text" class="m-2" required placeholder="phone no" name="mobile">
             </div> 
-            <div class="col-lg-6 p-2">
-              <p class="mx-2">Address</p>
-              <input type="text" class="m-2" name="location">
+            <div class="col-lg-5 p-2">
+              <p class="mx-2">category</p>
+              <select name="category" class="m-2" required>
+                <option value="" hidden>select category</option>
+                <option value="rent">for rent</option>
+                <option value="sell">for sell</option>
+                </select>
             </div> 
-            <div class="col-lg-6 p-2">
+            <div class="col-lg-5 p-2">
               <p class="mx-2">Select House Type</p>
-            <select class="m-2 w-100 border-1" name="house_type">
+            <select class="m-2 w-100 border-1" required name="house_type">
               <option hidden>House Type</option>
           <option value="FarmHouse">FarmHouse</option>
           <option value="Commercial">Commercial</option>
@@ -573,15 +577,17 @@ options.forEach(option => {
           <option value="Hotel/Resorts">Hotel/Resorts</option>
             </select>
           </div> 
-          <div class="col-lg-6 p-2">
-            <select name="city" class="m-2" id="">
+          <div class="col-lg-5 p-2">
+            <p class="mx-2">select city</p>
+            <select name="city" required class="m-2" id="">
               <option value="" hidden>city</option>
               <%for(var i of cities){%>
                 <option value="<%=i.city%>"><%=i.city%></option>
                 <%}%>
               </select>
             </div> 
-          <div class="col-lg-6 p-2">
+            <div class="col-lg-5 p-2">
+            <p class="mx-2">select rooms</p>
             <select required name="rooms" class="m-2" id="">
               <option value="" hidden>select rooms</option>
               <option value="1BHK">1 RK</option>
@@ -590,6 +596,13 @@ options.forEach(option => {
               <option value="3BHK">3+ BHK</option>
           </select>
             </div> 
+            <div class="col-10 p-2">
+              <p class="mx-2">location</p>
+              <input name="location" id="" class="border w-100 m-2 p-2 rounded-3" type="url" required placeholder="location link">
+            </div>
+            <div class="col-lg-10 text-center my-3 px-2">
+              <button class="text-white theme-blue p-1 rounded-pill ps-3">submit Property <i class="rounded-circle p-2 fa-solid fa-check bg-white text-theme-blue"></i></button>
+            </div>
           </div>
         </form>
       </div>
