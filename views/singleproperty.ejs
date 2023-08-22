@@ -7,11 +7,18 @@
       }
     </style>
     <!-- <%=data%> -->
+    <% if (messages.success) { %>                 
+      <div class="container d-flex justify-content-center">
+       <div class="alert my-2 alert-success" style="width: fit-content;">
+         <%= messages.success %>
+     </div>
+      </div>
+       <% } %>
     <main class="container">
       <section>
         <div>
           <div
-            class="mt-5 d-flex px-3 p-2 justify-content-between rounded-3"
+            class="mt-2 d-flex px-3 p-2 justify-content-between rounded-3"
             style="background-color: #e2e2e2"
           >
             <div>
@@ -124,9 +131,10 @@
       </section>
     
       <section>
-        <h2 class="text-theme-blue my-5 fs-2 fw-bold">Overview</h2>
-        <div class="d-flex">
-          <div class="col-lg-7 pe-3">
+        <div class="d-flex flex-wrap">
+        <div class="col-lg-7 pe-3">
+          <h2 class="text-theme-blue my-5 fs-2 fw-bold">Overview</h2>
+        
             <div class="shadow-lg">
               <div class="p-3 d-flex justify-content-between">
                 <div style="background-color:#f0f0f0;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center w-100 px-2 d-flex justify-content-between p-2 py-3 mx-2 rounded-3">
@@ -229,11 +237,29 @@
                 </div>
             </div>
             </div>
-          </div>
+         
+        </div>
           <div class="col-lg-5">
-            <div class="shadow-lg">
-              ghf
+          <h2 class="text-theme-blue my-5 fs-2 fw-bold">similar properties</h2>
+
+            <%for(var i of properties){%>
+              <div class="card flex-wrap flex-row d-flex mb-2">
+                <div class="col-lg-6 p-2">
+                  <img src="<%=i.property_image[0]%>" height="213px"class="card-img-top">
+                </div>
+                <div class="card-body col-lg-6">
+                  <h5 class="card-title fw-bold fs-4"><%=i.projectName%></h5>
+                  <p class="card-text"><%=i.house_type%></p>
+                  <p class="card-text"><%=i.residentType%></p>
+                  <p class="card-text">for <%=i.category%></p>
+                  <p class="card-text">price <%=i.price%></p>
+                  <a href="/user/property/<%=i._id%>/sp" style="width: fit-content;"
+                                        class="theme-blue mt-3 d-block rounded-pill ps-3 pe-1 text-white py-1">explore more
+                                        <i
+                                            class="fa-solid fa-angles-right text-theme-blue bg-white p-2 rounded-pill"></i></a>
+                </div>
             </div>
+            <%}%>
           </div>
         </div>
       </section>

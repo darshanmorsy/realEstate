@@ -85,23 +85,9 @@ exports.admin=async(req,res)=>{
 
 
 exports.contacts = async (req, res) => {
-  var data = await contacts.find({});
-  if (data) {
-    res.status(200).json(data);
-  } else {
-    res.status(200).json({ message: "no contacts found" });
-  }
+  var contact = await contacts.find({}).sort({ _id: -1 });
+  res.render('contacts',{contact})
 }
-
-exports.requestAccept = async (req, res) => {
-  // console.log(req.params);
-  var accept = await property.findByIdAndUpdate(req.params.id, { active: 1 });
-  if (accept) {
-    res.status(200).json({ accept, message: "accepted successfully" });
-  } else {
-    res.status(200).json({ message: "request not accepted" });
-  }
-}  
 
 
 
@@ -118,18 +104,22 @@ exports.city = async (req, res) => {
 
   var data = await city.create({ city: req.body.city });
   if (data) {
-    res.status(200).json({ message: "city added successfully", data });
+    req.flash("city added successfully")
+    res.redirect('back')
   } else {
-    res.status(404).json({ message: "city not added" });
+    req.flash("city not added");
+    res.redirect('back')
   }
 }
 
 exports.deletecity = async (req, res) => {
   var data = await city.findByIdAndDelete(req.params.id);
   if (data) {
-    res.status(200).json({ message: "city deleted successfully" });
+    req.flash("success","city deleted successfully");
+    res.redirect('back')
   } else {
-    res.status(404).json({ message: "city not deleted" });
+    req.flash("success","city not deleted")
+    res.redirect('back')
   }
 }
 
@@ -138,83 +128,26 @@ exports.user = async (req, res) => {
   res.render('user',{users});
 } 
 
-exports.deactive = async (req, res) => {
-  var data = await property.findByIdAndUpdate(req.params.id, { active: 2 });
-  if (data) {
-    res.status(200).json({ message: "property deactive successfully" });
-  } else {
-    res.status(404).json({ message: "property not deactive" });
-  }
-}
-
-exports.active = async (req, res) => {
-  var data = await property.findByIdAndUpdate(req.params.id, { active: 0 });
-  if (data) {
-    res.status(200).json({ message: "property deactive successfully" });
-  } else {
-    res.status(404).json({ message: "property not deactive" });
-  }
-}
-
-exports.deactive_property = async (req, res) => {
-  var data = await property.find({ active: 2 });
-  if (data) {
-    res.status(200).json(data);
-  } else {
-    res.status(404).json({ message: "property not found" });
-  }
-}
- 
-exports.contact_property = async (req, res) => {
-  console.log(req.params);
-
-  if (req.params.property_id) {
-    var properties = await property.findById(req.params.property_id);
-    console.log(properties, "oo");
-
-    if (properties.price) { 
-      var owner_info = await user.findById(properties.user_id);
-      console.log(owner_info, "oo");
-
-      if (owner_info) {
-        console.log("hh");
-        res.status(200).json({ owner_info, properties });
-        console.log(owner_info, properties);
-      } else {
-        res.status(200).json({ message: "no such property" });
-      }
-    } else {
-      res.status(200).json({ message: "no such property" });
-    }
-  } else {
-    console.log(req.params);
-  }
-}
-
 exports.contactdelete = async(req, res) => {
-
-  try {
-    
+ 
+  try { 
     if(req.params.id){
-
       var deletes=await contacts.findByIdAndDelete(req.params.id);
       if(deletes){
+        req.flash('success',"contact deleted successfully")
         res.redirect('back')
       }
     }
-
   } catch (error) {
     console.log(error);
   }
-
 }
 
 exports.propertDetails = async (req, res) => {
-
+ 
   console.log(req.body, "gggggg");
 
   try {
-
     const {
       address,
       projectName,
@@ -300,14 +233,6 @@ exports.propertDetails = async (req, res) => {
 
     } else {
 
-      var token = req.headers.authorization || req.cookies.jwt;
-      const secretKey = process.env.SECRET_KEY;
-      var decodedToken = "";
-      if (token) {
-
-        decodedToken = jwt.verify(token, secretKey);
-
-      }
       const files = req.files;
       if (files) {
 
@@ -319,7 +244,6 @@ exports.propertDetails = async (req, res) => {
         }
 
         var data = await property.create({
-          user_id: decodedToken._id,
           address,
           projectName,
           price,

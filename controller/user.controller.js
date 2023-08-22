@@ -230,17 +230,10 @@ exports.registerpostweb = async (req, res) => {
 
 exports.property = async (req, res) => {
 
-  var data = await property.find({ active: 1 });
-  // var cities = await city.find({});
-  // var token = req.cookies.jwt;
-  // const secretKey = process.env.SECRET_KEY;
-  // var decodedToken = "";
-  // if (token) {
-  //   decodedToken = jwt.verify(token, secretKey);
-  // }
-  // var profile = await user.findOne({ _id: decodedToken._id });
-  // res.render("buy", { data, cities, profile });
-  res.render("allproperty",{data})
+  var data = await property.find({ active: 1 }).sort({ _id: -1 });
+  var cities = await city.find({});
+  res.render("allproperty",{data,cities});
+
 }
 
 exports.buy = async (req, res) => {
@@ -286,16 +279,13 @@ exports.rents = async (req, res) => {
 
 exports.singleproperty = async (req, res) => {
 
-  var token = req.cookies.jwt;
-  const secretKey = process.env.SECRET_KEY;
-  var decodedToken = "";
-  if (token) {
-    decodedToken = jwt.verify(token, secretKey);
-  }
-  // var profile = await user.findOne({ _id: decodedToken._id });
+  const properties = await property.aggregate([
+    { $sample: { size: 2 } }
+  ]);
+  console.log(properties);
   var data = await property.findOne({ _id:req.params.id});
   // var contacts = await contact.find({});
-  res.render("singleproperty",{ data});
+  res.render("singleproperty",{ data,properties});
 }
 
 // property details form, post method
@@ -484,6 +474,7 @@ exports.contact = async (req, res) =>{
     name == null ||
     address == null
   ) {
+    req.flash('success','some field is empty')
     res.redirect("back");
   } else {
     console.log(req.params.id);
@@ -496,17 +487,17 @@ exports.contact = async (req, res) =>{
 
     if (data) {
       console.log("data added successfully");
-      if (req.headers.accept == undefined) {
-        res.json({ message: "data added successfully" });
+      if (req.headers.authorization) {
+        res.json({ message: "form submited successfully" });
       } else {
-        req.flash("success", "data added successfully");
+        req.flash("success", "form submited successfully");
         res.redirect("back");
       }
     } else {
-      if (req.headers.accept == undefined) {
+      if (req.headers.authorization) {
         res.json({ message: "data not added" });
       } else {
-        req.flash("success", "data not added");
+        req.flash("success", "forn not submited");
         res.redirect("back");
       }
     }
@@ -517,7 +508,7 @@ exports.contact = async (req, res) =>{
 
 exports.allproperty = async (req, res) => {
 
-  var data = await property.find({ active: 1 });
+  var data = await property.find({ active: 1 }).sort({ _id: -1 })
   if (data) {
     res.status(200).json(data);
   } else {
@@ -616,8 +607,7 @@ exports.profile = async (req, res) => {
       res.render("profile", { profile, property:propert});
 
     }
-  }
-
+}
 
 exports.profile_front = async (req, res) => {
   var token = req.cookies.jwt;
@@ -892,9 +882,9 @@ exports.mainfilter = async (req, res) => {
   });
   
   // Execute the query and get the filtered results
-  Property.find(query)
+  Property.find(query).sort({ _id: -1 })
     .exec()
-    .then((filteredProperties) => {
+    .then(async(filteredProperties) => {
       // Do something with the filteredProperties
       // console.log(filteredProperties);
       // console.log(req.body);
@@ -904,7 +894,9 @@ exports.mainfilter = async (req, res) => {
       else{
         var data=filteredProperties
         // console.log(data,filteredProperties);
-        res.render('allproperty',{data});
+        var cities=await city.find({});
+        console.log(cities);
+        res.render('allproperty',{data,cities});
       }
     })
     .catch((error) => {
@@ -914,7 +906,6 @@ exports.mainfilter = async (req, res) => {
   
   
 }
-
 
 exports.basicdetails=async(req,res)=>{
 

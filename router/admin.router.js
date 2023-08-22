@@ -6,17 +6,10 @@ const {
   loginpage,
   login,
   admin,
-  request,
   contacts,
-  requestAccept,
-  requestDecline,
-  allproperty,
   city,
   user,
   deletecity,
-  deactive,
-  active,
-  deactive_property,
   contact_property,
   contactdelete,
   propertDetails
@@ -32,7 +25,6 @@ router.get("/user", admin_token, user)
 router.post("/city", admin_token, city)
 
 router.get("/deletecity/:id", admin_token, deletecity)
-router.get("/contactproperty/:property_id", admin_token, contact_property)
 router.get("/contactdelete/:id", admin_token, contactdelete)
 router.post(
   "/propertyDetails", admin_token,
