@@ -38,6 +38,11 @@ a {
   display: flex;
 }
 
+#tabs .active{
+  background-color: #006cb5;
+  color: white;
+  font-weight: 700;
+}
 .banner-tabs .tab {
   padding: 10px 20px;
   cursor: pointer;

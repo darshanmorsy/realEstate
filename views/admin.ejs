@@ -156,7 +156,7 @@
                                     <div class="input-text">
                                         <div class="input-div">
                                             <p>Project Name</p>
-                                            <input type="text" name="projectName" d placeholder="project name" />
+                                            <input require type="text" name="projectName" d placeholder="project name" />
                                         </div>
                                         <div class="input-div">
                                             <p>City</p>
@@ -168,10 +168,12 @@
                                                     </option>
                                                     <%}%>
                                             </select>
+                                            <div id="error-projectName" class="error-message"></div>
+                                            <div id="error-city" class="error-message"></div>   
                                         </div>
                                         <div class="input-div">
                                             <p>Price</p>
-                                            <input type="text" name="price" d />
+                                            <input require type="text" name="price" d />
                                         </div>
                                         <div class="input-div">
                                             <p>Property Life</p>
@@ -192,29 +194,29 @@
                                     <div class="input-text">
                                         <div class="input-div">
                                             <p>Address</p>
-                                            <input type="text" name="address" d />
+                                            <input require type="text" name="address" d />
                                         </div>
                                         <div class="input-div">
                                             <p>Size</p>
-                                            <input type="text" name="size" d />
+                                            <input require type="text" name="size" d />
                                         </div>
                                         <div class="input-div">
                                             <p>Booking Amount</p>
-                                            <input type="text" name="booking_amount" d />
+                                            <input require type="text" name="booking_amount" d />
                                         </div>
                                     </div>
                                     <div class="input-text">
                                         <div class="input-div">
                                             <p>Carpet Area</p>
-                                            <input type="text" name="carpet_area" d />
+                                            <input require type="text" name="carpet_area" d />
                                         </div>
                                         <div class="input-div">
                                             <p>Super Built Up</p>
-                                            <input type="text" name="super_built_up" d />
+                                            <input require type="text" name="super_built_up" d />
                                         </div>
                                         <div class="input-div">
                                             <p>Project Area</p>
-                                            <input type="text" name="project_area" d />
+                                            <input require type="text" name="project_area" d />
                                         </div>
                                     </div>
                                     <div class="buttons">
@@ -239,29 +241,29 @@
                                         </div>
                                         <div class="input-div">
                                             <p>Property Floor</p>
-                                            <input type="text" name="property_floor" d />
+                                            <input require type="text" name="property_floor" d />
                                         </div>
                                         <div class="input-div">
                                             <p>Builder Details</p>
-                                            <input type="text" name="builder_details" d />
+                                            <input require type="text" name="builder_details" d />
                                         </div>
                                         <div class="input-div">
                                             <p>Owner Info</p>
-                                            <input type="text" name="owner_info" d />
+                                            <input require type="text" name="owner_info" d />
                                         </div>
                                     </div>
                                     <div class="input-text">
                                         <div class="input-div">
                                             <p>Location Link</p>
-                                            <input type="text" name="location" d />
+                                            <input require type="text" name="location" d />
                                         </div>
                                         <div class="input-div">
                                             <p>Scale Type</p>
-                                            <input type="text" name="scale_type" d />
+                                            <input require type="text" name="scale_type" d />
                                         </div>
                                         <div class="input-div">
                                             <p>Disclaimer</p>
-                                            <input type="text" name="disclaimer" d />
+                                            <input require type="text" name="disclaimer" d />
                                         </div>
                                         <div class="input-div">
                                             <p>Category</p>
@@ -412,18 +414,18 @@
                                     <div class="input-text">
                                         <div class="input-div">
                                             <p>landmark</p>
-                                            <input type="text" name="landmark" d />
+                                            <input require type="text" name="landmark" d />
                                         </div>
                                         <div class="input-div">
                                             <p>Pin Code</p>
-                                            <input type="text" name="pincode" d />
+                                            <input require type="text" name="pincode" d />
                                         </div>
                                     </div>
                                     <div class="input-text">
                                         <div class="input-div">
                                             <p>Facilities</p>
                                             <div class="d-flex">
-                                                <input type="text" required disabled value="add facilities"
+                                                <input require type="text" required disabled value="add facilities"
                                                     class="form-control" id="validationTooltip05" required />
 
                                                 <button type="button" onclick="addInput()"
@@ -437,7 +439,7 @@
                                         </div>
                                         <div class="input-div">
                                             <p>built up area</p>
-                                            <input type="text" name="built_up_area" d />
+                                            <input require type="text" name="built_up_area" d />
                                         </div>
                                     </div>
 
@@ -469,7 +471,7 @@
                                             Click to Upload Image
                                         </div>
 
-                                        <input type="file" name="property_image" id="fileInput" multiple
+                                        <input require type="file" name="property_image" id="fileInput" multiple
                                             accept="image/*" style="display: none" />
                                     </div>
                                     <div class="buttons button_space">
@@ -515,7 +517,7 @@
                 <h1 class="fs-1 text-theme-blue fw-bold mb-5">City Details</h1>
                 <form action="/admin/city" method="post">
                     <div class="d-flex col-12 col-lg-3">
-                        <input type="text" placeholder="enter city" required class="p-1" name="city">
+                        <input require type="text" placeholder="enter city" required class="p-1" name="city">
                         <button type="submit"
                             class="theme-blue d-flex align-items-center ms-3 p-1 text-white ps-3 rounded-pill">
                             submit <i

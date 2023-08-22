@@ -13,19 +13,9 @@ const { request } = require("http");
 // const { proppatch } = require("../router/user.router");
 
 exports.home = async (req, res,next) => {
-  var token = req.cookies.jwt;
-  const secretKey = process.env.SECRET_KEY;
-  var decodedToken = "";
-
-  if (token) {
-    decodedToken = jwt.verify(token, secretKey);
-  }
-  var profile = await user.findOne({ _id: decodedToken._id });
   var data = await property.find({ active: 1 });
-  var cities = await city.find({});
-  res.render("home", { data, cities, profile });
-
-  next();
+  var cities = await city.find({})
+  res.render("home", { data, cities,user:req.user})
 }
 
 exports.login = async (req, res) => {
@@ -603,8 +593,9 @@ exports.profile = async (req, res) => {
       
     }else{
       var profile =req.user
+      console.log(req);
     var propert = await property.find({ user_id: req.user.id});
-      res.render("profile", { profile, property:propert});
+      res.render("profile", { profile, property:propert,user:req.user});
 
     }
 }
