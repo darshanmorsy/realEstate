@@ -714,7 +714,7 @@
 
                         options.forEach((option) => {
                             const optionElement = document.createElement("option");
-                            optionElement.value = option.toLowerCase().replace(/\s/g, "_");
+                            optionElement.value = option.toLowerCase().replace(/\s/g, " ");
                             optionElement.textContent = option;
                             residentSelect.appendChild(optionElement);
                         });
