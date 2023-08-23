@@ -23,7 +23,16 @@ const userSchema = async (req, res, next) => {
                         status: 404,
                     });
                 }else{
-                    res.redirect('/user/login')
+                    function removeQueryParams(url) {
+                        const parsedUrl = new URL(url)
+                        parsedUrl.search = ""
+                        return parsedUrl.toString()
+                    }         
+                    const modifiedUrl = removeQueryParams(req.get('referer'));
+                    console.log(modifiedUrl);
+                    console.log(req.get('referer'),"o");
+                    var link=modifiedUrl+'?openmodal=true'
+                    res.redirect(link)
                 }
             } else {
                 const userData = await user.findById({ _id: verifyUser._id })
@@ -31,7 +40,17 @@ const userSchema = async (req, res, next) => {
                     if(req.headers.authorization){
                         res.status(403).json({ message:"data is not authorized"})
                     }
-                    res.redirect('/user/login')
+
+                    function removeQueryParams(url) {
+                const parsedUrl = new URL(url)
+                parsedUrl.search = ""
+                return parsedUrl.toString()
+            }         
+            const modifiedUrl = removeQueryParams(req.get('referer'));
+            console.log(modifiedUrl);
+            console.log(req.get('referer'),"o");
+            var link=modifiedUrl+'?openmodal=true'
+            res.redirect(link)
                 } else {
                     req.user = userData
                     req.token = Token
@@ -39,7 +58,7 @@ const userSchema = async (req, res, next) => {
                 }
             }
         } else {
-            
+
             function removeQueryParams(url) {
                 const parsedUrl = new URL(url)
                 parsedUrl.search = ""
