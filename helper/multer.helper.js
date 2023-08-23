@@ -12,7 +12,7 @@ var storage = multer.diskStorage({
     filename: function (req, file, cb) {
 
         const fileExtension = path.extname(file.originalname)
-        cb(null, file.fieldname + '-' + (Date.now()*Math.random())+Math.random()*Math.random()+fileExtension)
+        cb(null, file.fieldname + '-' + (Date.now()*Math.random()+Math.random()*Math.random()+Date.now()*Math.random())+Math.random()+fileExtension)
         
     }
 

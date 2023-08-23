@@ -12,7 +12,7 @@ const adminSchema = async (req, res, next) => {
                 return data;
             }
             );
-            console.log(admins);   
+            console.log(admins)
             if (admins == undefined) {
           
                     res.redirect('/admin/login')

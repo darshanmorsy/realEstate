@@ -15,10 +15,13 @@ const { request } = require("http");
 exports.home = async (req, res,next) => {
   var data = await property.find({ active: 1 });
   var cities = await city.find({})
-  res.render("home", { data, cities,user:req.user})
+  var verify=await jwt.verify(req.cookies.jwt,process.env.SECRET_KEY)
+  var users=await user.findOne({_id:verify._id})
+  
+  res.render("home",{ data, cities,users});
 }
 
-exports.login = async (req, res) => {
+exports.login = async (req, res) => { 
   res.render("login");
 }
 
@@ -94,6 +97,7 @@ exports.loginpost = async (req, res) => {
 }
 
 exports.registerpost = async (req, res) => {
+  
   console.log(req.body.name);
   const { mobile, name, password } = req.body;
   if (mobile == null || name == null || password == null) {
@@ -108,7 +112,7 @@ exports.registerpost = async (req, res) => {
         name,
         password: Hashedpassword,
         mobile: req.body.mobile,
-      });
+      })
 
       const saveData = await userData.save();
 
@@ -829,7 +833,7 @@ exports.housetype = async (req, res) => {
   }
 }
 
-exports.mainfilter = async (req, res) => {
+exports.mainfilter = async (req, res) =>{
 
   console.log(req.body);
   const mongoose = require("mongoose");
