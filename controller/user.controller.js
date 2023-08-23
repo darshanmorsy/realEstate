@@ -295,7 +295,17 @@ exports.singleproperty = async (req, res) => {
   console.log(properties);
   var data = await property.findOne({ _id:req.params.id});
   // var contacts = await contact.find({});
-  res.render("singleproperty",{ data,properties});
+  var users=''
+  if(req.cookies.jwt){ 
+    var verify=await jwt.verify(req.cookies.jwt,process.env.SECRET_KEY)
+    users=await user.findOne({_id:verify._id})
+    if(users==null){
+      users=undefined
+    }else{
+      users="user"
+    }
+  }
+  res.render("singleproperty",{ data,properties,users})
 }
 
 // property details form, post method
