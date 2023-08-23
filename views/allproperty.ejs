@@ -1,4 +1,4 @@
-    <%-include('header')%>
+<%-include('header')%>
     <style>
         /* Import Google Font - Poppins */
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
@@ -97,145 +97,154 @@
             pointer-events: auto;
             -moz-appearance: none;
         }
-        @media (max-width: 992px) { /* Adjust the breakpoint value as needed */
-    .translates {
-        transform: translateY(-50px) !important;
-    }
-}
+
+        @media (max-width: 992px) {
+
+            /* Adjust the breakpoint value as needed */
+            .translates {
+                transform: translateY(-50px) !important;
+            }
+        }
 
         /* Support */
     </style>
-    
-<button class="theme-blue text-white p-3 d-block d-xl-none position-fixed" style="top: 30%;z-index: 99090909; border-top-right-radius: 50px;border-bottom-right-radius: 50px;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-    <i class="fa-solid fa-filter fa-flip"></i>
-</button>
 
-  <div style="z-index: 34677563452353;" class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
-      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-        <form action="/user/mainfilter" method="post">
-            <div class="d-flex flex-wrap px-4 justify-content-between">
-                <input type="checkbox" name="rooms" value="1 RK" class="btn-check"
-                    id="btn-check-11-outlined" autocomplete="off">
-                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-11-outlined">1 RK
-                    &nbsp;</label>
+    <button class="theme-blue text-white p-3 d-block d-xl-none position-fixed"
+        style="top: 30%;z-index: 99090909; border-top-right-radius: 50px;border-bottom-right-radius: 50px;"
+        type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+        <i class="fa-solid fa-filter fa-flip"></i>
+    </button>
 
-                <input type="checkbox" name="rooms" value="1 BHK" class="btn-check"
-                    id="btn-check-22-outlined" autocomplete="off">
-                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-22-outlined">1
-                    BHK</label>
+    <div style="z-index: 34677563452353;" class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+        aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <form action="/user/mainfilter" method="post">
+                <div class="d-flex flex-wrap px-4 justify-content-between">
+                    <input type="checkbox" name="rooms" value="1 RK" class="btn-check" id="btn-check-11-outlined"
+                        autocomplete="off">
+                    <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-11-outlined">1 RK
+                        &nbsp;</label>
 
-                <input type="checkbox" name="rooms" value="2 BHK" class="btn-check"
-                    id="btn-check-33-outlined" autocomplete="off">
-                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-33-outlined">2
-                    BHK</label>
+                    <input type="checkbox" name="rooms" value="1 BHK" class="btn-check" id="btn-check-22-outlined"
+                        autocomplete="off">
+                    <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-22-outlined">1
+                        BHK</label>
 
-                <input type="checkbox" name="rooms" value="3 BHK" class="btn-check"
-                    id="btn-check-44-outlined" autocomplete="off">
-                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-44-outlined">3
-                    BHK</label>
+                    <input type="checkbox" name="rooms" value="2 BHK" class="btn-check" id="btn-check-33-outlined"
+                        autocomplete="off">
+                    <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-33-outlined">2
+                        BHK</label>
 
-                <input type="checkbox" name="rooms" value="4 BHK" class="btn-check"
-                    id="btn-check-55-outlined" autocomplete="off">
-                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-55-outlined">4
-                    BHK</label>
+                    <input type="checkbox" name="rooms" value="3 BHK" class="btn-check" id="btn-check-44-outlined"
+                        autocomplete="off">
+                    <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-44-outlined">3
+                        BHK</label>
 
-                <input type="checkbox" name="rooms" value="5 BHK" class="btn-check"
-                    id="btn-check-66-outlined" autocomplete="off">
-                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-66-outlined">5
-                    BHK</label>
+                    <input type="checkbox" name="rooms" value="4 BHK" class="btn-check" id="btn-check-55-outlined"
+                        autocomplete="off">
+                    <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-55-outlined">4
+                        BHK</label>
 
-            </div>
-            <div class="d-flex mt-3">
-                <div class="wrapper">
-                    <div class="slider">
-                        <div class="progress"></div>
-                    </div>
-                    <div class="range-input">
-                        <input type="range" class="range-min" min="1000" max="10000000" value="1000" step="1000">
-                        <input type="range" class="range-max" min="1000" max="10000000" value="10000000" step="1000">
-                        
-                    </div>
-                    <div class="price-input">
-                        <div class="field flex-column">
-                            <span>Min</span>
-                            <input type="number" name="greaterrange" class="input-min" value="1000">
+                    <input type="checkbox" name="rooms" value="5 BHK" class="btn-check" id="btn-check-66-outlined"
+                        autocomplete="off">
+                    <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-66-outlined">5
+                        BHK</label>
+
+                </div>
+                <div class="d-flex mt-3">
+                    <div class="wrapper">
+                        <div class="slider">
+                            <div class="progress"></div>
                         </div>
-                        <div class="field flex-column">
-                            <span>Max</span>
-                            <input type="number" name="lessrange" class="input-max" value="10000000">
-                            <!-- <input type="number" class="input-max" value="7500"> -->
+                        <div class="range-input">
+                            <input type="range" class="range-min" min="1000" max="10000000" value="1000" step="1000">
+                            <input type="range" class="range-max" min="1000" max="10000000" value="10000000"
+                                step="1000">
+
+                        </div>
+                        <div class="price-input">
+                            <div class="field flex-column">
+                                <span>Min</span>
+                                <input type="number" name="greaterrange" class="input-min" value="1000">
+                            </div>
+                            <div class="field flex-column">
+                                <span>Max</span>
+                                <input type="number" name="lessrange" class="input-max" value="10000000">
+                                <!-- <input type="number" class="input-max" value="7500"> -->
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <h3 class="text-theme-blue fs-5 fw-bold ps-4">Furnishing</h3>
-            <div class="d-flex justify-content-between px-4">
-           <input type="radio" name="furnishing" value="fully" class="btn-check"
-                id="btn-check-8-outlined" autocomplete="off">
-            <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-8-outlined">◉ Fully</label>
+                <h3 class="text-theme-blue fs-5 fw-bold ps-4">Furnishing</h3>
+                <div class="d-flex justify-content-between px-4">
+                    <input type="radio" name="furnishing" value="fully" class="btn-check" id="btn-check-8-outlined"
+                        autocomplete="off">
+                    <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-8-outlined">◉ Fully</label>
 
-            <input type="radio" name="furnishing" value="Semi Furnished" class="btn-check"
-                id="btn-check-7-outlined" autocomplete="off">
-            <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-7-outlined">◉ Semi</label>
-            <input type="radio" name="furnishing" value="none" class="btn-check"
-                id="btn-check-9-outlined" autocomplete="off">
-            <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-9-outlined">◉ none</label>
-            </div>
-          
-            <h3 class="text-theme-blue fs-5 fw-bold ps-4 mt-3">House Type</h3>
-                          
-            <div class="d-flex flex-wrap px-4 justify-content-between">
+                    <input type="radio" name="furnishing" value="Semi Furnished" class="btn-check"
+                        id="btn-check-7-outlined" autocomplete="off">
+                    <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-7-outlined">◉ Semi</label>
+                    <input type="radio" name="furnishing" value="none" class="btn-check" id="btn-check-9-outlined"
+                        autocomplete="off">
+                    <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-9-outlined">◉ none</label>
+                </div>
 
-                <input type="checkbox" name="house_type" value="FarmHouse" class="btn-check"
-                id="btn-check-667-outlined" autocomplete="off">
-            <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-667-outlined">FarmHouse</label>
+                <h3 class="text-theme-blue fs-5 fw-bold ps-4 mt-3">House Type</h3>
 
-                <input type="checkbox" name="house_type" value="Flat" class="btn-check"
-                id="btn-check-455-outlined" autocomplete="off">
-            <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-455-outlined">flat</label>
+                <div class="d-flex flex-wrap px-4 justify-content-between">
+
+                    <input type="checkbox" name="house_type" value="FarmHouse" class="btn-check"
+                        id="btn-check-667-outlined" autocomplete="off">
+                    <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-667-outlined">FarmHouse</label>
+
+                    <input type="checkbox" name="house_type" value="Flat" class="btn-check" id="btn-check-455-outlined"
+                        autocomplete="off">
+                    <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-455-outlined">flat</label>
 
 
-                <input type="checkbox" name="house_type" value="Industrial" class="btn-check"
-                    id="btn-check-383-outlined" autocomplete="off">
-                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-383-outlined">Industrial</label>
+                    <input type="checkbox" name="house_type" value="Industrial" class="btn-check"
+                        id="btn-check-383-outlined" autocomplete="off">
+                    <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-383-outlined">Industrial</label>
 
-               
 
-                <input type="checkbox" name="house_type" value="Commercial" class="btn-check"
-                    id="btn-check-58-outlined" autocomplete="off">
-                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-58-outlined">Commercial</label>
 
-                <input type="checkbox" name="house_type" value="land/plot" class="btn-check"
-                id="btn-check-227-outlined" autocomplete="off">
-            <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-227-outlined">land</label>
+                    <input type="checkbox" name="house_type" value="Commercial" class="btn-check"
+                        id="btn-check-58-outlined" autocomplete="off">
+                    <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-58-outlined">Commercial</label>
 
-            <input type="checkbox" name="house_type" value="House" class="btn-check"
-            id="btn-check-115-outlined" autocomplete="off">
-        <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-115-outlined">House&nbsp;</label>
+                    <input type="checkbox" name="house_type" value="land/plot" class="btn-check"
+                        id="btn-check-227-outlined" autocomplete="off">
+                    <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-227-outlined">land</label>
 
-            </div>
-            <div class="d-flex flex-wrap px-4 justify-content-between">
+                    <input type="checkbox" name="house_type" value="House" class="btn-check" id="btn-check-115-outlined"
+                        autocomplete="off">
+                    <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-115-outlined">House&nbsp;</label>
 
-                <select name="city" id="" class="mt-3" style="border: 1px solid #6c757d;">
-                    <option value="">select city</option>
-                    <%for(var i of cities){%>
-                        <option value="<%=i.city%>"><%=i.city%></option>
-                    <%}%>
-                </select>
-              
-            </div>
-          
-            <div class="text-center">
-                <button class="theme-blue p-1 text-white rounded-pill ps-3 my-3">search<i
-                        class="fa-solid ms-2 rounded-circle fa-magnifying-glass p-2 bg-white text-theme-blue"></i></button>
-            </div>
-        </form>
+                </div>
+                <div class="d-flex flex-wrap px-4 justify-content-between">
+
+                    <select name="city" id="" class="mt-3" style="border: 1px solid #6c757d;">
+                        <option value="">select city</option>
+                        <%for(var i of cities){%>
+                            <option value="<%=i.city%>">
+                                <%=i.city%>
+                            </option>
+                            <%}%>
+                    </select>
+
+                </div>
+
+                <div class="text-center">
+                    <button class="theme-blue p-1 text-white rounded-pill ps-3 my-3">search<i
+                            class="fa-solid ms-2 rounded-circle fa-magnifying-glass p-2 bg-white text-theme-blue"></i></button>
+                </div>
+            </form>
+        </div>
     </div>
-  </div>
 
 
     <section class="d-flex filters container">
@@ -295,9 +304,11 @@
                                         <div class="progress"></div>
                                     </div>
                                     <div class="range-input">
-                                        <input type="range" class="range-min" min="1000" max="10000000" value="1000" step="1000">
-                                        <input type="range" class="range-max" min="1000" max="10000000" value="10000000" step="1000">
-                                        
+                                        <input type="range" class="range-min" min="1000" max="10000000" value="1000"
+                                            step="1000">
+                                        <input type="range" class="range-max" min="1000" max="10000000" value="10000000"
+                                            step="1000">
+
                                     </div>
                                     <div class="price-input">
                                         <div class="field flex-column">
@@ -314,61 +325,73 @@
                             </div>
                             <h3 class="text-theme-blue fs-5 fw-bold ps-4">Furnishing</h3>
                             <div class="d-flex justify-content-between px-4 mt-1">
-                           <input type="radio" name="furnishing" value="fully" class="btn-check"
-                                id="btn-check-83-outlined" autocomplete="off">
-                            <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-83-outlined">◉ Fully</label>
+                                <input type="radio" name="furnishing" value="fully" class="btn-check"
+                                    id="btn-check-83-outlined" autocomplete="off">
+                                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-83-outlined">◉
+                                    Fully</label>
 
-                            <input type="radio" name="furnishing" value="Semi Furnished" class="btn-check"
-                                id="btn-check-73-outlined" autocomplete="off">
-                            <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-73-outlined">◉ Semi</label>
-                            <input type="radio" name="furnishing" value="none" class="btn-check"
-                                id="btn-check-93-outlined" autocomplete="off">
-                            <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-93-outlined">◉ none</label>
+                                <input type="radio" name="furnishing" value="Semi Furnished" class="btn-check"
+                                    id="btn-check-73-outlined" autocomplete="off">
+                                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-73-outlined">◉
+                                    Semi</label>
+                                <input type="radio" name="furnishing" value="none" class="btn-check"
+                                    id="btn-check-93-outlined" autocomplete="off">
+                                <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-93-outlined">◉
+                                    none</label>
                             </div>
-                          
+
                             <h3 class="text-theme-blue fs-5 fw-bold ps-4 mt-3">House Type</h3>
-                          
+
                             <div class="d-flex flex-wrap px-4 justify-content-between">
 
                                 <input type="checkbox" name="house_type" value="FarmHouse" class="btn-check"
-                                id="btn-check-6670-outlined" autocomplete="off">
-                            <label class="btn px-2 mt-3 btn-outline-secondary" for="btn-check-6670-outlined">FarmHouse</label>
+                                    id="btn-check-6670-outlined" autocomplete="off">
+                                <label class="btn px-2 mt-3 btn-outline-secondary"
+                                    for="btn-check-6670-outlined">FarmHouse</label>
 
                                 <input type="checkbox" name="house_type" value="Flat" class="btn-check"
-                                id="btn-check-4550-outlined" autocomplete="off">
-                            <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-4550-outlined">flat</label>
+                                    id="btn-check-4550-outlined" autocomplete="off">
+                                <label class="btn px-3 mt-3 btn-outline-secondary"
+                                    for="btn-check-4550-outlined">flat</label>
 
 
                                 <input type="checkbox" name="house_type" value="Industrial" class="btn-check"
                                     id="btn-check-3830-outlined" autocomplete="off">
-                                <label class="btn px-2 mt-3 btn-outline-secondary" for="btn-check-3830-outlined">Industrial</label>
+                                <label class="btn px-2 mt-3 btn-outline-secondary"
+                                    for="btn-check-3830-outlined">Industrial</label>
 
-                               
+
 
                                 <input type="checkbox" name="house_type" value="Commercial" class="btn-check"
                                     id="btn-check-580-outlined" autocomplete="off">
-                                <label class="btn px-2 mt-3 btn-outline-secondary" for="btn-check-580-outlined">Commercial</label>
+                                <label class="btn px-2 mt-3 btn-outline-secondary"
+                                    for="btn-check-580-outlined">Commercial</label>
 
                                 <input type="checkbox" name="house_type" value="Land/Plot" class="btn-check"
-                                id="btn-check-2270-outlined" autocomplete="off">
-                            <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-2270-outlined">Land</label>
+                                    id="btn-check-2270-outlined" autocomplete="off">
+                                <label class="btn px-3 mt-3 btn-outline-secondary"
+                                    for="btn-check-2270-outlined">Land</label>
 
-                            <input type="checkbox" name="house_type" value="House" class="btn-check" id="btn-check-1150-outlined" autocomplete="off">
-                        <label class="btn px-3 mt-3 btn-outline-secondary" for="btn-check-1150-outlined">House&nbsp;</label>
+                                <input type="checkbox" name="house_type" value="House" class="btn-check"
+                                    id="btn-check-1150-outlined" autocomplete="off">
+                                <label class="btn px-3 mt-3 btn-outline-secondary"
+                                    for="btn-check-1150-outlined">House&nbsp;</label>
 
                             </div>
-                          
+
                             <div class="d-flex flex-wrap px-4 justify-content-between">
 
                                 <select name="city" id="" class="mt-3" style="border: 1px solid #6c757d;">
                                     <option value="">select city</option>
                                     <%for(var i of cities){%>
-                                        <option value="<%=i.city%>"><%=i.city%></option>
-                                    <%}%>
+                                        <option value="<%=i.city%>">
+                                            <%=i.city%>
+                                        </option>
+                                        <%}%>
                                 </select>
-                              
+
                             </div>
-                          
+
                             <div class="text-center">
                                 <button class="theme-blue p-1 text-white rounded-pill ps-3 my-3">search<i
                                         class="fa-solid ms-2 rounded-circle fa-magnifying-glass p-2 bg-white text-theme-blue"></i></button>
@@ -379,9 +402,9 @@
 
 
                     <div id="content2">
-                       <div class="d-flex p-5 m-5 justify-content-center align-items-center">
-                        <h4 class="my-5 fs-5 py-5 text-theme-blue fw-bold"> comming soon</h4>
-                       </div>
+                        <div class="d-flex p-5 m-5 justify-content-center align-items-center">
+                            <h4 class="my-5 fs-5 py-5 text-theme-blue fw-bold"> comming soon</h4>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -425,8 +448,8 @@
                                 <hr>
                                 <div class="p-3 d-flex justify-content-between">
                                     <div style="background-color: #dbdbdb; border: 1.9px solid rgb(184, 184, 184);"
-                                        class="d-flex p-2 w-100 mx-2 rounded-3">
-                                        <i class="fa-regular fs-1 fa-compass"></i>
+                                        class="d-flex align-items-center p-2 w-100 mx-2 rounded-3">
+                                        <i class="fa-regular fs-3 fa-compass"></i>
                                         <div class="ps-3">
                                             <h2 style="font-weight: 500;">
                                                 <%=i.facing%>
@@ -435,8 +458,8 @@
                                         </div>
                                     </div>
                                     <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);"
-                                        class="d-flex p-2 w-100 mx-2 rounded-3">
-                                        <i class="fa-solid fs-1 fa-door-open"></i>
+                                        class="d-flex align-items-center p-2 w-100 mx-2 rounded-3">
+                                        <i class="fa-solid fs-3 fa-door-open"></i>
                                         <div class="ps-3">
                                             <h2 style="font-weight: 500;">
                                                 <%=i.rooms%>
@@ -447,8 +470,8 @@
                                 </div>
                                 <div class="p-3 d-flex justify-content-between">
                                     <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);"
-                                        class="d-flex p-2 w-100 mx-2 rounded-3">
-                                        <i class="fa-solid fs-1 fa-person-booth"></i>
+                                        class="d-flex align-items-center p-2 w-100 mx-2 rounded-3">
+                                        <i class="fa-solid fs-3 fa-person-booth"></i>
                                         <div class="ps-3">
                                             <h2 style="font-weight: 500;">
                                                 <%=i.bathroom%>
@@ -457,8 +480,8 @@
                                         </div>
                                     </div>
                                     <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);"
-                                        class="d-flex p-2 w-100 mx-2 rounded-3">
-                                        <i class="fa-solid fs-1 fa-car"></i>
+                                        class="d-flex align-items-center p-2 w-100 mx-2 rounded-3">
+                                        <i class="fa-solid fs-3 fa-car"></i>
                                         <div class="ps-3">
                                             <h2 style="font-weight: 500;">Bike and Car</h2>
                                             <p>Parking</p>
@@ -468,8 +491,8 @@
                                 <div class="p-3 pt-0">
                                     <a href="/user/property/<%=i.id%>/sp" style="width: fit-content;"
                                         class="theme-blue d-block rounded-pill ps-3 pe-1 text-white py-1">explore more
-                                        <i
-                                            class="fa-solid fa-angles-right text-theme-blue bg-white p-2 rounded-pill"></i></a>
+                                        &nbsp;
+                                    <i class="fa-solid fa-angles-right text-theme-blue bg-white p-2 rounded-pill"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -481,7 +504,7 @@
         <!-- <div class="col-xl-2"> -->
 
         <!-- </div> -->
-    </section>   
+    </section>
     <script>
         const rangeInput = document.querySelectorAll(".range-input input"),
             priceInput = document.querySelectorAll(".price-input input"),
