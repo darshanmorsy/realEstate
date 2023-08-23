@@ -214,18 +214,22 @@ exports.registerpostweb = async (req, res) => {
 
       console.log("saveData (userRegis):__", saveData);
 
-      // we use below code for generate token(JWT)
-      // const token = await saveData.generateauthtoken();
-      // res.cookie("jwt", token, {
-      //     expires: new Date(Date.now() + 30 * 24 * 3600 * 10000),
-      //     httpOnly: true,
-      // });
-      // console.log("Token (userRegis):__", token);
-
-      res.redirect("/user/login");
+      if(saveData){
+        function removeQueryParams(url) {
+          const parsedUrl = new URL(url)
+          parsedUrl.search = ""
+          return parsedUrl.toString()
+      }         
+      const modifiedUrl = removeQueryParams(req.get('referer'));
+      console.log(modifiedUrl);
+      console.log(req.get('referer'),"o");
+      var link=modifiedUrl+'?openmodal=true'
+      res.redirect(link)
+      }
+  
     } else {
-      console.log("mobile already exists");
-      res.redirect("/user/register");
+      console.log("mobile already exists")
+      res.redirect("/user/register")
     }
   }
 }
@@ -903,7 +907,17 @@ exports.mainfilter = async (req, res) =>{
         // console.log(data,filteredProperties);
         var cities=await city.find({});
         console.log(cities);
-        res.render('allproperty',{data,cities});
+        var users=''
+        if(req.cookies.jwt){ 
+          var verify=await jwt.verify(req.cookies.jwt,process.env.SECRET_KEY)
+          users=await user.findOne({_id:verify._id})
+          if(users==null){
+            users=undefined
+          }else{
+            users="user"
+          }
+        }
+        res.render('allproperty',{data,cities,users});
       }
     })
     .catch((error) => {

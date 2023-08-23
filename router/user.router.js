@@ -80,6 +80,9 @@ router.get("/city", async (req, res) => {
   res.json(data)
 })
 
+router.get('/mainfilter',async(req, res) => {
+  res.redirect('/user')
+})
 
 router.post("/logout", async (req, res) => {
   try {
