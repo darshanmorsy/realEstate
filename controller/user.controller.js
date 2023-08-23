@@ -15,10 +15,18 @@ const { request } = require("http");
 exports.home = async (req, res,next) => {
   var data = await property.find({ active: 1 });
   var cities = await city.find({})
-  var verify=await jwt.verify(req.cookies.jwt,process.env.SECRET_KEY)
-  var users=await user.findOne({_id:verify._id})
+  var users=''
+  if(req.cookies.jwt){ 
+    var verify=await jwt.verify(req.cookies.jwt,process.env.SECRET_KEY)
+    users=await user.findOne({_id:verify._id})
+    if(users==null){
+      users=undefined
+    }else{
+      users="user"
+    }
+  }
   
-  res.render("home",{ data, cities,users});
+  res.render("home",{ data,cities,users})
 }
 
 exports.login = async (req, res) => { 
@@ -226,7 +234,11 @@ exports.property = async (req, res) => {
 
   var data = await property.find({ active: 1 }).sort({ _id: -1 });
   var cities = await city.find({});
-  res.render("allproperty",{data,cities});
+  var users=''
+  if(req.user){
+    users="user"
+  }
+  res.render("allproperty",{data,cities,users})
 
 }
 
@@ -251,10 +263,10 @@ exports.sell_page = async (req, res) => {
   if (token) {
     decodedToken = jwt.verify(token, secretKey);
   } 
-  var profile = req.user
- 
+
+  var users = req.user
   var cities = await city.find({});
-  res.render("sellform", {cities});
+  res.render("sellform", {cities,users})
 }
 
 exports.rents = async (req, res) => {
@@ -587,7 +599,7 @@ exports.user_property = async (req, res) => {
 
 exports.profile = async (req, res) => {
 
-  var token = req.user
+
     
     console.log(req.user,"p");
     // console.log(profile);
@@ -597,9 +609,9 @@ exports.profile = async (req, res) => {
       
     }else{
       var profile =req.user
-      console.log(req);
+      var users='user'
     var propert = await property.find({ user_id: req.user.id});
-      res.render("profile", { profile, property:propert,user:req.user});
+      res.render("profile", { profile, property:propert,user:req.user,users})
 
     }
 }

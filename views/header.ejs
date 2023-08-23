@@ -45,9 +45,15 @@
                   class="mx-lg-3 mx-5 ps-3 my-col-xl-0 my-3 rounded-pill theme-blue text-white rounded-3">POST PROPERTY FREE
                   &nbsp;&nbsp;&nbsp;<i
                     class="fa-solid bg-white p-2 rounded-circle fa-cloud-arrow-up text-theme-blue"></i></a>
-                  <a href="/user/profile" class="border-1 border-dark rounded-circle p-1"><i style="font-size: 36px;"
+                    <%if(users == 'user'){%>
+                     <a href="/user/profile" class="border-1 border-dark rounded-circle p-1"><i style="font-size: 36px;"
                     class="fa-solid d-block fa-circle-user text-dark"></i></a>
-                <div class="bg-dark py-3 mx-3" style="width:1.5px;"></div>
+                    <%}else{%>
+                      <a id="model" href="#" class="fs-3" style="color: #666;" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                       login
+                    </a>
+                    <%}%>
+                <div class="bg-dark py-3 mx-3" style="width:1.5px;"></div>                
                 <a href="" class="fs-2 text-theme-blue d-flex align-items-center"  data-bs-toggle="offcanvas"
                 data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fa-solid fa-bars d-none d-md-block d-sm-block me-3"></i> Menu</a>
                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
@@ -68,11 +74,13 @@
                       <li><a href="/user/property" class="fs-5"><i class="fa-solid fa-mountain-city me-3"></i> Properties</a></li>
                       <hr class=" my-4">
                       <li><a href="#"  class="fs-5"><i class="fa-solid fa-envelope me-3"></i> Contact Us</a></li>
-                      <hr class=" my-4">
-                      <li><a href="/user/profile"  class="fs-5"><i class="fa-solid fa-circle-user me-3"></i> Profile</a></li>
-                      <hr class=" my-4">                   
+                      <%if(users == 'user'){%>
+                        <hr class=" my-4">
+                        <li><a href="/user/profile"  class="fs-5"><i class="fa-solid fa-circle-user me-3"></i> Profile</a></li>
+                        <hr class=" my-4">                   
                       <li><a href="/user/logout"  class="fs-5"><i class="fa-solid fa-right-from-bracket"></i>&nbsp;&nbsp; Logout</a></li>
-                  </ul>
+                    <%}%>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -82,9 +90,11 @@
       </nav>
     </div>
   </header>
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-  </button>
+
+
+  <!-- <a id="model" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Hidden button to trigger the modal
+</a> -->
   
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -147,24 +157,3 @@
       </div>
     </div>
   </div>
-
-  <script>
-    const loginText = document.querySelector(".title-text .login");
-     const loginForm = document.querySelector("form.login");
-     const loginBtn = document.querySelector("label.login");
-     const signupBtn = document.querySelector("label.signup");
-     const signupLink = document.querySelector("form .signup-link a");
-     signupBtn.onclick = (()=>{
-       loginForm.style.marginLeft = "-50%";
-       loginText.style.marginLeft = "-50%";
-     });
-     loginBtn.onclick = (()=>{
-       loginForm.style.marginLeft = "0%";
-       loginText.style.marginLeft = "0%";
-     });
-     signupLink.onclick = (()=>{
-       signupBtn.click();
-       return false;
-     });
-
- </script>

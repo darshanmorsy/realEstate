@@ -148,6 +148,51 @@ $(document).ready(function () {
   });
 });
 
+const loginText = document.querySelector(".title-text .login");
+     const loginForm = document.querySelector("form.login");
+     const loginBtn = document.querySelector("label.login");
+     const signupBtn = document.querySelector("label.signup");
+     const signupLink = document.querySelector("form .signup-link a");
+     signupBtn.onclick = (()=>{
+       loginForm.style.marginLeft = "-50%";
+       loginText.style.marginLeft = "-50%";
+     });
+     loginBtn.onclick = (()=>{
+       loginForm.style.marginLeft = "0%";
+       loginText.style.marginLeft = "0%";
+     });
+     signupLink.onclick = (()=>{
+       signupBtn.click();
+       return false;
+     });
+
+     function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    return results && results[2] ? decodeURIComponent(results[2].replace(/\+/g, ' ')) : null;
+}
+
+function hasJwtToken() {
+    var jwtToken = document.cookie.replace(/(?:(?:^|.*;\s*)jwt\s*=\s*([^;]*).*$)|^.*$/, "$1");
+    return jwtToken !== "";
+}
+
+// Code to run after the page has fully loaded
+window.onload = function() {
+    if (!hasJwtToken()) { // If JWT token is not present in cookies
+        var openmodal = getParameterByName('openmodal');
+        if (openmodal === 'true') {
+            // Simulate a click on the hidden button to trigger the modal
+            var hiddenButton = document.getElementById("model");
+            if (hiddenButton) {
+                hiddenButton.click();
+            }
+        }
+    }
+};
+
 
 </script>
 </html>

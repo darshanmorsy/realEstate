@@ -39,7 +39,18 @@ const userSchema = async (req, res, next) => {
                 }
             }
         } else {
-            res.redirect('/user/login')
+            
+            function removeQueryParams(url) {
+                const parsedUrl = new URL(url)
+                parsedUrl.search = ""
+                return parsedUrl.toString()
+            }         
+            const modifiedUrl = removeQueryParams(req.get('referer'));
+            console.log(modifiedUrl);
+            console.log(req.get('referer'),"o");
+            var link=modifiedUrl+'?openmodal=true'
+            res.redirect(link)
+
         }
     } catch (error) {
         console.log(error)
