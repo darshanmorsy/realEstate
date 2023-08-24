@@ -914,9 +914,33 @@ exports.mainfilter = async (req, res) =>{
       }
       else{
         var data=filteredProperties
-        // console.log(data,filteredProperties);
+        // console.log(data,"PP");
+        
+        if(req.body.search){
+          function filterBySearchTerm(dataArray, searchTerm) {
+            return dataArray.filter(obj => {
+              for (const key in obj) {
+                if (typeof obj[key] === 'string' && obj[key].toLowerCase().includes(searchTerm.toLowerCase())) {
+                  return true;
+                }
+              }
+              return false;
+            });
+          }
+          
+          // Example array of objects
+          const dataArray =data
+          
+          // Specify the search term
+          const searchTerm = req.body.search; // Change this to the search term provided by the user
+          
+          // Filter the array based on the search term in any property value
+          const filteredData = filterBySearchTerm(dataArray, searchTerm);
+          
+          console.log(filteredData,"search term",dataArray,req.body.search);
+        }
+
         var cities=await city.find({});
-        console.log(cities);
         var users=''
         if(req.cookies.jwt){ 
           var verify=await jwt.verify(req.cookies.jwt,process.env.SECRET_KEY)

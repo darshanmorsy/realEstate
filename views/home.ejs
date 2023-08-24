@@ -28,12 +28,13 @@
                     <div class="col-xl-2 col-12">
                       <select name="" class="form-select col-xl-2 h-100 border-0 border-end text-theme-blue rounded-0" id="">
                         <option value="" hidden>select city</option>
-                        <option value="df">surat</option>
-                        <option value="dffvgg">vadodara</option>
+                        <%for(var i of cities){%>
+                        <option value="<%=i.city%>"><%=i.city%></option>
+                        <%}%>
                       </select>
                     </div>
                     <div class="col-xl-8 px-5">
-                      <input type="text" class="form-control my-2 px-3" placeholder="search">
+                      <input type="text" class="form-control my-2 px-3" name="search" placeholder="search">
                     </div>
                     <button type="submit"
                       class="theme-blue col-xl-2 col-12 py-3 text-white px-5 d-lg-block d-xl-block d-xxl-block d-none"
@@ -94,10 +95,12 @@
                 <div id="tab1" class="content rounded-3" style="border: 1px solid #dee2e6;">
                   <div class="d-flex col-12 col-xl-12 flex-wrap">
                     <div class="col-xl-2 col-12">
+                      
                       <select name="" class="form-select col-xl-2 h-100 border-0 border-end text-theme-blue rounded-0" id="">
                         <option value="" hidden>select city</option>
-                        <option value="df">surat</option>
-                        <option value="dffvgg">vadodara</option>
+                        <%for(var i of cities){%>
+                        <option value="<%=i.city%>"><%=i.city%></option>
+                        <%}%>
                       </select>
                     </div>
                     <div class="col-xl-8 px-5">

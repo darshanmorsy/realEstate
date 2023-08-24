@@ -22,7 +22,6 @@ app.use(session({
   
 
 
-
 const db = "mongodb+srv://morsy:morsy@ds.6e7bjag.mongodb.net/realEstate"
 mongoose
   .connect(db, {
@@ -49,9 +48,10 @@ const adminRouter = require("./router/admin.router")
 
 app.use("/user", userRouter)
 app.use("/admin", adminRouter)
+
 app.get("/", (req, res) => {
   res.redirect("/user")
-})
+})  
 
 app.listen(port, () => {
   console.log(`listing to the port ${port}`);

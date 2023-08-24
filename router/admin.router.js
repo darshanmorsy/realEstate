@@ -10,7 +10,6 @@ const {
   city,
   user,
   deletecity,
-  contact_property,
   contactdelete,
   propertDetails
 } = require("../controller/admin.controller")
@@ -42,7 +41,7 @@ router.post("/logout", async (req, res) => {
     console.log(req.cookies)
     res.cookie("jwt", "", { maxAge: 1 })
     // const token = req.headers.authorization
-    res.status(200).json({ message: "logout successfully" })
+    res.status(200).json({ message: "logout successfully"})
   } catch (error) {
     console.log(error)
   }
