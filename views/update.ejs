@@ -9,161 +9,399 @@
     </div>
     <% } %>
 
-  <form action="/user/updateproperty" method="post" class="needs-validation my-2 p-3 rounded-2 shadow-lg" enctype="multipart/form-data">
-    <div class="form-row">
-      <div class="col-md-4 mb-3">
-        <label for="validationTooltip01">project name</label>
-        <input type="text" name="projectName" value="<%=data.projectName%>" class="form-control" id="validationTooltip01" >
-      </div>
-      <input type="text" name="id" hidden value="<%=data.id%>">
-      <div class="col-md-4 mb-3">
-        <label for="validationTooltip02">city</label>
-        <select  name="city" class="form-control">
-          <option hidden >select city</option>
-          <%var citi= cities%>
-          <% citi.forEach((s , j )=>{ %>
-              <option value="<%=s.city%>"  <% if(data.city==s.city){%>                  
-                <%= "selected" %>
-                <%}%>>
-                <%= s.city %>
-              </option>
-              <% }) %>
-          </select>
-      </div>
-      <div class="col-md-4 mb-3">
-        <label for="validationTooltipUsername">price</label>
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="validationTooltipUsernamePrepend">₹</span>
-          </div>
-          <input type="number"name='price' value="<%=data.price%>" maxlength="10000000" class="form-control" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend" >
-        </div>
-      </div>
-    </div>
-    <div class="form-row">
-      <div class="col-md-6 mb-3">
-        <label for="validationTooltip03">Address</label>
-        <input type="text" name="address" value="<%=data.address%>" class="form-control" id="validationTooltip03">
-      </div>
-      <div class="col-md-3 mb-3">
-        <label for="validationTooltip04">property Life</label>
-        <input type="text" name="propertyLife" value="<%=data.propertyLife%>" class="form-control" id="validationTooltip04" >
-      </div>
-      <div class="col-md-3 mb-3">
-        <label for="validationTooltip05">property image</label>
-        <input type="file" multiple name="property_image" class="form-control" id="validationTooltip05" >
-       
-      </div>
-      <div class="col-md-3 mb-3">
-        <label for="validationTooltip05">size</label>
-        <input type="text" name="size" value="<%=data.size%>" class="form-control" id="validationTooltip05" >
-      </div>
-      <div class="col-md-3 mb-3">
-        <label for="validationTooltip05">carpet area</label>
-        <input type="text" name="carpet_area" class="form-control" id="validationTooltip05" >
-      </div>
-      <div class="col-md-3 mb-3">
-        <label for="validationTooltip05">super built up</label>
-        <input type="text" name="super_built_up" value="<%=data.super_built_up%>" class="form-control" id="validationTooltip05" >
-      </div>
-      <div class="col-md-3 mb-3">
-        <label for="validationTooltip05">project area</label>
-        <input type="text" name="project_area" class="form-control" value="<%=data.project_area%>" id="validationTooltip05" >
-      </div>
-      <div class="col-md-3 mb-3">
-        <label for="validationTooltip05">booking amount</label>
-        <input type="number" name="booking_amount" value="<%=data.booking_amount%>" class="form-control" id="validationTooltip05" >
-      </div>
-      <div class="col-md-3 mb-3">
-        <label for="validationTooltip05">furnishing</label>
-        <input type="text" name="furnishing" class="form-control" value="<%=data.furnishing%>" id="validationTooltip05" >
-      </div>
-      <div class="col-md-3 mb-3">
-        <label for="validationTooltip05">property floor</label>
-        <input type="text" name="property_floor" class="form-control" value="<%=data.property_floor%>" id="validationTooltip05" >
-      </div>
-      <div class="col-md-3 mb-3">
-        <label for="validationTooltip05">landmark</label>
-        <input type="text" name="landmark" value="<%=data.landmark%>" class="form-control" id="validationTooltip05" >
-      </div>
-      <div class="col-md-6 mb-3">
-        <label for="validationTooltip03">builder details</label>
-        <input type="text" class="form-control" value="<%=data.builder_details%>" id="validationTooltip03" name="builder_details" >
-      </div>
-      <div class="col-md-6 mb-3">
-        <label for="validationTooltip03">owner info</label>
-        <input type="text" class="form-control" id="validationTooltip03" value="<%=data.owner_info%>" name="owner_info" >
-      </div>
-      <div class="col-md-3 mb-3">
-        <label for="validationTooltip05">location</label>
-        <input type="text" name="location" class="form-control" value="<%=data.location%>" id="validationTooltip05" >
-      </div>
-      <div class="col-md-3 mb-3">
-        <label for="validationTooltip05">scale type</label>
-        <input type="text" name="scale_type" class="form-control" value="<%=data.scale_type%>" id="validationTooltip05" >
-      </div>
-      <div class="col-md-3 mb-3">
-        <label for="validationTooltip05">disclaimer</label>
-        <input type="text" name="disclaimer" value="<%=data.disclaimer%>" class="form-control" id="validationTooltip05" >
-      </div>
-      <div class="col-md-3 mb-3">
-        <label for="validationTooltip05">category</label>
-      <select  class="form-control" name="category" id="">
-        <% if(data.category== 'rent') { %>
-            <option value="rent" <%= "selected" %> >For Rent</option>
-        <% } %>
-        <% if(data.category== 'sell') { %>
-            <option value="sell" <%= "selected" %>>For Sell</option>
-        <% } %>
-        <option value="" hidden>select category</option>
-      </select> 
-      </div>
-      <div class="col-md-3 mb-3">
-        <label for="validationTooltip05">house type</label>
-          
-  <select  name="house_type" class="form-control">
-    <%var housetype=['farm','shop','bungalow','office','industrial','open plot','flat','row house']%>
-      <% housetype.forEach((v , i )=>{ %>
+    <section class="sellform container">
+      <div class="col-xl-10">
+          <div class="">
+              <h1 class="text-theme-blue fw-bold fs-1 my-5">Property Details</h1>
+              <form class="form d-flex" method="post" enctype="multipart/form-data"
+                  action="/admin/propertyDetails">
+                  <div class="left-side px-5 rounded-3 shadow-lg">
+                      <div class="steps-content d-none">
+                          <h3>Step <span class="step-number">1</span></h3>
+                          <p class="step-number-content active">
+                              Enter your personal information to get closer to companies.
+                          </p>
+                          <p class="step-number-content d-none">
+                              Get to know better by adding your diploma,certificate and
+                              education life.
+                          </p>
+                          <p class="step-number-content d-none">
+                              Help companies get to know you better by telling then about
+                              your past experiences.
+                          </p>
+                          <p class="step-number-content d-none">
+                              Add your profile piccture and let companies find youy fast.
+                          </p>
+                      </div>
+                      <ul class="progress-bar py-2 bg-white">
+                          <li class="active">Basic Info</li>
+                          <li>Property</li>
+                          <li>facilities Info</li>
+                          <li>Property Photo</li>
+                      </ul>
+                  </div>
+                  <div class="right-side w-100">
+                      <div class="main ms-lg-5 active">
+                          <!-- <h1 class="fs-1 text-theme-blue fw-bold">Property Details</h1> -->
+                          <div class="input-text">
+                              <div class="input-div">
+                                  <p>Project Name</p>
+                                  <input require type="text" name="projectName" d placeholder="project name" />
+                              </div>
+                              <div class="input-div">
+                                  <p>City</p>
+                                  <select name="city" d id="">
+                                      <option hidden>Select City</option>
+                                      <%for(var i of cities){%>
+                                          <option value="<%=i.city%>">
+                                              <%=i.city%>
+                                          </option>
+                                          <%}%>
+                                  </select>
+                                  <div id="error-projectName" class="error-message"></div>
+                                  <div id="error-city" class="error-message"></div>   
+                              </div>
+                              <div class="input-div">
+                                  <p>Price</p>
+                                  <input require type="text" name="price" d />
+                              </div>
+                              <div class="input-div">
+                                  <p>Property Life</p>
+                                  <select name="propertyLife" d class="px-2">
+                                      <option value="" hidden>select propertyLife</option>
+                                      <option value="Less than 1 year">Less than 1 year</option>
+                                      <option value="Less than 3 year">Less than 3 year</option>
+                                      <option value="Less than 5 year">Less than 5 year</option>
+                                      <option value="Less than 10 year">
+                                          Less than 10 year
+                                      </option>
+                                      <option value="More than 10 year">
+                                          More than 10 year
+                                      </option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="input-text">
+                              <div class="input-div">
+                                  <p>Address</p>
+                                  <input require type="text" name="address" d />
+                              </div>
+                              <div class="input-div">
+                                  <p>Size</p>
+                                  <input require type="text" name="size" d />
+                              </div>
+                              <div class="input-div">
+                                  <p>Booking Amount</p>
+                                  <input require type="text" name="booking_amount" d />
+                              </div>
+                          </div>
+                          <div class="input-text">
+                              <div class="input-div">
+                                  <p>Carpet Area</p>
+                                  <input require type="text" name="carpet_area" d />
+                              </div>
+                              <div class="input-div">
+                                  <p>Super Built Up</p>
+                                  <input require type="text" name="super_built_up" d />
+                              </div>
+                              <div class="input-div">
+                                  <p>Project Area</p>
+                                  <input require type="text" name="project_area" d />
+                              </div>
+                          </div>
+                          <div class="buttons">
+                              <button class="next_button rounded-pill ps-3 fs-6 p-1 theme-blue" type="button">
+                                  next step
+                                  <i
+                                      class="fa-solid ms-2 fa-angles-right p-2 bg-white text-theme-blue rounded-pill"></i>
+                              </button>
+                          </div>
+                      </div>
+                      <div class="main ms-lg-5">
+                          <!-- <h1 class="fs-1 fw-bold text-theme-blue">Property Details</h1> -->
+                          <div class="input-text">
+                              <div class="input-div">
+                                  <p>Furnishing</p>
+                                  <select name="furnishing" id="">
+                                      <option value="" hidden>select furnishing</option>
+                                      <option value="fully">fully</option>
+                                      <option value="semi">semi</option>
+                                      <option value="none">none</option>
+                                  </select>
+                              </div>
+                              <div class="input-div">
+                                  <p>Property Floor</p>
+                                  <input require type="text" name="property_floor" d />
+                              </div>
+                              <div class="input-div">
+                                  <p>Builder Details</p>
+                                  <input require type="text" name="builder_details" d />
+                              </div>
+                              <div class="input-div">
+                                  <p>Owner Info</p>
+                                  <input require type="text" name="owner_info" d />
+                              </div>
+                          </div>
+                          <div class="input-text">
+                              <div class="input-div">
+                                  <p>Location Link</p>
+                                  <input require type="text" name="location" d />
+                              </div>
+                              <div class="input-div">
+                                  <p>Scale Type</p>
+                                  <input require type="text" name="scale_type" d />
+                              </div>
+                              <div class="input-div">
+                                  <p>Disclaimer</p>
+                                  <input require type="text" name="disclaimer" d />
+                              </div>
+                              <div class="input-div">
+                                  <p>Category</p>
+                                  <select name="category" id="">
+                                      <option value="rent">For Rent</option>
+                                      <option value="sell">For Sell</option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="input-text">
+                              <div class="input-div">
+                                  <p>House Type</p>
+                                  <select d onchange="updateResidentOptions()" id="housetype"
+                                      name="house_type">
+                                      <option value="" hidden>select house type</option>
+                                      <option value="FarmHouse">FarmHouse</option>
+                                      <option value="Commercial">Commercial</option>
+                                      <option value="Industrial">Industrial</option>
+                                      <option value="Flat">Flat</option>
+                                      <option value="Land/Plot">Land/Plot</option>
+                                      <option value="House">House</option>
+                                      <option value="Hotel/Resorts">Hotel/Resorts</option>
+                                  </select>
+                              </div>
+                              <div class="input-div">
+                                  <p>Resident Type</p>
+                                  <select name="residentType" id="resident"></select>
+                              </div>
+                              <div class="input-div">
+                                  <p>Rooms</p>
+                                  <select required name="rooms" required id="">
+                                      <option value="" hidden>select rooms</option>
+                                      <option value="1 RK">1 RK</option>
+                                      <option value="1 BHK">1 BHK</option>
+                                      <option value="2 BHK">2 BHK</option>
+                                      <option value="3+ BHK">3+ BHK</option>
+                                  </select>
+                              </div>
+                              <div class="input-div">
+                                  <p>Sale Type</p>
+                                  <select d name="saletype" id="">
+                                      <option value="" hidden>select sale type</option>
+                                      <option value="New Properties">New Properties</option>
+                                      <option value="Resale Properties">
+                                          Resale Properties
+                                      </option>
+                                  </select>
+                              </div>
+                          </div>
 
-        <option value="<%= v %>" <% if(data.city==v.city) { %>
-            <%= "selected" %>
-                <% } %>><%= v %>
-        </option>
-        <% }); %>
-      </select>
-    </div>
-    <div class="col-md-3 mb-3">
-      <label for="validationTooltip05">rooms</label>
-      <select name="rooms" class="form-control" id="">
-        <option value="" hidden>select rooms</option>
-        <% var rooms = ['1 BHK', '2 BHK', '3 BHK', '4 BHK', '5 BHK', '6 BHK', '7 BHK and more']; %>
-        <% rooms.forEach((v, i) => { %>
-          <option value="<%= v %>" <% if (data.rooms == v) { %>
-            <%= "selected" %>
-          <% } %>>
-            <%= v %>
-          </option>
-        <% }); %>
-      </select>
-      
+                          <div class="buttons button_space">
+                              <button
+                                  class="back_button fs-6 p-1 theme-blue text-white rounded-pill pe-3 border-0"
+                                  type="button">
+                                  <i
+                                      class="fa-solid rounded-circle me-2 fa-angles-left bg-white text-theme-blue p-2"></i>
+                                  Back Step
+                              </button>
+                              <button class="next_button p-1 fs-6 theme-blue text-white rounded-pill ps-3"
+                                  type="button">
+                                  Next Step
+                                  <i
+                                      class="fa-solid rounded-circle fa-angles-right bg-white text-theme-blue p-2"></i>
+                              </button>
+                          </div>
+                      </div>
+                      <div class="main w-100 ms-lg-5">
+                          <!-- <h1 class="fs-1 fw-bold text-theme-blue">Property Details</h1> -->
+                          <div class="input-text">
+                              <div class="input-div">
+                                  <p>Possesion</p>
+                                  <select required name="possession" required id="">
+                                      <option value="" hidden>select possession</option>
+                                      <option value="Ready to Move">Ready to Move</option>
+                                      <option value="In 1 Year">In 1 Year</option>
+                                      <option value="In 3 Years">In 3 Years</option>
+                                      <option value="Beyond 3 Years">Beyond 3 Years</option>
+                                  </select>
+                              </div>
+                              <div class="input-div">
+                                  <p>Facing</p>
+                                  <select required name="facing" required id="">
+                                      <option value="" hidden>select facing</option>
+                                      <option value="North">North</option>
+                                      <option value="East">East</option>
+                                      <option value="West">West</option>
+                                      <option value="South">South</option>
+                                      <option value="North-East">North-East</option>
+                                      <option value="North-West">North-West</option>
+                                      <option value="South-East">South-East</option>
+                                      <option value="South-West">South-West</option>
+                                  </select>
+                              </div>
+                              <div class="input-div">
+                                  <p>Bathroom</p>
+                                  <select required name="bathroom" required id="">
+                                      <option value="" hidden>select bathroom</option>
+                                      <option value="1">1 bathroom</option>
+                                      <option value="2">2 bathroom</option>
+                                      <option value="3">3 bathroom</option>
+                                      <option value="4">4 bathroom</option>
+                                      <option value="5">5 bathroom</option>
+                                      <option value="6">6 bathroom</option>
+                                      <option value="7">7 bathroom</option>
+                                      <option value="8">8 bathroom</option>
+                                      <option value="9">9 bathroom</option>
+                                      <option value="10">10 bathroom</option>
+                                  </select>
+                              </div>
+                              <div class="input-div">
+                                  <p>listed By</p>
+                                  <select required name="listedby" required id="">
+                                      <option value="" hidden>select listed by</option>
+                                      <option value="Agent">Agent</option>
+                                      <option value="Owner">Owner</option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="input-text">
+                              <div class="input-div">
+                                  <p>Least Type</p>
+                                  <select required name="leasttype" required id="">
+                                      <option value="" hidden>select least type</option>
+                                      <option value="Family">Family</option>
+                                      <option value="Company">Company</option>
+                                      <option value="Bachelor">Bachelor</option>
+                                  </select>
+                              </div>
+                              <div class="input-div">
+                                  <p>Available</p>
+                                  <select required name="available" required id="">
+                                      <option value="" hidden>select available</option>
+                                      <option value="Within a week">Within a week</option>
+                                      <option value="Within 15 days">Within 15 days</option>
+                                      <option value="Within a month">Within a month</option>
+                                      <option value="After a month">After a month</option>
+                                  </select>
+                              </div>
+                              <div class="input-div">
+                                  <p>Power Backup</p>
+                                  <select required name="powerbackup" required id="">
+                                      <option value="" hidden>select powerbackup</option>
+                                      <option value="Full">Full</option>
+                                      <option value="Partial">Partial</option>
+                                  </select>
+                              </div>
+                          </div>
+                          <div class="input-text">
+                              <div class="input-div">
+                                  <p>landmark</p>
+                                  <input require type="text" name="landmark" d />
+                              </div>
+                              <div class="input-div">
+                                  <p>Pin Code</p>
+                                  <input require type="text" name="pincode" d />
+                              </div>
+                          </div>
+                          <div class="input-text">
+                              <div class="input-div">
+                                  <p>Facilities</p>
+                                  <div class="d-flex">
+                                      <input require type="text" required disabled value="add facilities"
+                                          class="form-control" id="validationTooltip05" required />
+
+                                      <button type="button" onclick="addInput()"
+                                          class="ms-2 d-inline-block btn btn-primary">
+                                          +
+                                      </button>
+                                  </div>
+                                  <div id="input-cont">
+                                      <!--Input container-->
+                                  </div>
+                              </div>
+                              <div class="input-div">
+                                  <p>built up area</p>
+                                  <input require type="text" name="built_up_area" d />
+                              </div>
+                          </div>
+
+                          <div class="buttons button_space">
+                              <button
+                                  class="back_button fs-6 p-1 theme-blue text-white rounded-pill pe-3 border-0 p-1"
+                                  type="button">
+                                  <i
+                                      class="fa-solid fa-angles-left bg-white me-2 p-2 text-theme-blue rounded-pill"></i>
+                                  Back Step
+                              </button>
+                              <button
+                                  class="next_button fs-6 p-1 theme-blue text-white rounded-pill ps-3 border-0 p-1"
+                                  type="button">
+                                  Next Step
+                                  <i
+                                      class="fa-solid fa-angles-right bg-white p-2 text-theme-blue rounded-pill"></i>
+                              </button>
+                          </div>
+                      </div>
+                      <div class="main">
+                          <div class="input-text w-100" onclick="image()">
+                              <div id="uploadBox" class="p-5 w-100" style="
+            border: 2px dashed #006bc5;
+            text-align: center;
+            line-height: 200px;
+            cursor: pointer;
+          ">
+                                  Click to Upload Image
+                              </div>
+
+                              <input require type="file" name="property_image" id="fileInput" multiple
+                                  accept="image/*" style="display: none" />
+                          </div>
+                          <div class="buttons button_space">
+                              <button
+                                  class="back_button fs-6 theme-blue p-1 pe-3 text-white border-0 rounded-pill"
+                                  type="button">
+                                  <i
+                                      class="fa-solid p-2 me-2 rounded-circle bg-white text-theme-blue fa-angles-left"></i>
+                                  Back
+                              </button>
+                              <button
+                                  class="submit_button theme-blue fs-6 p-1 ps-3 text-white border-0 rounded-pill"
+                                  type="submit">
+                                  Submit
+                                  <i
+                                      class="ms-2 fa-solid p-2 rounded-circle bg-white text-theme-blue fa-check"></i>
+                              </button>
+                          </div>
+                      </div>
+                      <!-- <div class="main">
+    <h1 class="fs-1 fw-bold text-theme-blue">Step 5</h1>
+    Add your content for the fifth step here
+</div> -->
+
+                      <!-- <div class="main">
+           <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+               <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+              <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+          </svg>
+           
+          <div class="text congrats">
+              <h2>Congratulations!</h2>
+              <p>Thanks Mr./Mrs. <span class="shown_name"></span> your information have been submitted successfully for the future reference we will contact you soon.</p>
+          </div>
+      </div> -->
+                  </div>
+              </form>
+          </div>
       </div>
-      <div class="col-md-3 mb-3">
-        <label for="validationTooltip05">facilities</label>
-       <div class="d-flex">
-        <input type="text"  disabled value="add facilities" class="form-control" id="validationTooltip05" >
-        <button onclick='addInput()' type="button" class="ms-2 d-inline-block btn btn-primary">+</button>
-        
-       </div><div id='input-cont'>
-          <!--Input container-->
-      </div>
-      </div>
-      <div class="col-md-3 mb-3">
-        <label for="validationTooltip05">built up area</label>
-        <input type="text" name="built_up_area" class="form-control" value="<%=data.built_up_area%>" id="validationTooltip05" >
-      </div>
-    </div>
-    <button class="btn btn-primary" type="submit">Submit form</button>
-  </form>
+  </section>
 
 </div>
 
@@ -194,571 +432,213 @@
     validationMessage.textContent = isNaN(number) ? 'Invalid input. Only numbers are allowed.' : '';
   }
 }
-</script>
+
+                var next_click = document.querySelectorAll(".next_button");
+                var main_form = document.querySelectorAll(".main");
+                var step_list = document.querySelectorAll(".progress-bar li");
+                var num = document.querySelector(".step-number");
+                let formnumber = 0;
+
+                next_click.forEach(function (next_click_form) {
+                    next_click_form.addEventListener("click", function () {
+                        if (!validateform()) {
+                            return false;
+                        }
+                        formnumber++;
+                        updateform();
+                        progress_forward();
+                        contentchange();
+                    });
+                });
+
+                var back_click = document.querySelectorAll(".back_button");
+                back_click.forEach(function (back_click_form) {
+                    back_click_form.addEventListener("click", function () {
+                        formnumber--;
+                        updateform();
+                        progress_backward();
+                        contentchange();
+                    });
+                });
+
+                var username = document.querySelector("#user_name");
+                var shownname = document.querySelector(".shown_name");
+
+                var submit_click = document.querySelectorAll(".submit_button");
+                submit_click.forEach(function (submit_click_form) {
+                    submit_click_form.addEventListener("click", function () {
+                        shownname.innerHTML = username.value;
+                        formnumber++;
+                        updateform();
+                    });
+                });
+
+                var heart = document.querySelector(".fa-heart");
+                heart.addEventListener("click", function () {
+                    heart.classList.toggle("heart");
+                });
+
+                var share = document.querySelector(".fa-share-alt");
+                share.addEventListener("click", function () {
+                    share.classList.toggle("share");
+                });
+
+                function updateform() {
+                    main_form.forEach(function (mainform_number) {
+                        mainform_number.classList.remove("active");
+                    });
+                    main_form[formnumber].classList.add("active");
+                }
+
+                function progress_forward() {
+                    // step_list.forEach(list => {
+
+                    //     list.classList.remove('active');
+
+                    // });
+
+                    num.innerHTML = formnumber + 1;
+                    step_list[formnumber].classList.add("active");
+                }
+
+                function progress_backward() {
+                    var form_num = formnumber + 1;
+                    step_list[form_num].classList.remove("active");
+                    num.innerHTML = form_num;
+                }
+
+                var step_num_content = document.querySelectorAll(".step-number-content");
+
+                function contentchange() {
+                    step_num_content.forEach(function (content) {
+                        content.classList.remove("active");
+                        content.classList.add("d-none");
+                    });
+                    step_num_content[formnumber].classList.add("active");
+                }
+
+                function validateform() {
+                    validate = true;
+                    var validate_inputs = document.querySelectorAll(".main.active input");
+                    validate_inputs.forEach(function (vaildate_input) {
+                        vaildate_input.classList.remove("warning");
+                        if (vaildate_input.hasAttribute("")) {
+                            if (vaildate_input.value.length == 0) {
+                                validate = false;
+                                vaildate_input.classList.add("warning");
+                            }
+                        }
+                    });
+                    return validate;
+                }
+
+                const uploadBox = document.getElementById("uploadBox");
+
+                function image() {
+                    const fileInput = document.getElementById("fileInput");
+                    fileInput.click();
+                }
+
+                function updateResidentOptions() {
+                    console.log(document.getElementById("housetype").value);
+                    if (document.getElementById("housetype").value === "Flat") {
+                        const residentSelect = document.getElementById("resident");
+                        residentSelect.innerHTML = "";
+                        const options = ["LowRise", "HighRise", "pentHouse"];
+                        options.forEach((option) => {
+                            const optionElement = document.createElement("option");
+                            optionElement.value = option.toLowerCase().replace(/\s/g, "_");
+                            optionElement.textContent = option;
+                            residentSelect.appendChild(optionElement);
+                        });
+                    } else if (document.getElementById("housetype").value === "House") {
+                        const residentSelect = document.getElementById("resident");
+                        residentSelect.innerHTML = "";
+                        const options = ["Gala Type", "Raw House", "Bungalow"];
+                        options.forEach((option) => {
+                            const optionElement = document.createElement("option");
+                            optionElement.value = option.toLowerCase().replace(/\s/g, "_");
+                            optionElement.textContent = option;
+                            residentSelect.appendChild(optionElement);
+                        });
+                    } else if (
+                        document.getElementById("housetype").value === "Commercial"
+                    ) {
+                        const residentSelect = document.getElementById("resident");
+                        residentSelect.innerHTML = "";
+                        const options = ["Office", "Shop"];
+                        options.forEach((option) => {
+                            const optionElement = document.createElement("option");
+                            optionElement.value = option.toLowerCase().replace(/\s/g, "_");
+                            optionElement.textContent = option;
+                            residentSelect.appendChild(optionElement);
+                        });
+                    } else if (
+                        document.getElementById("housetype").value === "Industrial"
+                    ) {
+                        const residentSelect = document.getElementById("resident");
+                        residentSelect.innerHTML = "";
+                        const options = ["Godown/Warehouse", "Building"];
+                        options.forEach((option) => {
+                            const optionElement = document.createElement("option");
+                            optionElement.value = option.toLowerCase().replace(/\s/g, "_");
+                            optionElement.textContent = option;
+                            residentSelect.appendChild(optionElement);
+                        });
+                    } else if (document.getElementById("housetype").value === "FarmHouse") {
+                        const residentSelect = document.getElementById("resident");
+                        residentSelect.innerHTML = "";
+                        const options = ["Farm", "Villa"];
+                        options.forEach((option) => {
+                            const optionElement = document.createElement("option");
+                            optionElement.value = option.toLowerCase().replace(/\s/g, "_");
+                            optionElement.textContent = option;
+                            residentSelect.appendChild(optionElement);
+                        });
+                    } else if (document.getElementById("housetype").value === "Land/Plot") {
+                        const residentSelect = document.getElementById("resident");
+                        residentSelect.innerHTML = "";
+                        const options = [
+                            "Residential Plot",
+                            "Industrial Plot",
+                            "Farm House Plot",
+                            "Agriculture Land",
+                            "Residential Land",
+                            "Industrial Land",
+                            "Commercial Land",
+                        ];
+
+                        options.forEach((option) => {
+                            const optionElement = document.createElement("option");
+                            optionElement.value = option.toLowerCase().replace(/\s/g, " ");
+                            optionElement.textContent = option;
+                            residentSelect.appendChild(optionElement);
+                        });
+                    } else if (
+                        document.getElementById("housetype").value === "Hotel/Resorts"
+                    ) {
+                        const residentSelect = document.getElementById("resident");
+                        residentSelect.innerHTML = "";
+                        const options = ["1 Star", "2 Star", "3 Star", "4 Star", "5 Star"];
+
+                        options.forEach((option) => {
+                            const optionElement = document.createElement("option");
+                            optionElement.value = option.toLowerCase().replace(/\s/g, "_");
+                            optionElement.textContent = option;
+                            residentSelect.appendChild(optionElement);
+                        });
+                    }
+                }
+
+
+                // Call addInput() function on button click
+                function addInput() {
+                    const container = document.getElementById("input-cont");
+                    let inputs = document.createElement("input");
+                    inputs.placeholder = "facilities";
+                    inputs.className = "form-control my-1";
+                    inputs.name = "facilities";
+                    container.appendChild(inputs);
+                }
+            </script>
 <%-include('footer')%>
-
-
-
-<main id="main">
-  <!-- ======= Intro Single ======= -->
-  <section class="intro-single">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 col-lg-8">
-          <div class="title-single-box">
-            <h1 class="title-single">properties</h1>
-            <span class="color-text-a"></span>
-          </div>
-        </div>
-        <div class="col-md-12 col-lg-4">
-          <nav
-            aria-label="breadcrumb"
-            class="breadcrumb-box d-flex justify-content-lg-end"
-          >
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item">
-                <a href="/user">Home</a>
-              </li>
-              <li class="breadcrumb-item">
-                <a href="/user/property">Properties</a>
-              </li>
-              <li class="breadcrumb-item active" aria-current="page">single</li>
-            </ol>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- End Intro Single-->
-  <!-- ======= Property Single ======= -->
-  <section class="property-single nav-arrow-b">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-          <div id="property-single-carousel" class="swiper">
-            <div class="swiper-wrapper">
-              <%var facilities= data.property_image %> <% facilities.forEach((s
-              , j )=>{ %>
-              <div class="carousel-item-b swiper-slide">
-                <img src="<%=s%>" width="100%" height="550px" alt="" />
-              </div>
-              <% }) %>
-            </div>
-          </div>
-          <div
-            class="property-single-carousel-pagination carousel-pagination"
-          ></div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="row justify-content-between">
-            <div class="col-md-5 col-lg-4">
-              <div class="property-price d-flex justify-content-center foo">
-                <div class="card-header-c d-flex">
-                  <div class="card-box-ico">
-                    <span class="bi bi-cash">₹</span>
-                  </div>
-                  <div class="card-title-c align-self-center">
-                    <h5 class="title-c"><%=data.price%></h5>
-                  </div>
-                </div>
-              </div>
-              <div class="property-summary">
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="title-box-d section-t4">
-                      <h3 class="title-d">Quick Summary</h3>
-                    </div>
-                  </div>
-                </div>
-                <div class="summary-list">
-                  <ul class="list">
-                    <li class="d-flex justify-content-between">
-                      <strong>Property Name:</strong>
-                      <span><%=data.projectName%></span>
-                    </li>
-                    <li class="d-flex justify-content-between">
-                      <strong>city:</strong>
-                      <span><%=data.city%></span>
-                    </li>
-                    <li class="d-flex justify-content-between">
-                      <strong>Location:</strong>
-                      <span><%=data.address%></span>
-                    </li>
-                    <li class="d-flex justify-content-between">
-                      <strong>Property Type:</strong>
-                      <span><%=data.house_type%></span>
-                    </li>
-                    <li class="d-flex justify-content-between">
-                      <strong>Status:</strong>
-                      <span>for <%=data.category%></span>
-                    </li>
-                    <li class="d-flex justify-content-between">
-                      <strong>size:</strong>
-                      <span><%=data.size%></span>
-                    </li>
-                    <li class="d-flex justify-content-between">
-                      <strong>carpet area:</strong>
-                      <span><%=data.carpet_area%></span>
-                    </li>
-                    <li class="d-flex justify-content-between">
-                      <strong>super built up:</strong>
-                      <span><%=data.super_built_up%></span>
-                    </li>
-                    <li class="d-flex justify-content-between">
-                      <strong>project area:</strong>
-                      <span><%=data.project_area%></span>
-                    </li>
-                    <li class="d-flex justify-content-between">
-                      <strong>booking amount:</strong>
-                      <span><%=data.booking_amount%></span>
-                    </li>
-                    <li class="d-flex justify-content-between">
-                      <strong>scale type:</strong>
-                      <span><%=data.scale_type%></span>
-                    </li>
-                    <li class="d-flex justify-content-between">
-                      <strong>property floor:</strong>
-                      <span><%=data.property_floor%></span>
-                    </li>
-                    <li class="d-flex justify-content-between">
-                      <strong>furnishing:</strong>
-                      <span><%=data.furnishing%></span>
-                    </li>
-                    <li class="d-flex justify-content-between">
-                      <strong>owner info:</strong>
-                      <span><%=data.owner_info%></span>
-                    </li>
-                    <li class="d-flex justify-content-between">
-                      <strong>builder info:</strong>
-                      <span><%=data.builder_details%></span>
-                    </li>
-                    <li class="d-flex justify-content-between">
-                      <strong>Rooms:</strong>
-                      <span><%=data.rooms%></span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-7 col-lg-7 section-md-t3">
-              <div class="row">
-                <div class="col-sm-12">
-                  <div class="title-box-d">
-                    <h3 class="title-d">Property Description</h3>
-                  </div>
-                </div>
-              </div>
-              <div class="property-description">
-                <p class="description color-text-a"><%=data.disclaimer%></p>
-              </div>
-              <div class="row section-t3">
-                <div class="col-sm-12">
-                  <div class="title-box-d">
-                    <h3 class="title-d">Amenities</h3>
-                  </div>
-                </div>
-              </div>
-              <div class="amenities-list color-text-a">
-                <ul class="list-a no-margin">
-                  <%var facilities= data.facilities %> <% facilities.forEach((s
-                  , j )=>{ %>
-                  <li><%= s %></li>
-                  <% }) %>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-12">
-          <div class="row section-t3">
-            <div class="col-sm-12">
-              <div class="title-box-d">
-                <h3 class="title-d">Contact Agent</h3>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6 col-lg-4">
-              <img src="/img/contactus.jpg" alt="" class="img-fluid" />
-            </div>
-            <div class="col-md-6 col-lg-4">
-              <div class="property-agent">
-                <h4 class="title-agent">contact us</h4>
-                <p class="color-text-a">
-                  Nulla porttitor accumsan tincidunt. Vestibulum ac diam sit
-                  amet quam vehicula elementum sed sit amet dui. Quisque velit
-                  nisi, pretium ut lacinia in, elementum id enim.
-                </p>
-                <ul class="list-unstyled">
-                  <li class="d-flex justify-content-between">
-                    <strong>Phone:</strong>
-                    <span class="color-text-a">(222) 4568932</span>
-                  </li>
-                  <li class="d-flex justify-content-between">
-                    <strong>Mobile:</strong>
-                    <span class="color-text-a">777 287 378 737</span>
-                  </li>
-                  <li class="d-flex justify-content-between">
-                    <strong>Email:</strong>
-                    <span class="color-text-a">annabella@example.com</span>
-                  </li>
-                  <li class="d-flex justify-content-between">
-                    <strong>Skype:</strong>
-                    <span class="color-text-a">Annabela.ge</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-md-12 col-lg-4">
-              <div class="property-contact">
-                <form
-                  class="form-a"
-                  action="/user/contact/<%=data.id%>"
-                  method="post"
-                >
-                  <div class="row">
-                    <div class="col-md-12 mb-1">
-                      <div class="form-group">
-                        <input
-                          type="text"
-                          class="form-control form-control-lg form-control-a"
-                          name="name"
-                          id="inputName"
-                          placeholder="Name *"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div class="col-md-12 mb-1">
-                      <div class="form-group">
-                        <input
-                          type="number"
-                          class="form-control form-control-lg form-control-a"
-                          name="mobile"
-                          id="inputEmail1"
-                          placeholder="mobile *"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div class="col-md-12 mb-1">
-                      <div class="form-group">
-                        <input
-                          type="email"
-                          class="form-control form-control-lg form-control-a"
-                          name="email"
-                          id="inputEmail1"
-                          placeholder="email address*"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div class="col-md-12 mb-1">
-                      <div class="form-group">
-                        <input
-                          type="text"
-                          class="form-control form-control-lg form-control-a"
-                          name="address"
-                          id="inputEmail1"
-                          placeholder="address *"
-                          required
-                        />
-                      </div>
-                    </div>
-                    <div class="col-md-12 mb-1">
-                      <div class="form-group">
-                        <textarea
-                          id="textMessage"
-                          class="form-control"
-                          placeholder="Comment *"
-                          name="description"
-                          required
-                        ></textarea>
-                      </div>
-                      <div class="col-md-12 mt-3">
-                        <button type="submit" class="btn btn-danger mb-5">
-                          Send Message
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<style>
-  body {
-    text-transform: capitalize;
-  }
-</style>
-
-<!-- <%=data%> -->
-<main class="container">
-  <section>
-    <div>
-      <div
-        class="mt-5 d-flex px-3 p-2 justify-content-between rounded-3"
-        style="background-color: #e2e2e2"
-      >
-        <div>
-          <h2 class="fs-5 fw-normal" style="text-transform: capitalize">
-            <%=data.projectName%> nagar
-          </h2>
-          <p>uma nilkanth vyayamshala thane west Explore Nearby</p>
-        </div>
-        <div class="d-flex justify-content-between">
-          <div class="bg-secondary mx-3 my-2" style="width: 1px"></div>
-          <div class="d-flex align-items-center">
-            <p><%=data.category%></p>
-          </div>
-          <div class="bg-secondary mx-3 my-2" style="width: 1px"></div>
-          <div class="d-flex align-items-center">
-            <p><%=data.saletype%></p>
-          </div>
-          <div class="bg-secondary mx-3 my-2" style="width: 1px"></div>
-          <div class="d-flex align-items-center">
-            <p><%=data.house_type%></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-  <div class="d-flex mt-3 flex-wrap">
-    <div class="col-lg-8 pe-3">
-      <div class="shadow-lg rounded-3" style="height: 360px;">
-        <img src="<%=data.property_image[0]%>" height="100%" alt="fs">
-  
-        
-<div class="imglist">
-  <a href="high-angle-vertical-shot-green-leaves-growing-middle-garden_181624-8670.webp" data-fancybox="group" data-caption="This image has a caption 2">
-      <img height="500px" width="400px" src="high-angle-vertical-shot-green-leaves-growing-middle-garden_181624-8670.webp" />
-    </a> 
-  <a href="save-water-vector-ecology-concept-hand-drawn-sketch-vector-illustration_460848-15511.webp" data-fancybox="group" data-caption="This image has a caption 1">
-    <img height="500px" width="400px" src="save-water-vector-ecology-concept-hand-drawn-sketch-vector-illustration_460848-15511.webp" />
-  </a> 
-    <a href="geometric-groovy-pattern_23-2148854743.webp" data-fancybox="group" data-caption="This image has a caption 3">
-      <img height="500px" width="400px" src="geometric-groovy-pattern_23-2148854743.webp" />
-    </a>
-  </div>
-      </div>
-    </div>
-    <div class="col-lg-4">
-      <div class="bg-white shadow-lg rounded-3">
-        <div class="p-3 d-flex justify-content-between">
-          <div style="background-color: #dbdbdb; border: 1.9px solid rgb(184, 184, 184);" class="d-flex align-items-center p-2 w-100 mx-2 rounded-3">
-              <i class="fa-regular fs-3 px-2 fa-compass"></i>
-              <div class="ps-3">
-                  <h2 style="font-weight: 500;"><%=data.facing%></h2>
-                  <p>Facing</p>
-              </div>
-          </div>
-          <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="d-flex align-items-center p-2 w-100 mx-2 rounded-3">
-              <i class="fa-solid fs-3 px-2 fa-door-open"></i>
-              <div class="ps-3">
-                  <h2 style="font-weight: 500;"><%=data.rooms%></h2>
-                  <p>Rooms</p>
-              </div>
-          </div>
-      </div>
-      <div class="p-3 d-flex justify-content-between">
-        <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="d-flex align-items-center p-2 w-100 mx-2 rounded-3">
-            <i class="fa-solid fs-3 px-2 fa-person-booth"></i>
-            <div class="ps-3">
-                <h2 style="font-weight: 500;"><%=data.bathroom%></h2>
-                <p>Bathroom</p>
-            </div>
-        </div>
-        <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="d-flex align-items-center p-2 w-100 mx-2 rounded-3">
-            <i class="fa-solid fs-3 px-2 fa-car"></i>
-            <div class="ps-3">
-                <h2 style="font-weight: 500;">Bike and Car</h2>
-                <p>Parking</p>
-            </div>
-        </div>
-    </div>
-        <div class="p-3 d-flex justify-content-between">
-          <div style="background-color: #dbdbdb; border: 1.9px solid rgb(184, 184, 184);" class="d-flex align-items-center p-2 w-100 mx-2 rounded-3">
-              <i class="fa-solid fs-3 px-2 fa-person-running"></i>
-              <div class="ps-3">
-                  <h2 style="font-weight: 500;"><%=data.possession%></h2>
-                  <p>Possession</p>
-              </div>
-          </div>
-          <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="d-flex align-items-center p-2 w-100 mx-2 rounded-3">
-              <i class="fa-solid fs-3 px-2 fa-user"></i>
-              <div class="ps-3">
-                  <h2 style="font-weight: 500;"><%=data.listedby%></h2>
-                  <p>Listed By</p>
-              </div>
-          </div>
-      </div>
-     <div class="d-flex justify-content-center">
-      <a href="/user/sellpage" style="width: fit-content;"
-      class="mx-lg-3 mx-5 ps-3 pe-2 d-block py-2 my-col-xl-0 my-3 rounded-pill theme-blue text-white rounded-3">POST PROPERTY FREE
-      &nbsp;&nbsp;&nbsp;<i
-        class="fa-solid bg-white p-2 rounded-circle fa-cloud-arrow-up text-theme-blue"></i></a>
-     </div>
-      </div>
-    </div>
-  </div>
-  </section>
-
-  <section>
-    <h2 class="text-theme-blue my-5 fs-2 fw-bold">Overview</h2>
-    <div class="d-flex">
-      <div class="col-lg-7 pe-3">
-        <div class="shadow-lg">
-          <div class="p-3 d-flex flex-wrap justify-content-between">
-            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center px-2 d-flex justify-content-between p-2 py-3 mx-2 rounded-3">
-              <div class="d-flex align-items-center">
-                <i class="fa-solid fs-3 fa-couch"></i>
-                <p class="m-0 ms-3">Furnishing Status</p>
-                </div>
-                <div class="ps-3 d-flex">
-                    <h2 style="font-weight: 500;"><%=data.furnishing%></h2>
-                </div>
-            </div>
-            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 py-3 mx-2 rounded-3">
-              <div class="d-flex align-items-center">
-                <i class="fa-solid fs-3 fa-person-booth"></i>
-                <p class="m-0 ms-3">Bathroom</p>
-              </div>
-                <div class="ps-3 d-flex">
-                    <h2 style="font-weight: 500;"><%=data.bathroom%></h2>
-                </div>
-            </div>
-        </div>
-          <div class="p-3 d-flex justify-content-between">
-            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 py-3 w-100 mx-2 rounded-3">
-              <div class="d-flex align-items-center">
-                <i class="fa-solid fs-3 fa-hand-holding-heart"></i>
-                <p class="m-0 ms-3">Property Life</p>
-              </div>
-                <div class="ps-3 d-flex">
-                    <h2 style="font-weight: 500;"><%=data.propertyLife%></h2>
-                </div>
-            </div>
-            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 py-3 w-100 mx-2 rounded-3">
-              <div class="d-flex align-items-center">
-                <i class="fa-solid fs-3 fa-ruler"></i>
-                <p class="m-0 ms-3">size</p>
-              </div>
-                <div class="ps-3 d-flex">
-                    <h2 style="font-weight: 500;"><%=data.size%></h2>
-                </div>
-            </div>
-        </div>
-          <div class="p-3 d-flex justify-content-between">
-            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 py-3 w-100 mx-2 rounded-3">
-              <div class="d-flex align-items-center">
-                <i class="fa-solid fs-3 fa-indian-rupee-sign"></i>
-                <p class="m-0 ms-3">Booking Amount</p>
-              </div>
-                <div class="ps-3 d-flex">
-                    <h2 style="font-weight: 500;"><%=data.booking_amount%></h2>
-                </div>
-            </div>
-            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 py-3 w-100 mx-2 rounded-3">
-              <div class="d-flex align-items-center">
-                <i class="fa-regular fs-3 fa-building"></i>
-                <p class="m-0 ms-3">Property Floors</p>
-              </div>
-                <div class="ps-3 d-flex">
-                    <h2 style="font-weight: 500;"><%=data.property_floor%></h2>
-                </div>
-            </div>
-        </div>
-          <div class="p-3 d-flex justify-content-between">
-            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 py-3 w-100 mx-2 rounded-3">
-              <div class="d-flex align-items-center">
-                <i class="fa-solid fs-3 fa-landmark"></i>
-                <p class="m-0 ms-3">Landmark</p>
-              </div>
-                <div class="ps-3 d-flex">
-                    <h2 style="font-weight: 500;"><%=data.landmark%></h2>
-                </div>
-            </div>
-            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 py-3 w-100 mx-2 rounded-3">
-              <div class="d-flex align-items-center">
-                <i class="fa-solid fa-scale-unbalanced-flip fs-3"></i>
-                <p class="m-0 ms-3">Scale Type</p>
-              </div>
-                <div class="ps-3 d-flex">
-                    <h2 style="font-weight: 500;"><%=data.scale_type%></h2>
-                </div>
-            </div>
-        </div>
-          <div class="p-3 d-flex justify-content-between">
-            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 py-3 w-100 mx-2 rounded-3">
-              <div class="d-flex align-items-center">
-                <i class="fa-solid fs-3 fa-hotel"></i>
-                <p class="m-0 ms-3">Resident Type</p>
-              </div>
-                <div class="ps-3 d-flex">
-                    <h2 style="font-weight: 500;"><%=data.residentType%></h2>
-                </div>
-            </div>
-            <div style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="align-items-center d-flex justify-content-between p-2 py-3 w-100 mx-2 rounded-3">
-              <div class="d-flex align-items-center">
-                <i class="fa-solid fs-3 fa-bolt"></i>
-                <p class="m-0 ms-3">powerbackup</p>
-              </div>
-                <div class="ps-3 d-flex">
-                    <h2 style="font-weight: 500;"><%=data.powerbackup%></h2>
-                </div>
-            </div>
-        </div>
-        </div>
-      </div>
-      <div class="col-lg-5">
-        <div class="shadow-lg">
-          ghf
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-<section>
-    <h2 class="text-theme-blue my-5 fs-2 fw-bold">Facilities</h2>
-    <div class="col-lg-7 d-flex flex-wrap">
-   <%for(var i of data.facilities){%>  
-      <span style="background-color: #dbdbdb;  border: 1.9px solid rgb(184, 184, 184);" class="p-2 mt-3 mx-2 rounded-3">
-          <p class=""><%=i%></p>
-      </span>
-   <%}%>
-    </div>
-    </section>
-
-  <section>
-    <h2 class="text-theme-blue my-5 fs-2 fw-bold">Disclaimer</h2>
-    <div class="col-lg-7">
-   <div class="shadow-lg p-4 ">
-    <%=data.disclaimer%>
-   </div>
-    </div>
-    </section>
-</main>

@@ -305,3 +305,35 @@ exports.propertDetails = async (req, res) => {
     console.log(error);
   }
 }
+
+exports.updateproperty = async (req, res) => {
+  var token = req.cookies.jwt;
+  const secretKey = process.env.SECRET_KEY;
+  var decodedToken = "";
+  if (token) {
+    decodedToken = jwt.verify(token, secretKey);
+  }
+  var profile = await user.findOne({ _id: decodedToken._id });
+  var data = await property.findOne({ _id: req.params.id });
+  var cities = await city.find({});
+  console.log(data);
+  res.render("update", { data, cities, profile });
+}
+
+exports.property=async(req, res) => {
+    var users=[]
+    var properties = await property.find({ active:0})
+
+    for (var i = 0; i <properties.length; i++) {
+
+      var find = await user.findOne({ _id: properties[i].user_id })
+      if (find) {
+        users.push(find)
+        }
+    }
+
+    if(properties){ 
+      res.render("reqproperties",{properties,users})
+    }
+
+}

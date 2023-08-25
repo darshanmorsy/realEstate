@@ -14,21 +14,16 @@ const {
   registerpostweb,
   home,
   property,
-  buy,
-  rents,
   singleproperty,
   contact,
   propertDetails, 
   allproperty,
-  rent_buy_property,
-  filterpost,
   deleteproperty,
   sell_page,
   user_property,
   profile,
   update_property,
   updateproperty,
-  profile_front,
   housetype,
   mainfilter,
   basicdetails,
@@ -40,40 +35,26 @@ router.post("/register",registerpost)
 router.post("/registerpostweb",registerpostweb)
 router.post("/loginpostweb",loginpostweb)
 router.get("/property",user_token,property)
-router.get("/buy", user_token, buy)  
-router.get("/rents", user_token, rents)
 router.get("/sellpage",user_token,sell_page)
-router.get("/property/:id/:sp", singleproperty)
-router.post("/filters", user_token, filterpost)
+router.get("/property/:id/:sp",user_token,singleproperty)
 router.post('/basicdetails',user_token,basicdetails)
-router.get("/housetype/:housetype", user_token, housetype)
+router.get("/housetype/:housetype",user_token,housetype)
 
 router.get("/login", login)
 router.get("/register", register)
 
-router.post(  
-  "/propertyDetails",user_token,
-  image_upload.array("property_image"),
-  propertDetails
-)
+router.post("/propertyDetails",user_token,image_upload.array("property_image"),propertDetails)
 
-router.post(
-  "/updateproperty", 
-  user_token,
-  image_upload.array("property_image"),
-  update_property
-)
+router.post("/updateproperty",user_token,image_upload.array("property_image"),update_property)
 
 router.get("/updateproperty/:id", user_token, updateproperty)
-router.post("/contact/:id", user_token, contact)
+router.post("/contact/:id", user_token,contact)
 router.get("/allproperty", user_token, allproperty)
-router.get("/rent_buy_property/:category/:house_type",user_token,rent_buy_property)
 router.get("/user_property", user_token, user_property)
 router.delete("/deleteproperty/:id", user_token, deleteproperty)
 router.get("/deleteproperty/:id", user_token, deleteproperty)
 router.get("/profile",user_token,profile)
-router.get("/profile_front", user_token, profile_front)
-router.post("/mainfilter", mainfilter)
+router.post("/mainfilter",mainfilter)
 
 router.get("/city", async (req, res) => {
   var data = await city.find({})

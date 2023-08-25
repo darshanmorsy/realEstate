@@ -11,7 +11,9 @@ const {
   user,
   deletecity,
   contactdelete,
-  propertDetails
+  propertDetails,
+  updateproperty,
+  property
 } = require("../controller/admin.controller")
 
 
@@ -25,11 +27,15 @@ router.post("/city", admin_token, city)
 
 router.get("/deletecity/:id", admin_token, deletecity)
 router.get("/contactdelete/:id", admin_token, contactdelete)
+router.get('/property', admin_token,property)
 router.post(
   "/propertyDetails", admin_token,
   image_upload.array("property_image"),
   propertDetails
 )
+
+router.get("/updateproperty/:id", admin_token, updateproperty)
+
 
 router.get("/city", async (req, res) => {
   var city = await cities.find({})

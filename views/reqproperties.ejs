@@ -1,0 +1,41 @@
+<%-include('adminheader')%>
+<section class="mt-5">
+    <div class="text-center">
+        <h1 class="fw-bold fs-1 my-5 text-theme-blue">properties request</h1>
+        <% if (messages.success) { %>                 
+            <div class="container d-flex justify-content-center">
+             <div class="alert my-2 alert-success" style="width: fit-content;">
+               <%= messages.success %>
+           </div>
+            </div>
+             <%}%>
+    </div>
+    <div class="d-flex flex-wrap justify-content-center">
+        <%for(var i of properties){%>
+        <div style="box-shadow: 0 0 3px #929292;" class="flex-column col-lg-3 mx-3 p-3 rounded-3">
+            <h3>Name : <%=i.projectName%></h3>
+            <h3 class="my-3">Location : <a href="<%=i.location%>" target="_blank"><%=i.location%></a></h3>
+            <h3 class="my-3">Category : <%=i.category%></h3>
+            <h3 class="my-3">House Type : <%=i.house_type%></h3>
+            <h3 class="my-3">Rooms : <%=i.rooms%></h3>
+           <h3 class="my-3 fw-bold fs-4 text-center text-theme-blue">user details</h3>
+            <div class="d-flex justify-content-center">
+            <a href="/user/property/<%=i.property_id%>/sp" target="_blank" style="width: fit-content;" class="theme-blue d-flex align-items-center p-1 text-white ps-3 rounded-pill">
+                explore  <i class="fa-solid fa-angles-right bg-white p-2 rounded-circle text-theme-blue ms-2"></i>
+            </a>
+                <a href="/admin/contactdelete/<%=i.id%>" class="d-flex align-items-center ms-2 theme-blue rounded-circle text-white"><i style="padding: 10px 13px;" class="fa-solid fa-trash"></i></a>
+           </div>
+            <!-- </div> -->
+            <%}%>
+            <!-- <div class="d-flex flex-wrap justify-content-center"> -->
+                <%for(var i of users){%>
+                <div style="box-shadow: 0 0 3px #929292;" class="flex-column col-lg-3 mx-3 mb-3 p-3 rounded-3">
+                    <h3>Name : <%=i.name%></h3>
+                    <h3 class="my-3">Mobile : <%=i.mobile%></h3>                  
+                    </div>
+                <%}%>
+            </div>
+    </div>
+</section>
+
+<%-include('footer')%>
