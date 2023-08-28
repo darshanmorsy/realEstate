@@ -27,7 +27,7 @@ const {
   housetype,
   mainfilter,
   basicdetails,
-} = require("../controller/user.controller")
+} = require("../controller/user.controller") 
 
 router.get("/", home)
 router.post("/login",loginpost)
@@ -52,6 +52,7 @@ router.get("/user_property", user_token, user_property)
 router.delete("/deleteproperty/:id", user_token, deleteproperty)
 router.get("/deleteproperty/:id", user_token, deleteproperty)
 router.get("/profile",user_token,profile)
+
 router.post("/mainfilter",mainfilter)
 
 router.get("/city", async (req, res) => {
