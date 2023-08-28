@@ -6,7 +6,7 @@
                 <%= messages.success %>
             </div>
         </div>
-        <% } %>
+        <%}%>
             <section class="sellform container">
                 <div class="col-xl-10">
                     <div class="">
@@ -223,7 +223,7 @@
                                     <div class="input-text">
                                         <div class="input-div">
                                             <p>Possesion</p>
-                                            <select required name="possession" required id="">
+                                            <select required name="possession" required>
                                                 <option value="" hidden>select possession</option>
                                                 <option value="Ready to Move">Ready to Move</option>
                                                 <option value="In 1 Year">In 1 Year</option>
@@ -426,6 +426,7 @@
                         <%}%>
                 </div>
             </section>
+        
             <script>
                 var next_click = document.querySelectorAll(".next_button");
                 var main_form = document.querySelectorAll(".main");
@@ -624,8 +625,6 @@
                     }
                 }
 
-
-                // Call addInput() function on button click
                 function addInput() {
                     const container = document.getElementById("input-cont");
                     let inputs = document.createElement("input");
@@ -635,8 +634,7 @@
                     container.appendChild(inputs);
                 }
             </script>
-
             <%-include('footer')%>
-</body>
 
+</body>
 </html>

@@ -44,9 +44,7 @@ router.get("/login", login)
 router.get("/register", register)
 
 router.post("/propertyDetails",user_token,image_upload.array("property_image"),propertDetails)
-
 router.post("/updateproperty",user_token,image_upload.array("property_image"),update_property)
-
 router.get("/updateproperty/:id", user_token, updateproperty)
 router.post("/contact/:id", user_token,contact)
 router.get("/allproperty", user_token, allproperty)
@@ -89,4 +87,4 @@ router.get("/logout", async (req, res) => {
   }
 })
 
-module.exports = router;
+module.exports = router
