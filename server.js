@@ -60,7 +60,7 @@ app.get("/", (req, res) => {
 app.post('/',async(req,res)=>{
 
   console.log(req.body)
-  res.json(req.body);n  
+  res.json(req.body)
 
 
 })
