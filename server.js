@@ -4,7 +4,7 @@ var path = require("path")
 var cookieParser = require("cookie-parser")
 var logger = require("morgan")
 const session = require("express-session")
-// const cors = require("cors")
+const cors = require("cors")
 const mongoose = require("mongoose")
 
 app.set("view engine", "ejs")
@@ -36,7 +36,7 @@ mongoose
 const port = process.env.PORT || 3000
 // require("./db/connection") 
  
-// app.use(cors())
+app.use(cors())
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -61,7 +61,7 @@ app.post('/',async(req,res)=>{
 
   console.log(req.body)
   res.json(req.body);n  
-  
+
 
 })
 
