@@ -50,10 +50,22 @@ app.use("/user", userRouter)
 app.use("/admin", adminRouter)
 
 app.get("/", (req, res) => {
-  res.redirect("/user")
+
+  // res.redirect("/user")
+  res.json({message:"Welcome to morsy"})
+  // res.download('./package.json');
+
 })  
 
+app.post('/',async(req,res)=>{
+
+  console.log(req.body)
+  res.json(req.body);n  
+  
+
+})
+
 app.listen(port, () => {
-  console.log(`listing to the port ${port}`);
+  console.log(`listing to the port ${port}`)
 })
  

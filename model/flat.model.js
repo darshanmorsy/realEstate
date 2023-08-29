@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose")
 
 const flatschema = mongoose.Schema(
   {
@@ -27,46 +27,44 @@ const flatschema = mongoose.Schema(
     // default: 1
     // },
     property_details: {
-        property_towers: {},
-        property_floors: {},
-        property_size: {},
-        caste: {},
-        
-        ammenities: {
-            type: Array,
-        },
-        
-        dastavage: {
-            
-            avage: {
+      property_towers: {
+        type: String,
+      },
+      property_floors: {},
+      property_size: {},
+      caste: {},
+      ammenities: {
+        type: Array,
+      },
+      dastavage: {
+        avage: {
           type: String,
         },
         gst: {
-            type: String,
+          type: String,
         },
         dastavagekharch: {
-            type: String,
+          type: String,
         },
-        
         extrakharch: {
           meter: {},
           // manually
         },
         bonus: {
-            type: String,
-            //   bybuilder by owner
+          type: String,
+          //   bybuilder by owner
         },
         loan: {
-            debt: {
-              type: Number,
-            },
+          debt: {
+            type: Number,
+          },
         },
         descriptions: {
-            type: String,
+          type: String,
         },
-        extrawork:{
-            type: String,
-        }
+        extrawork: {
+          type: String,
+        },
       },
     },
     contact_details: {
@@ -94,8 +92,8 @@ const flatschema = mongoose.Schema(
   {
     collection: "flat",
     timestamps: true,
-  }  
-);
+  }
+)
 
-var flat = mongoose.model("flat", flatschema)
+var flat = mongoose.model("flat", flatschema);
 module.exports = flat;
