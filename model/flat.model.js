@@ -26,10 +26,12 @@ const flatschema = mongoose.Schema(
     // type: Number,
     // default: 1
     // },
-    property_details: {
+    property_details:{
+
       property_towers: {
         type: String,
       },
+
       property_floors: {},
       property_size: {},
       caste: {},

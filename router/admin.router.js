@@ -33,7 +33,43 @@ router.post(
   image_upload.array("property_image"),
   propertDetails
 )
+router.post('/submit', (req, res) => {
+  // const formData = req.body;
+  console.log(req.body,"ppppp");
+  // var k = req.bodyx1
+  // res.render('admin',{k})
+  function objectToTable(data) {
+    let tableHTML = '<table>\n<thead>\n<tr><th>Key</th><th>Value</th></tr>\n</thead>\n<tbody>\n';
+  
+    function createTableRows(obj, parentKey = '') {
+      for (const key in obj) {
+        const currentKey = parentKey ? `${parentKey}.${key}` : key;
+        const value = typeof obj[key] === 'object' ? JSON.stringify(obj[key]) : obj[key];
+  
+        const displayKey = currentKey.substring(currentKey.indexOf('.') + 1); // Remove portion before dot
+        const row = `<tr><td>${displayKey}</td><td>${value}</td></tr>\n`;
+        tableHTML += row;
+  
+        if (typeof obj[key] === 'object') {
+          createTableRows(obj[key], currentKey);
+        }
+      }
+    }
+  
+    createTableRows(data);
+  
+    tableHTML += '</tbody>\n</table>';
+    return tableHTML;
+  }
+  
 
+  const table = objectToTable(req.body);
+  // console.log(table);
+  
+
+  res.send(table);
+
+});
 router.get("/updateproperty/:id", admin_token, updateproperty)
 
 

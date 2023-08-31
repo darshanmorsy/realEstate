@@ -401,6 +401,103 @@
                 </div>
             </section>
 
+
+            <section class="col-5 container my-5 py-5">
+                <form action="/admin/submit" method="post">
+                    <!-- <form id="propertyForm"> -->
+                        <div id="propertyFields">
+                          <!-- Dynamic fields will be added here -->
+                        </div>
+                        <button type="button" id="addFieldButton">+ Add Field</button>
+                        <button type="submit">Submit</button>
+                      <!-- </form> -->
+                          
+                </form>
+            </section>
+
+
+<!-- Include jQuery library -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+$(document).ready(function() {
+  const propertyFields = $('#propertyFields');
+
+  function addField(fieldName) {
+    const fieldHtml = `
+      <div class="field">
+        <input type="text" name="${fieldName}" placeholder="${fieldName}">
+        <button type="button" class="addSubFieldButton">+ Add Sub-Fields</button>
+        <div class="subFields" data-main="${fieldName}">
+          <!-- Sub-fields will be added here -->
+        </div>
+      </div>
+    `;
+    propertyFields.append(fieldHtml);
+  }
+
+  function addSubField(subFieldsContainer, subFieldName) {
+    const mainFieldName = subFieldsContainer.data('main');
+    const subFieldHtml = `
+      <input type="text" name="${mainFieldName}.${subFieldName}" placeholder="${subFieldName}">
+    `;
+    subFieldsContainer.append(subFieldHtml);
+  }
+
+  // Add field when the "Add Field" button is clicked
+  $('#addFieldButton').click(function() {
+    const fieldName = prompt('Enter field name:');
+    addField(fieldName);
+  });
+
+  // Add sub-field when the "Add Sub-Fields" button is clicked
+  propertyFields.on('click', '.addSubFieldButton', function() {
+    const subFieldsContainer = $(this).siblings('.subFields');
+    const subFieldName = prompt('Enter sub-field name:');
+    addSubField(subFieldsContainer, subFieldName);
+  });
+
+  // Handle form submission
+  $('#propertyForm').submit(function(event) {
+    event.preventDefault();
+
+    const formData = {};
+    propertyFields.find('[name]').each(function() {
+      const fieldName = $(this).attr('name');
+      const fieldValue = $(this).val();
+      
+      const parts = fieldName.split('.');
+      if (parts.length > 1) {
+        const mainField = parts[0];
+        const subField = parts[1];
+        formData[mainField] = formData[mainField] || {};
+        formData[mainField][subField] = fieldValue;
+      } else {
+        formData[fieldName] = fieldValue;
+      }
+    });
+
+    // Send the data to your server or perform further actions
+    console.log(formData);
+  });
+});
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
             <section class="container mt-5 pt-5">
                 <h1 class="fs-1 text-theme-blue fw-bold mb-5">City Details</h1>
                 <form action="/admin/city" method="post">

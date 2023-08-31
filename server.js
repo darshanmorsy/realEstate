@@ -12,6 +12,7 @@ app.set("views", path.join(__dirname, "views"))
 require("dotenv").config()
 app.use(express.static(path.join(__dirname,"assets")))
 app.use(express.static(path.join(__dirname,"upload")))
+
 const flash = require("express-flash")
 app.use(flash())
 app.use(session({
@@ -21,10 +22,9 @@ app.use(session({
   }))
   
 
-
 const db = "mongodb+srv://morsy:morsy@ds.6e7bjag.mongodb.net/realEstate"
 mongoose
-  .connect(db, {
+  .connect(db, { 
     // useCreateIndex: true,
     // useFindAndModify: false,
     useNewUrlParser: true, 
@@ -37,7 +37,6 @@ const port = process.env.PORT || 3000
 // require("./db/connection") 
  
 app.use(cors())
-
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
@@ -52,7 +51,7 @@ app.use("/admin", adminRouter)
 app.get("/", (req, res) => {
 
   // res.redirect("/user")
-  res.json({message:"Welcome to morsy"})
+  res.send("👍") 
   // res.download('./package.json');
 
 })  
@@ -61,7 +60,6 @@ app.post('/',async(req,res)=>{
 
   console.log(req.body)
   res.json(req.body)
-
 
 })
 
