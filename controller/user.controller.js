@@ -236,7 +236,7 @@ exports.registerpostweb = async (req, res) => {
 
 exports.property = async (req, res) => {
 
-  var data = await property.find({ active: 1 }).sort({ _id: -1 });
+  var data = await property.find({ }).sort({ _id: -1 });
   var cities = await city.find({});
   var users=''
   if(req.user){
