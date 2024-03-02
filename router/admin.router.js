@@ -18,18 +18,18 @@ const {
 
 
 router.get('/login',loginpage)
-router.get('/', admin_token, admin)
+router.get('/', admin)
 router.post("/login", login)
 
 router.get("/contacts", contacts)
-router.get("/user", admin_token, user)
-router.post("/city", admin_token, city)
+router.get("/user", user)
+router.post("/city", city)
 
-router.get("/deletecity/:id", admin_token, deletecity)
-router.get("/contactdelete/:id", admin_token, contactdelete)
-router.get('/property', admin_token,property)
+router.get("/deletecity/:id", deletecity)
+router.get("/contactdelete/:id", contactdelete)
+router.get('/property',property)
 router.post(
-  "/propertyDetails", admin_token,
+  "/propertyDetails",
   image_upload.array("property_image"),
   propertDetails
 )
@@ -70,7 +70,7 @@ router.post('/submit', (req, res) => {
   res.send(table);
 
 });
-router.get("/updateproperty/:id", admin_token, updateproperty)
+router.get("/updateproperty/:id", updateproperty)
 
 
 router.get("/city", async (req, res) => {
